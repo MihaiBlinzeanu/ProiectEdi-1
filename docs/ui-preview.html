@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecondBrain — preview UI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --paper: oklch(0.977 0.006 95);
+    --paper-2: oklch(0.955 0.008 90);
+    --card: oklch(0.994 0.003 95);
+    --ink: oklch(0.27 0.018 250);
+    --ink-soft: oklch(0.44 0.02 250);
+    --ink-faint: oklch(0.60 0.015 250);
+    --pine: oklch(0.46 0.072 185);
+    --pine-hover: oklch(0.40 0.075 185);
+    --pine-soft: oklch(0.46 0.072 185 / 0.08);
+    --ochre: oklch(0.66 0.105 72);
+    --ochre-soft: oklch(0.66 0.105 72 / 0.12);
+    --ochre-text: oklch(0.50 0.10 66);
+    --border: oklch(0.90 0.01 250);
+    --border-soft: oklch(0.93 0.008 250);
+    --danger: oklch(0.55 0.15 28);
+    --font-read: 'Newsreader', Georgia, serif;
+    --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-ui);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(oklch(0.5 0.02 250 / 0.025) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .app { display: grid; grid-template-columns: 264px 1fr; min-height: 100vh; }
+
+  /* ---------- Sidebar ---------- */
+  .side {
+    border-right: 1px solid var(--border);
+    background: var(--paper-2);
+    padding: 26px 20px;
+    display: flex; flex-direction: column; gap: 26px;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--pine); position: relative; flex: none;
+    box-shadow: 0 2px 8px oklch(0.46 0.072 185 / 0.3);
+  }
+  .brand .mark::before,
+  .brand .mark::after {
+    content: ''; position: absolute; border-radius: 50%;
+  }
+  .brand .mark::before { inset: 8px; border: 2px solid var(--paper); border-right-color: transparent; transform: rotate(-20deg); }
+  .brand .mark::after { width: 6px; height: 6px; background: var(--ochre); top: 13px; left: 14px; }
+  .brand .name { font-family: var(--font-read); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .name b { color: var(--pine); font-weight: 600; }
+  .brand .sub { display:block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 1px; }
+
+  .side h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-faint); font-weight: 600; margin-bottom: 12px; }
+  .corpus { display: flex; flex-direction: column; gap: 3px; }
+  .corpus a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 11px; border-radius: 9px; text-decoration: none;
+    color: var(--ink-soft); font-size: 14px; font-weight: 500;
+  }
+  .corpus a.active { background: var(--pine-soft); color: var(--pine); }
+  .corpus a:hover:not(.active) { background: oklch(0.5 0.02 250 / 0.05); }
+  .corpus .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pine); flex: none; opacity: 0.7; }
+  .corpus .n { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+
+  .side .foot { margin-top: auto; font-size: 12px; color: var(--ink-faint); line-height: 1.5; }
+  .side .foot .grounded { display:inline-flex; align-items:center; gap:6px; color: var(--pine); font-weight: 600; }
+  .side .foot .grounded::before { content:''; width:7px; height:7px; border-radius:50%; background: var(--pine); }
+
+  /* ---------- Main ---------- */
+  .main { display: flex; flex-direction: column; height: 100vh; }
+  .topbar {
+    padding: 18px 40px; border-bottom: 1px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: space-between;
+    background: oklch(0.977 0.006 95 / 0.8); backdrop-filter: blur(6px);
+  }
+  .topbar .ctx { font-size: 13px; color: var(--ink-faint); }
+  .topbar .ctx b { color: var(--ink-soft); font-weight: 600; }
+  .topbar .pill { font-family: var(--font-mono); font-size: 11px; color: var(--ochre-text); background: var(--ochre-soft); padding: 5px 11px; border-radius: 20px; letter-spacing: 0.03em; }
+
+  .thread { flex: 1; overflow-y: auto; padding: 40px 40px 20px; }
+  .turn { max-width: 760px; margin: 0 auto 36px; }
+
+  .q { display: flex; gap: 14px; align-items: baseline; }
+  .q .who { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); padding-top: 5px; flex: none; width: 52px; }
+  .q .text { font-family: var(--font-read); font-size: 25px; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); line-height: 1.3; }
+
+  .a { margin-top: 22px; padding-left: 66px; }
+  .a p { font-family: var(--font-read); font-size: 18.5px; line-height: 1.62; color: var(--ink); margin-bottom: 15px; }
+  .a p .cite {
+    font-family: var(--font-ui); font-size: 11px; font-weight: 600; vertical-align: super;
+    color: var(--ochre-text); background: var(--ochre-soft);
+    padding: 1px 6px; border-radius: 6px; margin: 0 1px; cursor: pointer; line-height: 1;
+  }
+  .a strong { font-weight: 600; }
+
+  .sources { margin-top: 24px; }
+  .sources .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-faint); font-weight: 600; margin-bottom: 12px; display:flex; align-items:center; gap: 8px; }
+  .sources .lbl::after { content:''; flex:1; height:1px; background: var(--border-soft); }
+  .srcgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .src {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--ochre); border-radius: 12px;
+    padding: 14px 16px; text-decoration: none; display: block;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .src:hover { transform: translateY(-2px); box-shadow: 0 6px 18px oklch(0.3 0.02 250 / 0.08); }
+  .src .num { font-family: var(--font-ui); font-size: 10px; font-weight: 700; color: var(--ochre-text); background: var(--ochre-soft); width: 19px; height: 19px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 9px; }
+  .src .title { font-family: var(--font-read); font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 7px; }
+  .src .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); display: flex; align-items: center; gap: 7px; }
+  .src .meta .course { color: var(--pine); font-weight: 500; }
+
+  /* grounded / refusal example */
+  .refusal { max-width: 760px; margin: 0 auto 36px; padding-left: 66px; }
+  .refusal .q .text { color: var(--ink-soft); }
+  .refusal .box { margin-top: 20px; background: oklch(0.55 0.15 28 / 0.05); border: 1px solid oklch(0.55 0.15 28 / 0.22); border-radius: 12px; padding: 16px 18px; font-family: var(--font-read); font-size: 17px; color: var(--ink); display:flex; gap: 13px; align-items:flex-start; }
+  .refusal .box .badge { font-family: var(--font-ui); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); border: 1px solid oklch(0.55 0.15 28 / 0.35); padding: 3px 8px; border-radius: 6px; flex:none; margin-top: 2px; }
+
+  /* composer */
+  .composer { padding: 16px 40px 26px; border-top: 1px solid var(--border-soft); }
+  .composer .box {
+    max-width: 760px; margin: 0 auto; background: var(--card);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 6px 6px 6px 18px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 2px 10px oklch(0.3 0.02 250 / 0.04);
+  }
+  .composer .box:focus-within { border-color: var(--pine); box-shadow: 0 0 0 3px var(--pine-soft); }
+  .composer input { flex: 1; border: none; outline: none; background: none; font-family: var(--font-ui); font-size: 15px; color: var(--ink); }
+  .composer input::placeholder { color: var(--ink-faint); }
+  .composer .send { background: var(--pine); color: var(--paper); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 17px; cursor: pointer; display:flex; align-items:center; justify-content:center; }
+  .composer .send:hover { background: var(--pine-hover); }
+  .composer .hint { max-width: 760px; margin: 10px auto 0; font-size: 12px; color: var(--ink-faint); text-align: center; }
+  .composer .hint code { font-family: var(--font-mono); background: var(--paper-2); padding: 1px 6px; border-radius: 5px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Sidebar: corpusul ingerat -->
+  <aside class="side">
+    <div class="brand">
+      <div class="mark"></div>
+      <div>
+        <span class="name">Second<b>Brain</b></span>
+        <span class="sub">grounded · local</span>
+      </div>
+    </div>
+
+    <div>
+      <h4>Corpus ingerat</h4>
+      <nav class="corpus">
+        <a class="active" href="#"><span class="dot"></span> Automatizarea Clădirilor <span class="n">41</span></a>
+        <a href="#"><span class="dot" style="background:var(--ochre)"></span> Rețelistică <span class="n">33</span></a>
+        <a href="#"><span class="dot" style="background:var(--ink-faint)"></span> Aplicații Web <span class="n">15</span></a>
+      </nav>
+    </div>
+
+    <div class="foot">
+      <span class="grounded">Răspunde doar din surse</span><br>
+      89 note · index <code style="font-family:var(--font-mono);font-size:11px">qmd</code> local
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="ctx">Interoghezi: <b>Automatizarea Clădirilor</b> · Curs 5 - SA</div>
+      <div class="pill">qmd · BM25 + vector · offline</div>
+    </div>
+
+    <div class="thread">
+
+      <!-- Turn 1: intrebare cu raspuns ancorat -->
+      <div class="turn">
+        <div class="q">
+          <div class="who">Tu</div>
+          <div class="text">Ce este un BMS și ce rol are în clădirea inteligentă?</div>
+        </div>
+        <div class="a">
+          <p>Un <strong>BMS (Building Management System)</strong> este sistemul centralizat de monitorizare, control și optimizare al clădirii.<span class="cite">1</span> El leagă subsistemele individuale — climatizare, iluminat, securitate, acces — într-o singură platformă controlabilă.</p>
+          <p>Rolul lui în clădirea inteligentă este de integrare: clădirea devine „inteligentă" tocmai pentru că toate subsistemele sunt aduse într-un sistem unic, controlabil central, în locul unor insule separate.<span class="cite">2</span> Arhitectura de comunicație tipică (de ex. KNX) este descentralizată, cu transmisie serială pe cablu BUS.<span class="cite">3</span></p>
+
+          <div class="sources">
+            <div class="lbl">Surse</div>
+            <div class="srcgrid">
+              <a class="src" href="#">
+                <span class="num">1</span>
+                <div class="title">BMS este sistemul centralizat de monitorizare, control și optimizare al clădirii</div>
+                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>concepts/</span></div>
+              </a>
+              <a class="src" href="#">
+                <span class="num">2</span>
+                <div class="title">Clădirea inteligentă integrează toate subsistemele într-un sistem unic controlabil</div>
+                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>concepts/</span></div>
+              </a>
+              <a class="src" href="#">
+                <span class="num">3</span>
+                <div class="title">Arhitectura KNX este descentralizată cu transmisie serială prin cablu BUS</div>
+                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>archive/CURS 5 - SA</span></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Turn 2: anti-halucinatie (diferentiatorul) -->
+      <div class="refusal">
+        <div class="q">
+          <div class="who">Tu</div>
+          <div class="text">Care e prețul mediu al unui senzor KNX în 2026?</div>
+        </div>
+        <div class="box">
+          <span class="badge">Nu în surse</span>
+          <div>Nu am această informație în materialele încărcate. Corpusul acoperă arhitectura și rolul KNX, dar nu conține date de preț — nu inventez o cifră.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="composer">
+      <div class="box">
+        <input placeholder="Întreabă ceva din cursurile tale…">
+        <button class="send">↑</button>
+      </div>
+      <div class="hint">Fiecare răspuns e ancorat în note. Fără sursă → <code>nu în surse</code>, nu halucinație.</div>
+    </div>
+  </main>
+
+</div>
+</body>
+</html>
