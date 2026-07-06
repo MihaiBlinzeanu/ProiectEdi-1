@@ -380,12 +380,40 @@ async function checkAuth() {
 // ========== SEARCH FUNCTIONS ==========
 let activeSubject = 'Automatizarea Clădirilor';
 
+function extractKeywords(query) {
+  const stopWords = ['este', 'sunt', 'oare', 'care', 'ce', 'cum', 'unde', 'cand', 'cat', 'cine',
+    'al', 'ale', 'ai', 'la', 'lui', 'prin', 'din', 'dupa', 'fara', 'catre', 'contra',
+    'pana', 'pentru', 'sub', 'peste', 'intre', 'spre', 'pe', 'cu', 'de', 'si', 'dar',
+    'iar', 'ori', 'ca', 'mai', 'ma', 'te', 'se', 'ne', 'va', 'imi', 'iti', 'un', 'o',
+    'una', 'niste', 'acest', 'aceasta', 'acel', 'aceea', 'alt', 'alta', 'alti', 'alte',
+    'are', 'au', 'era', 'fost', 'vor', 'vom', 'atunci', 'acolo', 'aici', 'asa', 'doar',
+    'prea', 'cam', 'aproape', 'chiar', 'tot', 'toate', 'putin', 'mult', 'multe', 'multi',
+    'unele', 'cativa', 'cateva', 'ceva', 'nimic', 'cei', 'cel', 'cele', 'catre', 'trebuie',
+    'poate', 'pot', 'putem', 'puteti', 'face', 'fac', 'fie', 'fi', 'fii', 'fiti', 'este',
+    'sunteti', 'suntem', 'erau', 'fusesera', 'fusesem'];
+  
+  const words = query.toLowerCase()
+    .replace(/[?.,!;:""„”«»()\-\/\\']/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 2 && !stopWords.includes(w));
+  
+  return [...new Set(words)];
+}
+
 async function searchConcepts(query) {
+  const keywords = extractKeywords(query);
+  
+  if (keywords.length === 0) return [];
+  
+  const conditions = keywords.map(k =>
+    `title.ilike.%${k}%,description.ilike.%${k}%`
+  ).join(',');
+  
   let supabaseQuery = window.supabase
     .from('concepts')
     .select('*')
-    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
-    .limit(5);
+    .or(conditions)
+    .limit(8);
   
   if (activeSubject) {
     supabaseQuery = supabaseQuery.contains('materii', [activeSubject]);
@@ -393,7 +421,18 @@ async function searchConcepts(query) {
   
   const { data, error } = await supabaseQuery;
   if (error) throw error;
-  return data;
+  
+  data.sort((a, b) => {
+    const aScore = keywords.filter(k =>
+      a.title.toLowerCase().includes(k) || a.description.toLowerCase().includes(k)
+    ).length;
+    const bScore = keywords.filter(k =>
+      b.title.toLowerCase().includes(k) || b.description.toLowerCase().includes(k)
+    ).length;
+    return bScore - aScore;
+  });
+  
+  return data.slice(0, 5);
 }
 
 function generateAnswer(question, results) {
