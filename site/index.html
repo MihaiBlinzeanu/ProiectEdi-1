@@ -459,14 +459,25 @@ testBtn.addEventListener('click', async () => {
   
   try {
     console.log('[Supabase] Testing connection...');
+    console.log('[Supabase] URL:', SUPABASE_URL);
+    console.log('[Supabase] Key (first 20):', SUPABASE_ANON_KEY.substring(0, 20) + '...');
+    
     const { data, error } = await window.supabase
       .from('concepts')
       .select('id')
       .limit(1);
     
+    console.log('[Supabase] Raw response:', { data, error });
+    
     if (error) {
       console.error('[Supabase] ✗ Test failed:', error);
-      alert('Supabase test failed: ' + error.message);
+      console.error('[Supabase] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      alert('Supabase test failed: ' + error.message + '\nCheck console for details.');
     } else {
       console.log('[Supabase] ✓ Success:', data);
       alert('Supabase connection successful! Found ' + data.length + ' concept(s).');
