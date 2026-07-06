@@ -161,9 +161,10 @@ a strong { font-weight: 600; }
     <div>
       <h4>Corpus ingerat</h4>
       <nav class="corpus">
-        <a class="active" href="#"><span class="dot"></span> Automatizarea Clădirilor <span class="n">41</span></a>
-        <a href="#"><span class="dot" style="background:var(--ochre)"></span> Rețelistică <span class="n">33</span></a>
-        <a href="#"><span class="dot" style="background:var(--ink-faint)"></span> Aplicații Web <span class="n">15</span></a>
+        <a class="active" href="#" data-subject="Automatizarea Clădirilor"><span class="dot"></span> Automatizarea Clădirilor <span class="n">28</span></a>
+        <a href="#" data-subject="Retelistică"><span class="dot" style="background:var(--ochre)"></span> Retelistică <span class="n">24</span></a>
+        <a href="#" data-subject="Tehnologii Web"><span class="dot" style="background:var(--ink-faint)"></span> Tehnologii Web <span class="n">23</span></a>
+        <a href="#" data-subject="Sisteme Automate"><span class="dot" style="background:var(--danger)"></span> Sisteme Automate <span class="n">7</span></a>
       </nav>
     </div>
   </aside>
@@ -171,7 +172,7 @@ a strong { font-weight: 600; }
   <!-- Main -->
   <main class="main">
     <div class="topbar">
-      <div class="ctx">Interoghezi: <b>Automatizarea Clădirilor</b> · Curs 5 - SA</div>
+      <div class="ctx">Interoghezi: <b id="currentSubject">Automatizarea Clădirilor</b> · <span id="subjectCount">0</span> concepte</div>
       <div class="pill">qmd · BM25 + vector · offline</div>
     </div>
 
@@ -349,29 +350,26 @@ composer.appendChild(testBtn);
 
 // ========== AUTH STATE ==========
 let currentUser = null;
+let welcomeShown = false;
 
 // ========== AUTH FUNCTIONS ==========
 async function checkAuth() {
-  console.log('[Auth] Checking auth state...');
   try {
     const { data: { session } } = await window.supabase.auth.getSession();
     currentUser = session?.user ?? null;
     
     if (currentUser) {
-      console.log('[Auth] User logged in:', currentUser.email);
       authBtn.textContent = 'Logout';
-      input.placeholder = `Logged in as ${currentUser.email}…`;
+      input.placeholder = `Autentificat ca ${currentUser.email}…`;
       input.disabled = false;
       sendBtn.disabled = false;
     } else {
-      console.log('[Auth] No active session');
       authBtn.textContent = 'Login';
       input.placeholder = 'Loghează-te pentru a întreba…';
       input.disabled = true;
       sendBtn.disabled = true;
     }
   } catch (err) {
-    console.error('[Auth] Error checking auth:', err);
     authBtn.textContent = 'Login';
     input.placeholder = 'Loghează-te pentru a întreba…';
     input.disabled = true;
@@ -379,41 +377,26 @@ async function checkAuth() {
   }
 }
 
-async function handleAuthCallback() {
-  console.log('[Auth] Handling auth callback...');
-  try {
-    const { data: { session }, error } = await window.supabase.auth.getSession();
-    
-    if (session) {
-      console.log('[Auth] Session detected via callback:', session.user.email);
-      addSystemMessage(`Conectat ca ${session.user.email}`);
-      await checkAuth();
-    }
-  } catch (err) {
-    console.error('[Auth] Error handling callback:', err);
-  }
-}
-
 // ========== SEARCH FUNCTIONS ==========
+let activeSubject = 'Automatizarea Clădirilor';
+
 async function searchConcepts(query) {
-  console.log('[Search] Searching concepts:', query);
-  try {
-    const { data, error } = await window.supabase
-      .from('concepts')
-      .select('*')
-      .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
-      .limit(5);
-    
-    if (error) throw error;
-    return data;
-  } catch (err) {
-    console.error('[Search] Error searching concepts:', err);
-    throw err;
+  let supabaseQuery = window.supabase
+    .from('concepts')
+    .select('*')
+    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    .limit(5);
+  
+  if (activeSubject) {
+    supabaseQuery = supabaseQuery.contains('materii', [activeSubject]);
   }
+  
+  const { data, error } = await supabaseQuery;
+  if (error) throw error;
+  return data;
 }
 
 function generateAnswer(question, results) {
-  console.log('[Search] Generating answer for:', question);
   if (!results || results.length === 0) {
     return {
       html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>',
@@ -442,40 +425,32 @@ function generateAnswer(question, results) {
 }
 
 // ========== EVENT LISTENERS ==========
+// Sidebar subject click
+document.querySelectorAll('.corpus a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.corpus a').forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+    activeSubject = link.dataset.subject;
+    document.getElementById('currentSubject').textContent = activeSubject;
+  });
+});
+
 // Test button click
 testBtn.addEventListener('click', async () => {
-  console.log('[Supabase] Test button clicked');
   testBtn.disabled = true;
   testBtn.textContent = '…';
   
   try {
-    console.log('[Supabase] Testing connection...');
-    console.log('[Supabase] URL:', SUPABASE_URL);
-    console.log('[Supabase] Key (first 20):', SUPABASE_ANON_KEY.substring(0, 20) + '...');
-    
     const { data, error } = await window.supabase
       .from('concepts')
       .select('id')
       .limit(1);
     
-    console.log('[Supabase] Raw response:', { data, error });
-    
-    if (error) {
-      console.error('[Supabase] ✗ Test failed:', error);
-      console.error('[Supabase] Error details:', {
-        message: error.message,
-        details: error.details,
-        hint: error.hint,
-        code: error.code
-      });
-      alert('Supabase test failed: ' + error.message + '\nCheck console for details.');
-    } else {
-      console.log('[Supabase] ✓ Success:', data);
-      alert('Supabase connection successful! Found ' + data.length + ' concept(s).');
-    }
+    if (error) throw error;
+    alert('Conexiune reușită! ' + data.length + ' concept(e) găsite.');
   } catch (err) {
-    console.error('[Supabase] ✗ Test error:', err);
-    alert('Test error: ' + err.message);
+    alert('Eroare conexiune: ' + err.message);
   }
   
   testBtn.disabled = false;
@@ -484,7 +459,6 @@ testBtn.addEventListener('click', async () => {
 
 // Auth button click
 authBtn.addEventListener('click', async () => {
-  console.log('[Auth] Auth button clicked');
   authBtn.disabled = true;
   authBtn.textContent = '…';
   
@@ -492,30 +466,19 @@ authBtn.addEventListener('click', async () => {
     const { data: { session } } = await window.supabase.auth.getSession();
     
     if (session) {
-      console.log('[Auth] Signing out...');
       await window.supabase.auth.signOut();
-      addSystemMessage('Deconectat.');
     } else {
-      console.log('[Auth] Starting GitHub OAuth...');
       const redirectUrl = window.location.origin;
-      console.log('[Auth] Redirect URL:', redirectUrl);
-      
-      const { error } = await window.supabase.auth.signInWithOAuth({
+      await window.supabase.auth.signInWithOAuth({
         provider: 'github',
-        options: {
-          redirectTo: redirectUrl
-        }
+        options: { redirectTo: redirectUrl }
       });
-      
-      if (error) throw error;
     }
   } catch (err) {
-    console.error('[Auth] Auth error:', err);
-    addSystemMessage('Eroare autentificare: ' + err.message + '\nVerifică GitHub OAuth App config.');
+    addSystemMessage('Eroare autentificare: ' + err.message);
   }
   
   authBtn.disabled = false;
-  authBtn.textContent = currentUser ? 'Logout' : 'Login';
 });
 
 // Search button click
@@ -523,7 +486,6 @@ sendBtn.addEventListener('click', async () => {
   const q = input.value.trim();
   if (!q) return;
   
-  console.log('[Search] Query submitted:', q);
   input.value = '';
   input.disabled = true;
   sendBtn.disabled = true;
@@ -539,7 +501,6 @@ sendBtn.addEventListener('click', async () => {
       addTurn(q, html, sources);
     }
   } catch (err) {
-    console.error('[Search] Error:', err);
     addRefusal(q, 'Eroare la căutare: ' + err.message);
   }
 
@@ -553,23 +514,21 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
 });
 
-// ========== AUTH LISTENERS ==========
+// ========== AUTH LISTENER ==========
 window.supabase.auth.onAuthStateChange((event, session) => {
-  console.log('[Auth] Auth state changed:', event);
-  if (event === 'SIGNED_IN') {
+  if (event === 'SIGNED_IN' && !welcomeShown) {
+    welcomeShown = true;
     addSystemMessage(`Bine ai venit, ${session.user.email}`);
+    checkAuth();
   } else if (event === 'SIGNED_OUT') {
+    welcomeShown = false;
     addSystemMessage('Deconectat.');
+    checkAuth();
   }
-  checkAuth();
 });
 
 // ========== INITIALIZATION ==========
-(async () => {
-  await handleAuthCallback();
-  checkAuth();
-  console.log('[App] Application ready');
-})();
+checkAuth();
 </script>
 </body>
 </html>
