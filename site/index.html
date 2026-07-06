@@ -125,8 +125,8 @@ body {
 .topbar .actions { display: flex; gap: 8px; align-items: center; }
 
 .topbar .btn {
-  font-family: var(--font-ui); font-size: 12px; font-weight: 600;
-  padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+  padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border);
   background: var(--card); color: var(--ink-soft); cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -134,8 +134,7 @@ body {
 .topbar .btn-primary { background: var(--pine); color: white; border-color: var(--pine); }
 .topbar .btn-primary:hover { background: var(--pine-hover); }
 .topbar .btn-outline { background: transparent; }
-.topbar .btn-sm { padding: 4px 10px; font-size: 11px; }
-.topbar .btn .ico { margin-right: 4px; }
+.topbar .btn .ico { margin-right: 6px; }
 
 .thread { flex: 1; overflow-y: auto; padding: 40px 40px 20px; }
 .turn { max-width: 760px; margin: 0 auto 36px; animation: fadeSlideUp 0.35s ease; }
@@ -235,6 +234,7 @@ a strong { font-weight: 600; }
 
     <div class="actions">
       <button id="planBtn"><span class="ico">📋</span> Plan de învățare</button>
+      <button id="formulaBtn"><span class="ico">📝</span> Formule și exerciții</button>
     </div>
 
     <div class="foot">
@@ -246,8 +246,8 @@ a strong { font-weight: 600; }
     <div class="topbar">
       <div class="ctx">Interoghezi: <b id="currentSubject">Automatizarea Clădirilor</b> · <span id="subjectCount">0</span> concepte</div>
       <div class="actions">
-        <button class="btn btn-sm btn-outline" id="testBtn">🔌 Test</button>
-        <button class="btn btn-sm btn-primary" id="authBtn">🔑 Login</button>
+        <button class="btn btn-outline" id="testBtn">🔌 Test</button>
+        <button class="btn btn-primary" id="authBtn">🔑 Login</button>
       </div>
     </div>
 
@@ -277,6 +277,7 @@ const sendBtn = document.querySelector('.send');
 const authBtn = document.getElementById('authBtn');
 const testBtn = document.getElementById('testBtn');
 const planBtn = document.getElementById('planBtn');
+const formulaBtn = document.getElementById('formulaBtn');
 
 // ========== STATE ==========
 let currentUser = null;
@@ -366,13 +367,13 @@ async function checkAuth() {
     currentUser = session?.user ?? null;
     if (currentUser) {
       authBtn.innerHTML = '🚪 Logout';
-      authBtn.className = 'btn btn-sm btn-outline';
+      authBtn.className = 'btn btn-outline';
       input.placeholder = `Autentificat ca ${currentUser.email}...`;
       input.disabled = false;
       sendBtn.disabled = false;
     } else {
       authBtn.innerHTML = '🔑 Login';
-      authBtn.className = 'btn btn-sm btn-primary';
+      authBtn.className = 'btn btn-primary';
       input.placeholder = 'Loghează-te pentru a întreba…';
       input.disabled = true;
       sendBtn.disabled = true;
@@ -471,6 +472,53 @@ async function generateStudyPlan() {
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
 
+// ========== FORMULAS PLAN ==========
+async function generateFormulasPlan() {
+  addSystemMessage(`Se generează planul de formule/exerciții pentru ${activeSubject}…`);
+  try {
+    let q = window.supabase.from('concepts').select('*').in('type', ['formula', 'algorithm', 'example']);
+    if (activeSubject) q = q.contains('materii', [activeSubject]);
+    const { data, error } = await q;
+    if (error) throw error;
+    if (data.length === 0) {
+      addSystemMessage('Nicio formulă, algoritm sau exemplu găsit pentru această materie.');
+      return;
+    }
+
+    const sourceOrder = [];
+    const groups = {};
+    for (const c of data) {
+      const key = c.source || 'General';
+      if (!groups[key]) { groups[key] = []; sourceOrder.push(key); }
+      groups[key].push(c);
+    }
+
+    let html = '<div class="study-plan">';
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:6px">📝 Formule și exerciții — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:15px;color:var(--ink-soft);margin-bottom:22px">${data.length} formule/algoritmi/exemple. Rezolvă-le în ordinea capitolelor.</p>`;
+
+    for (const source of sourceOrder) {
+      const items = groups[source];
+      const shortSource = source.replace(/\.pdf$/,'').replace(/^C\d+[- ]*/,'').replace(/^RC_/,'');
+      html += `<div class="section"><h3>📄 ${escapeHtml(shortSource || 'General')} — ${items.length}</h3>`;
+      for (const item of items) {
+        const badge = `<span style="font-family:var(--font-mono);font-size:10px;color:var(--ochre-text);background:var(--ochre-soft);padding:1px 6px;border-radius:4px;margin-right:6px">${item.type}</span>`;
+        html += `<div class="item">${badge}${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.title)}</span></div>`;
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+
+    const turn = document.createElement('div');
+    turn.className = 'turn';
+    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată-mi formulele și exercițiile pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
+    thread.appendChild(turn);
+  } catch (err) {
+    addSystemMessage('Eroare la generarea planului: ' + err.message);
+  }
+  setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
+}
+
 // ========== EVENTS ==========
 document.querySelectorAll('.corpus a').forEach(link => {
   link.addEventListener('click', (e) => {
@@ -483,6 +531,7 @@ document.querySelectorAll('.corpus a').forEach(link => {
 });
 
 planBtn.addEventListener('click', generateStudyPlan);
+formulaBtn.addEventListener('click', generateFormulasPlan);
 
 testBtn.addEventListener('click', async () => {
   testBtn.disabled = true;
