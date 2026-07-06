@@ -224,6 +224,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+const thread = document.querySelector('.thread');
 const composer = document.querySelector('.composer');
 const input = composer.querySelector('input');
 const sendBtn = composer.querySelector('.send');
@@ -233,11 +234,86 @@ authBtn.textContent = 'Login';
 authBtn.style.marginLeft = '8px';
 composer.appendChild(authBtn);
 
+let currentUser = null;
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatCitations(answerText, sources) {
+  let result = answerText;
+  sources.forEach((src, i) => {
+    const num = i + 1;
+    result = result.replace(
+      new RegExp(`\\{\\{cite:${num}\\}\\}`, 'g'),
+      `<span class="cite">${num}</span>`
+    );
+  });
+  return result;
+}
+
+function buildSourceCards(sources) {
+  if (!sources.length) return '';
+  return `
+    <div class="sources">
+      <div class="lbl">Surse</div>
+      <div class="srcgrid">
+        ${sources.map((src, i) => `
+          <a class="src" href="#" data-id="${src.id}">
+            <span class="num">${i + 1}</span>
+            <div class="title">${escapeHtml(src.title)}</div>
+            <div class="meta"><span class="course">${escapeHtml(src.materii?.[0] || 'Necunoscut')}</span> · <span>${escapeHtml(src.source || '')}</span></div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function addTurn(question, answerHtml, sources) {
+  const turn = document.createElement('div');
+  turn.className = 'turn';
+  turn.innerHTML = `
+    <div class="q">
+      <div class="who">Tu</div>
+      <div class="text">${escapeHtml(question)}</div>
+    </div>
+    <div class="a">
+      ${answerHtml}
+      ${buildSourceCards(sources)}
+    </div>
+  `;
+  thread.appendChild(turn);
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function addRefusal(question, message) {
+  const turn = document.createElement('div');
+  turn.className = 'turn refusal';
+  turn.innerHTML = `
+    <div class="q">
+      <div class="who">Tu</div>
+      <div class="text">${escapeHtml(question)}</div>
+    </div>
+    <div class="a">
+      <div class="box">
+        <span class="badge">Nu în surse</span>
+        <span>${escapeHtml(message)}</span>
+      </div>
+    </div>
+  `;
+  thread.appendChild(turn);
+  thread.scrollTop = thread.scrollHeight;
+}
+
 async function checkAuth() {
   const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
+  currentUser = session?.user ?? null;
+  if (currentUser) {
     authBtn.textContent = 'Logout';
-    input.placeholder = `Logged in as ${session.user.email}…`;
+    input.placeholder = `Logged in as ${currentUser.email}…`;
     input.disabled = false;
     sendBtn.disabled = false;
   } else {
@@ -258,29 +334,66 @@ authBtn.addEventListener('click', async () => {
   await checkAuth();
 });
 
+async function searchConcepts(query) {
+  const { data, error } = await supabase
+    .from('concepts')
+    .select('id, title, description, materii, type, source, confidence')
+    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    .limit(5);
+  if (error) throw error;
+  return data;
+}
+
+function generateAnswer(question, results) {
+  if (!results.length) {
+    return { html: '', sources: [], refusal: true };
+  }
+
+  const sources = results.map(r => ({
+    id: r.id,
+    title: r.title,
+    materii: r.materii,
+    source: r.source
+  }));
+
+  const answerParts = results.map((r, i) => {
+    const cite = `{{cite:${i + 1}}}`;
+    return `${escapeHtml(r.description)}${cite}`;
+  });
+
+  return {
+    html: `<p>${answerParts.join(' ')}</p>`,
+    sources,
+    refusal: false
+  };
+}
+
 sendBtn.addEventListener('click', async () => {
   const q = input.value.trim();
   if (!q) return;
   input.value = '';
   input.disabled = true;
   sendBtn.disabled = true;
+  sendBtn.textContent = '…';
 
-  const { data, error } = await supabase
-    .from('concepts')
-    .select('title, description, materii, type, source, confidence')
-    .ilike('description', `%${q}%`)
-    .limit(5);
+  try {
+    const results = await searchConcepts(q);
+    const { html, sources, refusal } = generateAnswer(q, results);
 
-  if (error) {
-    console.error(error);
-    alert('Eroare: ' + error.message);
-  } else {
-    console.log('Rezultate:', data);
-    alert(`Găsit ${data.length} rezultate. Vezi console.`);
+    if (refusal) {
+      addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.');
+    } else {
+      addTurn(q, html, sources);
+    }
+  } catch (err) {
+    console.error(err);
+    addRefusal(q, 'Eroare la căutare: ' + err.message);
   }
 
   input.disabled = false;
   sendBtn.disabled = false;
+  sendBtn.textContent = '↑';
+  input.focus();
 });
 
 input.addEventListener('keydown', (e) => {
