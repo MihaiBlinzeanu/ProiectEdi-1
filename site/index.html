@@ -222,8 +222,34 @@ a strong { font-weight: 600; }
 const SUPABASE_URL = 'https://ghykfsupezjigjcoriku.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoeWtmc3VwZXppZ2pjb3Jpa3UiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4MzA3ODA3NCwiZXhwIjoyMDk4NjU0MDc0fQ.1EY5j1IbDtoJSZ8-w4XTtMy3R6h2l7mGxu70R9bxHxE';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+console.log('Initializing Supabase client...');
+console.log('URL:', SUPABASE_URL);
+console.log('Key:', SUPABASE_ANON_KEY.substring(0, 10) + '...');
 
+try {
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  console.log('Supabase initialized:', supabase);
+  
+  // Test CORS
+  supabase.from('concepts').select('id').limit(1).then(({ data, error }) => {
+    console.log('CORS test:', error ? error.message : 'Success');
+  });
+} catch (err) {
+  console.error('Supabase init error:', err);
+}
+
+const thread = document.querySelector('.thread');
+// Initialize Supabase client
+console.log('Initializing Supabase client...');
+try {
+  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  console.log('✓ Supabase initialized');
+} catch (err) {
+  console.error('✗ Supabase init failed:', err);
+  alert('Supabase initialization failed. Check console.');
+}
+
+// UI elements
 const thread = document.querySelector('.thread');
 const composer = document.querySelector('.composer');
 const input = composer.querySelector('input');
@@ -233,6 +259,38 @@ authBtn.className = 'send';
 authBtn.textContent = 'Login';
 authBtn.style.marginLeft = '8px';
 composer.appendChild(authBtn);
+
+// Test connectivity button
+const testBtn = document.createElement('button');
+testBtn.className = 'send';
+testBtn.textContent = 'Test';
+testBtn.style.marginLeft = '8px';
+testBtn.title = 'Test Supabase connectivity';
+testBtn.addEventListener('click', async () => {
+  console.log('Testing Supabase connection...');
+  testBtn.disabled = true;
+  testBtn.textContent = '…';
+  
+  try {
+    const { data, error } = await window.supabase.from('concepts').select('id').limit(1);
+    if (error) {
+      console.error('✗ Test failed:', error);
+      alert('Supabase test failed: ' + error.message);
+    } else {
+      console.log('✓ Success:', data);
+      alert('Supabase connection successful! Found ' + data.length + ' concept(s).');
+    }
+  } catch (err) {
+    console.error('✗ Test error:', err);
+    alert('Test error: ' + err.message);
+  }
+  
+  testBtn.disabled = false;
+  testBtn.textContent = 'Test';
+});
+composer.appendChild(testBtn);
+
+let currentUser = null;
 
 let currentUser = null;
 
@@ -325,14 +383,51 @@ async function checkAuth() {
 }
 
 authBtn.addEventListener('click', async () => {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
-    await supabase.auth.signOut();
-  } else {
-    await supabase.auth.signInWithOAuth({ provider: 'github' });
+  console.log('Auth button clicked');
+  authBtn.disabled = true;
+  authBtn.textContent = '…';
+  
+  try {
+    const { data: { session } } = await window.supabase.auth.getSession();
+    console.log('Current session:', session);
+    
+    if (session) {
+      console.log('Signing out...');
+      await window.supabase.auth.signOut();
+      addSystemMessage('Deconectat.');
+    } else {
+      console.log('Starting GitHub OAuth...');
+      const { error } = await window.supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+      if (error) throw error;
+    }
+  } catch (err) {
+    console.error('Auth error:', err);
+    addSystemMessage('Eroare autentificare: ' + err.message);
   }
-  await checkAuth();
+  
+  authBtn.disabled = false;
+  authBtn.textContent = currentUser ? 'Logout' : 'Login';
 });
+
+// System message function
+function addSystemMessage(text) {
+  const msg = document.createElement('div');
+  msg.style.textAlign = 'center';
+  msg.style.margin = '20px 0';
+  msg.style.padding = '12px';
+  msg.style.background = 'var(--pine-soft)';
+  msg.style.borderRadius = 'var(--radius)';
+  msg.style.color = 'var(--pine)';
+  msg.style.fontSize = '14px';
+  msg.textContent = text;
+  thread.appendChild(msg);
+  thread.scrollTop = thread.scrollHeight;
+}
 
 async function searchConcepts(query) {
   const { data, error } = await supabase
@@ -400,11 +495,40 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
 });
 
-supabase.auth.onAuthStateChange((_event, session) => {
+// Handle OAuth callback on page load
+async function handleAuthCallback() {
+  const { data: { session }, error } = await window.supabase.auth.getSession();
+  if (error) console.error('Session error:', error);
+  
+  if (session) {
+    console.log('Authenticated via callback:', session.user.email);
+    addSystemMessage(`Conectat ca ${session.user.email}`);
+    checkAuth();
+    return true;
+  }
+  return false;
+}
+
+// Setup auth state listener
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log('Auth event:', event, session);
+  if (event === 'SIGNED_IN') {
+    addSystemMessage(`Bine ai venit, ${session.user.email}`);
+  } else if (event === 'SIGNED_OUT') {
+    addSystemMessage('Deconectat.');
+  }
   checkAuth();
 });
 
-checkAuth();
+// Check initial state and handle callback
+(async () => {
+  const hasSession = await handleAuthCallback();
+  if (!hasSession) {
+    checkAuth();
+  }
+  
+  console.log('UI ready');
+})();
 </script>
  </body>
 </html>
