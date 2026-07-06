@@ -229,17 +229,7 @@ console.log('[Supabase] Initializing client with URL:', SUPABASE_URL);
 // Initialize Supabase client with safer configuration
 try {
   console.log('[Supabase] Creating client with disabled experiments...');
-  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-      detectSessionInUrl: false,
-      storage: null,
-      experimental: {
-        passkey: false // Disable WebAuthn
-      }
-    }
-  });
+  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   
   console.log('[Supabase] Client initialized successfully');
 } catch (err) {
@@ -510,15 +500,10 @@ authBtn.addEventListener('click', async () => {
       const redirectUrl = window.location.origin;
       console.log('[Auth] Redirect URL:', redirectUrl);
       
-      // Use direct GitHub OAuth with hardcoded client ID
       const { error } = await window.supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: redirectUrl,
-          // Force correct client ID for GitHub
-          queryParams: {
-            client_id: 't-/BFhqUGm5bhg9g'
-          }
+          redirectTo: redirectUrl
         }
       });
       
