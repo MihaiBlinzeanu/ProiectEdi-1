@@ -219,81 +219,34 @@ a strong { font-weight: 600; }
 </main>
  </div>
 <script>
+// ========== SUPABASE CONFIGURATION ==========
 const SUPABASE_URL = 'https://ghykfsupezjigjcoriku.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoeWtmc3VwZXppZ2pjb3Jpa3UiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4MzA3ODA3NCwiZXhwIjoyMDk4NjU0MDc0fQ.1EY5j1IbDtoJSZ8-w4XTtMy3R6h2l7mGxu70R9bxHxE';
 
-console.log('Initializing Supabase client...');
-console.log('URL:', SUPABASE_URL);
-console.log('Key:', SUPABASE_ANON_KEY.substring(0, 10) + '...');
+console.log('[Supabase] Initializing client with URL:', SUPABASE_URL);
 
+// Initialize Supabase client with safer configuration
 try {
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  console.log('Supabase initialized:', supabase);
-  
-  // Test CORS
-  supabase.from('concepts').select('id').limit(1).then(({ data, error }) => {
-    console.log('CORS test:', error ? error.message : 'Success');
-  });
-} catch (err) {
-  console.error('Supabase init error:', err);
-}
-
-const thread = document.querySelector('.thread');
-// Initialize Supabase client
-console.log('Initializing Supabase client...');
-try {
-  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  console.log('✓ Supabase initialized');
-} catch (err) {
-  console.error('✗ Supabase init failed:', err);
-  alert('Supabase initialization failed. Check console.');
-}
-
-// UI elements
-const thread = document.querySelector('.thread');
-const composer = document.querySelector('.composer');
-const input = composer.querySelector('input');
-const sendBtn = composer.querySelector('.send');
-const authBtn = document.createElement('button');
-authBtn.className = 'send';
-authBtn.textContent = 'Login';
-authBtn.style.marginLeft = '8px';
-composer.appendChild(authBtn);
-
-// Test connectivity button
-const testBtn = document.createElement('button');
-testBtn.className = 'send';
-testBtn.textContent = 'Test';
-testBtn.style.marginLeft = '8px';
-testBtn.title = 'Test Supabase connectivity';
-testBtn.addEventListener('click', async () => {
-  console.log('Testing Supabase connection...');
-  testBtn.disabled = true;
-  testBtn.textContent = '…';
-  
-  try {
-    const { data, error } = await window.supabase.from('concepts').select('id').limit(1);
-    if (error) {
-      console.error('✗ Test failed:', error);
-      alert('Supabase test failed: ' + error.message);
-    } else {
-      console.log('✓ Success:', data);
-      alert('Supabase connection successful! Found ' + data.length + ' concept(s).');
+  console.log('[Supabase] Creating client with disabled experiments...');
+  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+      detectSessionInUrl: false,
+      storage: null,
+      experimental: {
+        passkey: false // Disable WebAuthn
+      }
     }
-  } catch (err) {
-    console.error('✗ Test error:', err);
-    alert('Test error: ' + err.message);
-  }
+  });
   
-  testBtn.disabled = false;
-  testBtn.textContent = 'Test';
-});
-composer.appendChild(testBtn);
+  console.log('[Supabase] Client initialized successfully');
+} catch (err) {
+  console.error('[Supabase] Initialization failed:', err);
+  alert('Supabase initialization failed. Check console for details.');
+}
 
-let currentUser = null;
-
-let currentUser = null;
-
+// ========== UTILITY FUNCTIONS ==========
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
@@ -313,7 +266,7 @@ function formatCitations(answerText, sources) {
 }
 
 function buildSourceCards(sources) {
-  if (!sources.length) return '';
+  if (!sources || sources.length === 0) return '';
   return `
     <div class="sources">
       <div class="lbl">Surse</div>
@@ -331,6 +284,7 @@ function buildSourceCards(sources) {
 }
 
 function addTurn(question, answerHtml, sources) {
+  console.log('[UI] Adding conversation turn');
   const turn = document.createElement('div');
   turn.className = 'turn';
   turn.innerHTML = `
@@ -348,6 +302,7 @@ function addTurn(question, answerHtml, sources) {
 }
 
 function addRefusal(question, message) {
+  console.log('[UI] Adding refusal:', message);
   const turn = document.createElement('div');
   turn.className = 'turn refusal';
   turn.innerHTML = `
@@ -366,55 +321,6 @@ function addRefusal(question, message) {
   thread.scrollTop = thread.scrollHeight;
 }
 
-async function checkAuth() {
-  const { data: { session } } = await supabase.auth.getSession();
-  currentUser = session?.user ?? null;
-  if (currentUser) {
-    authBtn.textContent = 'Logout';
-    input.placeholder = `Logged in as ${currentUser.email}…`;
-    input.disabled = false;
-    sendBtn.disabled = false;
-  } else {
-    authBtn.textContent = 'Login';
-    input.placeholder = 'Loghează-te pentru a întreba…';
-    input.disabled = true;
-    sendBtn.disabled = true;
-  }
-}
-
-authBtn.addEventListener('click', async () => {
-  console.log('Auth button clicked');
-  authBtn.disabled = true;
-  authBtn.textContent = '…';
-  
-  try {
-    const { data: { session } } = await window.supabase.auth.getSession();
-    console.log('Current session:', session);
-    
-    if (session) {
-      console.log('Signing out...');
-      await window.supabase.auth.signOut();
-      addSystemMessage('Deconectat.');
-    } else {
-      console.log('Starting GitHub OAuth...');
-      const { error } = await window.supabase.auth.signInWithOAuth({
-        provider: 'github',
-        options: {
-          redirectTo: window.location.origin
-        }
-      });
-      if (error) throw error;
-    }
-  } catch (err) {
-    console.error('Auth error:', err);
-    addSystemMessage('Eroare autentificare: ' + err.message);
-  }
-  
-  authBtn.disabled = false;
-  authBtn.textContent = currentUser ? 'Logout' : 'Login';
-});
-
-// System message function
 function addSystemMessage(text) {
   const msg = document.createElement('div');
   msg.style.textAlign = 'center';
@@ -429,19 +335,100 @@ function addSystemMessage(text) {
   thread.scrollTop = thread.scrollHeight;
 }
 
+// ========== DOM ELEMENTS ==========
+const thread = document.querySelector('.thread');
+const composer = document.querySelector('.composer');
+const input = composer.querySelector('input');
+const sendBtn = composer.querySelector('.send');
+
+// Auth Button
+const authBtn = document.createElement('button');
+authBtn.className = 'send';
+authBtn.textContent = 'Login';
+authBtn.style.marginLeft = '8px';
+composer.appendChild(authBtn);
+
+// Test Button
+const testBtn = document.createElement('button');
+testBtn.className = 'send';
+testBtn.textContent = 'Test';
+testBtn.style.marginLeft = '8px';
+testBtn.title = 'Test Supabase connectivity';
+composer.appendChild(testBtn);
+
+// ========== AUTH STATE ==========
+let currentUser = null;
+
+// ========== AUTH FUNCTIONS ==========
+async function checkAuth() {
+  console.log('[Auth] Checking auth state...');
+  try {
+    const { data: { session } } = await window.supabase.auth.getSession();
+    currentUser = session?.user ?? null;
+    
+    if (currentUser) {
+      console.log('[Auth] User logged in:', currentUser.email);
+      authBtn.textContent = 'Logout';
+      input.placeholder = `Logged in as ${currentUser.email}…`;
+      input.disabled = false;
+      sendBtn.disabled = false;
+    } else {
+      console.log('[Auth] No active session');
+      authBtn.textContent = 'Login';
+      input.placeholder = 'Loghează-te pentru a întreba…';
+      input.disabled = true;
+      sendBtn.disabled = true;
+    }
+  } catch (err) {
+    console.error('[Auth] Error checking auth:', err);
+    authBtn.textContent = 'Login';
+    input.placeholder = 'Loghează-te pentru a întreba…';
+    input.disabled = true;
+    sendBtn.disabled = true;
+  }
+}
+
+async function handleAuthCallback() {
+  console.log('[Auth] Handling auth callback...');
+  try {
+    const { data: { session }, error } = await window.supabase.auth.getSession();
+    
+    if (session) {
+      console.log('[Auth] Session detected via callback:', session.user.email);
+      addSystemMessage(`Conectat ca ${session.user.email}`);
+      await checkAuth();
+    }
+  } catch (err) {
+    console.error('[Auth] Error handling callback:', err);
+  }
+}
+
+// ========== SEARCH FUNCTIONS ==========
 async function searchConcepts(query) {
-  const { data, error } = await supabase
-    .from('concepts')
-    .select('id, title, description, materii, type, source, confidence')
-    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
-    .limit(5);
-  if (error) throw error;
-  return data;
+  console.log('[Search] Searching concepts:', query);
+  try {
+    const { data, error } = await window.supabase
+      .from('concepts')
+      .select('*')
+      .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+      .limit(5);
+    
+    if (error) throw error;
+    return data;
+  } catch (err) {
+    console.error('[Search] Error searching concepts:', err);
+    throw err;
+  }
 }
 
 function generateAnswer(question, results) {
-  if (!results.length) {
-    return { html: '', sources: [], refusal: true };
+  console.log('[Search] Generating answer for:', question);
+  if (!results || results.length === 0) {
+    return {
+      html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>',
+      sources: [],
+      refusal: true
+    };
   }
 
   const sources = results.map(r => ({
@@ -463,9 +450,74 @@ function generateAnswer(question, results) {
   };
 }
 
+// ========== EVENT LISTENERS ==========
+// Test button click
+testBtn.addEventListener('click', async () => {
+  console.log('[Supabase] Test button clicked');
+  testBtn.disabled = true;
+  testBtn.textContent = '…';
+  
+  try {
+    console.log('[Supabase] Testing connection...');
+    const { data, error } = await window.supabase
+      .from('concepts')
+      .select('id')
+      .limit(1);
+    
+    if (error) {
+      console.error('[Supabase] ✗ Test failed:', error);
+      alert('Supabase test failed: ' + error.message);
+    } else {
+      console.log('[Supabase] ✓ Success:', data);
+      alert('Supabase connection successful! Found ' + data.length + ' concept(s).');
+    }
+  } catch (err) {
+    console.error('[Supabase] ✗ Test error:', err);
+    alert('Test error: ' + err.message);
+  }
+  
+  testBtn.disabled = false;
+  testBtn.textContent = 'Test';
+});
+
+// Auth button click
+authBtn.addEventListener('click', async () => {
+  console.log('[Auth] Auth button clicked');
+  authBtn.disabled = true;
+  authBtn.textContent = '…';
+  
+  try {
+    const { data: { session } } = await window.supabase.auth.getSession();
+    
+    if (session) {
+      console.log('[Auth] Signing out...');
+      await window.supabase.auth.signOut();
+      addSystemMessage('Deconectat.');
+    } else {
+      console.log('[Auth] Starting GitHub OAuth...');
+      const { error } = await window.supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+      if (error) throw error;
+    }
+  } catch (err) {
+    console.error('[Auth] Auth error:', err);
+    addSystemMessage('Eroare autentificare: ' + err.message);
+  }
+  
+  authBtn.disabled = false;
+  authBtn.textContent = currentUser ? 'Logout' : 'Login';
+});
+
+// Search button click
 sendBtn.addEventListener('click', async () => {
   const q = input.value.trim();
   if (!q) return;
+  
+  console.log('[Search] Query submitted:', q);
   input.value = '';
   input.disabled = true;
   sendBtn.disabled = true;
@@ -474,14 +526,14 @@ sendBtn.addEventListener('click', async () => {
   try {
     const results = await searchConcepts(q);
     const { html, sources, refusal } = generateAnswer(q, results);
-
+    
     if (refusal) {
       addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.');
     } else {
       addTurn(q, html, sources);
     }
   } catch (err) {
-    console.error(err);
+    console.error('[Search] Error:', err);
     addRefusal(q, 'Eroare la căutare: ' + err.message);
   }
 
@@ -495,23 +547,9 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
 });
 
-// Handle OAuth callback on page load
-async function handleAuthCallback() {
-  const { data: { session }, error } = await window.supabase.auth.getSession();
-  if (error) console.error('Session error:', error);
-  
-  if (session) {
-    console.log('Authenticated via callback:', session.user.email);
-    addSystemMessage(`Conectat ca ${session.user.email}`);
-    checkAuth();
-    return true;
-  }
-  return false;
-}
-
-// Setup auth state listener
-supabase.auth.onAuthStateChange((event, session) => {
-  console.log('Auth event:', event, session);
+// ========== AUTH LISTENERS ==========
+window.supabase.auth.onAuthStateChange((event, session) => {
+  console.log('[Auth] Auth state changed:', event);
   if (event === 'SIGNED_IN') {
     addSystemMessage(`Bine ai venit, ${session.user.email}`);
   } else if (event === 'SIGNED_OUT') {
@@ -520,15 +558,12 @@ supabase.auth.onAuthStateChange((event, session) => {
   checkAuth();
 });
 
-// Check initial state and handle callback
+// ========== INITIALIZATION ==========
 (async () => {
-  const hasSession = await handleAuthCallback();
-  if (!hasSession) {
-    checkAuth();
-  }
-  
-  console.log('UI ready');
+  await handleAuthCallback();
+  checkAuth();
+  console.log('[App] Application ready');
 })();
 </script>
- </body>
+</body>
 </html>
