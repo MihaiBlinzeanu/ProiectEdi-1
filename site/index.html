@@ -507,17 +507,26 @@ authBtn.addEventListener('click', async () => {
       addSystemMessage('Deconectat.');
     } else {
       console.log('[Auth] Starting GitHub OAuth...');
+      const redirectUrl = window.location.origin;
+      console.log('[Auth] Redirect URL:', redirectUrl);
+      
+      // Use direct GitHub OAuth with hardcoded client ID
       const { error } = await window.supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: window.location.origin
+          redirectTo: redirectUrl,
+          // Force correct client ID for GitHub
+          queryParams: {
+            client_id: 't-/BFhqUGm5bhg9g'
+          }
         }
       });
+      
       if (error) throw error;
     }
   } catch (err) {
     console.error('[Auth] Auth error:', err);
-    addSystemMessage('Eroare autentificare: ' + err.message);
+    addSystemMessage('Eroare autentificare: ' + err.message + '\nVerifică GitHub OAuth App config.');
   }
   
   authBtn.disabled = false;
