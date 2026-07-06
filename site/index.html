@@ -437,26 +437,25 @@ async function generateStudyPlan() {
     const { data, error } = await q;
     if (error) throw error;
 
+    const sourceOrder = [];
     const groups = {};
     for (const c of data) {
-      const key = c.type || 'general';
-      if (!groups[key]) groups[key] = [];
+      const key = c.source || 'General';
+      if (!groups[key]) { groups[key] = []; sourceOrder.push(key); }
       groups[key].push(c);
     }
 
-    const typeLabel = { definition: 'Definiții', theorem: 'Teoreme', formula: 'Formule', algorithm: 'Algoritmi', example: 'Exemple', general: 'General' };
-
     let html = '<div class="study-plan">';
-    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:18px">📋 Plan de învățare — ${escapeHtml(activeSubject)}</p>`;
-    html += `<p style="font-family:var(--font-read);font-size:16px;color:var(--ink-soft);margin-bottom:20px">Studiază în ordinea recomandată: mai întâi definițiile, apoi algoritmii și formulele, în final exemplele.</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:6px">📋 Plan de învățare — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:15px;color:var(--ink-soft);margin-bottom:22px">${data.length} concepte grupate pe cursuri/surse. Parcurge în ordinea listată.</p>`;
 
-    const order = ['definition', 'algorithm', 'formula', 'theorem', 'example', 'general'];
-    for (const type of order) {
-      const items = groups[type];
-      if (!items || items.length === 0) continue;
-      html += `<div class="section"><h3>${typeLabel[type] || type} — ${items.length}</h3>`;
+    for (const source of sourceOrder) {
+      const items = groups[source];
+      const shortSource = source.replace(/\.pdf$/,'').replace(/^C\d+[- ]*/,'').replace(/^RC_/,'');
+      html += `<div class="section"><h3>📄 ${escapeHtml(shortSource || 'General')} — ${items.length}</h3>`;
       for (const item of items) {
-        html += `<div class="item">${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.source || '')}</span></div>`;
+        const badge = item.type !== 'definition' ? `<span style="font-family:var(--font-mono);font-size:10px;color:var(--ochre-text);background:var(--ochre-soft);padding:1px 6px;border-radius:4px;margin-right:6px">${item.type}</span>` : '';
+        html += `<div class="item">${badge}${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.title)}</span></div>`;
       }
       html += '</div>';
     }
