@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SecondBrain — preview UI</title>
+<title>SecondBrain</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
@@ -29,6 +29,26 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 body {
   font-family: var(--font-ui);
   background: var(--paper);
@@ -70,11 +90,24 @@ body {
   display: flex; align-items: center; gap: 10px;
   padding: 9px 11px; border-radius: 9px; text-decoration: none;
   color: var(--ink-soft); font-size: 14px; font-weight: 500;
+  transition: all 0.2s ease;
 }
 .corpus a.active { background: var(--pine-soft); color: var(--pine); }
-.corpus a:hover:not(.active) { background: oklch(0.5 0.02 250 / 0.05); }
-.corpus .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pine); opacity: 0.7; }
+.corpus a:hover:not(.active) { background: oklch(0.5 0.02 250 / 0.05); transform: translateX(3px); }
+.corpus .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pine); opacity: 0.7; flex-shrink: 0; }
 .corpus .n { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+
+.side .actions { display: flex; flex-direction: column; gap: 8px; }
+.side .actions button {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--card); color: var(--ink-soft);
+  font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+  cursor: pointer; display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s ease;
+}
+.side .actions button:hover { border-color: var(--pine); color: var(--pine); background: var(--pine-soft); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(0.3 0.02 250 / 0.06); }
+.side .actions button:active { transform: translateY(0); }
+.side .actions button .ico { font-size: 16px; }
 
 .side .foot { margin-top: auto; font-size: 12px; color: var(--ink-faint); line-height: 1.5; }
 .side .foot .grounded { display:inline-flex; align-items:center; gap:6px; color: var(--pine); font-weight: 600; }
@@ -83,16 +116,29 @@ body {
 /* ---------- Main ---------- */
 .main { display: flex; flex-direction: column; height: 100vh; }
 .topbar {
-  padding: 18px 40px; border-bottom: 1px solid var(--border-soft);
+  padding: 12px 40px; border-bottom: 1px solid var(--border-soft);
   display: flex; align-items: center; justify-content: space-between;
   background: oklch(0.977 0.006 95 / 0.8); backdrop-filter: blur(6px);
 }
 .topbar .ctx { font-size: 13px; color: var(--ink-faint); }
 .topbar .ctx b { color: var(--ink-soft); font-weight: 600; }
-.topbar .pill { font-family: var(--font-mono); font-size: 11px; color: var(--ochre-text); background: var(--ochre-soft); padding: 5px 11px; border-radius: 20px; letter-spacing: 0.03em; }
- 
+.topbar .actions { display: flex; gap: 8px; align-items: center; }
+
+.topbar .btn {
+  font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card); color: var(--ink-soft); cursor: pointer;
+  transition: all 0.2s ease;
+}
+.topbar .btn:hover { border-color: var(--pine); color: var(--pine); background: var(--pine-soft); }
+.topbar .btn-primary { background: var(--pine); color: white; border-color: var(--pine); }
+.topbar .btn-primary:hover { background: var(--pine-hover); }
+.topbar .btn-outline { background: transparent; }
+.topbar .btn-sm { padding: 4px 10px; font-size: 11px; }
+.topbar .btn .ico { margin-right: 4px; }
+
 .thread { flex: 1; overflow-y: auto; padding: 40px 40px 20px; }
-.turn { max-width: 760px; margin: 0 auto 36px; }
+.turn { max-width: 760px; margin: 0 auto 36px; animation: fadeSlideUp 0.35s ease; }
 
 .q { display: flex; gap: 14px; align-items: baseline; }
 .q .who { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); padding-top: 5px; flex: none; width: 52px; }
@@ -115,40 +161,59 @@ a strong { font-weight: 600; }
   background: var(--card); border: 1px solid var(--border);
   border-left: 3px solid var(--ochre); border-radius: 12px;
   padding: 14px 16px; text-decoration: none; display: block;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: all 0.2s ease;
 }
-.src:hover { transform: translateY(-2px); box-shadow: 0 6px 18px oklch(0.3 0.02 250 / 0.08); }
+.src:hover { transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0.3 0.02 250 / 0.1); border-color: var(--ochre); }
 .src .num { font-family: var(--font-ui); font-size: 10px; font-weight: 700; color: var(--ochre-text); background: var(--ochre-soft); width: 19px; height: 19px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 9px; }
 .src .title { font-family: var(--font-read); font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 7px; }
 .src .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); display: flex; align-items: center; gap: 7px; }
 .src .meta .course { color: var(--pine); font-weight: 500; }
 
-/* grounded / refusal example */
-.refusal { max-width: 760px; margin: 0 auto 36px; padding-left: 66px; }
+.refusal { max-width: 760px; margin: 0 auto 36px; padding-left: 66px; animation: fadeSlideUp 0.35s ease; }
 .refusal .q .text { color: var(--ink-soft); }
 .refusal .box { margin-top: 20px; background: oklch(0.55 0.15 28 / 0.05); border: 1px solid oklch(0.55 0.15 28 / 0.22); border-radius: 12px; padding: 16px 18px; font-family: var(--font-read); font-size: 17px; color: var(--ink); display:flex; gap: 13px; align-items:flex-start; }
 .refusal .box .badge { font-family: var(--font-ui); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); border: 1px solid oklch(0.55 0.15 28 / 0.35); padding: 3px 8px; border-radius: 6px; flex:none; margin-top: 2px; }
 
-/* composer */
+/* Composer */
 .composer { padding: 16px 40px 26px; border-top: 1px solid var(--border-soft); }
 .composer .box {
   max-width: 760px; margin: 0 auto; background: var(--card);
   border: 1px solid var(--border); border-radius: var(--radius);
   padding: 6px 6px 6px 18px; display: flex; align-items: center; gap: 12px;
   box-shadow: 0 2px 10px oklch(0.3 0.02 250 / 0.04);
+  transition: all 0.2s ease;
 }
 .composer .box:focus-within { border-color: var(--pine); box-shadow: 0 0 0 3px var(--pine-soft); }
 .composer input { flex: 1; border: none; outline: none; background: none; font-family: var(--font-ui); font-size: 15px; color: var(--ink); }
 .composer input::placeholder { color: var(--ink-faint); }
-.composer .send { background: var(--pine); color: var(--paper); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 17px; cursor: pointer; display:flex; align-items:center; justify-content:center; }
-.composer .send:hover { background: var(--pine-hover); }
+.composer .send { background: var(--pine); color: var(--paper); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 17px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.2s ease; flex-shrink: 0; }
+.composer .send:hover { background: var(--pine-hover); transform: scale(1.05); }
+.composer .send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .composer .hint { max-width: 760px; margin: 10px auto 0; font-size: 12px; color: var(--ink-faint); text-align: center; }
 .composer .hint code { font-family: var(--font-mono); background: var(--paper-2); padding: 1px 6px; border-radius: 5px; }
+
+/* Study plan */
+.study-plan { margin-top: 22px; padding-left: 66px; }
+.study-plan .section { margin-bottom: 20px; }
+.study-plan .section h3 {
+  font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--pine); margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--pine-soft);
+}
+.study-plan .item {
+  font-family: var(--font-read); font-size: 16px; line-height: 1.5;
+  color: var(--ink); padding: 10px 14px; margin-bottom: 6px;
+  background: var(--card); border: 1px solid var(--border-soft);
+  border-radius: 10px; border-left: 3px solid var(--ochre);
+  transition: all 0.2s ease;
+}
+.study-plan .item:hover { border-left-color: var(--pine); transform: translateX(4px); }
+.study-plan .item .src-label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); display: block; margin-top: 4px; }
 </style>
 </head>
 <body>
 <div class="app">
-  <!-- Sidebar: corpusul ingerat -->
   <aside class="side">
     <div class="brand">
       <div class="mark"></div>
@@ -167,94 +232,113 @@ a strong { font-weight: 600; }
         <a href="#" data-subject="Sisteme Automate"><span class="dot" style="background:var(--danger)"></span> Sisteme Automate <span class="n">7</span></a>
       </nav>
     </div>
+
+    <div class="actions">
+      <button id="planBtn"><span class="ico">📋</span> Plan de învățare</button>
+    </div>
+
+    <div class="foot">
+      <div><span class="grounded">Ancorat în surse</span></div>
+    </div>
   </aside>
 
-  <!-- Main -->
   <main class="main">
     <div class="topbar">
       <div class="ctx">Interoghezi: <b id="currentSubject">Automatizarea Clădirilor</b> · <span id="subjectCount">0</span> concepte</div>
-      <div class="pill">qmd · BM25 + vector · offline</div>
-    </div>
-
-    <div class="thread">
-      <!-- Turn 1: intrebare cu raspuns ancorat -->
-      <div class="turn">
-        <div class="q">
-          <div class="who">Tu</div>
-          <div class="text">Ce este un BMS și ce rol are în clădirea inteligentă?</div>
-        </div>
-        <div class="a">
-          <p>Un <strong>BMS (Building Management System)</strong> este sistemul centralizat de monitorizare, control și optimizare al clădirii.<span class="cite">1</span> El leagă subsistemele individuale — climatizare, iluminat, securitate, acces — într-o singură platformă controlabilă.</p>
-          <p>Rolul lui în clădirea inteligentă este de integrare: clădirea devine „inteligentă" tocmai pentru că toate subsistemele sunt aduse într-un sistem unic, controlabil central, în locul unor insule separate.<span class="cite">2</span> Arhitectura de comunicație tipică (de ex. KNX) este descentralizată, cu transmisie serială pe cablu BUS.<span class="cite">3</span></p>
-          <div class="sources">
-            <div class="lbl">Surse</div>
-            <div class="srcgrid">
-              <a class="src" href="#">
-                <span class="num">1</span>
-                <div class="title">BMS este sistemul centralizat de monitorizare, control și optimizare al clădirii</div>
-                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>concepts/</span></div>
-              </a>
-              <a class="src" href="#">
-                <span class="num">2</span>
-                <div class="title">Clădirea inteligentă integrează toate subsistemele într-un sistem unic controlabil</div>
-                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>concepts/</span></div>
-              </a>
-              <a class="src" href="#">
-                <span class="num">3</span>
-                <div class="title">Arhitectura KNX este descentralizată cu transmisie serială prin cablu BUS</div>
-                <div class="meta"><span class="course">Automatizarea Clădirilor</span> · <span>archive/CURS 5 - SA</span></div>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="actions">
+        <button class="btn btn-sm btn-outline" id="testBtn">🔌 Test</button>
+        <button class="btn btn-sm btn-primary" id="authBtn">🔑 Login</button>
       </div>
     </div>
+
+    <div class="thread"></div>
 
     <div class="composer">
       <div class="box">
-        <input placeholder="Întreabă ceva din cursurile tale…">
-        <button class="send">↑</button>
+        <input placeholder="Loghează-te pentru a întreba…">
+        <button class="send" disabled>↑</button>
       </div>
       <div class="hint">Fiecare răspuns e ancorat în note. Fără sursă → <code>nu în surse</code>, nu halucinație.</div>
     </div>
-</main>
- </div>
+  </main>
+</div>
+
 <script>
-// ========== SUPABASE CONFIGURATION ==========
+// ========== CONFIG ==========
 const SUPABASE_URL = 'https://ghykfsupezjigjcoriku.supabase.co';
-// Using publishable key (modern format) since legacy JWT keys are disabled
 const SUPABASE_ANON_KEY = 'sb_publishable_2DQeuvl11MIqDU3d3Jweag_XMpIzhnW';
 
-console.log('[Supabase] Initializing client with URL:', SUPABASE_URL);
+window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Initialize Supabase client with safer configuration
-try {
-  console.log('[Supabase] Creating client with disabled experiments...');
-  window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  
-  console.log('[Supabase] Client initialized successfully');
-} catch (err) {
-  console.error('[Supabase] Initialization failed:', err);
-  alert('Supabase initialization failed. Check console for details.');
-}
+// ========== DOM ==========
+const thread = document.querySelector('.thread');
+const input = document.querySelector('.composer input');
+const sendBtn = document.querySelector('.send');
+const authBtn = document.getElementById('authBtn');
+const testBtn = document.getElementById('testBtn');
+const planBtn = document.getElementById('planBtn');
 
-// ========== UTILITY FUNCTIONS ==========
+// ========== STATE ==========
+let currentUser = null;
+let welcomeShown = false;
+let activeSubject = 'Automatizarea Clădirilor';
+
+// ========== UTILITY ==========
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
 }
 
-function formatCitations(answerText, sources) {
-  let result = answerText;
-  sources.forEach((src, i) => {
-    const num = i + 1;
-    result = result.replace(
-      new RegExp(`\\{\\{cite:${num}\\}\\}`, 'g'),
-      `<span class="cite">${num}</span>`
-    );
-  });
-  return result;
+function addTurn(question, answerHtml, sources) {
+  const turn = document.createElement('div');
+  turn.className = 'turn';
+  turn.innerHTML = `
+    <div class="q">
+      <div class="who">Tu</div>
+      <div class="text">${escapeHtml(question)}</div>
+    </div>
+    <div class="a">
+      ${answerHtml}
+      ${buildSourceCards(sources)}
+    </div>
+  `;
+  thread.appendChild(turn);
+  setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
+}
+
+function addRefusal(question, message) {
+  const turn = document.createElement('div');
+  turn.className = 'turn refusal';
+  turn.innerHTML = `
+    <div class="q">
+      <div class="who">Tu</div>
+      <div class="text">${escapeHtml(question)}</div>
+    </div>
+    <div class="a">
+      <div class="box">
+        <span class="badge">Nu în surse</span>
+        <span>${escapeHtml(message)}</span>
+      </div>
+    </div>
+  `;
+  thread.appendChild(turn);
+  setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
+}
+
+function addSystemMessage(text) {
+  const msg = document.createElement('div');
+  msg.style.textAlign = 'center';
+  msg.style.margin = '20px 0';
+  msg.style.padding = '12px';
+  msg.style.background = 'var(--pine-soft)';
+  msg.style.borderRadius = 'var(--radius)';
+  msg.style.color = 'var(--pine)';
+  msg.style.fontSize = '14px';
+  msg.style.animation = 'fadeSlideUp 0.3s ease';
+  msg.textContent = text;
+  thread.appendChild(msg);
+  setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
 
 function buildSourceCards(sources) {
@@ -275,196 +359,120 @@ function buildSourceCards(sources) {
   `;
 }
 
-function addTurn(question, answerHtml, sources) {
-  console.log('[UI] Adding conversation turn');
-  const turn = document.createElement('div');
-  turn.className = 'turn';
-  turn.innerHTML = `
-    <div class="q">
-      <div class="who">Tu</div>
-      <div class="text">${escapeHtml(question)}</div>
-    </div>
-    <div class="a">
-      ${answerHtml}
-      ${buildSourceCards(sources)}
-    </div>
-  `;
-  thread.appendChild(turn);
-  thread.scrollTop = thread.scrollHeight;
-}
-
-function addRefusal(question, message) {
-  console.log('[UI] Adding refusal:', message);
-  const turn = document.createElement('div');
-  turn.className = 'turn refusal';
-  turn.innerHTML = `
-    <div class="q">
-      <div class="who">Tu</div>
-      <div class="text">${escapeHtml(question)}</div>
-    </div>
-    <div class="a">
-      <div class="box">
-        <span class="badge">Nu în surse</span>
-        <span>${escapeHtml(message)}</span>
-      </div>
-    </div>
-  `;
-  thread.appendChild(turn);
-  thread.scrollTop = thread.scrollHeight;
-}
-
-function addSystemMessage(text) {
-  const msg = document.createElement('div');
-  msg.style.textAlign = 'center';
-  msg.style.margin = '20px 0';
-  msg.style.padding = '12px';
-  msg.style.background = 'var(--pine-soft)';
-  msg.style.borderRadius = 'var(--radius)';
-  msg.style.color = 'var(--pine)';
-  msg.style.fontSize = '14px';
-  msg.textContent = text;
-  thread.appendChild(msg);
-  thread.scrollTop = thread.scrollHeight;
-}
-
-// ========== DOM ELEMENTS ==========
-const thread = document.querySelector('.thread');
-const composer = document.querySelector('.composer');
-const input = composer.querySelector('input');
-const sendBtn = composer.querySelector('.send');
-
-// Auth Button
-const authBtn = document.createElement('button');
-authBtn.className = 'send';
-authBtn.textContent = 'Login';
-authBtn.style.marginLeft = '8px';
-composer.appendChild(authBtn);
-
-// Test Button
-const testBtn = document.createElement('button');
-testBtn.className = 'send';
-testBtn.textContent = 'Test';
-testBtn.style.marginLeft = '8px';
-testBtn.title = 'Test Supabase connectivity';
-composer.appendChild(testBtn);
-
-// ========== AUTH STATE ==========
-let currentUser = null;
-let welcomeShown = false;
-
-// ========== AUTH FUNCTIONS ==========
+// ========== AUTH ==========
 async function checkAuth() {
   try {
     const { data: { session } } = await window.supabase.auth.getSession();
     currentUser = session?.user ?? null;
-    
     if (currentUser) {
-      authBtn.textContent = 'Logout';
-      input.placeholder = `Autentificat ca ${currentUser.email}…`;
+      authBtn.innerHTML = '🚪 Logout';
+      authBtn.className = 'btn btn-sm btn-outline';
+      input.placeholder = `Autentificat ca ${currentUser.email}...`;
       input.disabled = false;
       sendBtn.disabled = false;
     } else {
-      authBtn.textContent = 'Login';
+      authBtn.innerHTML = '🔑 Login';
+      authBtn.className = 'btn btn-sm btn-primary';
       input.placeholder = 'Loghează-te pentru a întreba…';
       input.disabled = true;
       sendBtn.disabled = true;
     }
-  } catch (err) {
-    authBtn.textContent = 'Login';
+  } catch (_) {
+    authBtn.innerHTML = '🔑 Login';
+    authBtn.className = 'btn btn-sm btn-primary';
     input.placeholder = 'Loghează-te pentru a întreba…';
     input.disabled = true;
     sendBtn.disabled = true;
   }
 }
 
-// ========== SEARCH FUNCTIONS ==========
-let activeSubject = 'Automatizarea Clădirilor';
-
+// ========== SEARCH ==========
 function extractKeywords(query) {
-  const stopWords = ['este', 'sunt', 'oare', 'care', 'ce', 'cum', 'unde', 'cand', 'cat', 'cine',
-    'al', 'ale', 'ai', 'la', 'lui', 'prin', 'din', 'dupa', 'fara', 'catre', 'contra',
-    'pana', 'pentru', 'sub', 'peste', 'intre', 'spre', 'pe', 'cu', 'de', 'si', 'dar',
-    'iar', 'ori', 'ca', 'mai', 'ma', 'te', 'se', 'ne', 'va', 'imi', 'iti', 'un', 'o',
-    'una', 'niste', 'acest', 'aceasta', 'acel', 'aceea', 'alt', 'alta', 'alti', 'alte',
-    'are', 'au', 'era', 'fost', 'vor', 'vom', 'atunci', 'acolo', 'aici', 'asa', 'doar',
-    'prea', 'cam', 'aproape', 'chiar', 'tot', 'toate', 'putin', 'mult', 'multe', 'multi',
-    'unele', 'cativa', 'cateva', 'ceva', 'nimic', 'cei', 'cel', 'cele', 'catre', 'trebuie',
-    'poate', 'pot', 'putem', 'puteti', 'face', 'fac', 'fie', 'fi', 'fii', 'fiti', 'este',
-    'sunteti', 'suntem', 'erau', 'fusesera', 'fusesem'];
-  
-  const words = query.toLowerCase()
-    .replace(/[?.,!;:""„”«»()\-\/\\']/g, ' ')
+  const stopWords = ['este','sunt','oare','care','ce','cum','unde','cand','cat','cine',
+    'al','ale','ai','la','lui','prin','din','dupa','fara','catre','contra','pana','pentru',
+    'sub','peste','intre','spre','pe','cu','de','si','dar','iar','ori','ca','mai','ma','te',
+    'se','ne','va','imi','iti','un','o','una','niste','acest','aceasta','acel','aceea','alt',
+    'alta','alti','alte','are','au','era','fost','vor','vom','atunci','acolo','aici','asa',
+    'doar','prea','cam','aproape','chiar','tot','toate','putin','mult','multe','multi','unele',
+    'cativa','cateva','ceva','nimic','cei','cel','cele','trebuie','poate','pot','putem','puteti',
+    'face','fac','fie','fi','fii','fiti','sunteti','suntem','erau','fusesera','fusesem'];
+  return [...new Set(query.toLowerCase()
+    .replace(/[?.,!;:""„”«»()\-/\\']/g, ' ')
     .split(/\s+/)
-    .filter(w => w.length > 2 && !stopWords.includes(w));
-  
-  return [...new Set(words)];
+    .filter(w => w.length > 2 && !stopWords.includes(w)))];
 }
 
 async function searchConcepts(query) {
   const keywords = extractKeywords(query);
-  
   if (keywords.length === 0) return [];
-  
-  const conditions = keywords.map(k =>
-    `title.ilike.%${k}%,description.ilike.%${k}%`
-  ).join(',');
-  
-  let supabaseQuery = window.supabase
-    .from('concepts')
-    .select('*')
-    .or(conditions)
-    .limit(8);
-  
-  if (activeSubject) {
-    supabaseQuery = supabaseQuery.contains('materii', [activeSubject]);
-  }
-  
-  const { data, error } = await supabaseQuery;
+  const conditions = keywords.map(k => `title.ilike.%${k}%,description.ilike.%${k}%`).join(',');
+  let q = window.supabase.from('concepts').select('*').or(conditions).limit(8);
+  if (activeSubject) q = q.contains('materii', [activeSubject]);
+  const { data, error } = await q;
   if (error) throw error;
-  
   data.sort((a, b) => {
-    const aScore = keywords.filter(k =>
-      a.title.toLowerCase().includes(k) || a.description.toLowerCase().includes(k)
-    ).length;
-    const bScore = keywords.filter(k =>
-      b.title.toLowerCase().includes(k) || b.description.toLowerCase().includes(k)
-    ).length;
-    return bScore - aScore;
+    const score = t => keywords.filter(k => t.title.toLowerCase().includes(k) || t.description.toLowerCase().includes(k)).length;
+    return score(b) - score(a);
   });
-  
   return data.slice(0, 5);
 }
 
 function generateAnswer(question, results) {
   if (!results || results.length === 0) {
-    return {
-      html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>',
-      sources: [],
-      refusal: true
-    };
+    return { html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>', sources: [], refusal: true };
   }
-
-  const sources = results.map(r => ({
-    id: r.id,
-    title: r.title,
-    materii: r.materii,
-    source: r.source
-  }));
-
-  const answerParts = results.map((r, i) => {
-    const cite = `{{cite:${i + 1}}}`;
-    return `${escapeHtml(r.description)}${cite}`;
-  });
-
   return {
-    html: `<p>${answerParts.join(' ')}</p>`,
-    sources,
+    html: `<p>${results.map((r, i) => `${escapeHtml(r.description)}<span class="cite">${i + 1}</span>`).join(' ')}</p>`,
+    sources: results.map(r => ({ id: r.id, title: r.title, materii: r.materii, source: r.source })),
     refusal: false
   };
 }
 
-// ========== EVENT LISTENERS ==========
-// Sidebar subject click
+// ========== STUDY PLAN ==========
+async function generateStudyPlan() {
+  addSystemMessage(`Se generează planul de învățare pentru ${activeSubject}…`);
+  try {
+    let q = window.supabase.from('concepts').select('*');
+    if (activeSubject) q = q.contains('materii', [activeSubject]);
+    const { data, error } = await q;
+    if (error) throw error;
+
+    const groups = {};
+    for (const c of data) {
+      const key = c.type || 'general';
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(c);
+    }
+
+    const typeLabel = { definition: 'Definiții', theorem: 'Teoreme', formula: 'Formule', algorithm: 'Algoritmi', example: 'Exemple', general: 'General' };
+
+    let html = '<div class="study-plan">';
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:18px">📋 Plan de învățare — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:16px;color:var(--ink-soft);margin-bottom:20px">Studiază în ordinea recomandată: mai întâi definițiile, apoi algoritmii și formulele, în final exemplele.</p>`;
+
+    const order = ['definition', 'algorithm', 'formula', 'theorem', 'example', 'general'];
+    for (const type of order) {
+      const items = groups[type];
+      if (!items || items.length === 0) continue;
+      html += `<div class="section"><h3>${typeLabel[type] || type} — ${items.length}</h3>`;
+      for (const item of items) {
+        html += `<div class="item">${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.source || '')}</span></div>`;
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+
+    const turn = document.createElement('div');
+    turn.className = 'turn';
+    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată-mi planul de învățare pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
+    thread.appendChild(turn);
+  } catch (err) {
+    addSystemMessage('Eroare la generarea planului: ' + err.message);
+  }
+  setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
+}
+
+// ========== EVENTS ==========
 document.querySelectorAll('.corpus a').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -475,74 +483,51 @@ document.querySelectorAll('.corpus a').forEach(link => {
   });
 });
 
-// Test button click
+planBtn.addEventListener('click', generateStudyPlan);
+
 testBtn.addEventListener('click', async () => {
   testBtn.disabled = true;
-  testBtn.textContent = '…';
-  
+  testBtn.textContent = '⏳';
   try {
-    const { data, error } = await window.supabase
-      .from('concepts')
-      .select('id')
-      .limit(1);
-    
+    const { data, error } = await window.supabase.from('concepts').select('id').limit(1);
     if (error) throw error;
-    alert('Conexiune reușită! ' + data.length + ' concept(e) găsite.');
+    addSystemMessage(`✅ Conexiune reușită! ${data.length} concept(e) în db.`);
   } catch (err) {
-    alert('Eroare conexiune: ' + err.message);
+    addSystemMessage(`❌ Eroare: ${err.message}`);
   }
-  
+  testBtn.innerHTML = '🔌 Test';
   testBtn.disabled = false;
-  testBtn.textContent = 'Test';
 });
 
-// Auth button click
 authBtn.addEventListener('click', async () => {
   authBtn.disabled = true;
-  authBtn.textContent = '…';
-  
   try {
     const { data: { session } } = await window.supabase.auth.getSession();
-    
     if (session) {
       await window.supabase.auth.signOut();
     } else {
-      const redirectUrl = window.location.origin;
-      await window.supabase.auth.signInWithOAuth({
-        provider: 'github',
-        options: { redirectTo: redirectUrl }
-      });
+      await window.supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: window.location.origin } });
     }
   } catch (err) {
     addSystemMessage('Eroare autentificare: ' + err.message);
   }
-  
   authBtn.disabled = false;
 });
 
-// Search button click
 sendBtn.addEventListener('click', async () => {
   const q = input.value.trim();
   if (!q) return;
-  
   input.value = '';
   input.disabled = true;
   sendBtn.disabled = true;
-  sendBtn.textContent = '…';
-
+  sendBtn.textContent = '⏳';
   try {
     const results = await searchConcepts(q);
     const { html, sources, refusal } = generateAnswer(q, results);
-    
-    if (refusal) {
-      addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.');
-    } else {
-      addTurn(q, html, sources);
-    }
+    refusal ? addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.') : addTurn(q, html, sources);
   } catch (err) {
     addRefusal(q, 'Eroare la căutare: ' + err.message);
   }
-
   input.disabled = false;
   sendBtn.disabled = false;
   sendBtn.textContent = '↑';
@@ -553,7 +538,6 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
 });
 
-// ========== AUTH LISTENER ==========
 window.supabase.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && !welcomeShown) {
     welcomeShown = true;
@@ -566,7 +550,6 @@ window.supabase.auth.onAuthStateChange((event, session) => {
   }
 });
 
-// ========== INITIALIZATION ==========
 checkAuth();
 </script>
 </body>
