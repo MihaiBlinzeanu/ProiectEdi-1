@@ -1,0 +1,633 @@
+REȚELE DE
+Cur s 5
+St iva OS I –
+nivelul re țea
+CALCULATOARE
+CUPRINS
+
+ Stiva O SI – nivelul 3 Rețea
+ Protocolul IP
+ Rutare
+STIVE DE PROTOCOALE
+
+ Două modele care reprezintă toate prelucrările necesare
+comunicației în rețea, de la datele transmise de utilizator, până la
+codificarea acestora în biți și transmiterea pe mediul de
+comunicație
+
+▪ OSI – Open Systems Interconnection
+
+▪ Creat de ISO
+
+▪ TCP / IP – Transmission Control Protocol / Internet Protocol
+
+▪ Creat de DARPA
+STIVE DE PROTOCOALE
+
+ Fie care strat/ ni vel trebu ie:
+
+▪ să fu rnizeze un anu mit set de servicii și să re alizeze in terfața cu stratul
+
+adia cent;
+
+▪ să specif ice mod ul de transmitere a d atelor între stratu rile analoag e de la
+
+sursă și de la destin ație.
+
+ În timpu l transmi te rii de d ate sun t util izate pro to coal ele de
+
+comu nicație de d ate.
+
+▪ Prot ocolul de comu nicații de date este un set de reguli, convenții și
+
+proceduri cu ajutorul că rora se realize ază com unicarea într -o reţ ea.
+STIVA OSI VS STIVA TCP/IP
+
+OSI TCP/IP
+
+7 Aplicație
+
+6 Prezentare       Aplicație 4
+
+5 Sesiune
+
+4 Transport Transport 3
+
+3 Rețea Internet 2
+
+2 Legătură de date
+Acces la rețea 1
+1 Fizic
+STIVA OSI
+
+Rolul nivelului
+Nivelul 
+
+Aplicație Realizează interfața cu utilizatorul și interfața cu aplicațiile
+
+Prezentare Transformă datele în formate înțelese de fiecare aplicație
+
+Sesiune Gestionează conexiunile între aplicații
+Separă conversațiile între aplicațiile de pe o stație
+Transport 
+Segmentează (la sursă) și reasamblează datele (la destinație)
+Rețea Realizează rutarea pachetelor
+Asigură accesul la rețea, detecția și anunțarea erorilor,
+Legătură de date 
+controlul fluxului fizic
+
+Definește specificații electrice, mecanice, procedurale și
+Fizic 
+funcționale pentru transmiterea informațiilor pe mediu
+STIVA TCP/IP
+
+Nivel Rolul nivelului
+
+Aplicație Interacțiunea cu utilizatorul
+Segmentare și multiplexarea comunicațiilor între
+Transport 
+servicii pe aceeași stație
+Rutare - Determinarea rutei optime între două
+Internet 
+puncte din rețea
+Controlul interacțiunii cu HW, punerea informației
+Acces la rețea 
+pe mediu
+STIVA OSI: NIVELUL 7
+APLICAȚIE
+ Furnizează servicii altor aplicații și utilizatorilor
+▪ Nu furnizează servicii altor niveluri ale stivei OSI
+ Exemple: HTTP, FTP, DNS, DHCP, SSH, Telnet, SMTP, etc.
+STIVA OSI: NIVELUL 6
+PREZENTARE
+ Furnizează servicii nivelului 7
+ Rol principal: prezentarea datelor astfel încât să poată fi
+utilizate la nivelul 7
+
+ Protocoale de:
+▪ Formatare și codificare a datelor
+▪ Compresie a datelor
+▪ Protocoale de securizare a datelor
+▪ Transp ort Laye r Security – TL S
+▪ Secure Socket Laye r - SSL
+ Exemple:
+▪ ASCII, JPEG, GIF, PNG, etc.
+STIVA OSI: NIVELUL 5
+SESIUNE
+ Rol principal: gestionează sesiunile dintre două aplicații
+care comunică
+▪ Sesiuni: conexiunile persistente dintre dispozitive – nu țin cont de
+nivelurile 1-4
+
+ Gestionează sincronizarea dialogului și modul de
+comunicare conform cerințelor de la nivelul aplicație
+STIVA OSI: NIVELUL 4
+TRANSPORT
+ Func ții principale (t oate protocoalele de nivel 4):
+▪ Segmentarea datelor de la nivelele superioare
+▪ Multiplexarea conversațiilor pe bază de porturi
+
+ Roluri adiționale (unele protocoale de nivel 4)
+▪ Conversații orientate pe conexiune (connection oriented )
+▪ Livrarea sigură a datelor
+▪ Controlul fluxului
+▪ Ordonarea corectă a segmentelor
+
+ Pr ot oc oale principale:
+▪ TCP – Transmission Control Protocol - orientat pe conexiune
+▪ UDP – User Datagram Protocol - neorientat pe conexiune, de tip „ best effort”
+
+ Realizeaz ă adres area pe baz ă de „porturi”
+
+ PD U: segment
+STIVA OSI: NIVELUL 3
+REȚEA
+
+ PDU: pachet
+
+ La nivelul retea se realizeaza rutarea
+
+ Are urmatoarele functii:
+▪ Incapsularea / decapsularea datelor primite
+
+▪ Rutarea si livrarea pachetelor
+
+▪ Adresarea logică a apchetelor
+
+▪ Verificarea integritatii antetului
+ÎNCAPSULAREA DATELOR
+
+ Nivelurile Aplicație, Pr eze ntare și sesiune
+▪ Datele propriu-zise
+
+ Nivelul Tr anspor t
+▪ Datele se încapsulează într-un header și un trailer
+▪ Se adaugă portul utilizat la nivelul Aplicație
+▪ Se obține un segment de date
+
+ Nivelul R ețea
+▪ Se adaugă adresa logică – adresa IP (în general)
+▪ Se obține un pachet de date
+
+ Nivelul L egătur ă de da te
+▪ Se adaugă adresa fizică – adresa MAC
+▪ Se obține un cadru (frame)
+
+ Nivelul fizic
+▪ Datele sunt transformate în biți si puse pe mediul de comunicație
+ÎNCAPSULAREA DATELOR
+
+Tip PDU Format
+Nivel stiva OSI 
+
+Aplicație 
+Date
+Prezentare
+
+Date Date Date Date Date
+Sesiune 
+
+Segment THeader Date
+Transport 
+
+Pachet NHeader THeader Date Trailer
+Rețea 
+
+Cadru DLHeader NHeader THeader Date Trailer
+Legătură de date 
+
+Biți 00110011010101011101
+Fizic 
+
+PDU – Protocol Data Unit
+FUNCŢIILE NIVELULUI REȚEA: RUTAREA
+
+ Se realizeaza la nivelul 3, de catre dispozitive de nivel 3
+
+ Procesul de selectare a caii de transmitere a informatiei intre
+retele diferite.
+
+ Se realizeaza pe baza unor informatii de rutare, care sunt
+memorate in fiecare dispozitiv care contribuie la proces si
+contin:
+▪ Interfata de iesire pentru reteaua destinatie / next-hop-ul spre
+reteaua destinatie
+▪ Next hop – urmatorul dispozitiv la care se ruteaz a pachetul
+FUNCŢIILE NIVELULUI REȚEA
+
+ Adresarea în mod unic la nivel global ( reţea Internet):
+▪ utilizează un protocol cu adresare ierarhică numit IP (Internet Protocol);
+▪ fiecare dispozitiv este identificat în mod unic la nivel global prin adresa
+sa IP (Internet Protocol).
+ Folosirea si stemului neorientat pe conexiune pentru comunicarea
+datelor
+▪ desti nația nu este contactată î nainte de tri miterea unui pachet;
+▪ pachetele de date pot urm a căi diferite pentru a ajunge la destinatie și pot ajunge
+într-o ordine diferită față de cea în care au fost tri mise;
+▪ acest sistem mai este denum it și packet-switched; asem ănător sistem ului poștal.
+ Folosirea unor dispozitive intermedi are numite rutere care, în
+funcție de destinație, stabi lesc calea pe care trebuie să ci rcule
+pachetel e de date.
+FUNCŢIILE NIVELULUI REȚEA
+
+ Adresarea în mod unic la nivel global ( reţea Internet):
+▪ utilizează un protocol cu adresare ierarhică numit IP (Internet Protocol);
+▪ fiecare dispozitiv este identificat în mod unic la nivel global prin adresa
+sa IP (Internet Protocol).
+ Folosirea si stemului neorientat pe conexiune pentru
+comuni carea datel or
+▪ desti nația nu este contactată î nainte de tri miterea unui pachet;
+▪ pachetele de date pot urm a căi diferite pentru a ajunge la destinatie și pot
+ajunge într-o ordine diferită față de cea în care au fost tri mise;
+▪ acest sistem mai este denum it și packet-switched; asem ănător sistem ului poștal.
+ Folosirea unor dispozitive intermedi are numite rutere care, în
+funcție de destinație, stabi lesc calea pe care trebuie să ci rcule
+pachetel e de date.
+FUNCŢIILE NIVELULUI REȚEA
+
+Observații:
+1. Sistemul orientat pe conexiune pentru comunicarea datel or este
+folosit de protocoal ele de nivel superior.
+2. Un sistem orientat pe conexiune are următoarele caracteristici:
+ este stabil ită o conexiune î ntre sursă și desti nație înainte de
+transmi terea oricaror date;
+ toate pachetele circulă pe același traseu fizic sau virtual, în
+ordinea în care sunt trimise;
+ acest sistem mai este denumit și circuit-swi tched; asemănător
+sistemului telefonic.
+PROTOCOALE LA NIVEL DE REȚEA
+
+La ni ve lul Rețea sunt două cl ase de protocoale :
+- protocoale de rutare (routing protocols);
+- protocoale rutate (routed protocol s);
+
+Protocoalele de rutare dete rmină re guli le prin care router -el e schi mbă
+informații despre acce si bi litate a rețele lor. În funcție de informațiile
+furnizate de aceste protocoale se construiește tabela de rutare, iar pe baza
+tabel ei de rutare e ste determinat trase ul pe care trebuie trimis fie care
+pachet.
+Exe mplu: RIP, OS PF, IGR P, EIGR P, IS -IS, BG P.
+
+Protocoalele rutate asigură adresare a (identifi care a nodurilor).
+Exe mplu: IP, IPX, Appletalk , DECnet
+
+Există protocoale de nivel rețea, c are nu oferă suport pe ntru o sche mă de
+adre sare ie rarhica, din ace st motiv fi ind ne rutabile .
+Exe mplu: NETB EUI este un protocol rapid care este limitat să lucreze pe un
+singur se gme nt.
+PROTOCOLUL INTERNET PROTOCOL
+
+ Versiuni
+▪ IPv4
+▪ IPv6
+ Neorientat pe conex iune
+▪ Nu stabileste o conexiune cu destinatia inainte de transmiterea pachetului
+▪ Nu se verifica existența adresei destinației
+▪ Nu necesită schimbul prealabil de informații de control
+ Best – effort
+▪ Nu garantează transmiterea cu succes a informațiilor
+▪ Nu permite recuperarea pachetelor care nu au ajuns la destinatie sau au
+suferit erori
+
+ Independent de mediu
+▪ Poate fi implementat pe diferite medii fizice
+PROTOCOLUL IP (INTERNET PROTOCOL)
+V.4
+IP (Internet Protocol) e ste un protocol care asigură un se rviciu de
+transmite re a datelor, fără conexiune permanentă.
+Caracte ri stici:
+ neorie ntat pe conexi une ;
+ fără siguranță;
+ transmite rea pachete lor de date se face dupa sistemul “best-effort ”
+(descri e un serviciu de rețea în care rețeaua nu oferă nici o garanți e că
+datele sunt livrate sau că un utilizator a dat o calitate garantată a nive lului
+de se rvicii sau a dat o anumită prioritate); este ase mănătoare cu siste mul
+poștal de transmitere a scrisorilor; rezolvarea probl emel or de siguranță și
+corectitudine a transmi terii pachete lor de date se face la nivelurile
+superioare ale mode lului OSI;
+ ofe ră fie cărui dispozitiv di n Inte rne t o adresă numită adresă IP;
+ adaugă informația de adresare prin încapsulare;
+ PDU-ul rezultat ca urmare a încapsul ării IP poartă numele de pache t de
+date;
+ pe baza informație i de adresare conți nută în antetul IP al pachetului de
+date se re al ize ază dirij area traficului în Internet:rutarea pachete lor;
+ este definit în RFC 791, în anul 1981.
+FORMATUL ANTETULUI (HEADER-ULUI) IP V.4
+PENTRU UN PAHET DE DATE
+
+0 4 8 16 19
+
+Header
+Version Type of Service Total length
+length 
+
+Identification           Fragment Offset
+Flags
+
+TTL Protocol Header Checksum
+
+Source IP Address
+
+Destionation IP Address
+
+Options
+
+Data
+ANTETUL PROTOCOLULUI IP
+
+ La nivelu l 3 se pr im este segmen tul de la nivelu l 2 si i se
+ada uga un h eader (ante t)
+ Antetul contine ur matoar ele infor matii:
+▪ Versiune: specifica daca este utilizat IPv4 sau IPv6
+▪ Lungimea antetului
+▪ Lungimea pachetului
+▪ TTL – Time To Live: numarul maxim de hopuri prin care poate trece un
+pachet pana a ajunge la destinatie
+▪ Adresele IP sursa si destinatie
+▪ Header Checksum - verifica integritatea antetului
+▪ Padding – completarea antetului, in cazul in care lungimea acestuia nu
+este multipla de 32 de biti
+DESCRIEREA CÂMPURILOR DIN ANTET
+
+ versiune (version) - precizează versiunea protocolul ui;
+ lungime antet (header length)- precizează lungi mea antetului:
+▪ poate avea între 20 şi 60 de octeţi (multipli de 4 octeţi) ;
+▪ de obicei antetul IP este de 20 B;
+ TOS (Type of Service) - folosit pentru impl ementarea QoS;
+ TTL (Time To Live) - folosit pentru dimi nuarea efectului bucl elor:
+▪ fiecare ruter va decrementa valoarea acestui câmp;
+▪ un pachet cu TTL având valoarea 1 nu va părăsi reţeua locală;
+▪ este singurul câmp din antetul de nivel 3 al OSI care este modificat la
+trecerea printr-un ruter;
+ CRC (header checksum) - suma de control a antetului ; va fi
+recalculată de fiecare ruter, datorită operaţiei de decrementare
+a TTL;
+DESCRIEREA CÂMPURILOR DIN ANTET
+P r o t o c o l - i nd i c ă t ip u l a nt e tu l ui :
+ 1 - I CM P p e n t r u I Pv 4 : I nt e r n e t Co n tr o l M e s s a ge Pr o to c o l: p e n tr u d ia g n o s ti c a r e a ș i r a p o r t a r e a
+p r o b le m el o r d e r e ț e a ș i a ju t ă d is p o z i ti v el e d e r e ț e a s ă c o m u n ic e i nf o r m a ț ii d e s p r e s t ar e a
+c o n e x iu n il o r ( i n c lu d e c o ma n d a p in g ) .
+ 2 - I GM P p e n t r u I Pv 4 : I nt e r n e t Gr ou p Ma n ag e me n t P r o to c o l : p e n tr u g e s ti o na r ea g r u p u r i lo r d e
+m u l ti c a s t î n r e ț e le I Pv 4 . E s te u ti li z a t p e n tr u a p e r m i te u n u i r o u t er s ă ș t ie c a r e d is p o z i ti v e d e p e
+r e ț e a d o r e s c s ă p r i me a s c ă t r a fi c m u l ti c a s t ( e x : t r a n s m is i i v i de o s a u a u d io l iv e ) .
+ 4 - I P i n I P: t eh n i c ă d e t un e l ar e î n c a r e un p a c h et I P e s te î nc a p s u la t î nt r - u n a l t p a c h et I P:
+u ti li z a tă p e n tr u a t r im it e t r a fi c î nt r e d o u ă r e ț e le I Pv 4 p r i n tr - o a lt ă r e ț e a I P:
+▪ în sc enar ii de r ețele pr ivate vir tuale ( VPN) sa u în r ețelele de su pra puner e ( over lay ne twor ks ).
+ 6 - T CP ( Tr a ns m i s s io n C o nt r o l Pr ot o co l ) : o r i e nt a t p e c o n e x iu n e . E s te p r o t oc o l u l d e b a z ă
+p e n tr u ma j o r it a te a a p li c a ți il or d e i n te r n e t, c u m a r f i we b ( HT T P/ HT T P S) , e ma il ( SM TP ) , ș i
+t r a n s fe r d e f iș i er e ( F T P ) . T CP a s ig u r ă c ă t oa t e d a te l e s u n t l iv r a t e î n o r d i ne ș i f ăr ă p ie r de r i,
+u ti li z â n d me c a n is m e d e c o n fi r ma r e ș i r e t r a n s mi te r e a p a c h et e lo r p ie r du t e.
+ 1 7 - U DP ( U s er D at a gr am P r o t o c o l) : U DP e s te u n p r o t o c ol f ăr ă c o n e x iu n e , m a i r a p i d d e c â t
+T CP, d a r f ăr ă g a r a n ți a l iv r ă r ii d a te l or s a u o r d i ni i l or . Es t e u ti li z a t p e n tr u a p li c a ți i u n d e v i te z a
+e s te m a i i mp o r ta n t ă d e c â t f ia b il it a te a , c u m a r f i s tr e a mi n g v i de o , Vo IP ( Vo ic e o v er I P) ș i D NS
+( D o ma in Na me Sy s t e m) .
+ 4 1 - I Pv 6 : v e r s i u ne a 6 a In t er n et P r o t o c ol . Î n t r a n z iț ia d e l a I Pv 4 la I P v 6, p a c h et e le I Pv 6 po t f i
+î nc a p s u la t e î n p a c h et e I Pv 4 f ol o s in d t un e l ar e a p e n tr u a p e r m i te t r a n s po r tu l l or p r i n r e ț e le c a r e
+n u s u p o r tă î nc ă I Pv 6 n a ti v.
+ 5 8 - I CM P p e n t r u I Pv 6 : u ti li z a t p e n tr u a r a p o r t a e r o r i ș i p e n tr u a lt e m e s a j e d e r e ț e a î n c a d r u l
+I Pv 6 . Î n p lu s , I CM Pv 6 in c lu d e f un c ț io n a li tă ț i a v a n s at e p e n tr u c o n fi g ur a r e a a u to ma t ă a a d r e s e lo r
+ș i d e s c o pe r ir e a d e v e c in i ( n e ig h b o r d is c o v e r y ) , c a r e î nl o c u ie ș te A RP - u l d in IP v 4 .
+ N u m a i e x is t ă a lt a n t e t ( P r o t o c o l 5 9 ) : i nd i c ă f ap t u l c ă n u ma i e x is t ă u n a l t a n te t d e p r o t o c ol
+d u p ă, p e n tr u a s e m n a la s f âr ș it u l u n u i l an ț d e a n te t ur i î n s t r u c tu r a d e d a te IP v 6 .
+DESCRIEREA CÂMPURILOR DIN ANTET
+
+ lungime pachet (total length – 16 octeți) - defineşte lungimea
+pachetul ui; limitează l a maxim 64KB dimensiunea unei
+datagrame IP;
+ identificator secvenţă (Identification – 16 octeți) identifică
+datagrama;
+ Flags (3 octeți) cu formatul :
+▪ bitul 49 –rezervat (are valoare 0)
+▪ bitul 50 –DF (“do not fragment”)
+▪ bitul 51 –MF (“more fragments”)
+ANTETUL IPV6
+
+ Fo rma t s imp lif ic a t
+
+ Vers iu ne
+• Spe cifică dacă antetul este pe ntru IPv4 (valoare 4) sau IPv6 (valoare 6).
+ L un gimea a nt etu lu i
+• Este înlăturat de oarece antetul IPv6 are o lungime fixă de 40 de octeți.
+ L un gimea d at elor (p ayl oad le ngt h)
+• pe ntru IPv4, „Total Length” include lungimea antetului și a datelor. În IPv6, acest
+câmp este înlocuit de „Payload Length,” care specifică do ar lungimea datelor (fără
+antetul de bază).
+ H op lim it
+• Înlocuiește câmpul TTL din IPv4 - îndepline ște aceeași funcție
+ A dre sel e I P s ur să ș i d est in aț ie
+• 32 de biți în IPv4 și 128 de biți în IPv6.
+ H ead er Che c ks um
+• Eliminat în IPv6: s-a considerat că acest câmp nu era necesar (alte protocoale , cum ar
+fi TCP și UDP, includ mecanisme de verificare a inte grității.
+ P ad din g
+• Eliminat în IPv6 (în IPv4 se po ate adăuga padding pe ntru a alinia antetul la limite de
+32 de biți) În IPv6, padding-ul nu este necesar în antetul de bază, de oarece lungimea
+acestuia este fixă.
+ARP
+
+ ARP (Address Resolution Protocol) este protocolul utilizat
+pentru a asocia adresele IP (nivel 3) cu adresele MAC (nivel
+2).
+▪ Funcționează doar în rețele locale (LAN), unde dispozitivele trebuie
+să afle adresa fizică a unui alt nod din aceeași rețea.
+
+▪ Fără ARP, un dispozitiv ar cunoaște adresa IP a destinației, dar nu
+ar putea trimite cadrul Ethernet, deoarece nu ar ști ce adresă MAC
+să folosească.
+TIPURI MESAJE ARP
+
+Tip mesaj Direcție Descriere
+
+Cine are IP-ul X.X.X.X? Trimite-mi
+ARP Request Broadcast 
+adresa ta MAC
+
+(Eu am) IP-ul X.X.X.X la adresa
+ARP Reply Unicast 
+MAC Y:Y:Y:Y:Y:Y
+
+Dispozitivul își anunță propriul IP și
+Gratuitous ARP Broadcast  MAC (detectare duplicate sau
+actualizare tabele ARP vecine)
+ARP
+
+ Câ nd un dispozitiv dor ește să tr imită un pachet IP într-o r ețea
+locală :
+▪ verifică tabela ARP locală pentru adresa MAC asociată IP-ului
+destinație
+▪ dacă adresa nu este cunoscută:
+▪ trimite o cerere ARP (ARP Request) în difuzie (broadcast) către toate
+dispozitivele din rețea
+▪ Dispozitivul cu acea adresă IP răspunde cu un ARP Reply, conținând adresa
+sa MAC
+▪ Expeditorul salvează asocierea IP–MAC în tabela ARP pentru utilizări
+viitoare
+
+▪ Se scrie în cadrul Ethernet adresa MAC destinație
+ARP vs. NDP
+
+ În IPv6, AR P nu ma i este utilizat.
+
+ F uncția lui este înlocuită de ND P (Ne igh bor Disco ver y
+Pro toco l) , par te din ICMPv6
+
+ ND P folosește mesaje:
+▪ Neighbor Solicitation / Neighbor Advertisement
+(în loc de ARP Request / Reply).
+
+ Avanta je:
+▪ Mecanism integrat cu autoconfigurarea adreselor (SLAAC)
+
+▪ Include protecții suplimentare (Secure Neighbor Discovery – SEND)
+TABELA ARP
+
+ Fiecare dispozitiv menține o tabelă ARP
+▪ care stochează perechi IP MAC
+
+ Comanda arp –a
+▪ Arată întreaga tabelă arp
+TABELA ARP
+ Comanda arp –a
+▪ Arată întreaga tabelă arp
+ICMP
+
+ ICM P (In terne t Contr ol Message Pro toco l) este un pr otocol
+auxiliar al IP, utilizat pen tru:
+▪ diagnosticarea problemelor de rețea;
+▪ controlul fluxului de pachete;
+▪ trimiterea de mesaje de eroare.
+ ICM P nu tr anspor tă date de aplicație – este folosit e xclusiv
+pen tru semna lizare și co ntrol.
+ Mesajele ICMP su nt încapsula te în pachete IP, cu:
+▪ Protocol = 1 (pentru IPv4)
+▪ Protocol = 58 (pentru IPv6 – ICMPv6)
+ICMP
+
+ Asigură comunicarea erorilor între dispozitivele de rețea:
+▪ hosturi, routere, gateway-uri.
+
+ Permite diagnosticarea conectivității (ex: ping, traceroute)
+
+ Poate fi utilizat pentru:
+▪ detectarea stațiilor inaccesibile;
+
+▪ raportarea depășirii timpului de viață (TTL);
+
+▪ informarea despre probleme de rutare sau congestie.
+ICMP
+
+ F iecar e mesaj ICMP con ține :
+▪ Tip (Type) – identifică categoria mesajului
+▪ Cod (Code) – oferă detalii suplimentare despre tipul mesajului
+▪ Checksum – verifică integritatea mesajului
+▪ Date – conțin informații specifice mesajului
+
+ Exemple:
+▪ Tip 0 / Cod 0 → Echo Reply
+▪ Tip 8 / Cod 0 → Echo Request
+▪ Tip 3 → Destination Unreachable
+▪ Tip 11 → Time Exceeded
+ICMP – MESAJE UZUALE
+
+Tip mesaj Descriere Utilizare
+
+Echo Request / Reply Testare conectivitate ping
+
+Destination     Gazda, portul sau rețeaua nu
+Problemă de rutare
+Unreachable
+pot fi atinse 
+
+Time Exceeded TTL a ajuns la 0 traceroute
+
+Routerul informează o stație că
+Redirect Optimizare rutare
+există o rută mai bună 
+ICMPV6 (PENTRU IPV6)
+
+ În IPv6, ICMPv6:
+▪ Raportează erori (similare cu ICMPv4).
+▪ Gestionează descoperirea vecinilor și autoconfigurarea adreselor
+(NDP).
+ Tipuri de mesaje ICMPv6:
+▪ Echo Request / Echo Reply – pentru testare conectivitate
+▪ Neighbor Solicitation / Advertisement – înlocuiesc ARP
+▪ Router Solicitation / Advertisement – pentru descoperirea
+routerelor
+▪ Time Exceeded / Destination Unreachable – mesaje de
+eroare
+ICMP - EXEMPLE
+
+ ping <adresă> – trimite mesaje Echo Request și așteaptă
+Echo Reply;
+▪ Verifică conectivitatea IP;
+▪ Măsoară timpul de răspuns (latency).
+ traceroute <adresă> / tracert <adresă> (Windows)
+▪ Trimite pachete ICMP cu valori TTL crescătoare
+▪ Identifică routerele intermediare (hops) până la destinație
+ Exemple:
+▪ ping 8.8.8.8
+▪ tracert www.google.com
+ICMP - EXEMPLE
+
+ ping <adresă> – trimite mesaje Echo Request și așteaptă
+Echo Reply;
+▪ Verifică conectivitatea IP;
+▪ Măsoară timpul de răspuns (latency).
+ traceroute <adresă> / tracert <adresă> (Windows)
+▪ Trimite pachete ICMP cu valori TTL crescătoare
+▪ Identifică routerele intermediare (hops) până la destinație
+ Exemple:
+▪ ping 8.8.8.8
+▪ tracert www.google.com
+ICMP - EXEMPLE
+
+ ICMP poate fi exploatat în atacuri de rețea (ex: flood, Smurf,
+ping of death).
+
+ În unele rețele, mesajele ICMP sunt filtrate de firewall-uri
+
+ ICMP nu asigură autentificare – mesajele pot fi falsificate
+PROBLEMA TRANSFERULUI DATELOR LA
+NIVELURILE 2 ȘI 3 AL MODELULUI OSI
+ MTU (Maximum Transfer Unit): dimensi unea maximă a datelor
+înainte de încapsularea de nivel 2
+▪ dimensiunea maximă a datelor care pot fi transmise într-un singur
+cadru (la nivelul legăturii de date).
+▪ În Ethernet, MTU este, de obicei, 1500 de octeți. MTU limitează
+dimensiunea maximă a cadrului înainte de încapsulare, ceea ce ajută la
+prevenirea fragmentării pe rețele care au limite de MTU mai mici.
+ MSS (Maximum Segment Size) reprezinta dimensiunea maxi mă a
+datelor înainte de î ncapsularea de ni vel 4;
+▪ dimensiunea maximă a datelor care pot fi transmise într-un
+segment TCP, excluzând antetul TCP și antetul IP. Este calculată în
+funcție de MTU pentru a evita fragmentarea. MSS este negociată
+între dispozitive în timpul conexiunii TCP pentru a asigura că
+segmentele de date nu vor necesita fragmentare în timpul
+transmisiei.
+PROBLEMA TRANSFERULUI DATELOR LA
+NIVELURILE 2 ȘI 3 AL MODELULUI OSI
+ Tehnologia dominantă de transfer este TCP/IP/Ethernet:
+▪ TCP nu limitează dimensiunea datelor dintr-un segment dar în practică,
+dimensiunea segmentelor este reglată de MSS pentru a evita fragmentarea
+în rețea.;
+▪ IP defineşte dimensiunea maximă a datelor după încapsulare la 64 KB. În
+IPv4, câmpul „Total Length” permite o dimensiune maximă de 65535 octeți
+pentru un pachet IP (incluzând antetul). Aceasta este limita teoretică a
+unui pachet IP, dar dimensiunea efectivă este adesea mai mică din cauza
+MTU;
+▪ Ethernet defineşte dimensiunea maximă a datelor înainte de încapsulare la
+1500 B. Aceasta este valoarea MTU standard pentru Ethernet. Totuși,
+unele rețele Ethernet pot folosi cadre „jumbo,” care pot transporta mai
+mult de 1500 octeți (de obicei, 9000 octeți).
+PROBLEMA TRANSFERULUI DATELOR LA
+NIVELURILE 2 ȘI 3 AL MODELULUI OSI
+ În rețelele Ethernet moderne, există posibilitatea de a folosi
+cadre jumbo
+▪ acestea nu sunt standardizate și sunt utilizate doar în rețele locale,
+unde toate dispozitivele suportă cadre mai mari.
+ Fragmentarea este o tehnică folosită în IPv4 pentru a împărți
+pachetele mari în fragmente mai mici dacă depășesc MTU-ul
+unei legături.
+▪ În IPv6, fragmentarea este realizată doar la dispozitivul sursă, iar
+routerele nu fragmentează pachetele.

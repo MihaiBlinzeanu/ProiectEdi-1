@@ -1,0 +1,170 @@
+Laborator 6 – Sisteme automate
+Discretizarea sistemelor folosind metodele ZOH și Tustin
+
+1.1. Scopul lucrării
+Scopul lucrării este studiul metodelor de discretizare a sistemelor dinamice continue și analiza
+comportării acestora în timp discret. În cadrul lucrării se urmărește transformarea unei funcții de transfer
+din domeniul continuu în domeniul discret utilizând metodele Zero-Order Hold (ZOH) și Tustin
+(transformarea biliniară).
+
+1.2. Breviar teoretic
+
+În practică, regulatoarele digitale operează în timp discret, în timp ce majoritatea proceselor sunt
+descrise în timp continuu.
+Este necesară astfel transformarea unui sistem continuu:
+
+într-un sistem discret:
+
+Această transformare se numește discretizare și depinde de:
+• perioada de eșantionare 𝑇
+• metoda de discretizare utilizată
+
+Discretizarea cu Zero-Order Hold (ZOH)
+
+Metoda ZOH (element de menținere de ordin zero) presupune că semnalul de intrare este constant
+între două eșantioane.
+
+Modelul matematic al funcției ZOH este:
+
+unde:
+
+• 𝑇= perioada de eșantionare
+Această metodă de discretizare este inerentă proceselor continue comandate de un regulator numeric.
+Din punct de vedere a fidelității reprezentării din domeniile continuu și discret, metoda ZOH introduce un
+tact de întârziere și NU se recomandă pentru aproximarea unui regulator sau filtru. În astfel de cazuri, se
+recomandă metoda Tustin, pentru fidelitatea răspunsului în frecvență.
+
+Fig. 1 – Reprezentarea semnalelor eșantionate cu metoda ZOH
+
+Discretizarea prin metoda Tustin
+
+Transformarea biliniară (cunoscută și sub numele de metoda lui Tustin) este utilizată în procesarea
+semnalelor digitale și teoria controlului în timp discret pentru a transforma reprezentările sistemului din
+timp continuu în timp discret și invers.
+
+Metoda Tustin se bazează pe substituția:
+
+pentru a transforma planul s în planul z.
+
+Modelul matematic implică substituția ce se aplică direct în funcția G(s):
+
+Metoda Tustin prezintă mai multe caracteristici importante în procesul de discretizare a sistemelor.
+În primul rând, aceasta păstrează stabilitatea sistemului, deoarece maparea realizată transformă jumătatea
+stângă a planului 𝑠în interiorul cercului unitate din planul 𝑧. De asemenea, metoda realizează o mapare
+conformă, ceea ce înseamnă că proprietățile de stabilitate ale sistemului continuu sunt conservate în
+domeniul discret. Din acest motiv, metoda Tustin este utilizată frecvent în proiectarea regulatoarelor
+digitale.
+
+În ceea ce privește avantajele, metoda este relativ simplu de aplicat, deoarece se bazează pe o
+substituție directă în funcția de transfer.
+Cu toate acestea, metoda prezintă și unele dezavantaje. Unul dintre acestea este apariția deformării
+de frecvență, ceea ce înseamnă că relația dintre frecvențele sistemului continuu și cele ale sistemului
+discret nu este păstrată exact. În plus, metoda Tustin nu modelează fidel comportamentul real al unui
+sistem cu menținere de ordin zero (ZOH), ceea ce poate conduce la diferențe față de implementarea fizică
+reală.
+
+1.3. Mod de lucru
+
+Se vor prezenta etapele de rezolvare ale unei aplicații complete de discretizare, folosind metodele
+ZOH și Tustin.
+
+Ex. 1. Se dă următoarea funcție de transfer, ce prezintă timpul de eșantionare T=1:
+
+Se cere să se discretizeze funcția H prin metodele ZOH și Tustin știind că se aplică un semnal de
+intrare de tip treaptă unitară.
+
+• Metoda ZOH:
+
+Obs: Rezolvarea pas cu pas se poate accesa din secțiunea curs.
+
+Pentru rezolvarea în Matlab:
+
+Pasul 1: Definim funcția de transfer în domeniul timp
+
+Pasul 2: Facem conversia în domeniul discret cu funcția c2d
+Pasul 3: Reprezentăm grafic răspunsul
+
+Fig. 2 – Răspunsul sistemului în domeniul timp și discretizat cu metoda ZOH
+
+Pasul 4: Reprezentarea grafică a răspunsului la aplicarea semnalului treaptă discret
+Fig. 3 – Răspunsul discret al sistemului la semnalul de intrare treaptă pt ZOH
+
+Dacă plotăm răspunsul eșantionat obținut anterior, se va obține:
+
+Fig. 4 – Răspunsul discret al sistemului la semnalul de intrare treaptă și semnalul discretizat cu ZOH
+
+• Metoda Tustin:
+
+Obs: Rezolvarea pas cu pas se poate accesa din secțiunea curs.
+Pentru rezolvarea în Matlab:
+
+Pasul 1: Definim funcția de transfer în domeniul timp
+
+Pasul 2: Facem conversia în domeniul discret cu funcția c2d
+
+Pasul 3: Reprezentăm grafic răspunsul
+
+Fig. 5 – Răspunsul sistemului în domeniul timp și discretizat cu metoda Tustin
+Pasul 4: Reprezentarea grafică a răspunsului la aplicarea semnalului treaptă discret
+
+Fig. 6 – Răspunsul discret al sistemului la semnalul de intrare treaptă pt Tustin
+
+Dacă plotăm răspunsul eșantionat obținut anterior, se va obține:
+
+Fig. 7 – Răspunsul discret al sistemului la semnalul de intrare treaptă și semnalul discretizat cu Tustin
+Comparație vizuală a metodelor ZOH și Tustin:
+
+Fig. 8 – Comparație între răspunsul discretizat cu metodele ZOH și Tustin
+
+Observații: Se observă că toate metodele conduc la aceeași valoare de regim staționar, ceea ce
+confirmă păstrarea câștigului static.
+Metoda ZOH prezintă un comportament în trepte și introduce o ușoară întârziere, fiind mai apropiată
+de implementarea fizică reală.
+În schimb, metoda Tustin oferă un răspuns mai neted și mai apropiat de sistemul continuu în faza
+tranzitorie, însă reprezintă doar o aproximare matematică. Diferențele sunt mai evidente la începutul
+răspunsului, dar dispar în regim staționar.
+
+Ex.2. Se dă următoarea funcție de transfer, ce prezintă timpul de eșantionare T=0,5 :
+
+Se cere să se discretizeze funcția H prin metodele ZOH și Tustin știind că se aplică un semnal de
+intrare de tip treaptă unitară.
+
+• Metoda ZOH
+
+Pasul 1: Definim funcția de transfer în domeniul timp
+Pasul 2: Facem conversia în domeniul discret cu funcția c2d
+
+Fig. 9 – Răspunsul sistemului în domeniul timp și discretizat cu metoda ZOH pt funcția 2
+Pasul 3: Reprezentarea grafică a răspunsului la aplicarea semnalului treaptă discret
+
+Fig. 10 – Răspunsul discret al sistemului la semnalul de intrare treaptă pt funcția 2 cu ZOH
+
+• Metoda Tustin:
+
+Pasul 1: Definim funcția de transfer în domeniul timp
+
+Pasul 2: Facem conversia în domeniul discret cu funcția c2d
+Fig. 11 – Răspunsul sistemului în domeniul timp și discretizat cu metoda Tustin pt funcția 2
+
+Pasul 3: Reprezentarea grafică a răspunsului la aplicarea semnalului treaptă discret
+
+Fig. 12 – Răspunsul discret al sistemului la semnalul de intrare treaptă pt funcția 2 cu metoda Tustin
+
+Se vor efectua calculele pas cu pas pentru a valida rezultatele obținute.
+1.4. Chestiuni de studiat
+
+Se dau următoarele funcții de transfer, la care se consideră aplicarea unui semnal de tip treaptă.
+Să se aplice metodele de discretizare ZOH și Tustin de mână, rezolvare pas cu pas și apoi să se
+valideze folosind mediul de simulare MATLAB.
+
+2
+1. H(s) = , T= 1 sec
+2𝑠+4 
+
+𝑠+3
+2. H(s) = , T = 0.5 sec
+3𝑠+5 
+
+1
+3. H(s) = , T = 1 sec
+4𝑠+6 

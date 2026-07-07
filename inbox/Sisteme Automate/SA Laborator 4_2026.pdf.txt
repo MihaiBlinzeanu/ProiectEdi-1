@@ -1,0 +1,266 @@
+Laborator 4 – Sisteme automate
+Utilizarea MATLAB în analiza sistemelor cu eşantionare
+
+1.1 Noțiuni introductive
+
+În sistemele automate digitale, semnalele nu mai sunt procesate continuu în timp, ci la
+momente discrete. Aceste momente sunt determinate de procesul de eșantionare.
+Eșantionarea reprezintă procesul prin care un semnal continuu 𝒙(𝒕)este transformat într-o
+secvență de valori discrete:
+
+unde:
+• 𝑻 este perioada de eșantionare,
+• 𝒌 este indicele discret,
+[] 
+• 𝒙𝒌reprezintă valoarea semnalului la momentul 𝒌𝑻.
+În practică, eșantionarea apare în sistemele de control digitale deoarece calculatoarele și
+microcontrolerele procesează date discrete. Astfel, semnalul continuu provenit de la senzori este
+convertit într-o secvență de valori numerice care pot fi prelucrate de regulatorul digital.
+
+Un sistem cu eșantionare este format de obicei din următoarele elemente:
+➢ eşantionator – preia valori ale semnalului la intervale regulate de timp
+➢ bloc de menținere (Zero Order Hold) – menține constantă valoarea eşantionului
+până la următorul moment de eșantionare
+➢ proces continuu – sistemul fizic care trebuie controlat.
+Analiza acestor sisteme se realizează în domeniul discret folosind transformata Z.
+Transformata Z este un instrument matematic utilizat pentru analiza semnalelor și
+sistemelor discrete în timp. Ea reprezintă echivalentul transformatei Laplace pentru sistemele
+continue.
+Pentru o secvență discretă 𝑥[𝑘], transformata Z este definită prin relația:
+
+1
+unde:
+• 𝑥[𝑘]este semnalul discret,
+• 𝑧este o variabilă complexă.
+Transformata Z permite transformarea unei secvențe discrete într-o funcție de variabilă complexă,
+ceea ce simplifică analiza sistemelor dinamice.
+Funcția de transfer a unui sistem discret descrie relația dintre transformata Z a ieșirii și transformata
+Z a intrării sistemului.
+Ea este definită prin relația:
+
+unde:
+• 𝑈(𝑧)este transformata Z a semnalului de intrare,
+• 𝑌(𝑧)este transformata Z a semnalului de ieșire.
+Pentru un sistem discret liniar, funcția de transfer are forma generală:
+
+Funcția de transfer 𝑮(𝒛)este utilizată pentru analiza și simularea sistemelor discrete în programe
+precum MATLAB, unde sistemele pot fi definite și studiate folosind instrumente specifice pentru
+controlul automat.
+
+1.2 Scopul lucrării
+Scopul principal al acestei lucrări este de a prezenta facilităţile oferite de utilizarea
+calculatorului în analiza şi sinteza sistemelor cu eşantionare. În acest sens în lucrare sunt prezentate
+sintaxa principalelor instrucţiuni conţinute de MATLAB şi destinate analizei sistemelor cu
+eşantionare.
+
+1.3 Breviarul procedurilor de calcul
+În cadrul acestui subpunct vor fi prezentate sintaxa principalelor instrucţiuni conţinute în
+MATLAB şi destinate analizei sistemelor cu eşantionare.
+
+2
+Pentru introducerea modelelor discrete pot fi utilizate următoarele instrucţiuni:
+sys1 = tf(num,den,Ts)
+sys2 = zpk(z,p,k,Ts)
+sys3 = ss(a,b,c,d,Ts)
+
+Astfel , pentru un sistem cu funcţia de transfer în Z de forma:
+
+şi o perioadă de eşantionare T = 1 sec. vom introduce de la tastatură
+Varianta 1
+>> num=[1 -4];
+>> den=[1 3 2];
+>> sys1=tf(num,den,1)
+Transfer function:
+
+Varianta 2
+Pentru cel de al doilea mod de introducere a modelului introducem de la tastatură:
+>> T=1;
+>> sys2=zpk(4,[-1 -2],1,T)
+Zero/pole/gain:
+
+3
+Varianta 3
+
+Cel de al treilea tip de introducere a modelului impune introducerea datelor la nivel de stare.
+Procedăm astfel:
+>> a=[-3 -1;2 0];
+>> b=[2;0];
+>> c=[0.5 -1];
+>> d=0;
+
+>> sys3=ss(a,b,c,d,1)
+
+4
+Matlab permite conversia imediată continuu-discret sau discret-continuu.
+Astfel instrucţiunea sysd=c2d(sys,T) realizează conversia sistemului continual sys în sistemul
+discret sysd cu extrapolator de ordin zero şi perioadă de eşantionare T.
+
+− sT
+1 − e
+1
+s
+s  (s + 1)
+Figura 1. Sistemul ce urmează a fi discretizat.
+
+Pentru realizarea echivalentului discret introducem de la tastatură:
+>> num=1;
+>> den=[1 1 0];
+>> T=1;
+>> H1=tf(num,den)
+
+>> Hd=c2d(H1,T)
+
+Pentru conversia discret-continuu utilizăm instrucţiunea d2c. Astfel pentru cazul anterior
+prezentat introducem de la tastatură:
+
+5
+>> Hc=d2c(Hd)
+
+Pentru evaluarea şi plotarea răspunsului indicial pentru un sistem discret putem utiliza
+următoarele instrucţiuni:
+DSTEP(A,B,C,D,IU) trasează răspunsul indicial pentru sistemul liniar discret
+x[n+1] = Ax[n] + Bu[n]
+y[n] = Cx[n] + Du[n]
+
+pentru o treaptă aplicată pe intrarea IU. Numărul de puncte de evaluare se alege automat.
+DSTEP(NUM,DEN) trasează răspunsul indicial pentru sistemul liniar discret caracterizat
+prin funcţia de transfer în Z G(z) = NUM(z)/DEN(z)
+
+DSTEP(A,B,C,D,IU,N) sau DSTEP(NUM,DEN,N) trasează răspunsul indicial pentru N
+puncte impuse.
+[Y,X] = DSTEP(A,B,C,D,...)
+
+[Y,X] = DSTEP(NUM,DEN,...)
+
+întoarce valorile răspunsului pe ieşire şi stare.
+
+Dacă dorim răspunsul indicial pentru sistemul caracterizat de funcţia de transfer în Z
+
+introducem de la tastatură
+>> num=[0.37 0.26];
+>> den=[1 -1.37 0.37];
+>> dstep(num,den,50)
+
+6
+DLSIM(A,B,C,D,U) trasează răspunsul în timp pentru sistemul discret
+x[n+1] = Ax[n] + Bu[n]
+y[n] = Cx[n] + Du[n]
+
+pentru secvenţa de intrare U.
+Matricea U trebuie să aibă atâtea coloane câte intrări avem.
+Fiecare linie din U corespunde unei noi valori de timp.
+DLSIM(A,B,C,D,U,X0) utilizată pentru cazul existenţei unor valori iniţiale.
+DLSIM(NUM,DEN,U) trasează răspunsul în timp pentru un sistem discret caracterizat prin
+funcţia de transfer în Z
+G(z) = NUM(z) / DEN(z)
+[Y,X] = DLSIM(A,B,C,D,U)
+[Y,X] = DLSIM(NUM,DEN,U)
+întoarce valorile în ieşire şi stare.
+
+➢ Exemplu semnal intrare treaptă
+>> num=[0.37 0.26];
+>> den=[1 -1.37 0.37];
+>> u=ones(50,1)
+>> dlsim(num,den,u)
+
+7
+➢ Exemplu semnal intrare treaptă
+>> num=[0.37 0.26];
+>> den=[1 -1.37 0.37];
+>> n=0:50;
+>> u=sin(0.2*n)
+>> dlsim(num,den,u)
+
+8
+1.4 Mod de lucru
+
+Se consideră un sistem de reglare automată a cărui schemă este prezentată în figura de
+mai jos.
+y(t )
+ref 
+− sT
++ 
+1
+1 − e
+ 
+s (s + 1)
+s
+
+Perioada de eşantionare este T = 1sec. Se cere să se determine răspunsul indicial al
+sistemului prezentat.
+Pentru soluţionarea problemei propuse înscriem subrutina script ex1.
+Exemplu 1
+% Introducem datele sistemului continuu.
+numc=1;
+denc=[1 1 0];
+sysc=tf(numc,denc)
+T=1;
+
+% Se determina functia de transfer in Z pentru sistemul in circuit deschis.
+sysd=c2d(sysc,T)
+
+% Stabilim functia de transfer in Z pentru sistemul in circuit inchis.
+sys0=feedback(sysd,1)
+
+9
+% Stabilim raspunsul indicial
+step(sys0)
+
+Răspunsul indicial al sistemului în circuit închis este prezentat în figura de mai jos.
+
+1.5 Chestiuni de studiat
+
+1) Se consideră sistemul de reglare automată cu eşantionare având structura prezentată în
+figura 2.
+− sT
+y
+2  (s + 1)
+1 − e
+ref
+
+s  (s + 3)
+T
+
+Figura 2. Schema bloc a sistemului 2.1.
+Pentru T = 1sec şi T = 2sec să se determine
+• Funcţia de transfer în Z în circuit deschis
+• Funcţia de transfer în Z în circuit închis
+
+10
+• Răspunsul indicial al sistemului considerat.
+
+2) Se consideră sistemul de reglare automată cu eşantionare prezentat în figura 3.
+− sT
+y
+y
+1 − e
+ref 
+
+s  (s + 1) (s + 3)
+
+Figura 3. Schema bloc a sistemului 2.2
+Pentru K = 2 şi K = 5 să se determine:
+• Funcţia de transfer în Z în circuit deschis
+• Funcţia de transfer în Z în circuit închis
+• Răspunsul indicial al sistemului considerat.
+
+3) Se consideră sistemul de reglare automată cu eşantionare prezentat în figura 4.
+− sT
+y
+K
+1 − e
+ref
+
+s  (s + 1) (s + 3)
+s
++ 
+T = 1sec
+T = 1sec
+
+Figura 4. Schema bloc a sistemului 2.3
+Pentru K = 2 şi K = 5 să se determine
+• Funcţia de transfer în Z în circuit deschis
+• Funcţia de transfer în Z în circuit închis
+• Răspunsul indicial al sistemului considerat
+
+11

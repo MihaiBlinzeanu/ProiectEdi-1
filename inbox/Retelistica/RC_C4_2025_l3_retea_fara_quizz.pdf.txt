@@ -1,0 +1,860 @@
+REȚELE DE
+Cur s 4
+St iva OS I –
+nivelul re țea
+CALCULATOARE
+CUPRINS
+
+ Stiva O SI – nivelul 3 Rețea
+ Protocolul IP
+ Rutare
+STIVE DE PROTOCOALE
+
+ Două modele care reprezintă toate prelucrările necesare
+comunicației în rețea, de la datele transmise de utilizator, până la
+codificarea acestora în biți și transmiterea pe mediul de
+comunicație
+
+▪ OSI – Open Systems Interconnection
+
+▪ Creat de ISO
+
+▪ TCP / IP – Transmission Control Protocol / Internet Protocol
+
+▪ Creat de DARPA
+STIVE DE PROTOCOALE
+
+ Fie care strat/ ni vel trebu ie:
+
+▪ să fu rnizeze un anu mit set de servicii și să re alizeze in terfața cu stratul
+
+adia cent;
+
+▪ să specif ice mod ul de transmitere a d atelor între stratu rile analoag e de la
+
+sursă și de la destin ație.
+
+ În timpu l transmi te rii de d ate sun t util izate pro to coal ele de
+
+comu nicație de d ate.
+
+▪ Prot ocolul de comu nicații de date este un set de reguli, convenții și
+
+proceduri cu ajutorul că rora se realize ază com unicarea într -o reţ ea.
+STIVA OSI VS STIVA TCP/IP
+
+OSI TCP/IP
+
+7 Aplicație
+
+6 Prezentare       Aplicație 4
+
+5 Sesiune
+
+4 Transport Transport 3
+
+3 Rețea Internet 2
+
+2 Legătură de date
+Acces la rețea 1
+1 Fizic
+STIVA OSI
+
+Rolul nivelului
+Nivelul 
+
+Aplicație Realizează interfața cu utilizatorul și interfața cu aplicațiile
+
+Prezentare Transformă datele în formate înțelese de fiecare aplicație
+
+Sesiune Gestionează conexiunile între aplicații
+Separă conversațiile între aplicațiile de pe o stație
+Transport 
+Segmentează (la sursă) și reasamblează datele (la destinație)
+Rețea Realizează rutarea pachetelor
+Asigură accesul la rețea, detecția și anunțarea erorilor,
+Legătură de date 
+controlul fluxului fizic
+
+Definește specificații electrice, mecanice, procedurale și
+Fizic 
+funcționale pentru transmiterea informațiilor pe mediu
+STIVA TCP/IP
+
+Nivel Rolul nivelului
+
+Aplicație Interacțiunea cu utilizatorul
+Segmentare și multiplexarea comunicațiilor între
+Transport 
+servicii pe aceeași stație
+Rutare - Determinarea rutei optime între două
+Internet 
+puncte din rețea
+Controlul interacțiunii cu HW, punerea informației
+Acces la rețea 
+pe mediu
+STIVA OSI: NIVELUL 7
+APLICAȚIE
+ Furnizează servicii altor aplicații și utilizatorilor
+▪ Nu furnizează servicii altor niveluri ale stivei OSI
+ Exemple: HTTP, FTP, DNS, DHCP, SSH, Telnet, SMTP, etc.
+STIVA OSI: NIVELUL 6
+PREZENTARE
+ Furnizează servicii nivelului 7
+ Rol principal: prezentarea datelor astfel încât să poată fi
+utilizate la nivelul 7
+
+ Protocoale de:
+▪ Formatare și codificare a datelor
+▪ Compresie a datelor
+▪ Protocoale de securizare a datelor
+▪ Transp ort Laye r Security – TL S
+▪ Secure Socket Laye r - SSL
+ Exemple:
+▪ ASCII, JPEG, GIF, PNG, etc.
+STIVA OSI: NIVELUL 5
+SESIUNE
+ Rol principal: gestionează sesiunile dintre două aplicații
+care comunică
+▪ Sesiuni: conexiunile persistente dintre dispozitive – nu țin cont de
+nivelurile 1-4
+
+ Gestionează sincronizarea dialogului și modul de
+comunicare conform cerințelor de la nivelul aplicație
+STIVA OSI: NIVELUL 4
+TRANSPORT
+ Func ții principale (t oate protocoalele de nivel 4):
+▪ Segmentarea datelor de la nivelele superioare
+▪ Multiplexarea conversațiilor pe bază de porturi
+
+ Roluri adiționale (unele protocoale de nivel 4)
+▪ Conversații orientate pe conexiune (connection oriented )
+▪ Livrarea sigură a datelor
+▪ Controlul fluxului
+▪ Ordonarea corectă a segmentelor
+
+ Pr ot oc oale principale:
+▪ TCP – Transmission Control Protocol - orientat pe conexiune
+▪ UDP – User Datagram Protocol - neorientat pe conexiune, de tip „ best effort”
+
+ Realizeaz ă adres area pe baz ă de „porturi”
+
+ PD U: segment
+STIVA OSI: NIVELUL 3
+REȚEA
+
+ PDU: pachet
+
+ La nivelul retea se realizeaza rutarea
+
+ Are urmatoarele functii:
+▪ Incapsularea / decapsularea datelor primite
+
+▪ Rutarea si livrarea pachetelor
+
+▪ Adresarea logică a apchetelor
+
+▪ Verificarea integritatii antetului
+ÎNCAPSULAREA DATELOR
+
+ Nivelurile Aplicație, Pr eze ntare și sesiune
+▪ Datele propriu-zise
+
+ Nivelul Tr anspor t
+▪ Datele se încapsulează într-un header și un trailer
+▪ Se adaugă portul utilizat la nivelul Aplicație
+▪ Se obține un segment de date
+
+ Nivelul R ețea
+▪ Se adaugă adresa logică – adresa IP (în general)
+▪ Se obține un pachet de date
+
+ Nivelul L egătur ă de da te
+▪ Se adaugă adresa fizică – adresa MAC
+▪ Se obține un cadru (frame)
+
+ Nivelul fizic
+▪ Datele sunt transformate în biți si puse pe mediul de comunicație
+ÎNCAPSULAREA DATELOR
+
+Tip PDU Format
+Nivel stiva OSI 
+
+Aplicație 
+Date
+Prezentare
+
+Date Date Date Date Date
+Sesiune 
+
+Segment THeader Date
+Transport 
+
+Pachet NHeader THeader Date Trailer
+Rețea 
+
+Cadru DLHeader NHeader THeader Date Trailer
+Legătură de date 
+
+Biți 00110011010101011101
+Fizic 
+
+PDU – Protocol Data Unit
+FUNCŢIILE NIVELULUI REȚEA: RUTAREA
+
+ Se realizeaza la nivelul 3, de catre dispozitive de nivel 3
+
+ Procesul de selectare a caii de transmitere a informatiei intre
+retele diferite.
+
+ Se realizeaza pe baza unor informatii de rutare, care sunt
+memorate in fiecare dispozitiv care contribuie la proces si
+contin:
+▪ Interfata de iesire pentru reteaua destinatie / next-hop-ul spre
+reteaua destinatie
+▪ Next hop – urmatorul dispozitiv la care se ruteaz a pachetul
+FUNCŢIILE NIVELULUI REȚEA
+
+ Adresarea în mod unic la nivel global ( reţea Internet):
+▪ utilizează un protocol cu adresare ierarhică numit IP (Internet Protocol);
+▪ fiecare dispozitiv este identificat în mod unic la nivel global prin adresa
+sa IP (Internet Protocol).
+ Folosirea si stemului neorientat pe conexiune pentru comunicarea
+datelor
+▪ desti nația nu este contactată î nainte de tri miterea unui pachet;
+▪ pachetele de date pot urm a căi diferite pentru a ajunge la destinatie și pot ajunge
+într-o ordine diferită față de cea în care au fost tri mise;
+▪ acest sistem mai este denum it și packet-switched; asem ănător sistem ului poștal.
+ Folosirea unor dispozitive intermedi are numite rutere care, în
+funcție de destinație, stabi lesc calea pe care trebuie să ci rcule
+pachetel e de date.
+FUNCŢIILE NIVELULUI REȚEA
+
+Observații:
+1. Sistemul orientat pe conexiune pentru comunicarea datel or este
+folosit de protocoal ele de nivel superior.
+2. Un sistem orientat pe conexiune are următoarele caracteristici:
+ este stabil ită o conexiune î ntre sursă și desti nație înainte de
+transmi terea oricaror date;
+ toate pachetele circulă pe același traseu fizic sau virtual, în
+ordinea în care sunt trimise;
+ acest sistem mai este denumit și circuit-swi tched; asemănător
+sistemului telefonic.
+ADRESARE IP
+
+ Adresare ie rarhică și adresare plată
+▪ La adresarea plată se iau la rând numerele, seriile pentru un dispozitiv etc
+▪ De exemplu: adrese le MAC, se riile de bancnote.
+
+▪ La adresarea ierarhică există o ierarhizare care permite localizarea unui
+dispozitiv într-o regiune (rețea).
+▪ De exemplu: adrese le IP, codurile poştale .
+
+ In cose cință ad re sele MAC sunt fo losite d oar cu v izib ilitat e loca lă
+(în dome niu l local d e broad cast).
+
+ Pent ru adresare la nive l glo bal (reț eau a Internet) este n ecesa r să se
+folo se ască a drese o rganizat e ie rarhic care să p oată fi gest ionate de
+ech ipame nte le de rețe a (routere).
+
+ Adresarea I P (Int erne t Proto col) este u n tip de adresare ierarhică în
+ca re se poate ide ntifica ușor re ţ eau a ce con ţine o adresă IP dat ă.
+RUTAREA
+
+ Rutele repre zi nta caile pe care tre buie sa le par cur ga un pachet
+pentru a ajung e la des tinatie
+ Fiecare dispoz itiv de nive l 3 r etine doar adre sa next-hop-ului, nu
+intre ag a cale cat re o des tinat ie
+ Pentru s tatii, adre sa next-hop es te adres a po r tul ui ruterului la
+care este conectata reteaua: D efault Gateway
+ Rutele po t fi:
+▪ Dinamice:
+▪ Invatate d inamic – prin intermediu l unu i protocol de ru ta re
+▪ Statice:
+▪ Introd use manua l
+▪ Direct conectate
+▪ Adresel e disp ozitivelor d irect conecta te
+ Rutere le i si cr eaza t abele de r ut ar e pentru me morare a ace stor
+informatii
+RUTAREA PACHETELOR
+
+ Fiecare pachet este rutat individual
+ Pe baza informatiilor de rutare se poate decide:
+▪ Transmiterea pachetului catre next-hop
+▪ Transmiterea pachetului catre statia destinatie
+▪ Aruncarea pachetului, daca destinatia nu se potriveste cu niciuna
+dintre rutele stiute
+ Ruta implicita:
+▪ Orice destinatie care nu se potriveste cu alte rute din tabela de
+rutare este transmisa pe ruta implicita
+▪ 0.0.0.0/0 – IPv4
+▪ ::/0 – IPv6
+ Se introduce in general pe ruter-ul default gateway
+RUTAREA PACHETELOR IN RETEA
+
+ Când o stație transm ite informați i în rețe a, datel e tre c printr-un proces
+numit încapsulare care re prezintă adăugare a unor i nformații la diferite
+nivele ale stivei OS I. În funcție de nivelul la care informațiile sunt
+încapsulate, sunt cre ate diferite tipuri de PDU.
+ După cum știm, nivelul Re țea prime ște segme ntul încapsulat de la nivelul
+superior și îi adaugă un antet care conține, pe l ângă al te i nformații,
+adre sarea logică, respecti v adrese le IP sursă și destinație.
+ Rutarea e ste procesul de selectare a căii de transmitere a inform ației între
+mai m ul te rețele. Echi pame ntele care decid cal ea cea mai bună sunt
+router-el e care î n funcție de adresa IP a de stinație i aleg portul fizic pe
+unde va fi transmis pachetul.
+ Rutarea pache tel or se face pe baza unei tabe le de rutare care specifică
+pentru fie care rețe a de stinați e în parte, inte rfața de ieșire sau hop-ul
+următor spre rețea, dar și al te informații supli mentare (cum ar fi costul
+spre rețeaua destinație).
+ Pachetul de date e ste primit de l a ni velul Legătură de date, este anal izată
+adre sa IP destinație, și dacă aceasta corespunde cu adresa IP a stației
+desti nație, este extras se gm entul de date din pache t și transmis m ai
+departe ni velului superior.
+TABELA DE RUTARE
+
+ Tabela de rutare este tabela unde sunt stocate toate rute le cunoscute de
+un echipament din rețea.
+ Tabela de rutare este cea pe baza căreia se iau decizii pentru di rectarea
+pachetelor spre rețe aua destinație.
+ Tabela de rutare conți ne două tipuri de rute (căi)
+▪ rute direct conectate între echipamente conectate direct; aceste rute vin de la
+inte rfețele active ale unui route r; router-ul adaugă această rută în tabela de rutare
+atunci când interfața are o adresă IP și este activă;
+▪ rute “remote” (la distanță), în care pachetul de la s urs ă parcurge mai multe
+echipamente din rețea pe ntru a ajunge la destinație; acestea pot fi configurate
+manual de către un administrator de rețea sau dinamic dacă router-ul local va
+schimba informații de rutare cu alte route r-e care folosesc protocoale de rutare
+dinamice (care vor fi descrise in acest curs).
+ Populare a tabele i de rutare se reali zează astfe l:
+ Rețelel e direct conectate sunt adăugate automat în tabelă;
+ Rețelel e aflate l a di stanță sunt “ învățate ” prin două tipuri de rute:
+▪ statică realizată de administrator prin adăugare a unei rute în tabe la de rutare ;
+▪ dinamică realizată cu ajutorul unui protocol de rutare care realizeaza adaugarea unei
+rute in tabela de rutare.
+TABELA DE RUTARE
+
+ Parame trii une i rute sunt:
+▪ Reţeaua destinaţie;
+▪ Adresa next-hop ș i/sau interfața;
+▪ Metrica / distanță administrativă.
+ O intrare din tabela de rutare se refera la o rețe a gene rală sau doar la o
+subrețea din rețe aua general ă.
+ Reţeaua desti naţie:
+▪ apare în tabela de rutare sub formă de adresă de reţea și masca corespunzătoare;
+▪ se compară adres a destinaţie cu adresele stocate în tabela de rutare ș i dacă nu se
+găse ște nici o potrivire, pachetul este aruncat;
+ Adresa next -hop:
+▪ reprez intă adresa ruter-ului la care va fi trimis un pache t pentru a ajunge într-o
+anumită re țe a;
+▪ nu este specificată pentru rețelele direct conectate.
+ Interfața:
+▪ se folose ște dacă interfața nu aparține unui mediu multi-acces ci este punct-la-punct.
+ Me trica:
+▪ Indicator de alegere a unei rute după anumite criterii;
+▪ O metrică mai mică este mai bună.
+TABELA DE RUTARE
+
+ Ruta implicită este ruta prin care sunt trimise toate pachetele
+care nu au destinați a î n tabel a de rutare.
+ O rută implicită este caracterizată de un IP pentru rețeaua
+destinație care are prefi xul /0 (poarta denumi rea de “quad zero
+route”).
+ O astfel de rută poate fi definită ca stati că sau poate fi generată
+de un protocol de rutare.
+ De exemplu în tabela de rutare de la router poate apare o astfel
+de rută:
+▪ 0.0.0.0 0.0.0.0 141.85.5.65
+INTERFAȚA LOGICĂ DE NULL
+
+ O rută ce are precizată drept i nterfaţă de i eşi re intefaţa logică
+de nul l va opri toate pachetel e care au ca desti nație spaţiul de
+adrese precizat î n rută ( nu vor mai ajunge la desti nație).
+ În sistemul de operare Linux este interfaţa /dev/null
+ La router-el e Cisco interfața se numeşte Null0.
+ De exemplu:
+▪ 193.231.5.0/25 /dev/null
+sau
+▪ 193.231.5.0/25 Null0
+METRICI PENTRU RUTE
+
+ Metri ca este un indicator de alegere a unei rute după anumi te
+criterii .
+ Metri cile utile unei rute sunt:
+▪ hop count (numărul de rutere până la destinație);
+▪ lățimea de bandă a legăturii;
+▪ încărcarea unei legături;
+▪ fiabilitatea (reliability);
+▪ costul;
+▪ latența.
+ Metri cile de bază pot fi compuse pentru a crea metrici noi
+METRICI PENTRU RUTE
+
+ Metri ca hop-count ajută un router în a lua o deci zie când există
+mai multe căi către destinație.
+▪ În cazul acesta, calea prin B1 este mai bună.
+▪ Direcția poate fi reprezentată printr-un IP sau printr-o interfață
+DISTANȚĂ ADMINISTRATIVĂ
+
+ Atunci când există mai multe protocoale ce oferă căi către
+aceeași destinație trebui e să existe o metodă de a l e putea
+cl asifica. Mărimea folosită în acest caz este di stanța
+admini strativă. Distanță administrativă este specifică tipului de
+rută:
+
+ Rutele adăugate î n tabel a de rutare sunt cele cu o distanță
+admini strativă cât mai mi că.
+SELECTAREA RUTELOR
+
+ Înregi strările sunt introduse și ordonate în tabela de rutare după
+următoarele criterii:
+a) după masca de rețea, în ordine descrescătoare. Astfel, primele rute vor
+fi cele către stații, iar ultima rută va fi ruta implicită (0.0.0.0/0) - dacă a
+fost configurata static;
+b) după distanța administrativă (DA) a protocolului de rutare care a
+descoperit acea rută. Rutele direct conectate au distanța administrativă 0,
+iar cele statice 1. Dacă mai multe protocoale au descoperit aceeași rută,
+se păstrează doar intrarea cu distanța administrativă cea mai mică;
+c) după metrica protocolului. Metrica diferă mult între protocoale, de
+aceea nu trebuie comparate metricile de la diferite protocoale de rutare.
+Dacă există mai multe rute cu aceeași distanță administrativă și metrică
+identică sau apropiată, pot fi păstrate ambele pentru a putea echilibra
+încărcarea pe cele 2 rute (load -balancing).
+CONSULTAREA TABELEI DE RUTARE
+
+ Consultarea tabelei de rutare se desfășoară astfel:
+a) Căutarea rutei se face secvențial, pe baza adresei IP destinație
+b) Pentru fiecare rută din tabelă se face AND între mască și adresa
+IP destinație a pachetul ui;
+c) Dacă rezultatul corespunde cu rețeaua din rută pachetul este
+tri mis pe calea respectivă.
+CONSULTAREA TABELEI DE RUTARE
+
+ Fi ecare tip de rută di n tabel a de rutare este reprezentată de un
+simbol: O – OSPF, R – RIP, D – EIGRP, B – BGP (reprezentând
+protocoalele de rutare), făcând mai ușoară parcurgerea acesteia.
+ Fi ecare echipament din rețea va lua independent deci zii,
+bazându-se pe propri a tabelă de rutare.
+ Un calculator poate adăuga automat în tabela sa de rutare toate
+rețelele direct conectate şi o rută default către gateway.
+TABELE DE RUTARE PE ROUTERE
+
+ Un router trimite pahete de date pe baza tabel ei de rutare care
+este menținută dinamic sau static-admini strativ.
+ Rutarea necesită ca toate router-el e de pe cal ea de comunicați e
+de l a sursă la destinați e să aibă o rută pentru a transmite mai
+departe fiecare pachet care apare în rețea.
+ Router-el e din rețea trebui e să cunoască adresa next-hop sau
+interfața spre care va trimi te pachetul către destinați e.
+ Dacă router-el e sunt direct conectate, nu este nevoie să se
+cunoască adresa de rețea next-hop ci doar interfața de ieșire.
+ Comanda pentru afi șarea tabelei de rutare a unui router este:
+▪ show ip route
+EXEMPLE DE RUTARE
+
+Cum r uteaz ă un ca lcul ator ga zdă ( host) ?
+▪ Dacă desti nați a este 12 7.0.0.1 ruta rea a re ca scop testarea f uncți onăr ii
+sti vei TCP/ IP;
+
+▪ Daca desti nați a este î n ac eeași rețea , pachetul de da te este tr imi s
+direct la desti na ție
+EXEMPLE DE RUTARE
+
+Daca desti nați a este î n al tă rețea ( remote) , pachetul de da te este tr imi s
+l a Defaul t Ga teway (care poate fi un cal culator sa u un router) deoa rece o
+gazdă (host) nu va deți ne i nformați i de rutare decâ t pentr u rețea ua
+l oca lă .
+
+In c oncluzie, fiecare pachet este tratat individual.
+ În urma procesării unui pachet se poate decide:
+▪ trimiterea către router-ul next-hop (urmatorul ehipament prin c are trece
+pachetul până la destinație ) (in altă rețea);
+▪ trimiterea către calculatorul destinaț ie (in aceeași rețea);
+▪ aruncarea pachetului (drop).
+PROTOCOALE LA NIVEL DE REȚEA
+
+La ni ve lul Rețea sunt două cl ase de protocoale :
+- protocoale de rutare (routing protocols);
+- protocoale rutate (routed protocol s);
+
+Protocoalele de rutare dete rmină re guli le prin care router -el e schi mbă
+informații despre acce si bi litate a rețele lor. În funcție de informațiile
+furnizate de aceste protocoale se construiește tabela de rutare, iar pe baza
+tabel ei de rutare e ste determinat trase ul pe care trebuie trimis fie care
+pachet.
+Exe mplu: RIP, OS PF, IGR P, EIGR P, IS -IS, BG P.
+
+Protocoalele rutate asigură adresare a (identifi care a nodurilor).
+Exe mplu: IP, IPX, Appletalk , DECnet
+
+Există protocoale de nivel rețea, c are nu oferă suport pe ntru o sche mă de
+adre sare ie rarhica, din ace st motiv fi ind ne rutabile .
+Exe mplu: NETB EUI este un protocol rapid care este limitat să lucreze pe un
+singur se gme nt.
+STRUCTURA UNUI ROUTER
+
+Ro uter -ul e ste un e chi pam e nt de ni ve l 3 (n iv e l R ețe a) care re al i zeaz ă
+cone cti v itate a î ntre m ai m u lte re țel e (su bre țel e ) di fe ri te . F ie care route r a re
+ne vo ie de o i nte r față cu o adre să I P d in s pați ul re țe l e i ( subr ețe l ei ) la car e e
+cone ctat.
+Te r m enu l ge ne ri c de „ R oute r ” po ate de scr ie :
+ un com pu ter ca re ar e un s i stem de ope rare cu fu ncți onal i tăți avans ate de
+„ ne twor k in g”
+sa u
+ un di s pozi ti v spe ci al iz at, cu o for m ă standa rdi zată, de di cat pe ntru pr oce sul de
+tran sm i ter e a pach ete l or î ntre m ai m ul te re țe le . Pr i nci pal i i pr oducător i d e
+r utere fol o si te î n m e di i de pro ducți e s unt: Ci sco, J uni pe r, Dl i nk, Huawe i și
+al ți i .
+De și v in d e l a prod ucători di fe ri ți , m aj ori tate a
+e chi pam e ntel or re spe ctă anum i te s ta ndard e de fi ni te d e
+or gani s m e i nte rnați o nal e, per m i țând i ntero pe rabi l i tate a
+ace stora.
+FUNCTIILE UNUI ROUTER
+
+F uncți i l e d e bază a le unui ro uter sunt:
+- de ter m i nare a și al ege re a cai i pe care tre bui e s ă o ur m eze u n pache t de d ate
+pân ă la d esti naț ie ;
+ com utar ea pa chete l or d e date - pr i m ir ea un ui p achet p e o i nte rfață si tr i m ite re
+l ui pe a lta;
+ m e nți ner ea tab el e l or de ru tare :
+▪ static (ad min istrato ru l de retea)
+▪ dinamic (protoco ale de rutare)
+ re al i zare a cone xi uni i d int re di fe ri te standar de de ni ve l F iz i c, L e gatură d e date
+sa u Rețe a.
+Pe l ângă fu ncți a de b ază de a t ri m i te pa chete pe cal e a opti m ă, route r -e l e
+m od er ne m a i po t î nde pl in i ș i al te funcț ii pre cum :
+ f il tra rea t rafi cul ui î n fun cți e de antet uri l e d e ni ve l 3 s au 4 (AC L -ur i );
+ tran sl atare a de ad re se ( N AT );
+ stabi l i re a de t une lu ri ;
+ atr ib ui re d e adr es e ( se rv er DHC P).
+ROUTERE SPECIALIZATE
+
+Rout er-u l s p ec iali zat est e d e f ap t u n si stem d e c alc u l.
+ O di fere nț ă imp o rtan tă față d e PC (c el p u țin , d in p u n ct d e v ed ere al c o n fi gu răr ii ) e ste
+c ă ro u ter -u l ar e d o ar p o r tu ri d e co ne ctare î n loc d e p o rt u ri pe nt ru tas tat u ră și ecran .
+ I nte rn ar e c irc u it e sp e ci alizate p en tr u în d ep lin i rea f u n cț iil o r d ed i cate
+▪ Ex : proce sor dedicat rutării
+Pe nt ru co nf ig u rare , se co n ectează la u n p ortal ru ter u lu i u n P C p e care ru l ează o ap li cați e
+d e “ te rmin al” – d e exemp lu , H yp er Te rmin al sau p u tty d in si stemu l d e o pe rare Wi nd o ws . O
+astf el d e ap licați e p er mite f o lo sir ea “co ns o lei ” P C -u lu i, ad ică tast at u ra și ecran u l
+acest ui a, pe nt ru acces ul p e ro u te r. Exi stă și in ter feț e g raf ice d e ge stiu n e a con fg u rări lor
+ech ip amen tel o r d e rețe a.
+ROUTERE SPECIALIZATE
+
+Memo r ia u n u i ro u ter sp e ci alizat (Ci sco )
+
+Memorie Volatilă / Non-Volatilă Stochează
+• IOS-ul in funcțiune
+• Fișierul running-config
+RAM Volatilă
+• Tabela de rutare și tabele ARP
+• Buffere pentru pachete
+
+• Instrucțiuni de bootare
+ROM Non-Volatilă 
+• Software de diagnostic minimal
+
+NVRAM Non-Volatilă • Start-up config
+• IOS
+Flash Non-Volatilă 
+• Alte fișiere de sistem
+ROUTERE SPECIALIZATE
+
+ M em or ia R A M e ste ut il i zată ca buf fer de pa chete de d ate , pe ntr u m e m orare a
+te m porară a d ate l or pri m i te s au de tri m i s pe o i nter față , pe ntr u sa lv are a
+f iș i er ul ui de conf i gurare ( num i t r un n in g - c on f ig pe ntru C i sco) , a tabe l ei de
+r utare și a tabe l ei AR P. Î n m em o ri a R AM se î nca rcă si ste m ul d e op erar e cur ent
+al route r -ul ui .
+ M em or ia R O M ( Rea d-Onl y Me m ory ) n u poate fi supra scri s ă și co nți ne
+i nstr ucți uni pe ntru p roce sul de boot al route r -ul ui . C onți ne u n si ste m d e
+op erar e m i ni m al ( Ro m Mon – Ro m M oni tor, s im i l ar cu BI OS /UE F I pe ntru un PC )
+care poate fi fol os i t pentr u ope rați i el e m e ntare , cum ar f i r ecup era rea p arol e i ,
+î nl ocui re a si ste m ul ui de o pe rare IOS (i nte rne twor k o pe rati ng syste m ) sa u al te
+task -ur i a dm i ni strati ve .
+ M em or ia F la sh conți ne î n pri nci pal i m agi ne a si ste m ul ui de o pe rare I OS și al te
+f iș i ere e se nți al e pe ntru f uncți o nare a ace stui a. S i m i l ar cu un s is tem de ope rare
+ob iș nui t (a l un ui PC ), s e po t proce sa ș i m e m ora o ri ce fi și e re î n cadr ul
+m e m or ie i F la sh. De exem p lu , î n m em o ri a F l ash se pot m e m or a m ai m u lte
+ve rs iu ni a le conf igu rați ei i ni ți al e pe ntr u di ve rse si tuaț ii sa u sce nari i .
+ROUTERE SPECIALIZATE
+
+ Me m or i a NV RA M este uti l i zată în p ri nci pal pe ntru sto care a fi și e rul ui de
+conf i gurare în că rcat în R AM l a po rni re a ro uter ul ui (star t -up conf i g). Atun ci
+când se exe cută m odi f icăr i în f i și e rul de co nfi gurar e ( runn in g -conf i g) al unui
+rou ter, se re com andă s al var ea pe r io di că (adi că î n N VR AM) a a cestu ia î n
+f iș i er ul de conf i gurare (nu m it s ta rt -up conf i g), p entr u ev i tare a pi e rde ri i
+conf i gurați i lo r î n cazul re star tări i route r -ul ui .
+De obi ce i , m em o ri a N VR AM e ste fo arte m i că ( aproxi m ati v 3 2 Kb ).
+CONECTAREA LA UN ROUTER
+
+Co ne cta rea l a un r oute r se pre zi ntă î n fi gura d e m ai jos .
+
+LAN
+WAN    AUX
+interfaces
+Interface  port
+
+Console
+RJ45
+Console
+USB Type B
+CONECTAREA LA UN ROUTER
+
+ Port ul d e cons ol ă e ste uti l i zat pe ntr u co necta rea d ir ectă l a ro uter, pr i ntr -o
+l e gătură s er i al ă. Ace sta e ste s i nguru l m o d car e po ate f i ut il i zat pe ntr u
+conf i gurare a unui rou ter nou.
+ Port ul a uxi l ia r î nde pl i neș te ace l ași fun cți i ca și ce l d e cons ol ă.
+ Inte rfe țe le de date au ro l ul d e a cone cta rou ter -ul l a rețe l e d ife r ite (f i ecare
+i nter față apar ți ne une i al te rețe l e ).
+ Ace ste inte rfe țe p ot fi :
+▪ Interfețe LAN, pentru conectarea în interiorul rețelei locale;
+▪ Interfețe WAN, pentru conectarea între locații d istante geografic.
+ Ce l e m a i ut il i zate și ve rsati l e i nte rfe țe de date sunt ce l e Eth er net , cu m ul ti pl e
+va ri ante : Fa stEthe r net, Gi gabi tEthe r net, 10 G bi t Ethe r net.
+ Co nexi un il e se ri al e sunt de se or i ut il i zate î n co ndi ți i de l abo rator s au î n spați i
+acade m i ce pe ntr u exem p li f i ca rea d iv e rse l or o pți uni di spon ib il e pe a ceste
+i nter fețe .
+PROCESUL DE PORNIRE (BOOTUP) AL UNUI
+ROUTER SPECIALIZAT (CISCO)
+Proce su l de boo t -are al unui ru te r a re p atru faze m ajo re :
+ PO ST ( Pow e r-O n Se lf Te st) : un proce s fo lo si t pe ntru a d es co per i și a testa
+f uncți ona rea co m pone ntel o r hard ware al e unu i r ute r;
+ B o ots tra p: după pro ces ul d e POS T pro gram ul de boot strap e ste cop iat d in
+m e m or ia R OM î n m em o ri a R AM, i ns trucț iu ni le spe ci fi cate d e ace sta fi i nd ap oi
+exe cutate de CPU ; s co pul pri nci pa l al pro gram ul ui de b oots trap e ste
+l ocal i zare a IO S-ul ui Ci sco ș i î ncărcar ea a cestu ia î n R AM; i m agi ne a IOS -ul ui e ste
+de obi ce i sto cată î n m e m or i a Fl as h a rute r ul ui s au î ntr -o l ocați e exte rnă , de
+exe m pl u un se rv e r TF TP ( Tri v i al F i l e Tr ansfe r Proto col );
+
+Încărcarea
+Încărcarea
+fișierului de
+sistemului
+configurare
+Bootstrap
+de operare
+
+POST
+PROCESUL DE PORNIRE (BOOTUP) AL UNUI
+ROUTER SPECIALIZAT (CISCO)
+ În căr ca re a si stem u lu i de ope rar e: î n ca zul î n ca re i m agi ne a IOS nu po ate f i
+l ocal i zată î n l ocați il e m enț io nate a nte r io r, o ve rsi un e m i ni m al ă a IOS -ul ui va f i
+copi ată di n RO M în R AM p entr u a de scope r i ș i re zol v a ev entua le pro bl em e
+ex iste nte ; une l e m o de le m ai ve chi de r ute re C i sco i ni ți al i zeaz ă si stem u l de
+op erar e di re ct de pe F l as h, spr e de os ebi re de m ode l el e actual e ca re cop ia ză
+IO S-ul î n m em o ri a R AM;
+ În căr ca re a fi și e rul ui de confi gura re : dup ă în că rcare a IOS -ul ui , pro gram ul de
+bo otstrap v a căuta î n N VRA M fi și e ru l de conf igu rare num i t start up -conf i g, care
+conți ne confi gur ați il e sal vate ante ri or pe r uter ; u lte r io r l ocal i zăr i i î n N VR AM,
+f iș i er ul de conf i gurare es te copi at î n R AM sub n um el e de r unni ng -conf i g; î n
+cazu l î n care fi și e ru l de conf igu rare nu este găsi t î n N VRA M, ro uter ul poate
+re al i za o căutare pe un se r ve r TF TP; dacă nu e ste î ncăr cat d in n ici una d int re
+l ocați i l e m e nți onate , route r ul v a por ni uti l ita rul de set up, un m o d inte racti v
+de se ta re a u nor f uncți o nal i tăț i de bază .
+CONFIGURAREA UNUI ROUTER
+SPECIALIZAT (CISCO)
+ Si stemul de ope rare al router-ului Ci sco se numeste IOS (Internetwork
+Operating System).
+ Router-ul are mai m ul te m oduri i mplicite de operare, în fie care putând
+primi alte comenzi. Ce le mai folosite moduri de ope rare sunt:
+▪ modul “exec” este modul implicit, cu acces limitat, în care router -ul intră dupa
+încarcarea sistemului de operare. În acest mod nu s e pot da decât un numar redus de
+comenzi.
+▪ modul “privileged exec”, acesta este modul de acces complet; în acest mod se pot de
+obicei vizualiza diverse informații, copia fiș iere și seta opțiuni. Accesul la acest mod
+este, de obicei, limitat cu parolă. În acest mod în general nu se pot face configurari
+(mai des vizualizări de configurații).
+▪ modul de configura re (global) este în general necesar pentru configurarea oricăror
+parametri care afectează întreg route r-ul, a protocoalelor de rutare, etc; în acest
+mod nu s e pot da comenzi de vizualizare .
+▪ modul de configura re a interfețelor este folosit pentru configurarea fiecarei
+inte rfețe în parte.
+ Util izatorul determină ușor modul de operare curent pe baza prom ptului
+PROMPTUL ȘI MODURILE DE OPERARE
+
+Modul de operare Prompt se intră cu comanda se iese cu comanda
+
+Router$ 
+exec - (mod implicit)
+exit
+Router# enable 
+privileged exec 
+
+Router(config)# configure terminal exit
+configurare 
+interface
+Router(config-
+exit
+<numeinterfață> 
+configurare interfață 
+if)#
+
+Observație:
+- Promptul “Router” este înlocuit cu numele router-ului, dacă acesta e setat.
+CONFIGURAREA UNUI ROUTER
+SPECIALIZAT (CISCO)
+ Cateva comenzi uzuale în modul “privileged exec” sunt date în
+tabelul de mai jos.
+ Observație:
+▪ Toate comenzile pot fi prescurtate la numărul minim de litere care nu
+produc ambiguitate. De exemplu prima comandă din tabel se poate
+prescurta sh run.
+Comandă Descriere
+? Listează comenzile disponibile
+show running-config Listează toate comenzile date pâna la un momen dat, care
+formează fișierul de configurare curent
+show version         Afisează versiunea sistemului de operare IOS și alte detalii
+show flash          despre memorie
+copy running-config     Copiază fișierul de configurare curent (RAM) în memoria
+startupconfig        nevolatilă (NVRAM). Are efectiv rolul de salva configurația.
+copy startup-config     Copiază fișierul de configurare din NVRAM în RAM; această
+running-config        operațiune are loc automat la pornire.
+Comandă Descriere
+erase startup-config urmat de    Șterge fisierul de configurare din NVRAM
+reload              astfel ca, la urmatoarea repornire, router-ul
+sa fie complet neconfigurat (gol), apoi
+resetează router-ul.
+show interface XXX Afisează caracteristicile unei interfețe
+show ip interface brief Listează interfețele prezente pe acel model
+particular de router
+Cateva comenzi pentru modul de operare “Configure” (configurare globală):
+
+Comandă Descriere
+? Listează comenzile disponibile
+hostname XXX Setează numele router-ului ca fiind XXX
+ip classless Permite folosirea adresării Classless (este implicit
+la variantele recente de IOS)
+ip subnet-zero Permite folosirea primei subrețele dintr-o rețea
+line vty 0 N Configurarea accesului utilitarului telnet (N+1
+sesiuni simultane); promptul devine config-line#
+Comandă Descriere
+interface Fastethernet0/0 Intră în modul de configurare al interfeței
+respective (pentru a seta de exemplu IP-ul și
+altele)
+Toate comenzile care seteaza ceva pot fi “șterse” prefixînd comanda cu “no”.
+De exemplu: no shutdown sau no ip address.
+
+Comenzi pentru configurarea adreselor pe interfețe
+Se intră în modul “privileged exec” și apoi în modul de configurare (global –
+“Configure”) astfel:
+Router> enable
+Router# configure terminal
+Router(config)# interface <tip-interfață><modul/slot/port>
+Router(config-if)# ip address <adresa masca>
+Router(config-if)# no shutdown
+Observatie importantă: masca trebuie specificată în forma A.B.C.D, nu în forma
+prescurtată /N.
+Notă: În general, o interfață este denumită respectând următorul format:
+ ti p i nter față ur m at d e 3 num e re se parate p ri n „ /”, sp re e xe m pl u,
+Fas tEthe rn et 0 /1 /1 unde pri m a v al oare i de nti fi că m odul ul , a d oua sl o tul , i ar
+ul ti m a, p ort ul . P ri m a va lo are este m enț io nată doar î n ca zul uti l i zări i rou ter -
+e l or m o dul are .
+Exemplu cu prescurtări ale comenzilor:
+Router> ena
+Router# conf t
+Router(config)# int f0/0
+Router(config-if)# ip addr 193.231.5.1 255.255.255.128
+Router(config-if)# no shut
+Router(config-if)# exit
+ Inte rfe țe le fol os i te po t fi FastE the rne t, Et her ne t, S er i al și L oopb ack.
+ Im p li ci t, l a po rni re a ro uter -ul ui , i nte rfe țel e neco nfi gurate sunt de zacti vate ,
+de ace ea tr ebu ie acti vate cu com anda n o shutd own.
+ Inte rfe țe le Ethe r net /Fast Et her ne t su nt si m i l are cu cel e de l a PC .
+ Inte rfața s er i al ă este di fe ri tă, f ii nd o inte r față s er i al ă si ncro nă, de vi te za
+m ai m are de cît i nte rfața s er i al ă asi ncro nă de l a P C, și cu al t ti p de con ecto r
+( 60 sa u 26 pi ni ) . Inte rfe țel e se ri al e s unt punct -l a-pun ct, adi că au num ai 2
+cape te.
+ROUTERE - INTERFETE DE TIP LOOPBACK
+
+ Interfețele de ti p Loopback sunt asemănatoare cu interfața
+Loopback 127.0.0.1 de la PC dar sunt mai generale, în sensul că
+se pot configura cu orice adresa, orice netmask și pot fi în orice
+număr.
+ Util itatea unei interfețe Loopback este că, odată configurată, o
+astfel de i nterfață va fi tot timpul “up” (activă), astfel încât
+indiferent de starea cabl ului și a ruterelor vecine, ruterul poate
+avea o interfață funcțională pentru diverse teste, pentru ținerea
+în funcțiune a unui protocol de rutare etc.
+ De exemplu:
+▪ Router(config)# int loopback1
+▪ Router(config)# ip addr 192.168.10.1 255.255.255.255
+▪ Router(config)# no shut
+ACCESUL LA ROUTER DE LA DISTANȚĂ
+
+ Dupa setare a adrese lor IP, un router poate fi accesat și fără consol ă,
+folosind cli entul de tel ne t de pe PC sau de pe alt router.
+
+ Se cve nța de comenzi, care se d ă în modul de configurare globală
+(Configure) este urmatoare a:
+Router#conf t
+Router(config)# line vty 0 2
+Router(config-line)# log in
+Router(config-line)# pas sword parolaremote
+Router(config-line)# exi t
+ În ace st fe l sunt suportate 3 conexiuni teln et simultane (virtual terminals
+numerotate de la 0 la 2), este permisa cone ctarea (opusul ar fi no login) și
+se asignează parola parolaremote .
+ De pe un route r sau de la un PC cone ctarea pe alt route r se poate face cu
+com anda
+▪ telnet adresa-ip
+COMANDĂ PENTRU VERIFICAREA RUTELOR
+
+R ou t er > s h i p r ou t e
+Co de s: C - conne cte d, S - stati c, I - IG R P, R - R IP, M - m ob il e , B - B GP
+D - E IGR P, EX - E IGR P exte r nal , O - OS PF, IA - OS PF i nte r a rea
+N 1 - OS P F N SS A e xter nal ty pe 1 , N 2 - OS PF N SS A e xter nal ty pe 2
+E 1 - OS PF exte rn al t ype 1 , E2 - OS P F exte rn al t ype 2 , E - EG P
+i - IS -IS , L 1 - IS -IS l ev e l-1 , L2 - IS -IS l ev e l-2 , i a - IS -IS i nter are a
+* - candi date defa ul t, U - pe r-us er stat ic ro ute , o - ODR
+P - pe ri o di c d ownl oa ded s tat ic ro ute
+
+G ate way o f l ast re so rt i s 1 9 3 .2 3 1. 1 92 . 2 to n etwo rk 0 .0 .0 .0
+
+1 9 3 .2 3 1. 5 .0 /2 4 i s v ari ab ly sub nette d, 2 subn ets , 2 m a sks
+C 1 9 3 .2 3 1. 5 .0 /2 6 i s d ir ectl y conne cted , Fast Ethe rne t5 /0
+C 1 9 3 .2 3 1. 5 .1 2 8/ 25 i s di re ctl y co nne cte d, F astEt her ne t4 /0
+1 9 3 .2 3 1. 6 4. 0 /2 7 i s s ubne tte d, 1 su bnet s
+C 1 9 3 .2 3 1. 6 4. 0 i s d ir ectl y conne cted , Fast Ethe rne t6 /0
+1 9 3 .2 3 1. 1 92 . 0/ 30 i s su bnette d, 1 sub nets
+C 1 9 3 .2 3 1. 1 92 . 0 i s di re ctl y co nne cted, FastE the rne t0 /0
+S * 0 .0 .0 . 0/ 0 [ 1 /0 ] v ia 1 9 3 .2 3 1 .1 9 2 .2
+COMANDĂ PENTRU VERIFICAREA
+INTERFEȚELOR
+R o u t e r # s h in t e rfa ce s
+Fa s tE the r ne t0 / 0 is u p, li ne pr oto co l i s up ( c on ne c te d)
+H a rdw ar e i s L an ce , a ddr e s s i s 0 0 d0 . bc 5 1 . 8 0 d 5 (b ia 0 0 d0 . bc 5 1 . 8 0 d 5 )
+I nt e r ne t a ddr e s s i s 1 9 3 . 2 3 1 . 1 9 2 . 1 / 3 0
+M T U 1 5 0 0 by t e s , B W 1 0 0 0 0 0 K bi t , D LY 1 0 0 us e c , re l i ab il i ty 2 5 5 / 2 5 5 , tx l oa d 1 / 2 5 5 , r x lo a d 1 / 2 5 5
+E nc a ps ul a t i on A R PA , l o opb ac k n ot s e t
+A R P t y pe : A R PA , A R P T i me o ut 0 4 : 0 0 : 0 0 ,
+L as t i np ut 0 0 : 0 0 : 0 8 , o ut put 0 0 : 0 0 : 0 5 , out put h an g ne v e r
+L as t c l e a ri ng o f " s ho w i nt e rf a ce " c o unt e r s ne v e r
+I np ut qu e ue : 0 / 7 5 / 0 ( s i ze / ma x / dr ops ) ; To t al ou t pu t dro ps : 0
+Q ue u e in g s t ra t e g y : f if o
+O ut p ut qu e ue : 0 / 4 0 ( s iz e / m a x )
+5 m in ut e in put r at e 0 bi t s /s e c , 0 pa c k e t s / s e c
+5 m in ut e ou t pu t rat e 0 bi t s / s e c , 0 p ac k e t s / s e c
+0 pa c ke t s in put , 0 by te s , 0 no b uf fe r
+Re c e i v e d 0 bro ad c as t s , 0 r un ts , 0 gi a nts , 0 th rott le s
+0 i npu t e rro rs , 0 CR C, 0 f ram e , 0 ov e r ru n, 0 i g nor e d, 0 a bo rt
+0 i npu t pa ck e ts w i th dr ib bl e c o ndi ti on d e te c te d
+0 pa c ke t s ou tpu t, 0 b y te s , 0 un de rr un s
+0 ou tpu t e rro rs , 0 c ol l is io ns , 1 i nte rf a ce re s e ts
+0 ba bb le s , 0 l ate c ol l is io n, 0 de fe r re d
+0 l os t c a rr ie r, 0 no c a rr ie r
+0 ou tpu t buf fe r fa il ur e s , 0 out put b uf fe rs s wa ppe d o ut
+COMANDĂ PENTRU SUMARIZAREA
+INFORMAȚIILOR DESPRE INTERFEȚE
+R ou ter # s h ip i nte rf ac e br ie f
+Inte rfa ce IP -Ad dre ss OK? Me thod S tatus P ro tocol
+
+Fas tEthe rn et0 /0 1 9 3 .2 3 1 .1 9 2 .1 YE S m anu al up up
+Fas tEthe rn et1 /0 u nass ign ed YES unse t up do wn
+S e ri al 2 /0 un assi gne d Y ES u nse t adm i ni strati v el y down d own
+S e ri al 3 /0 un assi gne d Y ES un se t adm i ni strati ve l y d own do wn
+Fas tEthe rn et4 /0 1 9 3 .2 3 1 .5 .1 2 9 YES m anua l up up
+Fas tEthe rn et5 /0 1 9 3 .2 3 1 .5 .1 Y ES m anual u p u p
+Fas tEthe rn et6 /0 1 9 3 .2 3 1 .6 4 .1 YES m anual up up
+Fas tEthe rn et7 /0 un assi gne d YES unse t adm i ni strati v el y down d own
+Fas tEthe rn et8 /0 un assi gne d YES u nse t adm i ni strati v el y down do wn
+Fas tEthe rn et9 /0 un assi gne d YES u nse t adm i ni strati v el y down do wn

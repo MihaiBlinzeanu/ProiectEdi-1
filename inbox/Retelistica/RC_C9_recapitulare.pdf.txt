@@ -1,0 +1,116 @@
+Cursul nr. 9
+RETELE DE
+Recapitulare
+CALCULATOARE
+INTRODUCERE
+
+ Această lecție reunește tot ce am acoperit până acum despre
+rețele IP
+
+ Vom urmări drumul unui pachet de la expeditor la receptor
+ Exemplele includ subrețele, routere și un server DNS pentru a reflecta o
+rețea reală
+
+ Se vor acoperi două părți:
+ 1. Rezolvarea unui nume FQDN în IP prin DNS
+ 2. Traficul HTTP
+SCENARIUL DEMONSTRATIV
+
+ Expeditor: Host A (10.10.10.10/24) trimite trafic HTTP către
+serverul web www.example.com
+ Receptor: Server DNS (10.10.100.10) și mai multe
+subrețele/rutere între ele
+ Pas 1: Rezolvarea numelui www.example.com în adresa IP
+STIVA OSI ȘI ÎNCEPEREA PROCESULUI
+
+ Se compune pachetul pornind de la straturile stivei OSI
+ Layer 7 (Aplicație): Numele FQDN este procesat
+ Layer 4 (Transport): Se folosește TCP cu portul 80 pentru HTTP
+ Layer 3 (Rețea): Se adaugă adresa IP destinatar (nu se cunoaște,
+trebuie rezolvată ulterior prin DNS). Pachetul se va finaliza după
+rezolvarea adresei IP destinație.
+TRIMITEREA CERERII DNS
+
+ Host A știe (din configurația IP) adresa sa IP (cu masca de rețea),
+adresa IP de default gateway și adresa IP a serverului DNS
+
+ Host A determină că serverul DNS (10.10.100.10) este în altă
+subrețea
+ Trimite un pachet ARP pentru a găsi adresa MAC a gateway-ului
+implicit (10.10.10.1)
+(ARP – Adress Resolution Protocol – protocol pentru determinarea
+adresei MAC asociată unei adrese IP)
+ Proces ARP:
+ Se trimite o cererea ARP (ARP request) ca mesaj de tip broadcast (către
+toate dispozitivele din subrețea)
+ Routerul A răspunde cu adresa sa MAC(4444.5555.6666)
+ Host A salvează informația în cache-ul ARP
+PROPAGAREA CERERII DNS
+
+ Pachetul DNS este trimis către gateway-ul implicit al Host A
+ MAC sursă: 1111.2222.3333 (Host A)
+ MAC destinație: 4444.5555.6666 (Router A)
+ Router A primește cererea și trimite un ARP către subrețeaua
+DNS (10.10.100.10)
+ DNS Server răspunde cu adresa MAC (3333.4444.5555), iar
+Router A actualizează cache-ul ARP
+PROCESAREA CERERII DNS DE CĂTRE
+SERVERUL DNS
+ Serverul DNS primește cererea
+ IP sursă: 10.10.10.10 (Host A)
+ IP destinație: 10.10.100.10 (DNS Server)
+ Stiva OSI este procesată:
+ Layer 4: UDP, port 53 (DNS)
+ Layer 3 și 2: Adresele IP și MAC sunt validate
+ Serverul DNS caută în baza de date și găsește IP-ul pentru
+www.example.com: 10.10.12.10
+TRIMITEREA RĂSPUNSULUI DNS
+
+ Serverul DNS trimite răspunsul către Host A
+ IP sursă: 10.10.100.10 (DNS Server)
+ IP destinație: 10.10.10.10 (Host A)
+ MAC sursă: 3333.4444.5555 (DNS Server)
+ MAC destinație: 8888.9999.AAAA (Router A)
+ Router A procesează răspunsul și îl trimite către Host A folosind MAC-ul
+acestuia (1111.2222.3333)
+CONCLUZII TRAFIC DNS
+
+ Host A primește răspunsul DNS: www.example.com →
+10.10.12.10
+ Actualizează pachetul HTTP cu IP-ul serverului web
+ Dacă destinația este într-o altă subrețea, traficul va fi trimis prin
+gateway-ul implicit
+TRAFICUL HTTP
+
+ Host A primește răspunsul DNS: www.example.com →
+10.10.12.10
+ Continuă procesul de încapsulare
+ Actualizează pachetul HTTP cu IP-ul serverului web
+TRAFICUL HTTP
+RUTAREA
+
+ Ruterul 1 primește pachetul cu destinația 10.10.12.10.
+ Nu are nicio interfață direct conectată în rețeaua din care face
+parte 10.10.12.10/24 (adică adresa de rețea 10.10.12.0/24)
+ Caută în tabelul de rutare o rută către detinație:
+ O rută statică (adăugată de un administrator de rețea)
+ O rută dinamică (învățată printr-un protocol de rutare)
+ Poate fi o rută către rețeaua căutată sau o rută default (0.0.0.0 0.0.0.0)
+ Orice pachet se potrivește pe ruta default
+
+ Dacă găsește una, transmite pachetul către adresa next-hop (interfața)
+din rută
+ Altfel, aruncă pachetul (face drop)
+RUTAREA
+
+ Ruterul 1 are o rută către 10.10.12.0/24 cu adresa next hop
+10.10.11.2, așa că va transmite pachetul către 10.10.11.2.
+RUTAREA
+
+ Ruterul 2 primește pachetul și vede că adresa destinație are
+adresa IP 10.10.12.10, care face parte din rețeaua 10.10.12.0/24,
+care este direct conectată, deci cunoaște ruta către destinație.
+DECAPSULAREA
+
+ La desinație începe procesul de decapsulare a pachetului
+ Destinația va răspunde cu un răspuns http corespunzător cererii.

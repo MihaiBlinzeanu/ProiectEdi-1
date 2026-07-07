@@ -1,0 +1,78 @@
+Laborator 10 – Sisteme automate
+Sisteme dinamice neliniare. Reprezentarea în planul fazelor
+
+1.1. Scopul lucrării
+
+Scopul lucrării este studiul comportamentului sistemelor dinamice neliniare de ordin doi prin metode
+analitice și grafice. În cadrul lucrării se urmărește determinarea punctelor de echilibru, analiza stabilității
+locale prin liniarizare cu ajutorul matricei Jacobiene și interpretarea valorilor proprii asociate. De
+asemenea, se are în vedere reprezentarea grafică a evoluției sistemului în planul fazelor, pentru diferite
+condiții inițiale, utilizând instrumente de simulare numerică MATLAB.
+
+1.2. Breviar teoretic
+
+În teoria sistemelor automate, un sistem dinamic descrie evoluția în timp a unor variabile de stare, în
+funcție de condițiile inițiale și de eventualele intrări. În multe situații reale, aceste sisteme sunt neliniare,
+ceea ce înseamnă că relațiile dintre variabile nu sunt proporționale și nu respectă principiul superpoziției.
+Un sistem dinamic neliniar de ordin doi poate fi descris prin următorul sistem de ecuații diferențiale:
+
+ẋ₁ = f₁(x₁, x₂)
+
+ ẋ₂ = f₂(x₁, x₂)
+
+Pasul 1: Se determină punctele de echilibru
+Un punct de echilibru este o stare a sistemului în care variabilele de stare nu se modifică în timp.
+Acesta se determină din condițiile:
+ ẋ₁ = 0
+ ẋ₂ = 0
+
+Prin rezolvarea acestui sistem se obțin valorile (ẋ₁ , ẋ₂) corespunzătoare punctelor de echilibru.
+
+Pasul 2: Se liniarizează sistemul
+Pentru analiza stabilității locale, sistemul neliniar poate fi aproximat printr-un sistem liniar în
+vecinătatea unui punct de echilibru. Această aproximare se realizează cu ajutorul matricei Jacobiene:
+Evaluarea Jacobienei în punctul de echilibru conduce la un sistem liniar echivalent local.
+
+Pasul 3: Se verifică stabilitatea locală
+Stabilitatea unui punct de echilibru este determinată pe baza valorilor proprii ale matricei Jacobiene
+evaluate în acel punct. Pentru un sistem bidimensional:
+➢ dacă valorile proprii au părți reale negative → punct stabil (atractor)
+➢ dacă valorile proprii au părți reale pozitive → punct instabil (retractor)
+➢ dacă valorile proprii au semne diferite → punct de tip șa
+
+Pasul 4: Se reprezintă planul fazelor
+Planul fazelor reprezintă o metodă grafică de analiză a sistemelor dinamice de ordin doi. Fiecare punct
+(x₁, x₂) corespunde unei stări a sistemului, iar traiectoriile descriu evoluția în timp.
+Prin reprezentarea traiectoriilor pentru diferite condiții inițiale, se pot observa:
+• direcția de evoluție
+• stabilitatea punctelor de echilibru
+• comportamentul global al sistemului
+
+Fig. 1. Vecinătatea unui punct stabil𝑎) și instabil𝑏)
+
+Fig. 2. Vecinătatea unui punct de echilibru şa𝑎) și ciclul-limită centru (elipsă)𝑏)
+1.3. Chestiuni de studiat
+
+Aplicație rezolvată:
+
+Se consideră următorul sistem de ecuații:
+
+Se cere să se determine următoarele etape, utilizând mediul MATLAB:
+• Punctele de echilibru
+• Liniarizarea sistemului
+• Reprezentarea planului fazelor
+• Identificarea stabilității sistemului
+Rezolvare:
+Exerciții:
+
+Se dau următoarele sisteme:
+
+a)
+
+b)
+
+c)
+
+d)
+
+Să se parcurgă etapele din aplicația rezolvată, cu concluzionarea stabilității.

@@ -55,6 +55,56 @@ confidence: established | supported | speculative
 - **/arscontexta:remember** — Capturează un obstacol/observație
 - **/arscontexta:stats** — Statistici vault
 
+## RAG Pipeline (NVIDIA NIM)
+
+Sistem RAG complet, offline-first, cu embeddings și LLM via NVIDIA NIM.
+
+### Arhitectură
+
+```
+inbox/*.pdf  →  scripts/ingest.py  →  processed/*.json
+                                            ↓
+                                   scripts/chunk_embed.py
+                                            ↓
+                                   vectors/ (FAISS + chunks + metadata)
+                                            ↓
+               ┌────────────────────────────┐
+               │       rag.py CLI           │
+               │  ask | search | ingest |   │
+               │  reindex                   │
+               └──────┬─────────────────────┘
+                      │
+             ┌────────┴──────────┐
+             ▼                   ▼
+     scripts/search.py    scripts/generate.py
+      (FAISS + NIM)        (retrieval + LLM)
+```
+
+### RAG Commands (CLI)
+
+| Comandă | Descriere |
+|---------|-----------|
+| `python rag.py ask "întrebare"` | RAG complet — caută + generează răspuns cu citări |
+| `python rag.py search "cuvinte"` | Caută fragmente relevante în cursuri |
+| `python rag.py ingest` | Parsează PDF-urile din `inbox/` în `processed/` |
+| `python rag.py reindex` | Re-indexează embeddings (după adăugare PDF-uri noi) |
+
+### Configurare
+
+Cheia NVIDIA NIM în `.env`:
+```
+nvidia_api_key=nvapi-...
+```
+
+### Stack
+
+- **Parsare PDF**: `pdfplumber` (text + metadate + poziționare cuvinte)
+- **Chunking**: 500 cuvinte, 100 overlap
+- **Embeddings**: `nvidia/nv-embed-v1` (4096d) via NVIDIA NIM
+- **Vector DB**: FAISS (IndexFlatIP, cosine similarity)
+- **LLM**: `meta/llama-3.3-70b-instruct` via NVIDIA NIM
+- **Total**: 371 fragmente din 44 PDF-uri (4 materii)
+
 ## Semantic Search (QMD)
 
 Indexul semantic `qmd` permite căutare locală 100% offline (BM25 + vector + rerank).

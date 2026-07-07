@@ -1,0 +1,38 @@
+Laborator 3 – Sisteme Automate
+
+Proiectarea și implementarea unui regulator PID și a unui regulator Fuzzy
+
+pentru un sistem dat
+
+Se cere proiectarea unui regulator pentru un sistem caracterizat prin funcția de transfer:
+1.5 𝑠+1.5
+H(s) = , funcția treapta este de 25 u.a.
+4   3   2
+40𝑠+34𝑠+48𝑠+14.5𝑠+1 
+Regulatorul va fi realizat inițial folosind un PID clasic, iar apoi se va proiecta și un regulator
+Fuzzy pentru comparație.
+
+Cerințe:
+1. Proiectarea regulatorului PID:
+o Se utilizează o metodă la alegere dintre:
+▪ Metoda Ziegler-Nichols (ZN)
+▪ Metoda experimentală
+▪ Metoda Kessler
+o Se calculează parametrii PID (Kp,Ki,Kd ).
+o Se simulează și analizează performanțele regulatorului PID pe sistemul dat.
+2. Proiectarea regulatorului Fuzzy:
+o Se stabilesc funcțiile de apartenență – 5 funcții de apartenență.
+o Se definește structura regulilor fuzzy.
+o Se implementează și se analizează performanța regulatorului Fuzzy pe același
+sistem.
+3. Compararea rezultatelor:
+o Se compară răspunsurile obținute cu regulatorul PID și cu regulatorul Fuzzy.
+o Se analizează criterii de performanță precum timpul de stabilizare, depășirea
+maximă, eroarea în regim staționar.
+o Se concluzionează asupra avantajelor și dezavantajelor fiecărei metode.
+4. Exercițiu suplimentar:
+2
+2.5𝑠+4𝑠+2
+H(s) = , funcția treapta este de 40 u.a.
+4   3   2
+25𝑠+32𝑠+50𝑠+12.5𝑠+1 

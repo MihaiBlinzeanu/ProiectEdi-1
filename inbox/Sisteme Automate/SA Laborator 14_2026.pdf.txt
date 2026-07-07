@@ -1,0 +1,138 @@
+Laborator 14 – Sisteme automate
+Identificarea sistemelor din curbele Nyquist și Bode
+
+1.1. Scopul lucrării
+
+Scopul lucrării este de a identifica funcțiile de transfer ale unor sisteme dinamice pe baza
+reprezentărilor grafice în frecvență, folosind curbele Nyquist și Bode. Prin analizarea formei curbelor, a
+punctelor caracteristice, a intersecțiilor cu axele și a comportării la frecvențe mici și mari, se urmărește
+determinarea parametrilor principali ai sistemului, precum constanta de amplificare, ordinul sistemului,
+constantele de timp, frecvențele caracteristice și eventualele elemente de stabilitate.
+În cadrul lucrării se va utiliza programul MATLAB pentru trasarea și verificarea curbelor Nyquist și
+Bode, precum și pentru compararea rezultatelor obținute prin calcul cu reprezentările grafice.
+
+1.2. Chestiuni de studiat
+
+Problemă rezolvată
+Se da hodograful funcției de transfer H(jω) ridicat experimental, reprezentat mai jos.
+Se cer:
+a) Constanta de amplificare K.
+b) Determinați ordinul sistemului si natura polilor.
+c) Calculați constantele de timp T₁ si T₂ folosind punctele citite din grafic.
+d) Scrieți funcția de transfer H(s) completa.
+e) Verificați modelul identificat.
+Rezolvare:
+
+a) Constanta de amplificare K.
+La ω = 0, funcția H(jω) devine H(0), adică valoarea statica a sistemului (constanta de amplificare).
+Toți termenii (Tᵢs+1) devin 1 când s=0, deci rămâne doar parametrul K.
+Pe grafic: curba hodografului pornește din punctul (Re=4, Im=0), deci:
+
+K = H(j·0) = 4
+
+b) Determinați ordinul sistemului si natura polilor.
+
+Observația 1 — Ordinul din faza la ω→∞
+La valoarea ω→∞, curba se apropie de origine venind din cadranul III (Re<0, Im<0). Aceasta
+corespunde unui unghi de −180°.
+Regula: fiecare pol adaugă −90° la fază. Fiecare zero adaugă +90°.
+În consecință:
+φ(ω→∞) = (m − n) × 90° = −180°
+
+=> n − m = 2
+
+Daca nu exista zerouri (m=0): n = 2 (sistem de ordinul 2)
+
+Observația 2 — Natura polilor din forma curbei
+Curba este netedă și monotonă, fără bucle sau umflături. Polii complecși conjugați produc o
+rezonanță vizibilă (bucla).
+Curba prezintă o formă netedă → toți polii sunt reali.
+
+Observația 3 — Fără integrator
+Curba pornește dintr-un punct finit (K=4). Dacă ar exista un pol în s=0 (integrator), curba ar porni
+din infinit.
+Concluzie: funcția de transfer nu prezintă nici un integrator.
+
+Concluzie: forma H(s)
+
+Avem 2 necunoscute: T₁ si T₂, pe care le vom calcula din datele citite pe grafic.
+c) Calculați constantele de timp T₁ si T₂ folosind punctele citite din grafic.
+
+În continuare vom înmulți numitorul și vom aplica transformarea de variabilă s = jω:
+(T₁s+1)(T₂s+1) = T₁T₂·s² + (T₁+T₂)·s + 1
+
+Notăm: S = T₁+T₂ (suma) și P = T₁·T₂ (produsul)
+
+Înlocuim s = jω:
+D(jω) = (1 − P·ω²) + j·ω·S
+↑ ↑
+partea Re partea Im
+
+H(jω) = 4·(1−Pω²−jωS) / [(1−Pω²)² + ω²S²]
+
+Vom defini cele 2 ecuații în continuare:
+Ecuația 1 — din Re = 0 la ω₀ = 0.71 rad/s:
+Condiția Re{H(jω₀)} = 0 impune anularea numărătorului:
+4·(1 − P·ω₀²) = 0
+1 − P·ω₀² = 0
+P = 1/ω₀² = 1/0.71² = 1/0.504 = 1.984 ≈ 2
+
+Ecuația 1 devine: T₁ · T₂ = P = 2
+
+Ecuația 2 — din Im = −1.886 la ω₀ = 0.71 rad/s:
+La ω = ω₀, știm ca (1 − P·ω₀²) = 0, deci numărătorul lui Re = 0 si A = 0.
+Prin urmare A² + B² = B² = ω₀²·S². Înlocuim in formula pentru Im:
+Im{H(jω₀)} = −4·ω₀·S / (ω₀²·S²) = −4/(ω₀·S)
+
+Înlocuim valorile citite din grafic:
+−1.886 = −4 / (0.71 × S)
+0.71 × S = 4 / 1.886 = 2.121
+S = 2.121 / 0.71 = 2.988 ≈ 3
+
+Ecuația 2 devine: T₁ + T₂ = S = 3
+Determinarea lui T₁ si T₂ din suma și produs:
+Două numere cu suma S = 3 și produs P = 2 sunt rădăcinile ecuației de gradul 2:
+x² − S·x + P = 0
+
+x² − 3x + 2 = 0
+
+Factorizare: (x − 1)(x − 2) = 0
+
+x₁ = 1 → T₁ = 1 s
+x₂ = 2 → T₂ = 2 s
+
+d) Funcția de transfer H(s) completă
+
+4        4
+H(s) = = 
+(T₁s+1)(T₂s+1) (s+1)(2s+1)
+
+Forma extinsă: H(s) = 4 / (2s² + 3s + 1)
+
+Cei doi poli sunt:
+T₁=1s → pol la s = −1/T₁ = −1
+T₂=2s → pol la s = −1/T₂ = −0.5
+
+Ambii poli sunt in semiplanul stâng (s<0) → sistem STABIL
+
+e) Verificarea modelului identificat
+
+După ce am aflat funcția de transfer, afișăm graficul Nyquist și comparăm forma obținută.
+
+Exerciții propuse:
+
+Ex. 1 Se da hodograful funcțiilor de transfer H(jω) ridicate experimental, reprezentate mai jos.
+Se cer:
+a) Constanta de amplificare K.
+b) Determinați ordinul sistemului si natura polilor.
+c) Calculați constantele de timp T₁ si T₂ folosind punctele citite din grafic.
+d) Scrieți funcția de transfer H(s) completa.
+e) Verificați modelul identificat.
+
+1.
+
+2.
+
+3.
+Ex. 2 Se dau diagramele Bode ale unor sisteme de ordinul 2, reprezentate experimental în MATLAB. Pe
+baza diagramelor de amplitudine și fază se cere identificarea funcției de transfer 𝐻(𝑠).

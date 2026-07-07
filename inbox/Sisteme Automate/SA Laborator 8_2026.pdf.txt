@@ -1,0 +1,107 @@
+Laborator 8 – Sisteme automate
+Recapitulare
+
+1.1. Scopul lucrării
+
+Lucrarea de laborator are ca scop aprofundarea cunoștințelor despre sistemele continue transformate
+în sisteme discrete utilizând metode precum ZOH, FOH și Tustin, precum și evaluarea comportării
+acestora în timp discret. Se va urmări implementarea acestor metode în mediul de calcul matematic
+MATLAB.
+
+1.2. Breviar teoretic
+Se pornește de la sistemele continue numai că se introduce şi valoarea perioadei de eşantionare Ts în
+secunde. Variabila complexă implicită este z.
+sys = tf(num,den,Ts)
+Sistemul creat este un sistem discret, deci nu există noţiunea de perioadă de eşantionare pentru acesta,
+totuşi se introduce Ts ca o mărime de rezervă ce va fi eventual utilizată dacă sistemul discret creat va fi
+utilizat în conjuncţie şi cu timpul fizic continuu. De exemplu, se cere conversia sistemului discret în sistem
+continuu.
+➢ Dacă Ts = 0 sistemul este continuu.
+➢ Dacă Ts = -1 sau Ts = [] perioada de eşantionare este nespecificată.
+➢ Dacă va fi nevoie de o valoare a acesteia, atunci se va prelua valoarea transmisă eventual prin
+mărimea de intrare sau dacă şi aceasta provine de la un sistem discret se consideră valoarea
+Ts=1.
+Sistemul liniar invariant în timp (SLIT) este descris de o funcţie de transfer Hc(s) care, în urma
+discretizării, se transformă într-o funcţie de transfer Hd(z). Există mai multe metode de discretizare a unui
+sistem continuu, aşa cum este în cazul discretizării semnalelor continuale. Discretizarea funcţiei de
+transfer a unui sistem continuu se bazează pe discretizarea răspunsului sistemului la anumite semnale tip
+sau pe anumite substituţii directe, aşa cum este cazul în transformările biliniare.
+În mediul Matlab, principala funcţie care efectuează operaţia de discretizare este c2d cu
+următoarele două sintaxe:
+
+sysd = c2d(sys,Ts)
+
+Discretizează sistemul LIT continuu sys folosind metoda răspunsului echivalent la intrare treaptă
+unitate. Ts este perioada de eşantionare în secunde.
+
+sysd = c2d(sys,Ts,method)
+
+Prin argumentul method, se pot utiliza diferite metode de discretizare, precum cele prezentate în
+continuare.
+I. Discretizarea sistemelor prin dispozitive de tipul ZOH
+
+Un dispozitiv ZOH converteşte un semnal discret într-un semnal continuu. Discretizarea ZOH, Hd(z),
+a unui sistem continuu invariant în timp, H(s), este prezentată în figura de mai jos:
+
+Fig. 1. Discretizarea sistemelor utilizând dispozitivul ZOH (Zero-Order Hold)
+
+Dispozitivul ZOH generează un semnal continuu u(t) prin menţinerea constantă a fiecărei valori
+eşantionate (u[k]) pe durata perioadei de eşantionare.
+
+u(t) = u[k]; kT≤t≤(k+1).
+s
+
+Semnalul u(t) este furnizat la intrarea sistemului continuu H(s), rezultă că ieşirea y(t) care este eşantionată
+la fiecare Ts secunde produce y[k].
+
+II. Discretizarea sistemelor prin substituţii directe (transformări biliniare)
+𝑠𝑇ⅇ 
+Aceste metode se bazează pe aproximarea 𝑧 = ⅇ prin forme raţionale. Aceste metode sunt
+bidirecţionale în sensul că se poate trece de la la dar şi invers. Substituţiile pentru s respectiv z sunt funcţii
+raţionale în variabila complementară (z respectiv s).
+
+Substituţia Tustin se scrie sub formele:
+
+Folosind substituţia de mai sus, un sistem continuu caracterizat de funcţia de transfer Hc(s)se discretizează
+sub forma:
+
+În mediul Matlab, simularea răspunsurilor la semnale tip se modifică doar prin schimbarea metodei de
+discretizare:
+sysd=c2d(sysc,te,'tustin');
+Pentru Te = 0.5 sec, se obţin răspunsurile
+
+Fig. 2 a. Discretizarea sistemelor utilizând metoda Tustin
+
+Pentru Te = 0.1 sec, se obţin răspunsurile
+
+Fig. 2 b. Discretizarea sistemelor utilizând metoda Tustin
+
+Se observă că, pe măsură ce perioada de eşantionare scade, răspunsul la impuls discret distorsionează
+foarte mult dar cel la treaptă se apropie de cel continuu.
+1.3. Chestiuni de studiat
+
+1. Se consideră următoarea funcţie de transfer:
+
+Să se determine funcţia de transfer discretă cu ajutorul metodelor de discretizare de tip ‘foh’,
+‘zoh’ şi ‘tustin’, cu o perioadă de eşantionare de 0.1 sec. Apoi să se reprezinte pe acelaşi grafic atât
+funcţia de transfer continuă cât şi cea discretizată cu fiecare din cele 3 metode prezentate mai sus.
+Rezolvare:
+2. Se consideră următoarele funcţii de transfer:
+
+Să se determine funcţia de transfer discretă cu ajutorul metodelor de discretizare de tip ‘foh’,
+‘zoh’ şi ‘tustin’, cu o perioadă de eşantionare la alegere, dar care sa reprezinte cat mai fidel raspunsul
+eșantionat. Apoi să se reprezinte pe acelaşi grafic atât funcţia de transfer continuă cât şi cea
+discretizată cu fiecare din cele 3 metode prezentate mai sus.
+3. Pentru funcţia de transfer:
+
+să se reprezinte grafic răspunsul la intrare treaptă pentru funcţia de transfer discretă scrisă sub forma
+poli-zerouri-amplificare, obţinută din funcţia de transfer continuă de mai sus, perioada de
+eşantionare fiind de 0,1 sec.
+
+4. Să se reprezinte ca modele tf, zpk şi ss sistemele discrete considerând perioadele de
+eşantionare Ts=0.1; Ts=1 şi Ts=10.
+
+5. Se consideră următoarele funcţii de transfer:
+
+Să se deducă modelele discrete care reprezintă discretizarea sistemelor de mai sus cu
+perioadele de eşantionare Ts=0.1; Ts=1; Ts=10. Se vor folosi diferite metode de discretizare.

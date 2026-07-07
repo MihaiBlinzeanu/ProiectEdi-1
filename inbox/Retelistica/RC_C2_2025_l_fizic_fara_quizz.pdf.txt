@@ -1,0 +1,948 @@
+Cur s 2
+REȚELE DE
+- St iva OS I –
+nivelul 1: fizic
+CALCULATOARE
+- Adre se IP
+( co nt inuare)
+CUPRINS
+
+ Stiva O SI – nivelul 1 Fizic
+▪ Roluri
+▪ M edii de transmisie și protocoale
+
+ Adrese IP (continuare)
+▪ Asignarea adreselor IP (IANA , ISP)
+▪ Clase de adrese IPv4
+▪ Adrese IPv6
+▪ Scheme de adresare
+
+ Tipuri de comunicații
+▪ Unic ast
+▪ Broadcast
+▪ M ulticast
+STIVE DE PROTOCOALE
+
+ Două modele care reprezintă toate prelucrările necesare
+comunicației în rețea, de la datele transmise de utilizator, până la
+codificarea acestora în biți și transmiterea pe mediul de
+comunicație
+
+▪ OSI – Open Systems Interconnection
+
+▪ Creat de ISO
+
+▪ TCP / IP – Transmission Control Protocol / Internet Protocol
+
+▪ Creat de DARPA
+STIVE DE PROTOCOALE
+
+ Fieca re str at / nivel tre buie:
+
+▪ să furnizeze un anumit set de servicii și să realiz ez e interfața cu stratul
+
+adiacent;
+
+▪ să sp ecifice mo dul de transmitere a datelor între strat urile analoage de la
+
+sursă și de la dest inație.
+
+ În timpul transmiterii de date sunt utilizate protocoalele de
+
+comunicație de date.
+
+▪ Protoc olul de comunicații de date este un set de reguli, c onvenții și proc eduri
+
+cu ajutorul cărora se re alize ază comunicarea într -o re ţea.
+STIVA OSI VS STIVA TCP/IP
+
+OSI TCP/IP
+
+7 Aplicație
+
+6 Prezentare       Aplicație 4
+
+5 Sesiune
+
+4 Transport Transport 3
+
+3 Rețea Internet 2
+
+2 Legătură de date
+Acces la rețea 1
+1 Fizic
+STIVA OSI
+
+Rolul nivelului
+Nivelul 
+
+Aplicație Realizează interfața cu utilizatorul și interfața cu aplicațiile
+
+Prezentare Transformă datele în formate înțelese de fiecare aplicație
+
+Sesiune Gestionează conexiunile între aplicații
+Separă conversațiile între aplicațiile de pe o stație
+Transport 
+Segmentează (la sursă) și reasamblează datele (la destinație)
+Rețea Realizează rutarea pachetelor
+Asigură accesul la rețea, detecția și anunțarea erorilor,
+Legătură de date 
+controlul fluxului fizic
+
+Definește specificații electrice, mecanice, procedurale și
+Fizic 
+funcționale pentru transmiterea informațiilor pe mediu
+STIVA TCP/IP
+
+Nivel Rolul nivelului
+
+Aplicație Interacțiunea cu utilizatorul
+Segmentare și multiplexarea comunicațiilor între
+Transport 
+servicii pe aceeași stație
+Rutare - Determinarea rutei optime între două
+Internet 
+puncte din rețea
+Controlul interacțiunii cu HW, punerea informației
+Acces la rețea 
+pe mediu
+STIVA OSI: NIVELUL 7
+APLICAȚIE
+ Furnizează servicii altor aplicații și utilizatorilor
+▪ Nu furnizează servicii altor niveluri ale stivei OSI
+ Exemple: HTTP, FTP, DNS, DHCP, SSH, Telnet, SMTP, etc.
+STIVA OSI: NIVELUL 6
+PREZENTARE
+ Furnizează servicii nivelului 7
+ Rol principal: prezentarea datelor astfel încât să poată fi
+utilizate la nivelul 7
+
+ Protocoale de:
+▪ Formatare și codificare a datelor
+▪ Compresie a datelor
+▪ Protocoale de securizare a datelor
+▪ Transp ort Laye r Security – TL S
+▪ Secure Socket Laye r - SSL
+ Exemple:
+▪ ASCII, JPEG, GIF, PNG, etc.
+STIVA OSI: NIVELUL 5
+SESIUNE
+ Rol principal: gestionează sesiunile dintre două aplicații
+care comunică
+▪ Sesiuni: conexiunile persistente dintre dispozitive – nu țin cont de
+nivelurile 1-4
+
+ Gestionează sincronizarea dialogului și modul de
+comunicare conform cerințelor de la nivelul aplicație
+STIVA OSI: NIVELUL 4
+TRANSPORT
+ Funcții principale:
+▪ Multiplexare
+▪ Segmentare date
+
+ Protocoale principale:
+▪ TCP – Transmission Control Protocol - orientat pe conexiune
+▪ UDP – User Datagram Protocol - neorientat pe conexiune, de tip
+„best effort”
+
+ Realizează adresarea pe bază de „porturi”
+STIVA OSI: NIVELUL 3
+REȚEA
+ Funcție principală:
+▪ Rutarea pachetelor
+
+ Protocoalele de bază:
+▪ IP (IPv4 și IPv6)
+▪ IPSec
+▪ Protocoale de rutare: RIP(v2), EIGRP, BGP
+STIVA OSI: NIVELUL 2
+LEGĂTURĂ DE DATE
+ Funcție principală:
+▪ Adresarea pe bază de adrese fizice (adrese MAC)
+
+ Protocoalele de bază:
+▪ Ethernet
+▪ IEEE 802.11
+▪ Link Layer Discovery Protocol (LLDP) / Cisco Discovery Protocol
+▪ ARP – Address Resolution Protocol
+STIVA OSI: NIVELUL 1
+FIZIC
+ Funcție principală:
+▪ Punerea informației pe mediu/ preluarea informației de pe mediu
+
+ Definește specificații de semnal (electrice, optice și radio),
+mecanice, procedurale și funcționale pentru transmiterea
+informațiilor pe mediu
+
+ Probleme legate de:
+▪ Mediul de transmisie folosit
+▪ Nivelul de tensiune, rate de transmisie, distanțe maxime de
+transmisie, conectori fizici, etc.
+STIVA OSI: NIVELUL 1
+FIZIC
+ Rol principal:
+▪ de a transporta o secvență de biți între echipamente prin
+intermediul unui mediu de comunicaţie (mediu fizic de transmisie).
+
+ Funcții :
+
+▪ asigu ră tra nsmisia su b fo rmă binară a date lor.
+
+▪ transf ormă frame-urile (cadrele), de la nive lul Leg aturii de date , î n
+
+semn ale pen tru a p utea fi t ran smise prin me diul fizic.
+
+ Un itate de da te (PDU): biţi.
+NIVELUL FIZIC
+
+ Nivelul fizic codifică infor mația din cadr e pr im ită de la nivelu l
+LEGATUR Ă DE D AT E și crea ză semnale
+▪ Electrice
+▪ Optice
+▪ Unde radio
+
+pen tru a r epre zen ta biții d in fiecare cadr u
+ Semna lele sunt puse pe med iul de tr ansmisie
+ La destinație, semnalele sunt pr eluate de p e med iul de
+tr ansmisie, sunt r eco nstr uite în biții core spu nzător i car e sunt
+apo i tr ansmiși cătr e nivele le super io are
+NIVELUL FIZIC AL MODELULUI OSI
+
+ Defin ește spec ifica ții electr ic e, m eca nice , procedurale și
+func ționale pe ntru activare a, me nține rea și de zactivare a leg ăturil or
+fizice între sistem e
+
+ Sta n d a rd el e a so c i ate n i ve l u lu i fi zi c co n ţi n
+
+▪ specificaţii de semnal (parametri de semnal, proprietăţi ale mediului de
+
+comunicaţie) şi
+
+▪ mecanice (conectică, cabluri) :
+
+De ex. : nivelu rile de tensiune, sincronizarea sch imb ărilor acestor nive luri,
+
+ratele de t ran sfer fizice, dist anțele maxime la ca re se poa te t ran smite, etc.
+
+ M e d iu l fiz i c e s te d efi n i t de l ă țim e a s a d e b a n dă , în tâ rz ie re (l a te n ță) , co s t ,
+
+u ş ur in ţa d e in s t a la re ş i d e în tre ţ i ne re .
+NIVELUL FIZIC AL MODELULUI OSI
+
+ La a cest ni vel s e def inesc:
+▪ tipul de transm itere şi recepţionare a şi rurilor de biţi printr -un canal de
+comunicaţi e:
+▪ Asincro nă – fără sincro nizare permanentă
+▪ Sincronă – cu semn al de ceas comun
+
+▪ tipurile de medii de transm isi e:
+▪ Cu fir: cablu coaxial, cablu UTP/STP, fib ră optică,
+
+▪ Fără fir: microunde, unde radio, fascicule lumino ase, infraroșii etc;
+
+▪ topologia fizică a rețelei
+▪ ex: top olo gii clasice: magistrală stea, inel, etc.
+
+▪ În prezent se fo losec topologii hibride ierarhice
+
+▪ modul de transmisie: simplex, half-dup lex, full -dup lex
+
+▪ modul de codificare şi decodificare a şirurilor de biţi
+NIVELUL FIZIC
+
+ Primul pas în realizarea unei conexiuni este realizarea
+legăturii fizice
+
+ Conexiune cu fir: wired
+
+▪ Transmiterea datelor prin intermediul unor conexiuni prin cablu
+
+ Conexiune fără fir: wireless
+
+▪ Transmiterea datelor prin unde radio/ fascicule luminoase
+MEDII DE TRANSMISIE
+
+ 3 tipuri de baza de medii de tr ansmi sie
+▪ Cabluri de cupru (Copper cable)
+▪ Informatia se transmite su b forma d e semnale electri ce
+▪ STP - Shielded / UTP – Unshielded
+▪ Cablu coaxial
+▪ Cabluri cu fibra optica
+▪ Informatia se transmite su b forma d e impulsuri de l umi na
+▪ Nu este afectata de interferen te electromagnetice
+▪ Distante mari de acoperire
+▪ Mediul wireless
+▪ Informatia este transmisa su b forma d e und e radi o
+▪ Medi u hal f duplex
+▪ Probleme su plimentare de securitate
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Cabul de fibră optică transportă semnale de date di gitale sub
+
+forma unor impulsuri luminoase modul ate. Un cablu cu f ibră
+
+optică, este format dintr-una sau mai multe fibre optice î nveli te
+
+intr-o teacă sau cămaşă. Fibra optică este un conductor di n sticl ă
+sau plastic.
+
+ Fi ecare fibră optica transmi te semnalele într-o singură direcţie.
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Transmi sia datelor prin fibra optică se bazează pe conversia
+
+impulsurilor electrice în lumină, transmise pri n cabluri de fibră
+
+optică până la destinaţie, unde sunt reconverti te în impulsuri
+
+el ectrice
+
+▪ Lumina este ghidată prin reflexie internă în interiorul fibrei optice
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Principalele avanta je ale ut ilizării fibrelor opt ice sunt u rmătoarele:
+
+▪ Rată de transfer foarte mare – până la Tb/s în sistemele moderne, mult
+superioară cablurilor de cupru;
+
+▪ Imunitate la interferențe electromagnetice – semnalul optic nu este afectat
+
+de câmpuri electrice sau magnetice externe;
+
+▪ Distanțe mari de transmisie – semnalul poate fi transmis pe zeci de kilometri
+
+cu atenuare redusă;
+
+▪ Securitate – este dificil de interceptat semnalul optic fără detectare;
+
+▪ Potrivită rețele de mare viteză – backbone-uri, centre de date, conexiuni
+
+FTTH (Fiber To The Home)
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Părţi componente ale unei fibre optice sunt:
+▪ miez (core) - centrul fibrei prin care circulă lumina;
+▪ învelis optic (cladding) - material optic care înveleşte miezul şi care
+reflectă total lumina;
+▪ învelis protector (coating) - înveliş de plastic care protejează fibra de
+zgârieturi şi umezeală.
+▪ Pentru cabluri expuse pe teren: jachetă exterioară ( outer jacket)
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ a. Cablu Single Mode Fiber– SMF
+
+▪ cablul cu fibră optică unimodal: permite doar unui singur mod (lungime
+
+de undă) de lumină să treacă prin fibră
+
+▪ mi ez foarte subţire.
+
+▪ Utilizare: backbone-uri de rețea, rețele ISP, conexiuni de com unicaţii dintre
+
+campusuri şi oraşe.
+
+▪ Standarde:
+
+▪ OS1 – pentru interi or (distanțe <2km)
+
+▪ OS2 – pentru exterior (distanțe <2 00Km, cu amplificare)
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ b. Cablu MultiMode Fiber – MMF
+
+▪ permite propagarea a multiple moduri de lumină prin fibră.
+
+▪ mi ez m ai gros decât cablul single -mode.
+
+▪ Pentru distanțe scurte.
+
+▪ Utilizare: în interior: centre de date, L AN -uri , rețele i ntra-cl ădire
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Exista mai multe tipuri de conectori utili zaţi: SC, ST, LC, MT, MIC
+(FDDI) si FC.
+ Aceste ti puri de conectori pentru fibra optică sunt half-duplex,
+ceea ce permite datelor să circul e intr-un sens sau altul dar nu
+simultan. Astfel, pentru comunicaţie este nevoie de două fire.
+MEDII DE TRANSMISIE – FIBRA OPTICĂ
+
+ Majori tatea conectori lor pentru fibră opti că sunt half-duplex,
+▪ necesită două fibre pentru o comunicație bidirecțională (una pentru Tx,
+una pentru Rx).
+ exi stă și conectori duplex (LC duplex, MTP/MPO)
+▪ grupează cele două fibre într-un singur conector pentru ușurință în
+instalare.
+ Deși majoritatea conexiunil or rămân hal f-duplex la nivel fizic,
+protocoalele superioare (Ethernet, Fibre Channel) oferă
+transmi sii full-duplex logice
+MEDII DE TRANSMISIE
+CABLU DE CUPRU
+ Conectorul folo sit es te RJ 45
+ Cabluril e UTP au 8 fi re
+▪ Standardele de cablare sunt T568A și
+T568B
+▪ Definesc ordinea firelor
+
+▪ Pentru Ethernet 10Base-T și 100Base T
+se folosesc 4 fire:
+▪ Firele 1 si 2 pentru transmisie (Tx)
+▪ Firele 3 si 6 pentru recep ti a datelor (Rx )
+
+▪ Pentru GigaEthernet – se folosesc toate
+cele 8 fire
+CABLARE ETHERNET
+
+ Ti p u l d e c on e c t o r şi p ri ză f o l o si t p e nt r u c a b lu l UT P ş i ST P / F T P s e
+n u m eş t e 8 Po si t i o n 8 C on t a c t (8 P8 C). D en u m i re a m a i ră sp â n d it ă e s t e
+c e a d e c o ne c t o r ş i p ri z ă RJ - 4 5.
+
+ Pe n t ru c ab l u l t o rs a d a t UT P se f o l os e ş t e c o n e ct o ru l RJ - 4 5 n ee c ra n a t,
+p e n t ru ST P ş i F T P co n e ct o ru l RJ - 4 5 e cra n a t.
+
+ Co n e c t or ul a re 8 p in i ca re f a c le g ă t u ra î n t re f ire l e ca b l u lu i t o rsa d a t ş i
+p ri za U T P c a re se a f l ă in t e g ra t ă î n e c h ip a m e n t e, d e e x em p l u : î n p l ă ci d e
+re ţ e a
+
+Conectori            Priză RJ-45
+RJ-45              cu 8 pini
+ecranat şi
+neecranat
+CABLARE ETHERNET
+
+ D ou a t ip uri d e c a blă ri:
+▪ Straight – through
+▪ S e folos es te int re dis poziti ve de t ipuri difer it
+
+▪ Cross – ove r
+▪ S e folos es te int re dis poziti ve de acelasi t ip
+▪ Exceptie: conexiunea ruter - PC
+
+ + Ro llove r – d oar p ent ru c on exiu ne a la p ort u l c on s olă c u c on ec to r R J 45
+▪ pinii de la un capăt sunt conectați în ordine inversă la celălalt capăt:
+▪ pinul 1 s e conectează cu 8, 2 cu 7, 3 cu 6, etc.
+
+▪ Dispozitive le moderne dispun, în general, de port console cu conector USB
+
+ A c t ua l, s e p oat e fo los i a proa pe în tot d eau na c a bla rea s t raigh t-t hro ugh :
+▪ Dispozitive le moderne inte grează funcția Auto-MDIX care comută semnale le de la fire astfel
+încât să se fie transmise semnale le așa cum le aște aptă dispo zitivul; nu mai neceistă
+cabluri cross-ove r
+▪ Excepție: dispozitive mai vechi
+CABLARE ETHERNET
+ St ra ight – t hro ugh
+ Cro ss ov er
+
+ Re guli:
+▪ Se alte rneaza culorile (culori inchise – fără alb / de schise – cu alb)
+▪ Culo rile importante (Verde și Portocaliu) se folosesc pe ntru pinii importanți (1, 2, 3 si 6)
+▪ Se înce pe cu o culoare de schisă
+ T5 68 A – în c epe c u verd e
+ T5 68 B – în c epe c u p ort oc a liu
+
+ St rai ght -t hro ugh : T5 68 A la a mb ele c a pet e s au T5 68 B la a mb ele c a pet e
+ Cro ss ov er: T 56 8A la u n c a pă t ș i T5 68 B la c elă la lt c a pă t
+WIRELESS
+
+ Wirel ess LAN - WLAN
+▪ Regleme ntat prin sta ndardul Ethernet 802.11 sau W iFi.
+
+ Re țe lel e wire less sun t rețel e în ca re tra nsmisi a de voce și d e date se
+rea lize ază pri n interme diu l und elo r ra dio .
+▪ Toate transmisiu nile wire less se realize ază prin a celași me diu -aerul.
+
+ Există sisteme p entru transmi sia da te lor pri n fa scicul e lumi noa se: Li Fi
+WIRELESS
+
+ Frecven ța d e ope rare și le gal itatea acce sulu i la ba ndă su nt ce le
+care d iferen ți ază di verse al te rnative p entru rețel ele w irel ess.
+Acestea o pere ază în juru l fre cvențel or de 1GHz (cel ula r – al te
+stand arde și p rotocoa le), 2 GH z (WLAN), 5 GHz(WLAN).
+▪ ben zi cu lice nță (ban da utilizată de siste mele celula re) sau
+
+▪ ben zi fără lice nță (cum sunt benzile ISM - In dustrial, Scientific and Med ical).
+
+ pri ncip ale le stand arde w irel ess
+▪ LAN și mai mici: IEEE8 02.11, Zig Bee, Blue tooth, IEEE 802.1 5 W ireless PAN
+
+▪ MAN: IEEE 80 2.16 Wireless M AN
+
+▪ WAN: IEEE 802.20, 3G, 4 G, 5G, NGN, Satellit es
+WIRELESS
+
+ P rinc ipal ele cara cte risti ci a le c elor ma i uti liza te te hno log ii ap lica te s tan dard elo r
+IE EE 80 2.11 su nt p rez enta te m ai jos.
+An    Banda de  Lățimea de banda
+Standard Rata de transfer
+adoptare frecvență (GHz)    (MHz) 
+802.11 (WI-FI 0) 1997 2,4 22 1-2 Mb/s
+
+802.11a (WI-FI 2) 1999 5 20 54 Mb/s
+
+802.11b (WI-FI 1) 1999 2,4 22 11 Mb/s
+
+802.11g (WI-FI 3) 2003 2,4 20 54 Mb/s
+802.11n (WI-FI 4) 2009 2,4/ 5 20/40 <=150 (teoretic <600 Mb/s)
+802.11ac (WI-FI 5) 2013 5 20/40/80/160 <=866,7 Mb/s (teoretic ~7Gb/s)
+802.11ad 2012 60 2160 <=6757 (teoretic ~7Gb/s)
+802.11ax (WI-FI6) 2021 2,4/ 5 20/40/80/160 <=1134 (teoretic ~9.6Gb/s)
+802.11ay (WI-FI6   2019 60 2160 <=176 Gb/s
+pe 6GHz)
+802.11be (WI-FI7) 2024 2,4 /5 /6 80/160/240/320 <=46,1 Gb/s
+SETARE REȚELE WI-FI
+
+ Din i nter fa ța de confi gura re a r uterul ui
+ Con figura re SSID – nu mele reț elei
+▪ Service Set IDentifier
+▪ Se poate ascund e, astfel încât rețeaua să nu fie vizibi lă când se caută rețele
+▪ Nu este o măsură de securitate foarte e ficientă: mesaje le transmise se scane ază în
+continuare la scanarea radio
+
+ BSSID – Bas ic SSID: a dresa M AC a punctului de acces Wi-Fi
+▪ Nu se setează (se poate modifica temp ora r prin software)
+
+ Alegere can al Wi-Fi
+▪ Seta re ca nal mai puțin agl omerat (d e ex. pe ba za informațiil or de la o apli cație
+precum WiFi An alyzer, airmon-ng)
+
+ Setar e l ăț ime de ban dă: ex: 20 / 4 0 / 60 M Hz
+▪ Dacă apar inter ferențe
+SETARE REȚELE WI-FI (2)
+
+ S etare pro to co l Wi-Fi
+▪ În funcție de cele suportate de ruter și dispozitivele care se vor conecta
+la rețea
+▪ Momentan, prob abil 802.11ac este opțiunea optimă
+▪ 802.11n – pentru conectare dispozitive mai vech i
+▪ 802.11ax sau be - pentru conectare dispozitive mai noi
+
+ S etare securit ate rețe a
+▪ Alegere metodă de criptare:
+▪ WPA2 sa u WPA3
+▪ Nu WEP
+
+▪ Configurare parolă
+SETARE REȚELE WI-FI (3)
+
+ Bune practici
+
+▪ Utilizarea unei scheme de adresare
+▪ DHCP și adrese static e – vor fi exemplificate într-un c urs viitor
+
+▪ Crearea de rețele Wi-Fi diferite în funcție de utilizatori
+▪ Ex: o rețea Wi-Fi pentru ut ilizatorii stabili: angajați/ membrii loc uinței
+
+▪ O rețea Wi-Fi pentru ut ilizatori temporari: ex: vizit atori / musafiri
+
+▪ O rețea Wi-Fi pentru dispoz itivele inteligente: ex: aspirator, c amere web,
+et c.
+PARTEA A 2-A: ADRESE IP
+
+ Adrese IP (continuare)
+▪ Asignarea adreselor IP (IANA , ISP)
+▪ Clase de adrese IPv4
+▪ Adrese IPv6
+▪ Scheme de adresare
+ Tipuri de comunicații
+▪ Unic ast
+▪ Broadcast
+▪ M ulticast
+ASIGNAREA ADRESELOR IP
+
+ Pentru ca o stație să poată fi disponibilă în Internet, trebuie
+să aibă o adresă IP publică
+
+ Adresele publice sunt asignate de către IANA – Internet
+Assigned Numbers Authority – prin agenții regionale
+
+ Agențiile regionale asignează adrese IP către ISP-uri, care
+asignează adrese IP cliențiilor
+ISPs
+
+ 3 ni vel e
+
+ Ti er 1
+
+▪ Direct conecta ți la "Internet backbone"
+
+▪ Furnizează ser vicii către comp anii mari și ISP de ni vel 2
+
+ Ti er 2
+
+▪ Pri mesc conexiunea la Intern et de la ISP de nivel 1
+
+ Ti er 3
+
+▪ Pri mesc conexiunea la Intern et de la ISP de nivel 2
+CLASE DE ADRESE IP
+
+Primul octet  Primul octet  Masca de
+Clasa Utilizare
+B10      B2     rețea 
+00000000 –
+A 1 - 127 /8
+01111111 
+10000000 -
+B 128 – 191 /16      Generală
+10111111 
+11000000 -
+C 192 – 223 /24
+11011111 
+11100000 -
+D 224 – 239 - Doar pentru multicast
+11101111 
+11110000 -
+E 240 – 255 - Experimentală
+11111111 
+CLASE DE ADRESE IP
+
+ Adresarea pe bază de clase nu se mai folosește
+ S-a utilizat între 1981 și 1993, până la introducerea
+adresării fără clase (CIDR – Classless Inter-Domain
+Routing)
+▪ Se mai păstrează
+▪ Clasa D p entru mult icast (prefix 224 – 239 )
+▪ Notație CIDR: 224.0.0.0/4
+▪ Modul de utilizarea este detaliat în RFC5771
+▪ Listă adrese multicast rezervate: https://www.iana.org/assignments/multicast-
+addresses/multicast-addresses.xhtml
+
+▪ Clasa E rezervată (prefix 240 – 255 )
+ADRESE PRIVATE
+
+ Adresele private nu trebuie să respecte condiția de
+unicitate, decât la nivel de LAN
+ Nu se folosesc în domeniul public
+ Este necesar un mecanism suplimentar pentru ca rețelele
+care folosesc adrese private să poată comunica în domeniul
+public: NAT – Network Adress Translation
+
+Clasa Adresa de rețea Masca Domeniul de adrese
+ 3 clase:
+10.0.0.0 –
+A 10.0.0.0 /8 
+10.255.255.255
+172.16.0.0 –
+B 172.16.0.0 /12 
+172.31.255.255
+192.168.0.0 –
+C 192.168.0.0 /16 
+192.168.255.255
+TIPURI SPECIALE DE ADRESE IP
+
+ Adresa de rețea
+▪ Prima adresă dintr-o rețea
+ Adresa de broadcast
+▪ Ultima adresă dintr-o rețea
+ Adresa de loopback
+▪ 127.0.0.1
+ Adrese Link – local
+▪ Pot fi asignate automat unei stații de către sistemul de operare
+ Adrese TEST-NET
+▪ 192.0.2.0/24 – pentru scopuri didactice
+ Adrese experimentale
+▪ 240.0.0.0 0 255.255.255.254 – rezervate penru întrebuințări viitoare
+ADRESA DE LOOPBACK
+
+ 127.0.0.1 – adresa folosită
+
+ Spațiul de adrese 127.0.0.0 – 127.255.255.255 este rezervat
+pentru adrese de loopback; orice adresă din acest spațiu va
+redirecta traficul pe aceeași stație
+
+ Adresă folosită de dispozitive pentru a își trimite traficul lor
+
+ Metodă pentru ca aplicații din stiva TCP/IP care rulează pe
+același dispozitiv să comunice între ele; UDP – urile nu mai
+ajung la nivelele inferioare (I nternet și Acces la rețea)
+ADRESE LINK-LOCAL
+
+ Blocul de adrese 169.254.0.0 – 169.254.255.255
+
+ Pot fi asignate de către sistemul de operare atunci când nu
+este disponibilă altă configurație IP
+
+ Utilizare:
+▪ Rețele peer-to-peer de mici dimensiuni
+
+ Stațiile configurate cu adrese link-local nu pot comunica
+decât în rețeaua locală
+TIPURI DE COMUNICAȚII
+
+ Comuni cații unicast
+
+▪ Comunicație 1:1
+
+▪ Se specifică o adresă sursă și o adresă detinație
+
+ Comuni cații multicast
+
+▪ Comunicație many-to-many
+
+▪ Se folosesc adrese speciale, din clasa D
+
+ Comuni cații broadcast
+
+▪ Comunicație de tip many-to-many
+COMUNICAȚII BROADCAST
+
+ Toate stațiile cu aceeași adresă de rețea se află în același
+domeniu de broadcast
+
+ Adresa de broadcast
+▪ Ultima adresă din domeniul delimitat de o adresă de rețea
+▪ Nu poate fi asignată unei stații
+
+ Se folosește pentru transmiterea unui pachet către toate
+stațiile dintr-o rețea
+
+ Ruterul este singurul dispozitiv de retea care segmentează
+domenii de broadcast
+DOMENIU DE BROADCAST
+
+ În exemplu: două domenii de broadcast – unul pentru fiecare
+interfață a routerului
+ Observăm faptul că switchul nu divizează domeniul de
+broadcast:
+▪ Toate interfețele switchului se află în aceeași rețea
+DOMENIU DE BROADCAST (2)
+
+ Exemplu: ping de la Laptop 0 (IP: 10.10.10.10/24) catre
+adresa de broadcast a retelei din care face parte
+(10.10.10.255/24)
+DOMENII DE BROADCAST (3)
+
+ Pachetele vor ajunge la toate stațiile din rețeaua
+10.10.10.0/24, însă nu ajung în altă rețea
+COMUNICAȚII MULTICAST
+
+ Folosite pentru:
+▪ Transmiterea de informații de rutare
+▪ În LAN-uri:
+▪ Videoc onferințe
+▪ Video streaming
+
+ Unele adrese de multicast sunt rezervate pentru a fi utilizate
+de diferite protocoale de rutare, care folosesc acest tip de
+comunicare pentru a își trimite informații de rutare
+
+ Un dispozitiv poate aparține mai multor grupuri de multicast
+IPv6
+
+ Se introduc în sistem de numerație hexazecimal – baza 16
+▪ Se folosesc simblourile 0-9A-F
+
+ Se reprezintă pe 128 de biți
+▪ Împărțiți în 8 grupări a câte 16 biți
+
+X X X X X X X X
+0000 – 0000 – 0000 – 0000 – 0000 – 0000 – 0000 – 0000 –
+FFFF  FFFF  FFFF  FFFF  FFFF  FFFF  FFFF  FFFF
+16 biți 16 biți 16 biți 16 biți 16 biț 16 biți 16 biți 16 biți
+128 biți
+IPv6 - NECESITATE
+
+ Spa țiu l de a dres e
+32 
+▪ IPv4 – 32 d e biți → 2 adrese disp on ibile
+▪ 4.294.967.296 adrese
+9
+▪ 4 x 10
+128 
+▪ IPv6 – 128 de biți → 2 adrese disp on ibile
+▪ 340.282.366.920.938.463.463.374.607.431.768.211.456 adrese
+36 
+▪ 340 x 10 adre se
+28 
+▪ > 7.8 x 10 x nr. adre se IPv4
+
+ IoT: In ternet of Things
+▪ Se estimează că pâ nă în anul 2030, numărul d e disp ozitive conectate la Internet
+https://www.statista.com/statistics/802690/worldwide-
+9 
+va d ep ăși 50 x 10 (https: //w ww.statista .com/statistics/802690/worldwide-
+connected-devices-by-access-technology/
+connected-devices-by-access-technology/)
+IPv4 vs IPv6
+
+ Au fost rezolvate probleme sesizate în protocolul IPv4
+▪ Integrează funcționalități de securitate + mobilitatea stațiilor
+
+ Un dispozitiv poate folosit ambele tipuri de adrese
+▪ Cu implementarea „dual stack” – două stive
+▪ o interfață are și adresă IPv4 și Ipv6
+
+▪ Comunic ă utilizând oricare dintre protoc oale
+SISTEMUL DE NUMERAȚIE HEXAZECIMAL
+Baza 10 Baza 2 Baza 16
+0 0000 0
+1 0001 1
+2 0010 2
+3 0011 3
+4 0100 4
+5 0101 5
+6 0110 6
+7 0111 7
+8 1000 8
+9 1001 9
+10 1010 A
+11 1011 B
+12 1100 C
+13 1101 D
+14 1110 E
+15 1111 F
+PREFIXUL DIN ADRESAREA IPv6
+
+ Echivalentul măștii de rețea din adresarea IPv4
+
+ Se folosește doar reprezentarea cu '/'
+
+▪ Exemplu: /64
+
+▪ primii 64 de biți pent ru rețea și
+
+▪ 64 de biți pentru host
+
+Exemplu: 2001 : 0DB8 : 000A : : /64
+Prefix Identificare stație (host)
+2001 : 0DB8 : 000A : 0000 0000 : 0000 : 0000 : 0000
+FORMATUL UNDEI ADRESE IPv6
+
+ E de forma X:X:X:X:X:X:X:X
+
+▪ X este o grupare de 16 biți, exprimată în baza 16
+
+▪ folosind simbolurile 0-9A-F
+
+▪ valori înt re 0000 și FF FF
+
+▪ o g rupare nu are o denumire oficială, posibil: hexadectet, hextet, bucată,
+
+cvartet
+
+Exemplu: 2001 : 0DB8 : 000A : : 000F /64
+Prefix Identificare stație (host)
+2001 : 0DB8 : 000A : 0000 0000 : 0000 : 0000 : 000F
+IPv6 - REGULI DE SCRIERE A ADRESELOR
+
+ Omiterea zerourilor de la începutul segmentelor adresei
+Cu zerouri 2001 : 0AB4: 1111 : 0000 : 0000 : 0078 : 0200
+Fără zerouri 2001 : AB4 : 1111 0 : 78 : 0 : 200
+
+ Omiterea grupurilor de zerouri
+Cu zerouri 2001 : 0AB4: 1111 : 0000 : 0000 : 0078 : 0200
+Fără zerouri 2001 : AB4 : 1111 :: 78 : 200
+
+▪ Se poate face o singură dată într-o adresă
+Cu zerouri 2001 : 0000: 0000 : 1234 : 0000 : 0000 : 0200
+Fără zerouri 2001 : : 1234 : : 200 → incorect
+TIPURI DE ADRESE IPv6
+
+ Unicast
+▪ La fel ca în adresarea IPv4
+▪ Comunicație 1 la 1
+ Multicast
+▪ Comunicație 1 to many
+ Anycast
+▪ O adresă de anycast este orice adresă de unicast care poate fi
+atribuită mai multor stații
+▪ Un pachet trimis către o adresă unicast este rutat către cea mai
+apropiată stație care are acea adresă
+
+ Nu există adrese de broadcast, însă există o adresă de
+multicast numită all-nodes multicast cu același rezultat
+TIPURI DE ADRESE IPv6
+
+ Adre se de uni cas t glo bale
+▪ Similare cu adresele IPv4 publice
+▪ Adrese unice la nivel global (în tot Internetul)
+ Adre se Li nk -lo cal
+▪ Valabile doar în rețeaua locală
+ Adre se de lo opback
+▪ ::1/128
+▪ Utilizare similară ca în IPv4
+ Adre se ne specificate
+▪ ::0/128
+▪ Se folosește doar ca adresă sursă într-un pachet IP când:
+▪ Sursa nu are o ad resă IPv6 perma nentă sa u su rsa e irelevantă
+ Unice l ocal e
+▪ Similare cu adresele private din IPv4
+▪ Spațiul de adrese FC00::/7 – FDFF::/7
+ADRESE LINK-LOCAL
+
+ Este obligatorui ca un dispozitiv să aibă o adresă link-local în
+
+IPv6
+
+▪ Dacă nu este configurată manual, host-ul va asigna una
+
+ Sunt din spațiul de adrese FE80::/10
+
+▪ FE80 : : /10 – FEBF : : /10
+ADRESE IPV6 GLOBALE DE UNICAST
+
+ID-ul rețelei
+Prefix global de rutare Id-ul host-ului
+locale 
+Asignat de ISP
+Identifică
+Identifică
+2000 – 3FFF
+stațiile
+subrețele
+(interfețele)
+0010 0000 0000 0000 – 0011 1111 1111 1111
+SCHEME DE ADRESARE
+
+ Pentru un manage ment facil al une i re țele s e re comandă
+planificare a utilizării adr es elor în funcți e de tipul ș i ro lul
+dispoziti velor cărora le s unt asig nate, astfel :
+▪ Hosturile
+▪ Confi gura re ușoară prin DHCP
+▪ Servere și periferice (Imprimantele, scannerele, servere cu resurse)
+▪ Necesită pentru accesarea pe baza adresei IP ad resă sta ti că
+▪ Este bin e ca intervalu l de a drese folosit să fi e prev izi bil
+▪ Pentru accesul ușor al utilizatorilor
+▪ Pentru gestiunea facilă (adrese pentru care se realizează NAT, politici de securitate)
+
+▪ Dispozitivele intermediare
+▪ Pri mesc î n general pri mele a drese din spa ți ul di sponibi l sa u ultimele;
+▪ Es te r ecomandat ă folos ir ea aceleaș i r eg uli în t oat e subr ețelele ges tionat e
+▪ Es te bine ca int er v alul de adr ese f ol os it s ă fie pr evizibi l
+
+▪ Recomanda t să fie î n alt inter val d ecât cel d ed ica t stațiilor
+SCHEME DE ADRESARE
+
+▪ Adresa de gateway:
+▪ prima sau ultima adresă din rețea
+▪ utilizată de fiecare stație din rețea ca punct intermediar pentru traficul transmis în
+afara rețelei
+▪ traficul prin acest port implementează, în general, politici de securitate
+▪Filtrare pe baza adresei IP sau a al tor informații din pachet
+SCHEME DE ADRESARE
+
+▪Posibilitatea grupării logice a acestor porturi ajută la implementarea
+politicilor de securitate
+
+Rețea: 192.168.1.0/24
+Destinație Interval de adrese
+Adrese de stații 
+192.168.1.1 192.168.1.229
+Adrese de servere 
+192.168.1.230 192.168.1.239
+Adrese de imprimante 
+192.168.1.240 192.168.1.249
+Adrese de dispozitive intermediare 
+192.168.1.250 192.168.1.253
+• Adresa de gateway 
+192.168.1.254
+INSTALARE PACKET TRACER
+
+ Packet tracer
+▪ Simulator de rețele creat de Cisco
+▪ Document ghid pentru instalare:
+▪ Cisco Packet Tracer Download and Installation Instructions
+▪ https://skillsforall.com/skillsforall/files/Cisco_Packet_Tracer_Download_and_Installation_Instructi
+ons.pdf
+▪ Link-ul de desc ărcare este în doc umentul ghid de inst alare
+▪ https://skillsforall.com/resources/lab-downloads?courseLang=en-US
+Notă: este necesară crearea unui cont pe platforma Skillsforall

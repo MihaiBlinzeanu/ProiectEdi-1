@@ -1,0 +1,1262 @@
+Tehnologii WEB
+Curs 2 -3
+HTML
+
+Cod Teams: 6gyjd1x
+
+Anul III, semestrul II
+2026
+Ce este HTML-ul?
+HTML reprezintă structura de bază a unui site web, oferindu-i organizare și formă. El stabilește
+modul în care sunt aranjate elementele afișate în pagină, precum textul, imaginile, formularele sau butoanele.
+În absența HTML-ului, paginile web ar conține doar text simplu, fără o structurare clară.
+
+HTML = Limbaj de marcare hypertext
+• Hipertextul se referă la textul care conține linkuri către alte documente sau resurse . În HTML,
+hipertextul permite utilizatorilor să navigheze între diferite pagini web făcând clic pe linkuri.
+• Marcarea se referă la adnotările sau etichetele utilizate pentru a defini structura și formatarea
+conținutului dintr-un document. În HTML, etichetele de marcare sunt utilizate pentru a specifica
+elemente precum titluri, paragrafe, imagini și linkuri care fac o pagină web atractivă din punct de
+vedere vizual și ușor de navigat. Aceste etichete oferă informații browserelor web despre modul în
+care conținutul ar trebui structurat, stilizat și redat pe ecranul utilizatorului.
+• Limbajul se referă la sistemul de reguli și sintaxă utilizat pentru a scrie și interpreta markup-
+ul într-un mod consistent și standardizat. HTML oferă un set de etichete și atribute predefinite care
+definesc modul în care conținutul ar trebui afișat și interacționat într-un browser web. Este
+traducătorul universal, limbajul pe care oamenii, computerele și browserele îl înțeleg.
+Istoric HTML
+
+Totul a început în 1989, când Sir Tim Berners-Lee a inventat HTML-ul în timp ce lucra la CERN, Organizația
+Europeană pentru Cercetare Nucleară. Viziunea sa era să creeze o modalitate de a partaja cu ușurință informații
+științifice între diferite computere.
+Prima pagină 
+web , creată de Sir Tim Berners-Lee, a fost o creație simplă, dar revoluționară. Aceasta consta din
+text simplu și hyperlinkuri care permiteau utilizatorilor să navigheze și să exploreze diferite documente și
+resurse. Această pagină modestă a pus bazele unei ere revoluționare a partajării informațiilor și a transformat
+modul în care accesăm și interacționăm cu conținutul de pe internet.
+Prima versiune de HTML, numită HTML 1.0 , a fost lansată în 1993. Era un limbaj de marcare simplu, cu
+funcții limitate în comparație cu versiunile moderne pe care le folosim astăzi.
+De-a lungul anilor, HTML a evoluat și au fost introduse noi versiuni, fiecare aducând elemente, atribute și
+caracteristici noi pentru a îmbunătăți capacitățile dezvoltării web. HTML 5, versiunea actuală, a fost lansată
+în 2014 și a introdus multe caracteristici interesante, cum ar fi suport multimedia nativ, elemente semantice și
+controale de formular îmbunătățite. Așadar, data viitoare când construiți o pagină web, amintiți-vă de călătoria
+pe care a parcurs-o HTML pentru a deveni limbajul versatil și puternic care este astăzi!
+Evolutia HTML-ului
+
+Introducerea HTML1 (1993): Prima versiune de HTML care a pus bazele dezvoltării web. A introdus
+elemente de bază precum titluri, paragrafe și liste, deschizând calea pentru viitorul HTML.
+Introducerea HTML2 (1995): Odată cu HTML2, au fost introduse tabelele și posibilitatea de a încorpora
+imagini. Acest lucru a facilitat crearea de machete structurate și includerea de elemente vizuale în paginile
+web.
+HTML3 și HTML4 (1997): HTML3 (1997) a adus funcții interesante precum cadre, foi de stil și
+posibilitatea de a adăuga interactivitate cu JavaScript. HTML4 (1997, republicat în 1999) a continuat să
+dezvolte aceste progrese și a introdus suport pentru elemente multimedia.
+HTML5 (2014): HTML5 a fost cu adevărat revoluționar! A introdus multe elemente și caracteristici noi care
+fac dezvoltarea web mai puternică și mai versatilă. Cu HTML5, am obținut elemente semantice pentru o
+structură mai bună, suport multimedia pentru audio și video și o gestionare îmbunătățită a formularelor.
+HTML5.1 și nu numai: HTML5.1 și versiunile ulterioare continuă să rafineze și să îmbunătățească HTML-
+ul, concentrându-se pe performanță, securitate și oferind mai multe instrumente pentru construirea de aplicații
+web moderne.
+Viitorul HTML-ului
+
+HTML continuă să evolueze pentru a răspunde cerințelor tot mai complexe ale dezvoltării web moderne. Un
+accent important este pus pe designul mobil-first și pe responsivitate, astfel încât paginile web să se adapteze
+automat la diferite dimensiuni de ecran și tipuri de dispozitive. Această abordare asigură o experiență optimă
+pentru utilizatori, indiferent dacă accesează site-ul de pe telefon, tabletă sau desktop.
+
+În același timp, HTML începe să fie integrat cu tehnologii emergente,
+precum realitatea virtuală (VR) și Internet of Things (IoT). Aceste direcții
+permit dezvoltarea unor aplicații web interactive, capabile să ofere experiențe
+imersive direct în browser și să comunice eficient cu dispozitive inteligente.
+În concluzie, HTML se adaptează permanent noilor tendințe tehnologice,
+contribuind la crearea unor aplicații web moderne, accesibile și inovatoare.
+Editor de text
+
+Un editor de text este o aplicație software care permite să realizam și să editam fișiere text simple și să
+scriem și să editam cod.
+Pentru scrierea codului HTML, putem utiliza orice editor de text de bază, cum ar fi Notepad pe
+Windows sau TextEdit pe Mac.
+Totuși, utilizarea unui editor de text dedicat, conceput special pentru programare, poate îmbunătăți
+considerabil procesul de învățare. Editori de text precum:
+
+oferă o varietate de funcții special concepute pentru codare, cum ar fi evidențierea sintaxei , care ajută la o mai
+bună distincție vizuală a diferitelor etichete și elemente HTML, și completarea codului , care poate completa
+automat codul pe măsură ce tastați. Aceste funcții vă ajută să scrieți cod mai rapid și mai precis și pot reduce
+șansele de a face erori .
+Browser web
+Un browser web este necesar pentru a deschide, vizualiza și testa codul HTML. Majoritatea browserelor
+web moderne includ instrumente de dezvoltare încorporate care vă pot ajuta să depanați codul și să analizați
+performanța paginii web. Acestea sunt concepute pentru a interpreta codul HTML și a afișa conținutul,
+formatarea și aspectul acestuia într-un mod ușor de utilizat.
+Exemple de browsere web utilizate în mod obișnuit includ:
+
+Pentru a vizualiza un fișier HTML într-un browser web, putem pur și simplu să facem dublu clic pe fișierul
+din sistemul de fișiere, iar browserul web asociat cu fișierele HTML ar trebui să se deschidă și să afișeze
+fișierul. Alternativ, puteți deschide browserul web și apoi să utilizați meniul Fișier sau o comandă rapidă de
+la tastatură pentru a deschide fișierul HTML. După ce fișierul este deschis în browser, puteți interacționa cu
+conținutul său, puteți urma linkuri și puteți naviga între pagini, așa cum ați face cu orice altă pagină web.
+Primul fișier HTML
+Pasul 1 – Creați un fișier HTML
+Deschideți editorul de text și creați un fișier nou. Salvați fișierul cu un nume ușor de reținut și asigurați-vă că
+utilizați extensia .html , cum ar fi example.html . Aceasta îi spune computerului că este un fișier HTML.
+Pasul 2 – Scrieți codul HTML
+În fișierul HTML, veți începe prin a adăuga structura esențială a unui document HTML.
+
+Pasul 3 – Salvați și deschideți fișierul HTML
+Salvează fișierul HTML și navighează la locația în care l-ai salvat. Fă dublu clic pe fișier și, ca prin magie, se va
+deschide în browserul web implicit. Vei vedea pagina ta web afișată frumos.
+Codificarea caracterelor
+Pentru ca paginile web să fie afișate corect, textul din acestea trebuie să fie codificat într-un mod specific.
+Codificarea caracterelor este metoda utilizată pentru a reprezenta caracterele ca numere pe care
+computerele le pot înțelege.
+De ce numere?
+Deoarece computerele procesează și stochează informații folosind semnale electronice, iar semnalele sunt
+, care pot avea doar două stări posibile:
+reprezentate prin cifre binare, cunoscute și sub numele de biți 
+„pornit” sau „oprit” (reprezentat de 1 sau 0 ). Aceste cifre binare sunt folosite pentru a reprezenta toate
+informațiile procesate și stocate de computere, cum ar fi imagini, sunet, video și text.
+Așadar, atunci când vizitați o pagină web, textul de pe aceasta trebuie transformat într-un cod special pe
+care computerele îl pot înțelege pentru ca aceasta să fie afișată corect. Aceasta se numește codificare a
+caracterelor . Dar înainte de a aprofunda diverse standarde de codificare a caracterelor, haideți să înțelegem
+mai întâi elementele de bază ale cifrelor binare și ale sistemului binar.
+Standarde de codificare a caracterelor
+Există mai multe standarde de codificare a caracterelor, fiecare cu propriile avantaje și limitări.
+• ASCII , sau Codul American Standard pentru Schimb de Informații, este cel mai elementar standard de
+codificare a caracterelor. Folosește 7 biți pentru a reprezenta 128 de caractere, care includ litere, numere și
+simboluri utilizate în mod obișnuit în limba engleză. Cu toate acestea, codificarea ASCII nu este potrivită
+pentru reprezentarea caracterelor din alte limbi.
+• Unicode este un standard de codificare a caracterelor mai cuprinzător, care acceptă un număr mult mai mare
+de caractere din diferite limbi și alfabete. Poate utiliza până la 32 de biți pentru a reprezenta peste un milion
+de caractere, inclusiv cele din alfabete nelatine, cum ar fi chineza, araba și chirilica. Unicode include mai
+multe codificări diferite, inclusiv UTF-8, UTF-16 și UTF-32.
+• UTF-8 este un standard de codificare a caracterelor utilizat pe scară largă, compatibil cu ASCII. Acesta
+, în
+folosește o codificare de lungime variabilă care poate reprezenta caractere folosind între 1 și 4 octeți 
+funcție de caracterul codificat. UTF-8 poate reprezenta toate caracterele din standardul Unicode, ceea ce îl
+face o alegere ideală pentru dezvoltarea web.
+Specificarea standardului de codificare a caracterelor
+UTF-8 este cel mai utilizat standard de codificare a caracterelor pentru dezvoltarea web în prezent.
+Este standardul de codificare implicit utilizat de HTML5 și este recomandat pentru utilizare în toate
+aplicațiile web moderne.
+Pentru a specifica standardul de codificare a caracterelor ca UTF-8 într-un document HTML, puteți
+utiliza următorul cod în secțiunea head a documentului:
+<meta charset="UTF-8">
+Aceasta informație îi spune browserului web că documentul este codificat folosind UTF-8 și că
+browserul poate utiliza algoritmul de decodare adecvat pentru a reda corect caracterele.
+Sintaxa HTML: Elemente, Etichete și Comentarii
+
+Sintaxa HTML se referă la regulile, instrucțiunile și convențiile care definesc modul în care codul
+HTML ar trebui structurat și scris . Urmând sintaxa corectă, vă puteți asigura că codul HTML este
+înțeles corect de browserele web și afișat conform așteptărilor.
+
+Sintaxa HTML definește modul corect de utilizare a etichetelor, atributelor și valorilor HTML pentru
+a crea pagini web care sunt atât lizibile, cât și funcționale de către browserele web. Înțelegerea acesteia
+este esențială pentru crearea și menținerea unui cod HTML eficient și valid.
+Declarația DOCTYPE
+
+Declarația DOCTYPE este o parte integrantă a sintaxei HTML și un element important într-
+un document HTML1 care ajută browserele web să înțeleagă cum să interpreteze conținutul documentului.
+În termeni simpli, declarația DOCTYPE îi spune browserului web ce versiune de HTML este utilizată
+în document. Acest lucru este important deoarece diferite versiuni de HTML au reguli și caracteristici diferite.
+Prin includerea declarației DOCTYPE, vă asigurați că browserul web știe ce set de reguli să urmeze atunci când
+afișează pagina web.
+Declarația DOCTYPE este o linie specială de cod care ar trebui să apară chiar la începutul unui
+document HTML , înaintea oricărui alt conținut sau element. Aceasta constă dintr-un șir de caractere care
+identifică versiunea de HTML utilizată.
+Declarația DOCTYPE pentru HTML5 este <!DOCTYPE html>
+
+Aceasta informație îi spune browserului web că documentul este scris în HTML5 și, prin urmare,
+browserul se va aștepta să vadă sintaxa și caracteristicile HTML5 în restul documentului.
+Elemente și etichete
+
+HTML este alcătuit dintr-o serie de elemente , care sunt definite prin etichete . Termenii „elemente” și
+„etichete” sunt strâns legați, dar au semnificații distincte.
+Elemente HTML
+Un element HTML este o parte a unei pagini web, cum ar fi un paragraf de text, o imagine sau un
+formular. Este unitatea de bază de conținut și structură dintr-un document HTML. Elementele îi spun browserului
+web cum să afișeze conținutul.
+Etichete HTML
+Etichetele sunt marcajele care definesc începutul și sfârșitul unui element. Acestea sunt scrise cu
+paranteze unghiulare, cum ar fi <tag> pentru începutul unui element și </tag> (cu o bară oblică înainte înaintea
+numelui etichetei) pentru sfârșit. Etichetele etichetează tipul de conținut pe care îl includ, instruind browserul cu
+privire la modul de procesare a acestuia.
+De exemplu, un paragraf este creat cu o etichetă <p> , care indică începutul, și o etichetă </p> , care
+marchează sfârșitul, cu conținutul textului propriu-zis între ele.
+Înțelegerea etichetelor și elementelor
+Un element HTML cuprinde totul, de la eticheta de început până la eticheta de sfârșit, inclusiv
+conținutul și etichetele în sine.
+Aceasta înseamnă că structura de bază a unui element HTML include:
+• eticheta de deschidere ( <tag> ),
+• conținutul în sine și
+• eticheta de închidere ( </tag> ).
+În esență, eticheta de deschidere marchează începutul unui element și poate include atribute , care sunt
+detalii suplimentare care configurează sau ajustează comportamentul elementului. Atributele au un nume și o
+valoare, separate printr-un semn egal, valoarea fiind cuprinsă între ghilimele. Conținutul elementului este ceea ce
+este afișat sau utilizat, cum ar fi text sau un link către o imagine, iar eticheta de închidere indică sfârșitul
+elementului.
+Etichete cu închidere automată
+
+Unele elemente, cum ar fi elementul imagine (<img>), nu conțin conținut și, prin urmare, nu au o
+etichetă de închidere . Acestea sunt cunoscute sub numele de etichete cu autoînchidere.
+
+De exemplu: <img src="image.jpg" alt="Description of the image">
+Etichete vs. Elemente
+• Un element se referă la întreaga structură, inclusiv eticheta de deschidere, conținutul și eticheta de
+închidere (dacă există). Este ceea ce vedeți afișat pe o pagină web.
+• O etichetă se referă în mod specific la marcajele de deschidere și închidere care definesc începutul și
+sfârșitul unui element. Acestea nu sunt afișate pe pagina web, dar instruiesc browserul cu privire la modul de
+interpretare a conținutului.
+HTML oferă o varietate de etichete pentru organizarea și afișarea conținutului pe web. Numărul acestor
+etichete poate varia în funcție de versiunile de HTML, dar HTML5 include peste 140 de etichete standard.
+Dezvoltatorii pot crea, de asemenea, elemente personalizate pentru a adăuga noi funcționalități.
+Pe măsură ce HTML evoluează, lista de etichete și elemente disponibile se modifică, introducând noi
+funcții și, ocazional, depreciindu-le pe cele mai vechi.
+Elemente de tip Block (Block-level) și de tip Inline
+
+În HTML5, există două tipuri de elemente:
+• block-level elements
+• inline elements.
+Elementele Block-level sunt folosite pentru a crea structura principală a unei pagini web, cum ar
+fi anteturile, paragrafele și listele. Acestea încep pe o linie nouă și ocupă întreaga lățime a paginii, ceea ce
+înseamnă că orice conținut plasat în interiorul unui element la nivel de block va crea un nou bloc de conținut,
+separat de conținutul dinainte sau de după acesta.
+Exemple de elemente la nivel de block includ:
+• <h1> la <h6> pentru titluri, (<h1> – cel mai important titlu (de obicei titlul principal al paginii),
+<h2> – subtitlu de nivel 2, ...., <h6> – cel mai puțin important titlu)
+• <p> pentru paragrafe,
+• <ul> și <ol> pentru liste și
+• <div> pentru gruparea conținutului
+Elemente Inline
+Elementele inline, pe de altă parte, sunt folosite pentru a stiliza conținutul din elementele la nivel de
+bloc , cum ar fi linkurile și imaginile. Nu încep pe o linie nouă și ocupă doar spațiul necesar pentru afișarea
+conținutului. Aceasta înseamnă că mai multe elemente inline pot apărea pe aceeași linie, separate printr-un
+spațiu.
+
+Exemple de elemente inline includ:
+• <a> pentru linkuri,
+• <img> pentru imagini și
+• <span> pentru stilizarea conținutului.
+Comentarii HTML
+
+Comentariile HTML sunt o modalitate de a adăuga note sau observații într-un document
+HTML care nu vor fi vizibile utilizatorului. Comentariile pot fi folosite pentru a explica ce fac anumite
+părți ale codului sau pentru a dezactiva temporar anumite părți ale codului în timpul dezvoltării.
+
+Pentru a crea un comentariu, trebuie doar să încadrați textul pe care doriți să îl comentați între <!-- și --> .
+
+Exemplu:
+<p>Acesta este primul paragraf </p>
+<!--
+<p> Acesta este al doilea paragraf p>
+-->
+În exemplu, veți vedea că doar primul paragraf <p>Acesta este primul paragraf.</p> apare pe
+pagina web, deoarece nu se află în interiorul etichetelor de comentarii. Însă al doilea paragraf <p>Acesta
+este al doilea paragraf.</p> se află în interiorul etichetelor de comentarii, deci este ascuns vederii.
+
+Chiar dacă comentariile nu apar pe pagina web, ele sunt totuși vizibile în codul HTML al paginii.
+Rețineți că motoarele de căutare pot vedea și comentariile HTML, așa că nu este o idee bună să le
+folosiți pentru a ascunde informații pe care nu doriți ca motoarele de căutare sau utilizatorii să le găsească.
+Atribute și valori
+
+Atributele oferă informații suplimentare despre un element, cum ar fi stilul, sursa sau comportamentul
+său. Acestea sunt incluse în eticheta de deschidere și constau dintr-o pereche nume-valoare.
+
+Puteți adăuga atribute la un element HTML utilizând numele atributului, urmat de un semn egal și
+valoarea atributului. Valoarea poate fi inclusă între ghilimele, ghilimele simple sau lăsată neîncadrată în
+ghilimele, în funcție de atributul specific și de valorile pe care le acceptă.
+
+De exemplu, eticheta <img> este utilizată pentru a insera o imagine într-un document HTML. Aceasta
+are mai multe atribute care pot fi utilizate pentru a specifica sursa imaginii, lățimea și înălțimea acesteia,
+descrierea textuală în scopuri de accesibilitate și alte proprietăți.
+
+Cele mai utilizate atribute pentru <img> sunt atributul src , care specifică calea către fișierul imagine, și
+atributul alt , care oferă o descriere textuală a imaginii afișate atunci când imaginea nu poate fi încărcată sau
+vizualizată.
+Atribute și valori
+
+Iată un exemplu: <img src="image.jpg" alt="A detached house">.
+
+Atributele sunt o caracteristică cheie în HTML și pot fi utilizate cu aproape toate
+elementele HTML. Acestea permit dezvoltatorilor să personalizeze comportamentul și aspectul
+elementelor HTML cu o precizie și flexibilitate mai mare. Pot fi utilizate pentru a specifica
+culoarea, dimensiunea și alte proprietăți ale textului, precum și pentru a defini linkuri, formulare
+și elemente multimedia. Având în vedere versatilitatea și importanța lor, atributele sunt un aspect
+fundamental al construirii de pagini web și aplicații.
+Atribute globale vs. atribute specifice elementului
+
+Atributele HTML pot fi clasificate în general în două categorii:
+• atribute globale , care pot fi aplicate oricărui element HTML. Acestea sunt utile pentru o gamă largă
+de scopuri, cum ar fi atribuirea de identificatori unici, adăugarea de clase pentru stilizare sau
+furnizarea de informații suplimentare despre un element.
+Exemplele includ id , class , style și title .
+• atribute specifice elementelor , care sunt specifice anumitor elemente HTML și nu pot fi utilizate cu
+toate elementele. Acestea oferă funcționalitate sau modifică comportamentul anumitor elemente, ceea
+ce le face esențiale pentru utilizarea corectă a acelor elemente.
+Exemplele includ href (specific elementelor <a> ), src (specific elementelor <img> și media)
+și type (specific elementelor <input> ).
+În timp ce atributele globale oferă un set consistent de opțiuni pentru toate elementele, atributele
+specifice elementului vă permit să adaptați comportamentul și aspectul elementelor individuale pentru a se
+potrivi nevoilor dvs.
+Sintaxa HTML: Etichete HTML, Head și Body
+
+Eticheta HTML ( <html> ) este una dintre cele mai importante etichete dintr-un document
+HTML, deoarece definește întreaga pagină web și servește ca punct de plecare pentru fiecare
+document HTML. Aceasta informează browserul că documentul este un document HTML și este prima
+etichetă din fiecare document HTML.
+Eticheta HTML este o etichetă de deschidere care se află la începutul documentului și o
+etichetă de închidere care se află la sfârșit. Tot ce se află în document apare între aceste două etichete
+și nu are niciun atribut asociat.
+Exemplu de etichetă HTML:
+
+Eticheta HTML apare după declarația <!DOCTYPE html> și se deschide cu eticheta <html> .
+Eticheta HTML cuprinde întregul document, iar tot conținutul paginii web apare între etichetele HTML
+de deschidere și de închidere. Eticheta HTML de închidere este notată cu </html> și apare la sfârșitul
+documentului.
+Secțiunea principală (head)
+Secțiunea head este o componentă importantă a unui document HTML care conține informații
+utilizate de browser pentru a afișa și a interacționa cu pagina web . Aceasta poate optimiza pagina web
+pentru motoarele de căutare și poate oferi context suplimentar utilizatorilor. Secțiunea head este ascunsă
+din vederea utilizatorului și nu apare pe pagina web (este o porțiune de fundal a documentului care
+funcționează în culise).
+Unele dintre informațiile cheie care pot fi incluse în secțiunea principală sunt:
+• Titlul paginii , adică titlul paginii web care apare în bara de titlu a browserului și este utilizat de motoarele
+de căutare pentru a afișa titlul paginii în rezultatele căutării.
+Exemplu: <title>My Web Page</title>
+• Metadate , care includ descrierea și cuvintele cheie utilizate de motoarele de căutare pentru a indexa și
+clasifica pagina web, instrucțiuni pentru roboții de căutare web despre cum să indexeze și să afișeze pagina
+web sau informații despre autorul și data creării paginii.
+Exemplu: <meta name="author" content="Peter Jackson">
+• Linkuri către fișiere externe , care includ foi de stil CSS și fișiere JavaScript care adaugă stil și
+funcționalitate paginii web.
+Exemplu: <link rel="stylesheet" href="styles.css"> <script src="script.js"></script>
+• Codarea caracterelor , care îi spune browserului ce set de caractere să utilizeze atunci când afișează pagina
+web.
+Exemplu de secțiune head într-un document HTML:
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Web Page</title>
+<meta name="description" content="This is a website about soccer!">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js"></script>
+</head>
+<!-- The visible content of an HTML document: the body section will go here. -->
+</html>
+Secțiunea body
+Secțiunea „body” este partea unui document HTML care conține conținutul vizibil al paginii web (de
+exemplu, text, imagini, videoclipuri, formulare, linkuri etc.) și este zona în care vă puteți da frâu liber
+creativității cu designul și aspectul.
+În timp ce secțiunea head conține metadate și alte informații care nu sunt vizibile pe pagina web,
+secțiunea body conține conținutul real pe care utilizatorul îl va vedea și cu care va interacționa . Cele două
+secțiuni funcționează împreună în sensul că secțiunea head oferă instrucțiuni browserului despre cum să afișeze
+conținutul din secțiunea body . Fără instrucțiunile furnizate de secțiunea head , browserul poate să nu poată reda
+corect conținutul din secțiunea body .
+Exemple de conținut pe care îl puteți include în secțiunea body sunt:
+• Text : Puteți utiliza titluri, paragrafe și alte elemente de text pentru a prezenta conținutul utilizatorului.
+• Imagini : Puteți include tot felul de imagini, cum ar fi fotografii, pictograme și logo-uri, pentru a face pagina
+web atractivă din punct de vedere vizual.
+• Videoclipuri : Puteți adăuga conținut video, cum ar fi tutoriale și demonstrații de produse, pentru a oferi mai
+multe informații utilizatorului. Videoclipurile sunt o modalitate excelentă de a interacționa cu utilizatorii și de
+a oferi o experiență mai interactivă.
+• Formulare : Puteți crea elemente care permit utilizatorilor să trimită informații, cum ar fi casete de text,
+meniuri derulante și butoane, pentru a colecta date de la utilizator.
+• Linkuri : Puteți include linkuri către alte pagini de pe web sau din cadrul aceluiași site web, facilitând
+navigarea utilizatorului prin conținut.
+• Liste : Puteți utiliza liste pentru a organiza conținutul, inclusiv liste ordonate și neordonate. Listele pot fi
+folosite pentru a împărți conținutul în bucăți mai mici, mai ușor de gestionat, facilitând citirea și înțelegerea de
+către utilizatori.
+• Tabele : Puteți utiliza tabele pentru a prezenta datele într-un mod structurat, cum ar fi informații despre
+prețuri, specificații ale produselor sau programe. Tabelele pot fi personalizate cu culori, chenare și alte
+elemente vizuale pentru a le face mai atractive.
+
+Exemplu al secțiunii body dintr-un document HTML:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test </title>
+<meta name="description" content=“Test TW.">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js"></script>
+</head>
+<body>
+<h1>Curs 2</h1>
+<p>Tehnologii WEB.</p>
+<img src="/resources/media/html-ess-1-7-1-apple-photo.jpg" alt="Apple photo">
+</body>
+</html>
+Interacțiunii dintre HTML, CSS și JavaScript
+
+HTML, CSS și JavaScript sunt cele trei tehnologii principale utilizate în dezvoltarea web pentru a crea
+pagini web dinamice și atractive. Fiecare tehnologie are propriul rol de jucat în crearea unei pagini web complet
+funcționale și atractive din punct de vedere vizual:
+• HTML oferă structura și conținutul de bază al paginii web.
+• CSS definește prezentarea conținutului HTML, inclusiv aspectul,
+culorile și fonturile sale.
+• JavaScript adaugă interactivitate paginii web, făcând-o mai
+atractivă și dinamică pentru utilizator.
+Formatarea textului și organizarea datelor
+
+1. Titluri
+Titlurile HTML sunt elemente speciale dintr-un document HTML care sunt utilizate pentru a defini
+titlul unei secțiuni sau pagini. Titlurile oferă structură și ierarhie unei pagini web, indicând ce secțiuni sunt
+mai importante sau subordonate altora .
+Există șase niveluri de titluri HTML, de la <h1> la <h6> , unde <h1> este cel mai important titlu,
+iar <h6> este cel mai puțin important. Nivelul titlului este determinat de numărul din eticheta titlului. De
+exemplu, <h1> indică cel mai important titlu, în timp ce <h2> indică un subtitlu sub <h1> și așa mai departe.
+Scopul principal al titlurilor este de a oferi accesibilitate și de a îmbunătăți experiența
+utilizatorului , ajutând vizitatorii să înțeleagă conținutul și structura unei pagini web.
+Titlurile sunt importante și pentru motoarele de căutare, deoarece acestea le folosesc pentru a înțelege
+subiectul unei pagini web și a o indexa în consecință. Prin urmare, utilizarea corectă a titlurilor HTML poate
+îmbunătăți optimizarea pentru motoarele de căutare (SEO) a unei pagini web, facilitând identificarea și
+clasificarea conținutului relevant de către motoarele de căutare.
+Este important să folosiți titlurile în mod corespunzător și să nu le folosiți greșit în scopuri stilistice.
+Conținutul titlurilor ar trebui să reflecte cu acuratețe conținutul pe care îl preced și nu ar trebui să fie omise sau
+utilizate greșit pentru a crea un efect vizual.
+De exemplu, nu folosiți <h3> ca subtitlu pentru un <h1> fără a include un <h2> între ele. Acest lucru
+poate fi confuz pentru utilizatori și motoarele de căutare.
+Utilizarea corectă a titlurilor HTML este un element important al dezvoltării web și poate contribui la
+creșterea accesibilității și a ușurinței de utilizare a site-urilor web.
+Exemplu despre cum se utilizează titlurile în HTML5:
+Dimensiunile titlurilor
+În HTML, dimensiunea titlurilor este definită de etichetele HTML de la <h1> la <h6> , dar dimensiunea
+reală de afișare poate varia în funcție de browser și de dispozitivul utilizat pentru vizualizarea paginii. În mod
+implicit, dimensiunea fontului titlurilor este determinată de foaia de stil implicită a browserului sau de foile
+de stil definite de utilizator.
+De obicei, dimensiunea implicită a fontului pentru diferitele niveluri de titluri în majoritatea browserelor
+web este următoarea:
+<h1> : 32px
+<h2> : 24px
+<h3> : 18px
+<h4> : 16px
+<h5> : 14px
+<h6> : 12px
+Deși dimensiunea titlului poate fi ajustată folosind CSS, în general este recomandat să utilizați
+dimensiunile implicite furnizate de HTML5, deoarece acest lucru asigură consecvența titlurilor pe diferite
+browsere și dispozitive.
+Niveluri de titluri
+Deci, știți deja că titlurile sunt definite folosind șase etichete diferite, fiecare reprezentând un nivel diferit
+al titlului. De asemenea, știți că dimensiunea titlului este determinată de nivelul etichetei titlului, unde <h1> este
+cea mai mare, iar <h6> este cea mai mica.
+Conținutul care poate fi inclus între titluri poate include orice text sau alte elemente HTML relevante pentru
+conținutul paginii. De exemplu, un titlu <h1> ar putea fi utilizat pentru titlul paginii , în timp ce titlurile <h2> ar putea fi
+utilizate pentru secțiunile principale ale paginii, cu text relevant sau alte elemente HTML incluse între fiecare titlu pentru a
+oferi informații mai specifice.
+Iată o defalcare a diferitelor niveluri de titluri HTML5:
+• <h1> : Cel mai mare și mai important titlu de pe pagină. Acesta este de obicei folosit pentru titlul paginii sau pentru titlul
+principal.
+• <h2> : Un subtitlu al lui <h1> . Acesta este adesea folosit pentru titlurile secțiunilor principale de pe o pagină.
+• <h3> : Un subtitlu al lui <h2> . Acesta este adesea folosit pentru titlurile subsecțiunilor sau pentru titlurile principale mai
+puțin importante.
+• <h4> : Un subtitlu al lui <h3> . Acesta este adesea folosit pentru titlurile subsecțiunilor sau pentru titlurile principale mai
+puțin importante.
+• <h5> : Un subtitlu al lui <h4> . Acesta este adesea folosit pentru titlurile subsecțiunilor sau pentru titlurile principale mai
+puțin importante.
+• <h6> : Cel mai mic și mai puțin important titlu de pe pagină. Acesta este adesea folosit pentru titluri sau subtitluri
+minore.
+Este important să rețineți că dimensiunea titlului nu corespunde întotdeauna nivelului său de importanță. În schimb, nivelul
+etichetei titlului ar trebui utilizat pentru a transmite ierarhia conținutului de pe pagină.
+2. Eticheta <p> și formatarea Inline
+
+În HTML, paragrafele sunt definite folosind eticheta <p> .
+Eticheta <p> indică faptul că textul inclus trebuie tratat ca un paragraf separat , cu o linie goală inserată
+deasupra și dedesubtul textului. Eticheta <p> este un element la nivel de block , ceea ce înseamnă că ocupă
+(O casetă pe o pagină web care conține și organizează alte elemente precum text sau
+întreaga lățime a containerului 
+imagini.) în care este plasat.
+Pentru a crea un paragraf, puteți utiliza eticheta de deschidere <p> înainte de text și eticheta de
+închidere </p> după textul pe care doriți să îl afișați ca paragraf.
+De exemplu, pentru a crea un paragraf care spune „Salut, lume!”, ai scrie:
+<p> Salut, lume!” </p>
+Formatarea textului cu etichete inline
+
+HTML oferă mai multe etichete inline care pot fi utilizate pentru a formata textul dintr-un paragraf. Iată
+câteva dintre cele mai comune etichete care pot fi utilizate pentru formatarea textului dintr-un paragraf:
+Eticheta <strong> este utilizată pentru a îngroșa textul inclus . De exemplu, pentru a îngroșa cuvântul
+„important” într-un paragraf, ar trebui să scrieți:
+<p>This is some <strong>important</strong> text.</p>
+Eticheta <em> este utilizată pentru a scrie textul inclus în paragraf cu caractere italice . De exemplu,
+pentru a scrie cuvântul „accent” cu caractere italice într-un paragraf, ar trebui să scrieți:
+<p>This is some text that requires <em>accent</em>.</p>
+sublinia textul inclus. De exemplu, pentru a sublinia cuvântul
+Eticheta <u> este utilizată pentru a 
+„subliniat” într-un paragraf, ați scrie:
+<p>This is some text that needs to be <u>underlined</u>.</p>
+Eticheta <sup> este utilizată pentru a plasa textul inclus ca exponent (puțin deasupra textului obișnuit).
+De exemplu, pentru a scrie numere ordinale, cum ar fi primul , al doilea și al treilea, în următoarea formă:
+st , nd rd ” 
+2și 3 , ați scrie:
+„1
+
+Eticheta <sub> este utilizată pentru a plasa indicele textului inclus (puțin sub textul obișnuit). De
+exemplu, pentru a scrie o formulă chimică pentru apă, ați scrie:
+
+Eticheta <del> este utilizată pentru a tăia textul cu o linie , indicând faptul că acesta a fost șters sau nu
+mai este relevant. De exemplu:
+Citate: etichetele <q> și <blockquote>
+Când doriți să adăugați un citat în documentul HTML, puteți utiliza două etichete:
+• eticheta <q> și
+• eticheta <blockquote>.
+Eticheta <q> este utilizată pentru citate scurte, în linie (de obicei, doar câteva cuvinte sau o frază scurtă).
+Adesea este redată cu ghilimele în jurul textului. De exemplu:
+
+Eticheta <blockquote> este utilizată pentru citate bloc mai lungi.
+Este adesea folosită pentru a cita paragrafe întregi sau secțiuni de text
+și este de obicei redată cu indentare sau un font diferit pentru a o
+diferenția de textul înconjurător. De exemplu:
+Sfârșituri de linie și linii orizontale
+Sfârșiturile de linie și liniile orizontale sunt elemente HTML simple care pot fi utilizate pentru a crea
+elemente vizuale în cadrul unei pagini web. Eticheta <br> creează o linie nouă de text , în timp ce
+eticheta <hr> creează o linie orizontală .
+În HTML, o întrerupere de linie este un element simplu care creează o nouă linie de text în cadrul
+unui element la nivel de block . Aceasta este de obicei reprezentată de eticheta <br> și este utilizată pentru a
+separa linii de text, cum ar fi în poezie sau versuri de cântece.
+Pentru a adăuga o sfârșit de linie, introduceți eticheta <br> oriunde doriți să creați o linie nouă de text.
+Este important de reținut că eticheta <br> este un element gol, ceea ce înseamnă că nu necesită o etichetă de
+închidere.
+De exemplu, următorul cod creează două rânduri de text cu o întrerupere de rând între ele:
+Reguli orizontale
+O riglă orizontală este un element vizual care creează o linie orizontală pe lățimea unui element la
+nivel de block. Este de obicei utilizată pentru a separa secțiuni de conținut dintr-o pagină.
+Pentru a adăuga o riglă orizontală, introduceți eticheta <hr> oriunde doriți să adăugați o linie.
+Elementul <hr> se închide automat și nu necesită o etichetă de închidere.
+De exemplu, următorul cod creează o regulă orizontală:
+Eticheta <code> este utilizată pentru a afișa fragmente de cod inline. Când este utilizat, textul din
+interiorul etichetei <code> este afișat cu font monospațiat , ceea ce îl face să iasă în evidență față de textul din
+jur. Acest lucru este util atunci când doriți să afișați cod în mijlocul unui paragraf.
+Eticheta <pre>. Pentru a afișa text preformatat, cum ar fi cod de calculator, poezie sau versuri de
+cântece în HTML, puteți utiliza eticheta <pre> . De exemplu, următorul text formatat:
+
+Eticheta <pre> păstrează toate spațiile albe și afișează textul cu font monospațiat , ceea ce o face
+deosebit de utilă pentru afișarea exemplelor de cod. De exemplu, următorul cod HTML:
+Etichetele <kbd> și <samp>
+Pe lângă etichetele <code> și <pre>, există și alte etichete HTML care pot fi utilizate pentru a formata și
+afișa codul și textul preformatat, cum ar fi <kbd> pentru afișarea datelor de intrare de la
+tastatură și <samp> pentru afișarea unui exemplu de ieșire .
+Textul inclus în eticheta <kbd> este de obicei afișat cu un font monospațial, uneori într-o casetă
+dreptunghiulară, ceea ce indică faptul că reprezintă o intrare de la tastatură. De exemplu, codul <kbd>Ctrl +
+C</kbd> ar fi afișat ca Ctrl + C (un font monospațial, poate inclus într-o casetă).
+Eticheta <samp> este utilizată pentru a indica un exemplu de ieșire într-o pagină web. Când textul este
+inclus în eticheta <samp> , acesta este de obicei afișat cu font monospațial și accentuat într-un fel, cum ar fi
+îngroșat sau cursiv, pentru a indica faptul că reprezintă un exemplu de ieșire.
+De exemplu, codul <samp>Nume utilizator sau parolă nevalidă.<samp> ar fi afișat ca Nume de
+utilizator sau parolă nevalide. (un font monospațial care este accentuat într-un fel).
+Atât etichetele <kbd>, cât și <samp> sunt utile pentru indicarea anumitor tipuri de conținut dintr-o
+pagină web și pot contribui la creșterea accesibilității și la o citire mai ușoară pentru utilizatori.
+Liste
+Listele sunt o parte fundamentală a HTML și sunt utilizate pentru a prezenta informațiile într-un mod
+organizat și structurat. Acestea vă permit să grupați împreună un set de elemente sau informații corelate .
+Există trei tipuri de liste în HTML:
+• liste neordonate,
+• liste ordonate și
+• liste de definiții.
+ Liste neordonate sunt create cu eticheta <ul> și sunt folosite pentru a afișa o listă de elemente fără o
+ordine anume . Fiecare element din listă este reprezentat de eticheta <li> .
+ Listele ordonate sunt create cu eticheta <ol> și sunt folosite pentru a afișa o listă de elemente într-o
+anumită ordine . La fel ca în cazul listelor neordonate, fiecare element dintr-o listă ordonată este reprezentat
+de eticheta <li> .
+
+ Listele de definiții sunt create cu eticheta <dl> și sunt folosite pentru a afișa o listă de termeni și definițiile
+acestora . Fiecare termen este reprezentat de eticheta <dt> , iar fiecare definiție este reprezentată de
+eticheta <dd> .
+HTML vă permite să combinam liste în alte liste. Aceasta înseamnă că puteți crea o ierarhie de
+informații , în care sublistele sunt indentate pentru a arăta că aparțin unui element din lista părinte.
+Pentru a crea o listă combinata, pur și simplu plasați un element <ul> sau <ol> nou într-un
+element <li> existent . De exemplu:
+Tabelele HTML sunt folosite pentru afișarea datelor pe rânduri și coloane. Sunt o modalitate excelentă
+de a prezenta datele într-un mod structurat și organizat.
+Tabelele sunt alcătuite din rânduri și coloane, iar fiecare intersecție dintre un rând și o coloană se
+numește celulă . Fiecare celulă dintr-un tabel poate conține text, imagini sau alte elemente HTML.
+Pentru a crea un tabel de bază, trebuie să utilizați trei elemente: <table> , <tr> și <td> .
+Elementul <table> definește întregul tabel, iar elementul <tr> definește un rând din tabel.
+Elementul <td> definește o celulă dintr-un rând.
+Iată un exemplu de tabel simplu cu două rânduri și două coloane:
+De asemenea, puteți adăuga rânduri de antet în tabel folosind elementul <th> .
+Elementul <th> funcționează la fel ca elementul <td> , dar este folosit pentru a defini celulele antetului.
+Celulele antetului sunt adesea afișate cu caractere aldine și centrate în mod implicit.
+Iată un exemplu de tabel cu un rând de antet:
+În tabelele HTML, este posibil să îmbinați două sau mai multe celule dintr-un rând sau o coloană pentru a
+crea o celulă mai mare care se întinde pe mai multe rânduri sau coloane. Acest lucru poate fi util pentru
+crearea de titluri, subtitluri sau celule de date care trebuie să se întindă pe mai multe coloane sau rânduri.
+Puteți îmbina celule dintr-un tabel folosind atributele colspan și rowspan.
+Atributul colspan specifică câte coloane ar trebui să se întindă o celulă (îmbinează celulele pe orizontală), în
+timp ce atributul rowspan specifică câte rânduri ar trebui să se întindă o celulă (îmbinează celulele pe
+verticală).
+Iată un exemplu de tabel cu celule îmbinate:
+
+Iată ce se întâmplă în codul nostru HTML. Prima celulă din primul
+rând are o suprafață de rând de 2 , ceea ce înseamnă că se întinde pe
+două rânduri. Aceasta duce la îmbinarea primei celule din al doilea
+rând cu prima celulă din primul rând.
+Al doilea rând are două celule cu un colspan de 2 , ceea ce înseamnă
+că fiecare dintre aceste celule se întinde pe două coloane. Aceasta
+duce la faptul că aceste celule se întind pe coloanele „Vechi” și
+„Nou” din tabel.
+Elementul <caption> este utilizat pentru a adăuga un titlu sau o legendă unui tabel HTML. Este o
+etichetă container care trebuie plasată imediat după eticheta de deschidere <table> și înaintea oricăror alte
+elemente ale tabelului.
+De exemplu, să presupunem că aveți un tabel care arată prețurile diferitelor produse. Puteți utiliza
+elementul <caption> pentru a adăuga un titlu tabelului, cum ar fi „Prețuri produse”:
+
+Prin utilizarea elementului <caption> , puteți oferi
+utilizatorilor un scurt rezumat sau o descriere a
+conținutului tabelului, facilitând astfel înțelegerea și
+interpretarea datelor prezentate în tabel.
+Eticheta <table> și atributele sale
+Eticheta HTML <table> vă ajută să creați tabele pe o pagină web. Eticheta <table> din HTML are
+câteva atribute pe care le puteți utiliza pentru a schimba modul în care apar tabelele. Puteți adăuga aceste atribute
+la eticheta <table> de deschidere și vă permit să controlați aspecte precum dimensiunea și aspectul tabelului,
+precum și culoarea și stilul bordurii celulelor.
+Unele dintre atributele cele mai frecvent utilizate includ:
+• border , care setează dimensiunea chenarului tabelului (depreciat în HTML 5, ar trebui utilizat CSS în
+schimb).
+• cellspacing , care setează spațiul dintre celulele din tabel (depreciat în HTML 5, ar trebui utilizat CSS în
+schimb).
+• cellpadding , care setează spațiul dintre conținutul celulei și marginea celulei (depreciat în HTML 5, ar trebui
+utilizat CSS în schimb).
+• width , care setează lățimea tabelului (depreciată în HTML 5, ar trebui utilizată CSS în schimb).
+• height , care setează înălțimea tabelului.
+• align , care setează alinierea orizontală a tabelului (depreciată în HTML 5, ar trebui utilizat CSS în schimb).
+• bgcolor , care setează culoarea de fundal a tabelului (depreciată în HTML 5, ar trebui folosit CSS în schimb).
+Eticheta <img> și atributele sale
+
+Imaginile sunt un element esențial al oricărui site web. Ele nu numai că adaugă interes vizual, dar pot
+ajuta și la comunicarea informațiilor către utilizatori. În HTML, puteți adăuga cu ușurință imagini pe pagina dvs.
+web folosind eticheta <img> .
+Eticheta <img> este un element gol, ceea ce înseamnă că nu are o etichetă de închidere . În schimb,
+toate atributele sunt incluse în eticheta de deschidere.
+ale etichetei <img> sunt <src> , <alt> , <width> și <height> .
+Cele mai importante atribute 
+• Atributul src
+Atributul src specifică adresa URL sursă a imaginii care ar trebui afișată.
+De exemplu: src="https://edube.org/uploads/media/default/0001/03/mountain_landscape.jpg".
+• Atributul alt
+Atributul alt oferă text alternativ care va fi afișat dacă imaginea nu poate fi încărcată. Este folosit și de
+cititoarele de ecran pentru utilizatorii cu deficiențe de vedere.
+De exemplu: alt="Mountain landscape".
+• Atributul width (lățime)
+Atributul width specifică lățimea imaginii. Aceasta poate fi definită în pixeli (de
+exemplu, width="340") sau ca procent din lățimea elementului care o conține (de exemplu, width="50%").
+• Atributul height (înălțime)
+Similar cu width, height specifică înălțimea imaginii în pixeli sau ca procent din containerul său
+părinte. De exemplu: height="250"sau height="50%".
+Exemplu de etichetă <img> cu toate cele patru atribute în acțiune:
+
+Când browserul întâlnește eticheta <img> , acesta încarcă imaginea de la adresa URL sursă specificată,
+afișează textul alternativ, dacă este necesar, și ajustează lățimea și înălțimea imaginii în funcție de atributele
+furnizate. Acest lucru duce la afișarea imaginii pe pagina web cu dimensiunile și descrierea specificate.
+Formate de imagine
+Înainte de a insera o imagine în pagina web, este esențial să alegeți formatul de imagine potrivit. Cele mai comune
+formate de imagine utilizate pe web sunt: JPEG, PNG și GIF-uri.
+
+JPEG este utilizat pentru fotografii, în timp ce PNG este cel mai potrivit pentru grafică și imagini cu fundaluri
+transparente. GIF este utilizat în mod obișnuit pentru animații și grafică simplă.
+
+Deși JPEG, PNG și GIF sunt cele mai utilizate formate de imagine, rețineți
+că există și alte formate de imagine disponibile, cum ar fi SVG (Scalable Vector
+Graphics) și WebP.
+SVG este un format vectorial , ideal pentru imaginile care trebuie scalate
+fără a pierde din calitate , în timp ce WebP este un format relativ nou care oferă o
+compresie mai bună și dimensiuni de fișier mai mici decât JPEG și PNG. Cu toate
+acestea, nu toate browserele web acceptă aceste formate, așa că este important să
+verificați compatibilitatea înainte de a le utiliza pe site-ul dvs. web.
+Pentru a verifica compatibilitatea diferitelor formate de imagine, puteți
+consulta documentația browserelor web pe care le vizați. Majoritatea browserelor
+web populare, cum ar fi Chrome, Firefox, Safari și Edge, au documentație oficială
+care listează formatele de fișiere acceptate și versiunile acestora.
+Locația imaginii
+Când adăugați imagini pe site-ul dvs. web, este important să luați în considerare locația fișierului de imagine.
+Dacă imaginea este stocată pe computer, va trebui să o încărcați pe serverul site-ului dvs. web. Dacă fișierul de imagine nu
+se află în același director ca și fișierul HTML, va trebui să furnizați o cale relativă sau absolută către fișierul de imagine.
+
+Odată ce imaginea se află în locația corectă, puteți utiliza eticheta <img> și atributul src pentru a o insera în
+pagina web. O cale relativă este o cale care pornește din directorul fișierului HTML . De exemplu:
+
+<img src="images/picture.jpg" alt="A picture">
+
+În acest exemplu, calea relativă indică un fișier imagine ( picture.jpg ) dintr-un subdirector numit images , care se
+află în același director ca și fișierul HTML.
+
+O cale absolută este o cale care pornește din directorul rădăcină al site-ului web . De exemplu:
+
+<img src="https://example.com/images/picture.jpg" alt="A picture">
+
+În acest exemplu, calea absolută indică un fișier imagine ( picture.jpg ) găzduit pe serverul web la adresa URL
+„ https://example.com/images/pic.jpg ”.
+Imagini responsive: atributele srcset și sizes
+
+Pe măsură ce tot mai mulți oameni folosesc dispozitive mobile pentru a naviga pe web, crearea de imagini responsive
+a devenit un aspect crucial al designului web. Asigurarea faptului că imaginile arată bine pe ecrane de diferite dimensiuni poate
+îmbunătăți considerabil experiența utilizatorului și poate crește interacțiunea.
+
+Pentru a crea imagini responsive în HTML, puteți utiliza atributele srcset și sizes .
+
+• Atributul srcset
+
+Atributul srcset vă permite să specificați o listă de fișiere imagine cu rezoluții, dimensiuni și formate diferite .
+Când browserul încarcă imaginea, va selecta cea mai potrivită imagine din listă, în funcție de dimensiunea ecranului și de
+capacitățile dispozitivului.
+
+• Atributul sizes
+
+Atributul sizes specifică dimensiunea containerului de imagine în care va fi afișată imaginea. Cu alte cuvinte, îi
+spune browserului cât spațiu pe ecran va ocupa imaginea pe diferite dispozitive.
+
+Folosind srcset și sizes împreună, puteți crea imagini optimizate pentru diferite dispozitive și dimensiuni de
+ecran .
+De exemplu:
+<img src=sunflowers.jpg"
+alt="Sunflowers in the sunset"
+srcset="sunflowers-small.jpg 480w,
+sunflowers-medium.jpg 800w,
+sunflowers-large.jpg 1200w"
+sizes="(max-width: 480px) 95vw,
+(max-width: 800px) 45vw,
+30vw">
+Codul setează sursa imaginii la sunflowers.jpg ,
+Atributul alt oferă următorul text alternativ pentru imagine: „Floarea-soarelui la apus”,
+Atributul srcset oferă trei versiuni diferite ale imaginii cu dimensiuni și rezoluții diferite (480, 800 și 1200 pixeli lățime),
+Atributul ` sizes` definește lățimea imaginii la diferite puncte de întrerupere. În exemplul nostru, imaginea va ocupa până la
+95% din lățimea viewport-ului dacă acesta are o lățime mai mică de 480px, 45% dacă are o lățime între 480px și 800px și
+30% dacă are o lățime mai mare de 800px.
+Când pagina este încărcată, browserul va alege cea mai potrivită imagine din atributul srcset , în funcție de dimensiunea
+ecranului și de capacitățile dispozitivului.
+Este important de menționat că, deși HTML poate oferi un nivel de bază de responsibilitate pentru imagini, tehnici mai
+avansate pot fi obținute prin CSS, pe care le vom acoperi în a doua parte a seriei HTML & CSS Essentials.
+Alte atribute specifice imaginii: border , hspace , vspace și align
+
+Pe lângă atributele src , alt , width și height utilizate în mod obișnuit pentru imagini în HTML, există și alte atribute
+care au fost folosite în mod tradițional pentru a modifica afișarea unei imagini. Deși aceste atribute oferă o modalitate de a
+manipula direct prezentarea imaginii în cadrul markup-ului HTML, este important să ne amintim că practicile moderne de
+dezvoltare web favorizează CSS pentru astfel de ajustări vizuale, pentru a asigura un cod mai curat și o separare a conținutului
+de prezentare.
+
+În această secțiune, vom explora pe scurt aceste atribute tradiționale, recunoscând rolul lor în evoluția HTML-ului,
+subliniind totodată trecerea către CSS pentru obținerea unor rezultate similare.
+
+Atributul border specifică lățimea chenarului din jurul imaginii. De exemplu:
+
+<img src="example.jpg" alt="Example image" border="2">
+
+Atributele hspace și vspace specifică spațiul orizontal și respectiv vertical din jurul imaginii. De exemplu:
+
+<img src="example.jpg" alt="Example image" hspace="10" vspace="10">
+
+Atributul align permite specificarea alinierii unei imagini în raport cu conținutul înconjurător, cu valori
+precum left , right și center . De exemplu: <img src="example.jpg" alt="Example image" align="left">
+
+Deși aceste atribute oferă modalități simple de a ajusta prezentarea imaginilor, practicile HTML moderne utilizează
+CSS pentru a obține aceste efecte. Această abordare sporește flexibilitatea stilizării, menține HTML-ul mai curat și separă
+prezentarea de conținut. Mai târziu în curs, precum și în partea Web Dev Essentials: CSS , veți învăța cum să utilizați CSS
+eficient pentru a înlocui aceste atribute depreciate și pentru a aplica cele mai bune practici pentru designul web.
+Hyperlinkuri
+Hyperlinkurile (linkuri ancoră sau, pur și simplu, linkuri) sunt o parte fundamentală a webului. Sunt elemente pe care se
+poate da clic și care permit utilizatorilor să navigheze între diferite pagini de pe același site web sau să facă legătura
+către alte site-uri web și resurse online .
+
+Eticheta <a> și atributul href
+
+În HTML, puteți crea cu ușurință linkuri folosind eticheta <a> , care înseamnă „ancoră”.
+
+Eticheta <a> se bazează în principal pe atributul href , care specifică destinația linkului . Această destinație
+poate fi o adresă URL absolută (cum ar fi https://www.example.com/) sau o adresă URL relativă (de exemplu about.html,
+dacă pagina țintă se află în același director ca și pagina curentă).
+
+Pentru a adăuga un text de link vizibil, pe care se poate da clic, în HTML, trebuie să îl plasați între eticheta <a> de
+deschidere și eticheta </a> de închidere . Acest text este cel afișat pe pagina web.
+
+De exemplu, următorul cod va crea un hyperlink cu textul „ Vizitați site-ul nostru web ” care indică adresa URL
+„ https://www.example.com ”:
+Linkuri interne
+
+Există două tipuri de hyperlinkuri: interne și externe . Linkurile interne sunt folosite pentru a naviga în cadrul
+aceluiași site web sau pagină web, în timp ce linkurile externe sunt folosite pentru a naviga către alte site-uri web sau pagini
+web. Pentru a crea un link intern, puteți utiliza fie un URL absolut, fie unul relativ pentru a specifica URL-ul paginii sau
+secțiunii aceluiași site web la care doriți să creați link. De exemplu:
+
+<a href="https://example.com/page.html">Link to Page</a>– adresa completă a paginii (URL absolut).
+
+<a href="/page.html">Link to Page</a>– adresa URL relativă care include doar calea către pagină și creează un
+link către fișierul page.html din același director ca și pagina curentă.
+
+Legături de ancorare
+
+De asemenea, puteți crea linkuri care indică anumite secțiuni dintr-o pagină web . Astfel de linkuri sunt uneori
+numite linkuri ancoră sau linkuri de salt. Pentru a crea un link de acest gen, veți avea nevoie de atributul id și de simbolul # .
+Iată cum se face:
+
+Adăugați atributul id la un element HTML de pe pagina la care doriți să creați un link. De exemplu, dacă doriți să
+creați un link către un element <h2> cu conținutul „ Secțiunea 1 ”, puteți face următoarele <h2 id="section-
+1">Section 1</h2>:. Apoi, creați un link care indică această ancoră adăugând simbolul # urmat de id la atributul href al unei
+etichete <a> , astfel: <a href="#section-1">Go to Section 1</a>.
+
+Când un utilizator dă clic pe acest link, va fi direcționat către secțiunea paginii cu id="section-1" . Este important de
+reținut că valoarea id trebuie să fie unică în cadrul paginii și este o practică bună să se utilizeze nume descriptive care să indice
+conținutul secțiunii.
+Linkuri externe
+
+Pentru a crea un link extern, trebuie să specificați adresa URL completă a paginii, site-ului web sau resursei la care doriți să
+creați link. De exemplu:
+
+<a href="https://example.com">Visit Example.com</a>
+
+Este important de reținut că, deoarece linkurile externe îndepărtează utilizatorii de site-ul dvs. web, trebuie să vă
+asigurați că acestea se deschid într-o fereastră sau filă nouă folosind atributul target . De exemplu:
+
+<a href="https://www.example.com" target="_blank">Visit Example Website</a>
+
+Atributul target="_blank" va deschide pagina linkată într-o filă sau fereastră nouă , permițând utilizatorilor să
+revină cu ușurință pe site-ul dvs. web. Atributul target="_self" va deschide linkul în aceeași fereastră.
+
+Este important de reținut că linkurile externe pot avea implicații de securitate pentru site-ul dvs. web. Trebuie să
+fiți precauți atunci când faceți linkuri către site-uri externe și să vă asigurați că acestea sunt surse de încredere. În plus, este
+o practică bună să informați utilizatorii când un link este extern, utilizând o mică pictogramă sau o etichetă text lângă link.
+Linkuri prin e-mail și telefon
+
+Pe lângă linkurile interne și externe, HTML vă permite și să creați linkuri pentru e-mailuri și numere de telefon.
+
+Pentru a crea un link de e-mail, puteți utiliza protocolul mailto urmat de adresa de e-mail la care doriți să creați
+linkul. Iată un exemplu:
+
+Când un utilizator dă clic pe acest link, clientul său de e-mail implicit se va deschide cu câmpul „Către” precompletat
+cu adresa de e-mail specificată în link.
+
+În mod similar, pentru a crea o legătură telefonică, puteți utiliza telprotocolul urmat de numărul de telefon la care
+doriți să vă conectați. Iată un exemplu:
+
+Când un utilizator dă clic pe acest link pe un dispozitiv mobil, se va deschide aplicația implicită pentru telefon și se
+va apela automat numărul. Pe un dispozitiv desktop, clicul pe link nu va face de obicei nimic, deoarece dispozitivele desktop
+nu au de obicei funcții pentru telefoane.
+Alte atribute specifice linkurilor: download , rel și title
+
+Pe lângă atributele href și target utilizate în mod obișnuit , există și alte atribute specifice linkurilor care pot fi
+utilizate pentru a îmbunătăți funcționalitatea și experiența utilizatorului hyperlinkurilor. Iată trei
+exemple: download , rel și title.
+
+Atributul „download” specifică faptul că destinația linkului ar trebui descărcată, nu navigată către ea. Valoarea
+atributului poate fi utilizată ca nume de fișier implicit sub care va fi salvat fișierul descărcat.
+
+De exemplu: <a href="https://example.com/document.pdf" download="my-document.pdf">Download my document</a
+
+Atributul rel specifică relația dintre documentul curent și documentul țintă. Acesta poate fi folosit pentru a
+indica, printre altele, faptul că documentul țintă este o foaie de stil, un document părinte sau o parte a unei serii.
+
+De exemplu: <a href="https://example.com/stylesheet.css" rel="stylesheet">Link to stylesheet</a>
+
+Atributul title oferă informații suplimentare despre un element, îmbunătățind înțelegerea și interacțiunea
+utilizatorului cu conținutul web. Atributul oferă detalii suplimentare despre destinația sau scopul hyperlinkului. Aceste
+informații apar de obicei ca un tooltip, o mică casetă pop-up, atunci când utilizatorul plasează mouse-ul peste link, oferindu-
+le utilizatorilor o previzualizare a ceea ce se așteaptă înainte de a face clic.
+
+De exemplu: <p>Go to <a href="https://example.com/about" title="Visit our About section.">our website</a>
+for more information.</p>
+Formularele HTML
+Un formular HTML este o secțiune a unei pagini web care conține elemente interactive, cum ar fi câmpuri de
+introducere, casete de selectare, butoane radio și butoane. Aceste elemente permit utilizatorilor să introducă date și să
+interacționeze cu pagina web . Deși o utilizare obișnuită a formularelor este trimiterea de date către un server pentru
+procesare, acestea pot servi și altor scopuri.
+
+Este utilizat în mod obișnuit în diverse scopuri, inclusiv colectarea de informații despre utilizatori, efectuarea de
+sondaje și permiterea utilizatorilor să se conecteze sau să își creeze conturi.
+
+De exemplu, o pagină de conectare conține de obicei un formular în care utilizatorii își introduc datele de
+autentificare (nume de utilizator și parolă) pentru a accesa zonele restricționate ale unui site web. În mod similar, o pagină de
+înscriere include un formular în care noii utilizatori se pot înregistra furnizând informațiile lor, cum ar fi numele de utilizator,
+adresa de e-mail și parola.
+
+Formularele sunt folosite și pentru înscrierea la newsletter , unde vizitatorii se pot abona introducând adresele lor
+de e-mail. Formularele de plată permit utilizatorilor să introducă detaliile de plată, cum ar fi informațiile despre cardul de
+credit, pentru a finaliza tranzacțiile online în siguranță.
+
+În plus, formularele pot fi utilizate pentru instrumente interactive precum calculatoare , cum ar fi un calculator
+IMC, unde utilizatorii își introduc greutatea și înălțimea pentru a calcula indicele de masă corporală direct pe pagina web, fără
+interacțiunea serverului.
+Elementul <form>
+
+Pentru a crea un formular, trebuie să utilizați elementul <form> . În interiorul elementului <form> , puteți adăuga
+diverse câmpuri de introducere a datelor, cum ar fi introducerea de text , butoane radio , casete de selectare și multe altele.
+
+Elementul <form> include de obicei:
+
+- atributul action , care specifică adresa URL a scriptului sau endpoint-ului de pe server care va procesa datele
+formularului. Atributul action este adăugat elementului <form> . Când formularul este trimis, browserul va trimite datele
+formularului la adresa URL specificată.
+
+- atributul method , care specifică metoda HTTP (GET sau POST) utilizată la trimiterea datelor din formular către
+server . Atributul method este adăugat elementului <form> , iar valoarea sa este setată fie la „GET” , fie la „POST” .
+
+Metodele GET și POST
+
+Pentru a permite utilizatorilor să trimită date din formular, trebuie să alegeți modul în care sunt trimise datele.
+Aceasta se numește metoda HTTP.
+
+Metoda HTTP, cunoscută și sub denumirea de metodă de solicitare HTTP , este un verb care indică acțiunea
+dorită care trebuie efectuată asupra unei resurse identificate printr-un URL. Este ca un tip de cuvânt de acțiune care spune
+ce trebuie făcut cu informațiile.
+
+HTTP definește mai multe metode, fiecare cu un scop specific. Cele mai comune două metode pentru trimiterea
+datelor din formulare sunt GET și POST.
+Metoda GET
+
+Metoda GET trimite datele formularului în șirul de interogare URL. Aceasta înseamnă că datele formularului
+sunt vizibile în bara de adrese a browserului și pot fi adăugate la favorite sau partajate cu alte persoane.
+
+Este folosit în mod obișnuit pentru formulare simple care nu necesită multă securitate (datele sunt vizibile în URL,
+deci nu este cea mai bună metodă pentru trimiterea de date sensibile).
+
+De exemplu, dacă un utilizator trimite un formular cu numele „John” și adresa de e-mail „john@example.com”,
+adresa URL va arăta astfel: https://example.com/form.php?name=John&email=john%40example.com .
+
+Metoda POST
+
+Metoda POST trimite datele formularului în corpul cererii HTTP . Aceasta înseamnă că datele formularului nu
+sunt vizibile în URL sau în bara de adrese a browserului.
+
+Este utilizat în mod obișnuit pentru formulare mai complexe care necesită o securitate sporită, cum ar fi formularele
+de conectare sau formularele care conțin informații sensibile. Cu toate acestea, datele formularului nu pot fi salvate în favorite,
+partajate sau memorate în cache de către browser, așa cum este cazul metodei GET.
+Elementul <input> este utilizat pentru a crea diferite tipuri de câmpuri de introducere a datelor despre utilizatori.
+Acesta poate fi configurat să accepte diverse tipuri de date, cum ar fi text, parole, numere și e-mailuri, printre altele, prin
+utilizarea atributului type .
+
+Atributul type definește funcționalitatea și controlul datelor de intrare afișate utilizatorului, permițând formate specifice de
+date și validări pentru fiecare câmp. Cu alte cuvinte, determină tipul câmpului de intrare și oferă funcționalități de
+validare încorporate pentru a se asigura că datele de intrare corespund criteriilor de format dorite .
+
+Tipurile comune de intrare ( valorile atributelor de tip ) includ:
+• text – un câmp de introducere a textului pe o singură linie, utilizat pentru introducerea de text scurt, cum ar fi nume,
+adrese de e-mail etc.
+• e-mail – un câmp de introducere a textului pe o singură linie, utilizat special pentru introducerea și validarea adreselor de
+e-mail (browserul aplică validarea încorporată pentru a se asigura că datele introduse de utilizator sunt în formatul corect
+de e-mail)
+• url – un câmp de introducere a textului pe o singură linie, utilizat special pentru introducerea, validarea și acceptarea
+doar a adreselor URL formatate corect;
+• număr – un câmp de introducere pe o singură linie folosit special pentru validarea și acceptarea doar a numerelor;
+• parolă – un câmp de introducere a textului pe o singură linie care maschează caracterele introduse pentru a menține
+confidențialitatea parolei;
+• casetă de selectare – o casetă de selectare care poate fi bifată sau dezactivată, permite utilizatorilor să selecteze una sau
+mai multe opțiuni dintr-o listă;
+• radio – un buton radio care aparține unui grup de butoane radio (se poate selecta doar unul odată)
+• submit – un buton care trimite datele formularului către server, așa cum este specificat de atributele action și method ;
+• resetare – un buton care șterge datele formularului și le resetează la valorile inițiale.
+Elementul <label> joacă un rol vital în crearea de formulare accesibile și ușor de utilizat. Acesta oferă o descriere
+textuală pentru fiecare câmp de introducere a datelor , îmbunătățind lizibilitatea și utilizabilitatea formularului.
+
+Prin asocierea unei etichete cu un anumit câmp de introducere a datelor folosind atributul for (care ar trebui să
+corespundă cu atributul id al câmpului de introducere a datelor ), utilizatorii pot face clic pe etichetă pentru a se concentra pe
+câmpul de introducere corespunzător, o caracteristică deosebit de benefică pentru cei care utilizează tehnologii de asistență.
+
+Exemplu de bază al unui element <input> etichetat cu câmp de introducere a adresei de e-mail obligatoriu într-un formular
+HTML: 
+<label for="email">Email:</label>
+<input type="email" id="email" name="useremail" required>
+
+1. <label for="email">Email:</label>` creează o etichetă pentru câmpul de introducere. Atributul `for` al etichetei este setat la
+„email”, ceea ce înseamnă că această etichetă este asociată cu un element de introducere al cărui atribut ` id` este „email”.
+Textul „Email:” este afișat utilizatorului lângă câmpul de introducere, indicând ce informații sunt așteptate în câmpul de
+introducere asociat.
+
+2. <input type="email" id="email" name="useremail" required> definește un câmp de introducere a datelor destinat primirii
+unei adrese de e-mail:
+• type="email" specifică faptul că intrarea trebuie să fie o adresă de e-mail. Browserele moderne vor verifica dacă textul introdus este în
+formatul unei adrese de e-mail (de exemplu, user@example.com) și vor întreba utilizatorul dacă nu este.
+• id="email" atribuie un identificator câmpului de introducere, legându-l de etichetă prin atributul for. Acest lucru îmbunătățește
+accesibilitatea, deoarece dacă dați clic pe etichetă, câmpul de introducere va fi focalizat.
+• name="useremail" denumește datele introduse în acest câmp drept „useremail”, care este folosită pentru a identifica datele
+formularului pe server odată ce au fost trimise.
+• „required” marchează câmpul ca fiind obligatoriu, ceea ce înseamnă că formularul nu poate fi trimis fără a introduce o adresă de e-
+mail în acest câmp.
+Cum se aplică stiluri elementelor HTML
+
+Stilizarea inline este o metodă de aplicare a stilurilor CSS direct elementelor HTML individuale folosind atributul style .
+
+Vă permite să definiți aspectul și aspectul elementului fără a fi nevoie să creați un fișier CSS separat sau un bloc de stil.
+
+Sintaxa pentru stilizarea inline implică utilizarea atributului style direct în cadrul unei etichete de element HTML, urmată de
+o pereche proprietate-valoare care definește stilul. Iată cum este structurată:
+
+Aceasta înseamnă că adaugi atributul style oricărui element HTML, apoi specifici proprietatea CSS și valoarea acesteia pe
+care dorești să o aplici elementului respectiv, formatată ca „property: value;” .
+
+Iată un exemplu care arată cum se utilizează atributul style pentru adăugarea de stiluri direct în interiorul
+unui element <p> (paragraf):
+Descompunând codul, <p style="background-color: blue;
+color: white; font-weight: bold;">stilurile sunt aplicate direct
+celui de-al doilea element <p> . În atributul style , putem
+combina mai multe stiluri CSS, pur și simplu separându-le cu
+punct și virgulă ( ; ). Aici, stilizarea în linie schimbă fundalul în
+albastru, face textul alb, iar textul în sine îngroșat.
+Pe lângă stilizarea inline despre care tocmai am vorbit, există și o modalitate de a include CSS direct în documentul
+HTML – aceasta se numește foaie de stil internă.
+
+O foaie de stil internă constă din reguli CSS pe care le plasați într-un element <style> din documentul HTML.
+Această metodă vă permite să stilizați mai multe elemente HTML simultan , evitând necesitatea de a repeta stilizarea pentru
+fiecare element individual.
+
+Ar trebui să plasați elementul <style> în secțiunea <head> a documentului HTML. Regulile CSS din interiorul
+acestui element <style> se vor aplica apoi elementelor corespondente din <body> a documentului, pe baza selectorilor pe care
+îi utilizați.
+
+Selectorii sunt partea regulilor CSS care identifică elementele HTML cărora să li se aplice stilul . Selectorii pot
+identifica elementele pe baza numelui etichetei, clasei, ID-ului, atributelor și a altor elemente. De exemplu, dacă doriți să
+aplicați o anumită culoare tuturor paragrafelor de pe pagina dvs., puteți utiliza selectorul p pentru a viza toate elementele <p> .
+În această pagina de stil internă, există două reguli CSS:
+• prima setează culoarea elementului h1 la portocaliu;
+• al doilea schimbă dimensiunea fontului și culoarea elementelor paragrafului la 18px și respectiv albastru.
+
+Deși paginile de stil interne sunt o modalitate excelentă pentru proiecte mai mici sau pentru stilizarea rapidă a documentului
+HTML, este posibil ca acestea să nu fie cele mai eficiente pentru proiecte mai mari, unde sunt preferate foile de stil externe.
+Cu toate acestea, înțelegerea și utilizarea paginile de stil interne vă pot oferi o bază solidă în CSS, pregătindu-vă pentru
+tehnici de stilizare mai complexe. Această abordare reflectă modul în care stilurile sunt gestionate în paginile de stil externe,
+oferind o experiență de învățare coerentă pe măsură ce progresați în călătoria dvs. de dezvoltare web.
+Culori și formate de culoare în HTML
+
+Culorile pot fi aplicate elementelor HTML folosind proprietatea CSS color sau proprietatea background-color . În
+HTML, culorile pot fi specificate în mai multe moduri. Iată câteva dintre ele:
+• după nume – există 147 de nume de culori care pot fi folosite, cum ar fi „roșu”, „verde”, „albastru”, „galben”, „violet” și
+„negru”.
+• prin valoare hexazecimală – un cod de șase cifre precedat de un semn diez (#) care reprezintă o combinație de valori roșu,
+verde și albastru. De exemplu, #FF0000 reprezintă culoarea roșu.
+• prin valoarea RGB – un set de trei valori care reprezintă cantitatea de roșu, verde și respectiv albastru. Fiecare valoare este
+cuprinsă între 0 și 255. De exemplu, RGB(255, 0, 0) reprezintă culoarea roșu.
+
+În cod, am definit culorile folosind următoarele reguli CSS în cadrul
+elementului <style>:
+•Pentru elementul <h1> :
+• Culoarea textului este setată la alb (valoarea hexazecimală #FFFFFF )
+• Culoarea de fundal este setată la verde (denumirea verde )
+•Pentru elementul <p> :
+• Culoarea textului este setată la albastru (valoarea RGB de 0, 0, 255 )
+Când codul este redat într-un browser web, elementul <h1> din titlu va avea textul alb și
+fundalul verde. Elementul <p> din paragraf va avea textul albastru.
+Iată câteva dintre cele mai populare culori și codurile aferente utilizate în HTML:
+Roșu: #FF0000
+Verde: #00FF00
+Albastru: #0000FF
+Negru: #000000
+Alb #FFFFFF
+
+Proprietățile fontului
+Proprietățile fonturilor sunt un aspect esențial al designului web, deoarece ajută la definirea aspectului și a lizibilității
+textului . HTML oferă mai multe proprietăți de fonturi, inclusiv font-size , font-family , font-weight și font-style :
+• Proprietatea font -family specifică fontul care va fi utilizat pentru text. Poate fi setată la un nume specific de font, cum ar
+fi Arial , Times New Roman sau Helvetica , sau la o familie generică de fonturi, cum ar fi serif , sans-
+serif sau monospace . Valoarea implicită depinde de browser.
+• Proprietatea font -size definește dimensiunea fontului. Aceasta poate fi setată folosind o valoare absolută, cum ar fi
+pixeli (px) sau puncte, sau o valoare relativă, cum ar fi procente (%) sau unități em (ems). Valoarea implicită
+este normal .
+• Proprietatea font -weight setează grosimea sau grosimea (îngroșarea) fontului. Poate fi setată la un nume de valoare
+specific, cum ar fi bold , bolder sau lighter , sau la o valoare numerică între 100 și 900, 400 fiind valoarea implicită
+( normal ).
+• Proprietatea font -style definește stilul fontului, cum ar fi normal (valoare implicită), italic sau oblique .
+Iată un exemplu de stilizare inline în care sunt utilizate toate cele patru proprietăți ale fontului:
+<p style="font-family: monospace; font-size: 20px; font-weight: 900; font-style: normal;">
+This is a paragraph of text.</p>
+
+Exemplu de utilizare a unei foi de stil CSS interne pentru a seta aceleași patru proprietăți ale fontului:
+Elementul <span>
+
+Elementul <span> este un element inline care poate fi folosit pentru a aplica stiluri anumitor părți ale unui
+text sau unui grup mic de elemente inline . Este adesea folosit împreună cu CSS pentru a stiliza textul sau porțiuni mici
+ale unui document HTML.
+
+De exemplu, ați putea folosi elementul <span> pentru a stiliza un singur cuvânt dintr-o propoziție cu o culoare, o
+dimensiune a fontului sau un stil de font diferit:
+
+În acest exemplu, elementul <span> este folosit pentru a stiliza sintagma „text exemplu” cu culoarea verde.
+
+Elementul <div>
+
+Elementul <div> este un element la nivel de bloc folosit pentru a crea un container pentru alte elemente
+HTML . Este folosit în mod obișnuit pentru a grupa un set de elemente și a le aplica stiluri ca un întreg.
+
+De exemplu, ați putea folosi un element <div> pentru a grupa un set de imagini și a aplica o bordură sau o zonă de
+umplere întregului grup:
+Atributul id atribuie un identificator unic unui element , care poate fi apoi utilizat în mai multe scopuri, inclusiv:
+• identificare unică , care vă permite să distingeți elementele HTML unele de altele pe pagină.
+• stilizare , care vă permite să aplicați stiluri CSS specifice unui singur element. (Prin vizarea ID-ului unic al elementului,
+puteți crea stiluri personalizate care afectează doar acel element anume. Veți învăța despre asta în a doua parte a cursului.)
+• Manipularea JavaScript , care vă permite să selectați și să manipulați elemente specifice din DOM. (Facilitează accesarea,
+modificarea sau efectuarea de acțiuni asupra unui anumit element fără a afecta celelalte. Din nou, veți afla mai multe despre
+aceasta în cursul Web Development Essentials: JavaScript .)
+• ancore , pe care le puteți utiliza pentru a crea linkuri interne (ancoră) în cadrul unei pagini web. (Ați aflat despre ele în
+secțiunea Linkuri a acestui curs.)
+Atributul class atribuie o clasă unui element , permițându- văpentru a grupa și viza mai multe elemente în
+diverse scopuri, cum ar fi:
+• gruparea elementelor – atributul class vă permite să grupați mai multe elemente HTML care au caracteristici sau scopuri similare.
+Spre deosebire de atributul id , atributul class poate fi atribuit mai multor elemente de pe o pagină.
+• stilizare – utilizând atributul class , puteți aplica stiluri CSS consistente unui grup de elemente. Acest lucru ajută la menținerea unui
+aspect uniform și promovează reutilizarea stilurilor pe întreaga pagină web sau chiar pe un întreg site web.
+• Manipularea JavaScript – atunci când se lucrează cu JavaScript, atributul class poate fi utilizat pentru a selecta și manipula grupuri de
+elemente cu aceeași clasă. Puteți efectua acțiuni sau aplica modificări tuturor elementelor cu clasa specificată simultan, ceea ce îl face o
+modalitate eficientă de a gestiona elemente similare.
+• lizibilitate și mentenabilitate – utilizarea atributelor de clasă poate ajuta la îmbunătățirea lizibilității și mentenabilității codului HTML
+și CSS. Prin atribuirea de nume de clase semnificative, puteți înțelege cu ușurință scopul sau funcționalitatea anumitor elemente,
+facilitând actualizarea sau modificarea codului în viitor.
+După cum puteți vedea, atributul class acționează ca o etichetă pe care o puteți atașa elementelor, permițându-vă să le
+vizați și să le stilizați folosind CSS. Să vedem ce se întâmplă în cod:
+
+• Începem prin a defini o regulă CSS (o clasă) în blocul <style>. Regula se numește .highlight și include proprietăți
+precum background-color , color și font-weight care determină cum vor arăta elementele din această clasă.
+
+• Pe măsură ce trecem la secțiunea <body>, veți observa patru elemente <p>. Două dintre aceste paragrafe au
+atributul class setat la „highlight” . Aceasta înseamnă că aplicăm stilurile definite în clasa .highlight acestor paragrafe
+specifice.
+
+• Când browserul afișează pagina, acesta vede atributul class="highlight" în al doilea și al patrulea paragraf. Înțelege că aceste
+paragrafe ar trebui să moștenească stilurile definite în clasa .highlight .
+
+• Drept urmare, culoarea de fundal a acestor două paragrafe devine albastră, culoarea textului devine albă, iar textul în sine
+devine îngroșat. Toate acestea se datorează proprietăților CSS pe care le-am definit anterior.
+
+Pe scurt, atributul class acționează ca o punte între lumile HTML și CSS . Acesta vă permite să aplicați un set de
+stiluri unuia sau mai multor elemente fără a duplica stilurile în întregul document.
+
+Această abordare menține HTML-ul curat și separă conținutul de prezentare, facilitând gestionarea și menținerea
+unor stiluri consecvente în toate paginile web. Așadar, data viitoare când vedeți atributul class , amintiți-vă că îi valorificați
+puterea pentru a aduce magie de stilizare elementelor HTML!
+Atributul title
+
+Atributul title specifică un tooltip afișat atunci când un utilizator plasează cursorul peste un element . Vă
+amintiți probabil că am abordat această caracteristică atunci când am discutat despre hyperlinkuri și utilizarea
+atributului title pentru a îmbunătăți înțelegerea și interacțiunea utilizatorului.
+
+Atributul title este utilizat în mod obișnuit în elemente HTML, cum ar fi linkuri, imagini, controale de formular și
+elemente de tabel.
+iFrame-uri
+iFrame-urile (prescurtare de la inline frames ) sunt elemente HTML care acționează ca o fereastră către o altă
+pagină web sau document. Au fost introduse pentru prima dată în HTML 4.0 în 1997. Acestea vă permit să afișați
+(încorporați) conținut extern în propria pagină web , creând o integrare a diferitelor surse de informații.
+Poate fi vorba de hărți, videoclipuri, fluxuri de socializare, alte documente HTML și multe altele. Vă puteți gândi la
+iFrame-uri ca la ferestre virtuale care vă permit să aruncați o privire asupra altor site-uri web fără a părăsi propriul site.
+Pentru a crea un iFrame, pur și simplu utilizați eticheta <iframe> în codul HTML. Aceasta vă permite să specificați
+sursa conținutului pe care doriți să îl încorporați și să utilizați atribute pentru a personaliza aspectul și comportamentul acestuia.
+
+<iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315" frameborder="0"
+allowfullscreen></iframe>
+
+În fragmentul de cod, setezi atributul source ( src ) la adresa URL a videoclipului YouTube pe care dorești să îl
+încorporezi, în acest caz https://www.youtube.com/embed/VIDEO_ID.
+
+De asemenea, specificați lățimea și înălțimea iFrame-ului pentru a vă asigura că videoclipul se potrivește perfect în
+pagină.
+
+Atributul frameborder este setat la „0” pentru a elimina chenarul din jurul iFrame-ului (pentru a afișa chenarul,
+setați atributul la „1”).
+
+Atributul allowfullscreen permite vizualizarea videoclipului în modul ecran complet. (De asemenea, puteți utiliza
+„true” pentru a permite vizualizarea pe tot ecranul și „false” pentru a-l restricționa.)
+Atribute iFrame
+
+Când lucrați cu iFrame-uri, puteți utiliza mai multe atribute pentru a le personaliza comportamentul și aspectul.
+Sunteți deja familiarizați cu atributele width și height , care vă permit să controlați dimensiunea iFrame-ului. De asemenea,
+sunteți familiarizați cu atributele frameborder și allowfullscreen .
+
+Iată alte câteva atribute utilizate în mod obișnuit:
+• derulare – controlează comportamentul de derulare în cadrul iFrame-ului. Puteți seta opțiunea „da” pentru a activa
+derularea, „nu” pentru a dezactiva derularea sau „automat” pentru a permite browserului să determine dacă derularea este
+necesară. De exemplu: scrolling="no" .
+• sandbox – setează modul sandbox pentru iFrame, ceea ce oferă restricții suplimentare de securitate. Puteți utiliza
+atributul sandbox pentru a restricționa acțiuni precum trimiterea de formulare, executarea scripturilor și ferestrele pop-
+up. De exemplu: sandbox="allow-scripts allow-popups" .
+iFrame-uri responsive
+
+În lumea de astăzi, cu dispozitive mobile și ecrane cu dimensiuni variate, este esențial să creați site-uri web care
+să se adapteze la diferite dispozitive. Designul responsiv asigură că paginile dvs. web arată excelent și funcționează
+impecabil pe desktop-uri, laptopuri, tablete și smartphone-uri. Când vine vorba de iFrame-uri, le puteți face
+responsive setând lățimea și înălțimea acestora folosind unități relative , cum ar fi procentele, în loc de valori fixe ale
+pixelilor. Acest lucru permite iFrame-urilor să se scaleze dinamic în funcție de dimensiunea ecranului, asigurând o
+experiență optimă de vizualizare pe toate dispozitivele.
+
+De exemplu, în loc să utilizați o lățime fixă de 560 pixeli, puteți seta lățimea la 100% pentru ca iFrame-ul să se
+întindă pe întreaga lățime a containerului părinte:
+Entități HTML
+Entitățile HTML (referințe la entități caracter) sunt coduri speciale care reprezintă caractere sau simboluri specifice în
+HTML.
+Acestea sunt folosite pentru a afișa caractere care au semnificații speciale sau nu pot fi tastate sau afișate direct în HTML.
+Sunt notate cu un ampersand ( & ) urmat de un cod sau nume specific și apoi închise cu punct și virgulă ( ; ).
+Iată câteva exemple populare de entități HTML și simbolurile corespunzătoare:
+< - Semnul mai mic decât (<)
+> - Semnul mai mare decât (>)
+& - Ampersand (&)
+„ - Ghilimele (”)
+„ - Apostrof (')”
+© - Simbolul drepturilor de autor (©)
+® - Simbolul mărcii înregistrate (®)
+- Simbolul mărcii înregistrate ( )
+&inimi; - Simbolul inimii ( )
+★ - Simbol stea (★)
+✓ - Simbol bifă (✓)
+← - Săgeată spre stânga (←)
+→ - Săgeată spre dreapta (→)
+… - Elipsă orizontală (…)
+Hărțile de imagine
+
+Hărțile de imagine vă permit să creați zone interactive și pe care se poate da clic în cadrul unei imagini pentru
+a genera funcții suplimentare, cum ar fi diagrame interactive, infografice pe care se poate da clic sau meniuri de navigare
+dinamice. Trebuie să împărțiți o imagine în zone pe care se poate da clic, numite puncte de acces , unde fiecare punct de
+acces poate fi legat de o destinație specifică, cum ar fi o pagină web sau o acțiune.
+
+Pentru a crea o hartă de imagini, aveți nevoie doar de două lucruri:
+• imaginea ta și
+• un element al hărții.
+Vă puteți gândi la elementul <map> ca la un
+container special care conține toate punctele dvs.
+de interes . Fiecare punct de interes este definit folosind
+elementul <area> , care determină forma și coordonatele
+zonei pe care se poate face clic. Prin combinarea acestor
+elemente, puteți crea cu ușurință hărți de imagini
+interactive care îmbunătățesc experiența utilizatorului și adaugă
+interactivitate paginilor dvs. web.
+Grafice HTML
+
+Grafica joacă un rol crucial în a face site-urile web să arate atractive și captivante. Aceasta ajută la darea vieții
+paginilor web cu culori, forme și animații. În HTML, există două metode utilizate pe scară largă pentru crearea de grafică:
+• elementul Canvas ( <canvas> ), care vă permite să desenați și să animați forme și imagini 2D direct prin JavaScript și
+• Grafică vectorială scalabilă (SVG) ( <svg> ), o modalitate de a include grafică de înaltă calitate care poate fi scalată la
+orice dimensiune fără a pierde din claritate, perfectă pentru logo-uri, pictograme și ilustrații complexe.
+Ambele metode oferă avantaje unice și pot fi utilizate în diferite scenarii, în funcție de nevoile proiectului
+dumneavoastră.
+
+Elementul <canvas> acționează ca o pânză virtuală unde puteți desena forme, imagini și animații. Folosește o
+abordare bazată pe pixeli pentru crearea de grafică, oferind un control precis asupra pixelilor individuali. Gândiți-vă la el ca
+la o tablă de desen digitală care poate fi manipulată folosind JavaScript.
+Canvas vă permite să:
+• Creați linii, forme și imagini.
+• Dezvoltați animații și elemente interactive.
+• Implementați jocuri și efecte vizuale dinamice.
+
+Deși poți crea elementul <canvas> în HTML, ai nevoie de JavaScript pentru ca acesta să efectueze acțiuni
+semnificative (desenarea pe o pânză în HTML implică utilizarea API-ului Canvas (O colecție de metode și funcții JavaScript
+care vă permit să interacționați cu și să manipulați conținutul din elementul canvas.), un set de instrumente pentru desenarea
+formelor, liniilor, imaginilor, textului și multe altele pe pânză).
+Iată ce se întâmplă în cod:
+1.Codul HTML <canvas id="myCanvas" width="300" height="200"></canvas>creează un element <canvas> cu
+un atribut id căruia i se atribuie valoarea „myCanvas” . În plus, setează lățimea la 300 de pixeli și înălțimea la 200 de
+pixeli, ceea ce definește dimensiunile pânzei.
+2.Etichetele <script> și </script> , fără a intra în detalii, încadrează secțiunea de cod JavaScript. În cadrul acestei
+secțiuni, JavaScript preia elementul canvas și îl atribuie variabilei canvas . Se creează un context grafic 2D, în special
+un dreptunghi negru în acest caz, iar apoi forma este umplută cu culoarea neagră.
+Grafică vectorială scalabilă (SVG)
+
+SVG este un limbaj de marcare care folosește XML pentru a descrie grafică vectorială bidimensională. Spre
+deosebire de elementul Canvas, SVG se concentrează pe crearea de grafică ce poate fi scalată și redimensionată fără a pierde
+din calitate.
+
+Grafica SVG este independentă de rezoluție, ceea ce o face potrivită pentru diverse dispozitive și dimensiuni de
+ecran. SVG vă permite să:
+• Creați grafică detaliată și responsivă.
+• Scalează imaginile fără pierderi de calitate.
+• Aplicați stiluri CSS și animații.
+
+Elementul <svg> definește containerul SVG cu o lățime și o înălțime de 100 de unități.
+
+Elementul <circle> este utilizat pentru a desena un cerc, cu centrul la coordonatele (50, 50), o rază de 40 de unități și
+o culoare de umplere neagră. Rezultatul este un cerc negru simplu afișat pe pagina web.
+
+Când începi să folosești fișiere SVG, crearea de grafică vectorială de la zero poate părea descurajantă. Din fericire,
+există site-uri web unde poți găsi mii de pictograme și grafică SVG gata făcute, gratuite. Acestea pot fi o resursă excelentă
+pentru a-ți înfrumuseța site-ul web fără a fi nevoie să desenezi totul singur.
+
+Atât Canvas, cât și SVG joacă roluri importante în dezvoltarea web modernă. Canvas este frecvent utilizat pentru
+crearea de jocuri interactive, animații, vizualizări de date și grafică complexă care necesită un control precis asupra randării
+pixelilor. Pe de altă parte, SVG se remarcă atunci când vine vorba de crearea de pictograme, logo-uri, ilustrații și grafică care
+trebuie să scaleze fără probleme și să arate bine pe diverse dispozitive.

@@ -10,6 +10,14 @@ node_modules/
 # Jira credentials
 .jira/config.json
 
+# RAG data
+processed/
+vectors/
+__pycache__/
+
+# Secrets
+.env
+
 # OS
 Thumbs.db
 .DS_Store

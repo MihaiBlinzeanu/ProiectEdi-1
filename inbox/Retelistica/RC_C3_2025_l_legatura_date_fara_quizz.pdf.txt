@@ -1,0 +1,653 @@
+Cur s 2
+REȚELE DE
+- St iva OS I –
+nivelul 2:
+CALCULATOARE
+le găt ur ă de
+date
+CUPRINS
+
+ Stiva O SI – nivelul 2 Leg ătură de date
+▪ Roluri
+▪ M edii de transmisie și protocoale
+
+ Subnetarea unui spațiu de adrese IP v4
+STIVE DE PROTOCOALE
+
+ Două modele care reprezintă toate prelucrările necesare
+comunicației în rețea, de la datele transmise de utilizator, până la
+codificarea acestora în biți și transmiterea pe mediul de
+comunicație
+
+▪ OSI – Open Systems Interconnection
+
+▪ Creat de ISO
+
+▪ TCP / IP – Transmission Control Protocol / Internet Protocol
+
+▪ Creat de DARPA
+STIVE DE PROTOCOALE
+
+ Fieca re str at / nivel tre buie:
+
+▪ sa furnizeze un anumit set de servicii și să realiz ez e interfața cu stratul
+
+adiacent;
+
+▪ să sp ecifice mo dul de transmitere a datelor între strat urile analoage de la
+
+sursă și de la dest inație.
+
+ În timpul transmiterii de date sunt utilizate protocoalele de
+
+comunicație de date.
+
+▪ Protoc olul de comunicații de date este un set de reguli, c onvenții și proc eduri
+
+cu ajutorul cărora se re alize ază comunicarea într -o re ţea.
+STIVA OSI VS STIVA TCP/IP
+
+OSI TCP/IP
+
+7 Aplicație
+
+6 Prezentare       Aplicație 4
+
+5 Sesiune
+
+4 Transport Transport 3
+
+3 Rețea Internet 2
+
+2 Legătură de date
+Acces la rețea 1
+1 Fizic
+STIVA OSI
+
+Rolul nivelului
+Nivelul 
+
+Aplicație Realizează interfața cu utilizatorul și interfața cu aplicațiile
+
+Prezentare Transformă datele în formate înțelese de fiecare aplicație
+
+Sesiune Gestionează conexiunile între aplicații
+Separă conversațiile între aplicațiile de pe o stație
+Transport 
+Segmentează (la sursă) și reasamblează datele (la destinație)
+Rețea Realizează rutarea pachetelor
+Asigură accesul la rețea, detecția și anunțarea erorilor,
+Legătură de date 
+controlul fluxului fizic
+
+Definește specificații electrice, mecanice, procedurale și
+Fizic 
+funcționale pentru transmiterea informațiilor pe mediu
+STIVA TCP/IP
+
+Nivel Rolul nivelului
+
+Aplicație Interacțiunea cu utilizatorul
+Segmentare și multiplexarea comunicațiilor între
+Transport 
+servicii pe aceeași stație
+Rutare - Determinarea rutei optime între două
+Internet 
+puncte din rețea
+Controlul interacțiunii cu HW, punerea informației
+Acces la rețea 
+pe mediu
+STIVA OSI: NIVELUL 7
+APLICAȚIE
+ Furnizează servicii altor aplicații și utilizatorilor
+▪ Nu furnizează servicii altor niveluri ale stivei OSI
+ Exemple: HTTP, FTP, DNS, DHCP, SSH, Telnet, SMTP, etc.
+STIVA OSI: NIVELUL 6
+PREZENTARE
+ Furnizează servicii nivelului 7
+ Rol principal: prezentarea datelor astfel încât să poată fi
+utilizate la nivelul 7
+
+ Protocoale de:
+▪ Formatare și codificare a datelor
+▪ Compresie a datelor
+▪ Protocoale de securizare a datelor
+▪ Transp ort Laye r Security – TL S
+▪ Secure Socket Laye r - SSL
+ Exemple:
+▪ ASCII, JPEG, GIF, PNG, etc.
+STIVA OSI: NIVELUL 5
+SESIUNE
+ Rol principal: gestionează sesiunile dintre două aplicații
+care comunică
+▪ Sesiuni: conexiunile persistente dintre dispozitive – nu țin cont de
+nivelurile 1-4
+
+ Gestionează sincronizarea dialogului și modul de
+comunicare conform cerințelor de la nivelul aplicație
+STIVA OSI: NIVELUL 4
+TRANSPORT
+ Funcții principale:
+▪ Multiplexare
+▪ Segmentare date
+
+ Protocoale principale:
+▪ TCP – Transmission Control Protocol - orientat pe conexiune
+▪ UDP – User Datagram Protocol - neorientat pe conexiune, de tip
+„best effort”
+
+ Realizează adresarea pe bază de „porturi”
+STIVA OSI: NIVELUL 3
+REȚEA
+ Funcție principală:
+▪ Rutarea pachetelor
+
+ Protocoalele de bază:
+▪ IP (IPv4 și IPv6)
+▪ IPSec
+▪ Protocoale de rutare: RIP(v2), EIGRP, ICMP, BGP
+STIVA OSI: NIVELUL 2
+LEGĂTURĂ DE DATE
+ Funcție principală:
+▪ Adresarea pe bază de adrese fizice (adrese MAC)
+
+ Protocoalele de bază:
+▪ Ethernet
+▪ IEEE 802.11
+▪ Link Layer Discovery Protocol (LLDP) / Cisco Discovery Protocol
+▪ ARP – Address Resolution Protocol
+STIVA OSI: NIVELUL 1
+FIZIC
+ Funcție principală:
+▪ Punerea informației pe mediu/ preluarea informației de pe mediu
+
+ Definește specificații electrice, mecanice, procedurale și
+funcționale pentru transmiterea informațiilor pe mediu
+
+ Probleme legate de:
+▪ Mediul de transmisie folosit
+▪ Nivelul de tensiune, rate de transmisie, distanțe maxime de
+transmisie, conectori fizici, etc.
+NIVELUL LEGĂTURĂ DE DATE
+
+ La nivelul 2 OSI, datele su nt transmise sub formă de de c adre (frames)
+▪ PDU: cadru (frame)
+
+ Ca drul Eth ernet este u nita tea de ba ză de tran smitere în rețelele lo ca le
+(LAN).
+ Fieca re c adru c onțin e:
+
+▪ informații despre sursă și destinație (adrese MAC),
+
+▪ datele utile (payload) provenite de la nivelul superior,
+
+▪ și informații de control (pentru detectarea erorilor).
+ Rol:
+
+▪ Asigură transmiterea sigură a datelor de la un nod la altul aflat în aceeași
+rețea locală (fără rutare).
+STRUCTURA UNUI CADRU
+
+Câmp Dimensiune Descriere
+Preambul          Secvență alternativă de biți 10101010, utilizată pentru
+7 octeți 
+(Preamble) sincronizarea transmisiei între emițător și receptor.
+SFD
+(Start Frame
+1 octet Secvența 10101011 care semnalează începutul efectiv al cadrului.
+Delimiter)
+Adresa MAC
+6 octeți Identifică dispozitivul destinatar al cadrului.
+destinație 
+Adresa MAC sursă 6 octeți Identifică dispozitivul care a trimis cadrul.
+Câmp Tip/Lungime      Indică tipul protocolului de nivel superior (ex: 0x0800 = IPv4) sau
+2 octeți 
+(Type/Length) lungimea datelor.
+Date      46 – 1500  Informațiile utile transmise (de exemplu, pachetul IP). Dacă datele
+(Payload)    octeți   sunt mai scurte de 46 octeți, se completează cu „padding”.
+FCS
+(Frame Check
+4 octeți Cod CRC-32 utilizat pentru detectarea erorilor la recepție.
+Sequence)
+Lungime totală: De la 64 octeți (minim) până la 1518 octeți (maxim).
+ADRESE MAC
+
+ O adr esă MAC (Med ia Access Control )
+
+▪ identificator unic atribuit fiecărei plăci de rețea (Network Interface
+Card – NIC)
+
+ folosită p en tru adr esarea fizică a dispozitivelor în r ețelele d e
+calcul atoare la nivelul 2 al mod el ului OSI – nivelul Legătur ă de date.
+
+ fiecare dispoz it iv ( computer, imprimant ă, telefon, switch, router etc.)
+ar e cel puț in o ad resă MAC pentr u fiecar e int er față de rețea
+
+ este înscrisă de pr oducător în memoria plă cii de rețea, fiind în mod
+nor ma l permanentă ( hard ware).
+ADRESE MAC
+
+ 48 de biți (6 octeți)
+
+ Se afișea ză în hexazecimal, împăr țită în 6 g rupe de câte două
+00:1A:2B:3C:4D:5E
+car actere:
+▪ Se pot folos i și a lte s eparatoare, de exemplu:
+001A.2B3C.4D5E
+00-1A-2B-3C-4D-5E
+▪ Două părți:
+▪ OUI (Orga niza tiona lly Unique Identifier): 24 biți (3 octeți)
+
+▪ Identifică producătorul plăcii de rețea. Este atribuit de IEEE.
+
+▪ NIC Specific (Dev ice Identifier): 24 biți (3 octeți)
+
+▪ Identifică dispozitivul individual produs de acel fabricant.
+ADRESE MAC
+
+Tip adresă Descriere Exemplu Destinație
+Adresă care identifică un singur
+dispozitiv. Folosită în majoritatea
+Unicast                 00:1A:2B:3C:4D:5E O singură stație
+comunicațiilor obișnuite.
+Inscripționată în HW
+Adresă specială care trimite cadrul
+Toate stațiile din
+către toate dispozitivele din rețea.
+Broadcast                FF:FF:FF:FF:FF:FF 
+rețea
+Generată de SW
+Adresă care trimite cadrul către un
+grup selectat de dispozitive. Este
+Multicast                01:00:5E:xx:xx:xx Grup de stații
+utilizată în aplicații multimedia
+(streaming, actualizări simultane).
+Bitul cel mai puțin semnificativ al primului octet indică tipul adresei:
+0 → Unicast
+1 → Multicast
+DISPOZITIVE DE INTERCONECTARE
+SPECIFICE NIVELULUI FIZIC ȘI NIVELULUI
+LEGĂTURA DE DATE FOLOSITE ÎN REȚELE
+ETHERNET
+
+PENTRU NIVELUL FIZIC
+A. PLACA DE REȚEA
+
+ Pentr u ni velul Fiz ic
+ O pl acă de rețea (N etwork Interfa ce Ca rd) , num ită și „a da ptor de rețea”
+sa u „pla că cu interfață de rețea”, este o com ponentă electronică
+proi ectată pentru a permi te ca lcula toa relor s ă se conecteze la o rețea de
+cal cula toa re.
+ se instal ează i n ca lcula tor ca piesă s epa rată sa u este integrată în pl aca
+de bază ș i per mite acc esul fiz ic l a resurs ele rețel ei.
+ Pl aca de rețea permi te util iza tori lor să creeze
+conexi uni cu a lți uti li zator i pr in două m oduri:
+pri n cablu f iz ic, sa u printr -o tehnologi e ra di o,
+fără f ir, de tip wirel ess .
+ Fi eca re pl acă de rețea poa rtă un identi fi cator
+uni c propr iu numit adresa MAC. Aceas tă
+a dres ă unică M AC per mite pl ăc ii de rețea să
+fi e a dresată și regă sită chia r și î n rețel ele cel e
+ma i mar i de tip WAN.
+B. REPEATER (REPETOR)
+
+ Rolul unui rep et or este de a ampl ifica și refor ma semnalele tr ansmise
+pr in cab lu de rețea in scopul extinderii dista nței într e calcul atoare
+sau alt e disp ozitive de rețea.
+
+ Repetorul ar e un singur por t de intr are și un singur por t de ieşire
+
+ În t ehn ologia actuala d e r ețea locală rep et orul este destul de puțin
+folosit.
+C. HUB (CONCENTRATOR)
+
+ E ste un re pe tor car e ar e m ai m ul t de doua po rtu ri .
+ Hu b-ul nu i a de ci zi i pentr u com utar ea pa chete l or d e date şi nu ope re ază cu
+adr es e f iz i ce ( de t ip M AC) s au l ogi ce ( de ti p IP ).
+ Hu b-ul are m ai m ul te por tur i . F ie care por t e ste un pu nct de co nectar e a un ui
+cal cul ator ş i e ste bi di re cţi onal (p e acol o tr ansm i te /re cep ţi one ază cal cul ator ul
+cone ctat ).
+ Hu b-ul poate ave a 4 , 8 , 1 2 , 2 4 , por tur i l a care se pot con ecta tot at ate a
+cal cul atoare .
+ Hu b-ul re pre zi ntă şi un punct d e conce ntrar e a cone xi uni l or di n reţ ea.
+ Hu b-ur i le pot f i m ontate î n cascadă pe ntr u a obţi ne ext in der ea u nei re ţe l e
+ex iste nte .
+ În te hno lo gi a actual a de re țe a l ocal ă hub -ul e ste de stul de puți n fol o si t.
+DISPOZITIVE DE INTERCONECTARE
+SPECIFICE NIVELULUI FIZIC ȘI NIVELULUI
+LEGĂTURA DE DATE FOLOSITE ÎN REȚELE
+ETHERNET
+
+PENTRU NIVELUL LEGATURA DE DATE
+SWITCH (COMUTATOR), BRIDGE (SWITCH
+CU DOUĂ PORTURI)
+ Switch-ul este un dispozitiv de reţea cu mai multe porturi care
+fil trează şi expediază pachete de date între segmentele reţel ei.
+ Caracteri stici:
+▪ Operează pe nivelul 2 (deoarece ia decizii pe baza adreselor MAC,
+adrese care sunt la nivelul 2 al modelului OSI) şi uneori pe nivelul 3 ale
+modelului OSI (când poate lua decizii și pe baza adreselor IP care sunt pe
+nivelul 3);
+▪ Oferă legături de viteză mare și latență mică în rețele restrânse din
+punct de vedere geografic;
+▪ Delimitează domeniile de coliziune dar extinde domeniile de broadcast;
+▪ Switch-urile pot avea un număr mare de porturi (pot ajunge la câteva
+zeci) și pot avea funcții de bază implementate în hardware;
+▪ Switch-ul nu este suficient pentru a avea conectivitate între două rețele
+diferite (pe nivelul 3 al OSI).
+MODUL DE FUNCȚIONARE AL SWITCH-
+ULUI
+ Principiile de bază în funcți onarea unui switch sunt:
+▪ Funcționarea unui switch se bazează pe o tabelă de asocieri între porturi
+și adrese MAC numită tabela CAM (Content Addressable Memory)
+▪ Fiecare switch ia decizii independent, bazându-se doar pe propria sa
+tabelă CAM
+
+MAC A – Port7                                   MAC A – Port24
+MAC B – Port9                                   MAC B – Port24
+MAC C – Port1                                   MAC C – Port2
+MODUL DE FUNCȚIONARE AL SWITCH-
+ULUI
+ Mo dul de f uncți on are a l sw i tch-ul ui e ste ur m atoru l:
+1 . L a po rni re a swi tch -ul ui , s e cre ază tabe l a CA M deo are ce sw i tch -ul nu ști e
+ni m i c de spre host -ur i le di n apro pi er ea s a (tabe l a CAM e ste in iț ia l go al ă); pe nt ru
+a cre a tabe l a CAM, swi tch -ul ci tește adre sa M AC sur să a cadre l or c are tre c p ri n
+e l ( de ci a h ost -ur i lo r) ;
+MODUL DE FUNCȚIONARE AL SWITCH-
+ULUI
+2. Pentru a comuta cadre ( între host -uri ), s e ci teşte adresa M AC
+destinaţi e, i ar a poi a ceasta este că utată sec venţia l în ta bel a de
+comuta re-CAM;
+
+Comutare de la stația A la stația B
+MODUL DE FUNCȚIONARE AL SWITCH-
+ULUI
+Comutare de la stația A la stația C
+MODUL DE FUNCȚIONARE AL SWITCH-
+ULUI
+La fiecare cadru primit, un switch va desfășura următoare le acți unil e:
+
+1. C iti re adresă MAC sursă și verificare dacă exi stă asocierea în tabela CAM:
+▪ dacă da, actualizează vârsta (age ) înregistrării din tabelă;
+▪ dacă nu, adaugă asociere a între MAC sursă și portul pe care a venit cadrul ș i îi
+asociează vârsta (age ) 0;
+
+2. C iti re adresă MAC de stinație și căutarea asocierii în tabela CA M:
+▪ dacă este găs ită “unicast” pe portul cores punzător către destinație (adică adresa se
+afla în CAM şi portul asociat nu coincide cu portul s urs ă) cadrul este trimis pe portul
+precizat; exce pție este în cazul în care portul e același cu ce l pe care a venit cadr ul,
+caz în care cadrul e ste ignorat;
+▪ dacă nu este găsită, se face “flood” cu cadrul de date pe toate porturile (s e trimite
+cadrul către toate porturile ) mai puțin cel pe care a venit cadrul.
+Note:
+▪ Te rmenul de valabilitate al intrărilor din tabe la CAM e ste dat de un parametru numit
+age (vârsta), care stabileşte cât timp sunt reţinute în buffe r-e adresele MAC ale
+staţiilor (nodurilor) care nu generează şi nu primesc trafic;
+▪ Fiecare înregistrare din tabe lă are o vârstă (timp de la ultima actualizare );
+▪ Creșterea în timp a valorii poartă numere de “CAM Aging”;
+▪ Când vârsta aj unge la o anumită valoare, înre gistrare a e ste ștears ă.
+FUNCTIILE UNUI SWITCH
+
+In concluzie o peraţ iile pe care le po at e face u n switch sunt :
+ A . Învăţa re (learning )- învaţ ă p oziţiile no durilor de rețea faţ ă de
+po rturile sale (intrări/ieşiri din switch ) creân d și actu alizân d tabela
+C AM ;
+
+ B. Fi ltrare (Filt ering )- nu t ran sm it e pa ch etele înt re segmente d acă
+no durile sursă şi de st inaţ ie sunt p e acelaşi segment ;
+
+ C. Îna inta re (Fo rwardin g )- t ransmite un pa ch et d e pe un segm ent
+de re ţe a pe alt segme nt d e re ţ ea dacă nod urile sursă şi d estin aţie
+sunt p e se gmen te dife rite (şi d eci cone ctate la po rturi diferit e ale
+switch-ului );
+
+ D. Difuza re (Flood in g )- da că nu a apu cat în că să înveţ e poziţ iile
+no durilor din re țe a, distribuie pache te le căt re t oate segmentele,
+mai pu ţin pe segme ntu l de pe care a ven it pache tu l.
+OPERATIILE DE ÎNVĂȚARE SI DIFUZARE
+
+ Un exemplu ca re evi denția ză operati il e de î nvă ța re s i di fuza re:
+METODE DE COMUTARE FOLOSITE DE
+SWITCH
+A. Cut-through este metoda prin care cadrul de date începe să fie
+transmi s înainte de a fi primi t în totalitate.
+Exista doua variante:
+a) Fast-forward- se începe transmi terea cadrului i mediat dupa ce
+se citește adresa MAC destinație; metodă cu cel mai sc azut nivel
+de l atență și metodă implicită de comutare pentru majoritatea
+swi tch-uri lor;
+b) Fragment-free - se așteaptă pri mirea a 64 de octeți și apoi
+începe transmisia cardului de date; metodă care va elimi na erorile
+datorate coliziunilor.
+
+B. Store-and-forward este metoda prin care c adrul este pri mit în
+totali tate înainte de a fi transmi s; metodă care va elimi na şi erorile
+de CRC
+TIPURI STANDARD DE CABLURI
+ETHERNET
+Construcție  Lățime de
+Nume Aplicații Observații
+tipică    bandă 
+Linii de telefonie și   Nelegate în recomandările EIA/TIA.
+Level 1 400 kHz 
+modem       Nepotrivite pentru sistemele moderne.
+Sisteme terminale mai
+Nelegate în recomandările EIA/TIA.
+Level 2 4 MHz
+vechi, de exemplu IBM
+Nepotrivite pentru sistemele moderne.
+3270
+Descris în EIA/TIA-568. Nepotrivit
+pentru viteze peste 16 Mbit/s. Acum
+Cat 3 UTP 16 MHz 10BASE-T, 100BASE-T4
+folosit în principal pentru cablurile
+telefonice.
+Cat 4 UTP 20 MHz 16 Mbit/s Token Ring Nu este folosit uzual
+Comun pentru rețelele locale actuale.
+Înlocuit de Cat 5e, dar majoritatea
+100BASE-TX, 1000BASE-
+Cat 5 UTP 100 MHz 
+cablurilor Cat 5 îndeplinesc standardele
+T
+Cat 5e. Limitat la 100 m între
+echipamente.
+Cat 5 îmbunătățit. Comun pentru
+rețelele locale actuale. Aceeași
+UTP, F/UTP,
+Cat 5e 100 MHz 1000BASE-T, 2.5GBASE-T
+construcție ca și Cat 5, dar cu
+U/FTP 
+standarde de testare mai bune. Limitat
+la 100m între echipamente.
+TIPURI STANDARD DE CABLURI
+ETHERNET
+Construcție  Lățime de
+Nume Aplicații Observații
+tipică    bandă 
+ISO/IEC 11801 2nd Ed. (2002),
+UTP, F/UTP,
+Cat 6 250 MHz 5GBASE-T, 10GBASE-T
+ANSI/TIA 568-B.2-1. Limitat la o
+U/FTP 
+distanță de 55 m la 10GBASE-T.
+Standarde îmbunătățite, testate până
+la 500 MHz. Distanța completă de 100
+UTP, F/UTP,
+Cat 6A 500 MHz 5GBASE-T, 10GBASE-T
+m la 10GBASE-T conform ISO/IEC
+U/FTP, S/FTP 
+11801 2nd Ed. Am. 2. (2008),
+ANSI/TIA-568-C.1 (2009).
+ISO/IEC 11801 2nd Ed. (2002). Doar cu
+Cat 7 S/FTP, F/FTP 600 MHz ?
+conectori GG45 sau TERA. Nu este
+recunoscut de EIA/TIA.
+ISO/IEC 11801 2nd Ed. Am. 2. (2008).
+Cat 7A S/FTP, F/FTP 1 GHz ?
+Doar cu conectori GG45 sau TERA. Nu
+este recunoscut de EIA/TIA.
+ANSI/TIA-568-C.2-1, ISO/IEC 11801-
+Cat 8.1 F/UTP, U/FTP 2 GHz 25GBASE-T, 40GBASE-T 
+1:2017
+Cat 8.2 S/FTP, F/FTP 2 GHz 25GBASE-T, 40GBASE-T ISO/IEC 11801-1:2017
+VARIANTE DE REȚELE ETHERNET ȘI
+STANDARDE IEEE AFERENTE
+SUBNETARE IPv4
+
+ Motive:
+
+▪ Ușurință în implementarea politicilor de securitate în rețea
+
+▪ Supravegherea accesului la resurse protejate
+
+▪ Asignarea facilă a adreselor IP
+
+▪ Prevenția adreselor duplicate
+SUBNETARE IPv4
+
+ Motive:
+
+▪ Ușurință în implementarea politicilor de securitate în rețea
+
+▪ Supravegherea accesului la resurse protejate
+
+▪ Asignarea facilă a adreselor IP
+
+▪ Prevenția adreselor duplicate
+SUBNETARE IPv4
+
+ Pași:
+
+1. Se estimează numărul de adrese IP necesare în fiecare
+
+subrețea
+
+2. Pe baza calcului de la punctul 1 se calculează masca pentru
+
+fiecare surețea astfel încât să acopere necesarul de stații
+
+3. Se începe asignarea adreselor de rețea pentru fiecare
+
+subrețea în ordinea crescătoare a măștilor
+EXEMPLU DE SUBNETARE (1)
+
+ S e dore ș te subne tar ea s pațiului de adre se 95. 0. 0. 0/ 23 pe ntr u a
+
+aloca adr es e următoarelo r s ubr ețel e:
+
+▪ LAN 1 – 209 stații
+
+▪ LAN 2 – 19 stații
+
+▪ LAN 3 – 107 stații
+
+▪ LAN 4 – 14 stații
+
+ Pasul 1
+
+▪ Se estimează numărul de adrese disponibile
+EXEMPLU DE SUBNETARE (2)
+
+ Pasul 2
+▪ se calculează masca pentru fiecare subrețea astfel încât să acopere
+necesarul de adrese IP = adresele pentru stații + adresa de rețea +
+adresa de broadcast)
+
+▪ LAN 1 – 209 stații → 211 adrese necesare → /24
+
+▪ 211 < 2^8 → masca = 32 – 8 = 24
+
+▪ LAN 2 – 19 stații → 21 de adrese < 2^5 → /27
+
+▪ LAN 3 – 107 stații → 109 adrese < 2^7 → /25
+
+▪ LAN 4 – 14 de stații → 16 adrese < 2^5 → /27
+EXEMPLU DE SUBNETARE (3)
+
+ Pasul 3
+▪ se începe asignarea adreselor de rețea pentru fiecare subrețea în
+ordinea crescătoare a măștilor, astfel
+▪ LAN 1 → /24
+
+▪ LAN 3 → /25
+
+▪ LAN 2 → /27
+
+▪ LAN 4 → /27
+Spațiul de adrese: 95.0.0.0/23
+Masca Nr adrese Adresa de rețea Adresa de broadcast
+LAN 1 /24 2^8 = 256 95.0.0.0/24 95.0.0.255
+LAN 3 /25 2^7=128 95.0.1.0/25 95.0.1.127
+LAN 2 /27 2^5 = 32 95.0.1.128/27 95.0.1.149
+LAN 4 /27 2^5 = 32 95.0.1.150/27 95.0.0.181
+DOMENII DE COLIZIUNE
+
+ Do m eni ul de co l iz i une este ace a zona di ntr -o re țe a (ar i e de stați i d e l ucr u) î n
+care se fac co l iz i uni î ntre cad re le de date tran sm i se pe ace a ar i e.
+ P r in d is pozi ti v el e de i nte rcone ctare se pot cre a dom e ni i de co li z i une d ife r ite :
+▪ A. Dispozitivele din categoria hu b-urilo r și repetoarelor propagă coliziunea;
+▪ B. Reteaua locală poate fi împarțită în do men ii d e coliziune sep arate prin intermediul un or
+dispozitive din categoria b ridge -urilor, switch-urilor și rou ter-elo r .
+ P entr u l i m itar ea d om e ni ul ui d e col i zi une se cre ază se gm e ntel e de re țe a.
+ Ro lu l sw itch -l ui este să î m par tă nodu ri l e di ntr -o re ţe a l ocal ă î n grup uri m ai
+m i ci num i te se gm e nte ( de r ețe a) ş i s ă îm p ie di ce di stri bui r ea pa chete l or î ntr e
+se gm e nte dacă nu e ste nece sa r. Vi te za de tr ansfe r pe fi e ca re s egm e nt cre şte
+de oar ece num ăr ul de no dur i al e căror p achete de date po t int ra în co li z i une
+scade .
+Dispozitive care delimitează   Dispozitive care extind domeniul
+domeniul de coliziune         de coliziune
+
+Router
+Hub (concentrator)
+Switch 
+DOMENII DE COLIZIUNE
+
+ Nota:
+În reţelele Ethernet full -duplex:
+▪ fiecare port al switch-ului împreună cu nodul de reţea conectat
+reprezintă un domeniu de coliziune;
+▪ infrastructura de reţea devine o infrastructură dedicată (faţă de una
+partajată în cazul folosirii de hub-uri, repetoare sau de Ethernet peste
+mediu coaxial)
+EXERCITII
+
+ Câte domenii de coliziune sunt in topologiile de rețea de mai
+jos.
+
+Răspuns: 3
+domenii de
+coliziune
+
+Răspuns: 6
+domenii de
+coliziune
+DOMENII DE BROADCAST
+
+ O altă caracteri stică a rețelei Ethernet constă in faplul că ea este
+o rețea cu di fuzare (broadcast). De aceea, broadcast-uri le
+(mesaje transmise de la o stație către toate stați ile conectate l a
+același mediu fizic) sunt existente și prevazute în rețel ele
+Ethernet.
+ Domeniu de Broadcast este acea zona dintr -o rețea (ari e de stații
+de calculatoare și alte ehi pamente de rețea) î n care se primește
+un mesaj de “broadcast ” trimis de una dintre stațiile sau
+echipamentele din acea arie.
+Dispozitive care delimitează
+Dispozitive care extind domeniile
+domeniile de broadcast
+de broadcast
+
+Switch
+Router
+Hub 
+EXERCIȚII
+
+ Câte domenii de “broa dca st ” sunt in topologi il e de rețea de ma i jos.
+
+Răspuns:
+2 domenii de
+broadcast
+
+Răspuns:
+2 domenii de
+broadcast

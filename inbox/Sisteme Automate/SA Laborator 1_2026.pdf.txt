@@ -1,0 +1,21 @@
+Laborator 1 – Sisteme Automate
+
+Recapitulare - Teoria sistemelor si Ingineria sistemelor automate
+
+Aplicatia 1: Sa se implementeze schema de mai jos in Simulink. Sa se calculeze He(s) in
+Matlab si sa compare rezultatul din Matlab cu cel din Simulink.
+
+Aplicatia 2. Se dau urmatoarele functii de transfer si se doreste implementarea lor in
+Simulink si sa se determine: y stationar, timpul tranzitoriu, eroarea stationara si suprareglajul:
+10
+H1 = 
+2
+𝑠+𝑠+0.1
+
+14
+H2 = 
+2
+0.5𝑠+2𝑠+0.7
+
+Aplicatia 3: Sa se determine functiile de trasfer din reprezentarea grafica a caracteristicii
+semilogaritmice din urmatoarele imagini:

@@ -1,0 +1,669 @@
+Nivelurile
+RETELE DE
+Aplicatie,
+Prezentare,
+CALCULATOARE
+Sesiune
+CUVINTE IMPORTANTE
+
+ Nivelul Aplicație în modelul TCP/IP și nivelurile Aplicație,
+Prezentare, Sesiune în modelul OSI;
+ Modelul Client – Server;
+ Servicii de rețea: DNS, HTTP, HTTPS, SMTP, POP3.
+NIVELUL APLICAȚIE ÎN MODELUL TCP/IP
+NIVELURILE APLICAȚIE, PREZENTARE, SESIUNE ÎN
+MODELUL OSI
+ Din punct de vedere al funcționalității, cele două modele: OSI
+(Open Systems Interconnection) și TCP/IP (Transmission Control
+Protocol/Internet Protocol ), au elemente echivalente care oferă
+aceleași funcționalități.
+ Primele trei niveluri ale modelului OSI: Aplicație, Prezentare, Sesiune sunt
+echivalente cu nivelul Aplicație al modelului TCP/IP.
+ Diferența dintre cele două este că modelul OSI delimitează clar ce se
+întâmplă la nivelul Aplicație, Prezentare și Sesiune, pe când TCP/IP
+înglobează totul în același nivel.
+
+OSI TCP/IP
+
+7. Aplicație
+6. Prezentare      Aplicație
+5. Sesiune
+NIVELUL APLICAȚIE ÎN MODELUL OSI
+
+ Nivelul Aplicație este cel mai aproape de utilizator
+ punctul de interacțiune directă între utilizator și rețea.
+ Este responsabil de furnizarea serviciilor de rețea către aplicațiile
+utilizatorului și definește protocoale care permit accesul la resursele
+distribuite.
+
+ Oferă interfața dintre aplicațiile utilizatorului și rețea.
+ Definește protocoale și servicii care permit schimbul de date între
+dispozitive și aplicații din rețea.
+ Este responsabil de gestionarea operațiunilor precum autentificarea,
+transferul de fișiere, accesul la bazele de date și mesageria electronică.
+
+ De exemplu: HTTP, DNS, SMTP, etc
+NIVELUL PREZENTARE ÎN MODELUL OSI
+
+ Nivelul Prezentare rezolvă diferenţele care pot apărea din cauza
+diverselor aplicaţii care folosesc sintaxe şi semantici diferite.
+ Transformă datele dintr-un format utilizat de aplicații într-un format
+care poate fi transmis sau recepționat de rețea.
+ Se ocupă de sintaxa și semantica datelor, asigurând interoperabilitatea
+între sisteme diferite
+ De exemplu, un fişier video este diferit de unul audio, dar trebuie ca ambele
+să fie convertite într-un format unic pentru reţea (mai ales restaurate la
+finalul transmisiei, trecând de la formatul de reţea la un format acceptat de
+programul care trebuie să primească acele date).
+
+ Realizează compresia (la sursă) și decompresia (la destinație) datelor.
+ Realizează criptarea (la sursă) și decriptarea (la destinație) datelor.
+NIVELUL PREZENTARE ÎN MODELUL OSI –
+FUNCȚII
+ Traducerea datelor (Translation): Convertirea datelor dintr-un format
+specific aplicației într-un format standard utilizat de rețea
+ Exemple:
+ Transformarea unui fișier text ASCII într-un format binar pentru transmisie
+ Conversia formatelor de imagine (ex. JPEG, PNG) pentru utilizarea în aplicații
+ Criptarea și decriptarea datelor (Encryption/Decryption):
+ Protejează datele împotriva accesului neautorizat în timpul transmiterii
+ Exemple:
+ Protocoale precum TLS (Transport Layer Security) utilizează criptarea datelor pentru
+securizarea sesiunilor HTTPS
+ Mesajele email pot fi criptate cu PGP (Pretty Good Privacy)
+ Compresia și decompresia datelor (Compression/Decompression):
+ Reduce dimensiunea datelor transmise pentru a economisi lățimea de bandă și
+pentru a accelera transmisia
+ Exemple:
+ Protocoale de compresie precum gzip utilizate în transferul de fișiere HTTP
+ Fluxurile media utilizând compresia video (ex. H.264, H.265)
+ Formatarea datelor (Formatting):
+ Definește structura datelor transmise (ex. ordinea octeților, tipuri de date)
+ Exemplu: Conformarea la standarde precum X.509 pentru certificatele digitale
+NIVELUL PREZENTARE ÎN MODELUL OSI –
+PROTOCOALE ȘI STANDARDE
+ Stand ard ele de c riptare:
+- T LS/SSL: Utilizează criptarea pe ntru pro tejarea datelor la Nivelul Transport.
+- IPsec : Criptează datele la nivel IP, dar im plică și aspecte ale Nivelului
+Prezentare .
+ Protocoa le de co mpres ie:
+- g zip, zlib : Utilizate în HT T P pentru a reduce dime nsiunea paginilo r web
+transmise.
+- F LAC, MP3 : Compresie audio pentru transmisii eficie nte.
+ Formate d e date:
+- JSON (JavaScript Obj ect N otation): Fo rmat standard pentru schimbul de date
+între aplicații.
+- XML (eXten sible Marku p Lan guage): Utilizat în aplicațiile de we b pe ntru
+structura datelor.
+ Stand ard ele mult imedia:
+- JPEG, PNG, MP4: Fo rmate utilizate pentru co mpresia și transm isia imaginilor și
+video clipurilo r.
+ Protocoa le pent ru interoperab ilitate:
+- ASN. 1 (Abstrac t Syntax N otation On e): Utilizat în rețe le le de teleco municații
+pentru definire a datelo r
+- MIME (Multip urpose Internet Mail E xten sions ): Standard pentru for matul
+mesajelor email
+FORMATUL JSON
+
+ JSON (JavaScript Object Notation):
+ Format text simplu pentru reprezentarea datelor.
+ Ușor de citit de oameni și procesat de aplicații.
+ Folosit pe scară largă în API-uri, servicii web, echipamente de rețea,
+SDN, cloud, IoT.
+ Caracteristici:
+ Structură bazată pe cheie – valoare
+ Suportă: obiecte, liste, numere, string-uri
+ Standard în REST APIs și automatizare de rețea
+ Exemplu JSON:
+{
+"nume": "switch-core",
+"ip": "192.168.1.1",
+"porturi": [1, 2, 3, 4],
+"status": "online"
+}
+FORMATUL XML
+
+ XML (eXtensible Markup Language)
+ Limbaj de marcare pentru structurarea datelor.
+ Folosit în sisteme enterprise și protocoale de management.
+ Mai puțin folosit decât JSON în sisteme moderne, dar încă important.
+
+ Caracteristici:
+ Folosește tag-uri de deschidere/închidere
+ Ușor de validat și interpretat de aplicații
+ Mai ”voluminos" decât JSON, dar foarte structurat
+
+ Exemplu XML:
+<device>
+<name>router-core</name>
+<ip>10.0.0.1</ip>
+<status>active</status>
+</device>
+NIVELUL SESIUNE ÎN MODELUL OSI
+
+ Nivelul Sesiune controlează și administrează “dialogul” între
+aplicațiile sursă și destinație (între aplicaţia locală şi cea la
+distanță, ex: între client și server).
+ Definește proceduri de începere, terminare, menținere și resetare a
+sesiunilor (pot fi half-duplex/full-duplex).
+ Restabilește sesiunea în momentul în care este întreruptă (de exemplu,
+la o pierdere temporară a conexiunii).
+ Exemple:
+ Protocolul SMB (Server Message Block): Utilizat pentru partajarea
+fișierelor între calculatoare, gestionează sesiunile între sistemele client
+și server.
+ Protocolul NetBIOS: Controlează sesiunile pentru aplicațiile care
+comunică într-o rețea locală.
+NIVELUL SESIUNE ÎN MODELUL OSI
+
+ Nivelul Sesiune gestionează sesiunile de comunicare între
+aplicații:
+ Coordonează și administrează dialogurile între aplicațiile sursă și detinație
+ Definește proceduri de începere, menținere, sincronizare, resetare și
+încheiere a sesiunilor
+ sincronizează și verifică starea conexiunilor
+ Restabilește sesiunea în momentul în care este întreruptă (de exemplu,
+la o pierdere temporară a conexiunii)
+ Poate include puncte de control (checkpoints) care permit relauarea
+transferurilor întrerupte, fără a reporni de la început
+ În cazul întreruperii comunicației, sesiunea poate fi restabilită la ultimul punct salvat,
+reducând pierderea de date.
+ Exemplu: transferul unui fișier mai mare prin FTP poate fi reluat după o întrerupere, fără
+a relua descărcarea fișierului de la început
+NIVELUL SESIUNE ÎN MODELUL OSI
+
+ Exemple:
+ Protocolul SMB (Server Message Block): Utilizat pentru partajarea
+fișierelor între calculatoare, gestionează sesiunile între sistemele client și
+server (între dispositive care rulează Windows).
+ Samba este implementarea open source
+ Protocolul NetBIOS: Controlează sesiunile pentru aplicațiile care
+comunică într-o rețea locală.
+ Utilizează nivelul Sesiune pentru gestionarea sesiunilor în rețele locale (LAN).
+ În aplicațiile moderne, NetBIOS este mai rar folosit, dar a avut un rol important
+în sistemele de partajare de fișiere.
+ RPC (Remote Procedure Call):
+ Permite unei aplicații să execute o funcție pe un alt sistem din rețea, facilitând
+comunicarea între componente distribuite.
+ SOCKS (Socket Secure):
+ Un protocol care gestionează sesiuni de comunicație printr-un proxy, utilizat
+pentru transferuri de date prin firewall-uri.
+NIVELUL SESIUNE ÎN MODELUL OSI
+
+ Exemple:
+ Streaming Media:
+ Protocolele de streaming (ex: RTSP - Real-Time Streaming Protocol) folosesc
+funcții ale nivelului Sesiune pentru a sincroniza fluxurile media între client și
+server
+ Exemplu: În streaming live, sesiunea rămâne activă pentru a coordona fluxurile
+audio și video
+ Aplicații în timp real:
+ Aplicații precum apelurile video (Zoom, Microsoft Teams) folosesc nivelul
+Sesiune pentru a menține conexiunile active și sincronizate
+ Jocuri online:
+ la nivelul Sesiune se mențin sesiunile de comunicare între server și client
+pentru a sincroniza starea jocului.
+NIVELUL SESIUNE ÎN MODELUL OSI
+
+ Funcții avansate relevante în aplicațiile moderne:
+ Puncte de control și restabilirea sesiunii:
+ Punctele de control sunt utilizate pentru a fragmenta și sincroniza transferurile
+mari de date
+ Ex: Transferuri mari prin Google Drive sau alte aplicații cloud pot relua
+încărcările dacă conexiunea este întreruptă
+ Autentificare la nivelul sesiunii:
+ Protocolul TLS, deși asociat în principal cu criptarea, la nivelul Prezentare,
+utilizează nivelul Sesiune pentru negocierea și menținerea conexiunii sigure
+ Gestionează tipurile de fluxuri:
+ Full-duplex (comunicare simultană, cum ar fi apelurile video)
+ Half-duplex (comunicare alternantă, utilizată mai rar, dar încă relevantă în
+aplicații industriale sau wireless)
+NIVELUL SESIUNE - SINCRONIZARE CU
+PUNCTE DE CONTROL
+ Sincronizarea este necesară pentru transferurile mari de date sau
+pentru aplicațiile critice unde întreruperile pot afecta performanța.
+1.Puncte de control (checkpoints):
+ Definiție: Marcatori logici inserați în fluxul de date, care permit restabilirea
+transferului de la ultima poziție cunoscută în cazul unei întreruperi.
+ Proces:
+1. În timpul transferului, se creează periodic puncte de control
+2. Dacă apare o eroare, transferul poate fi reluat de la ultimul punct înregistrat,
+evitând retransmiterea datelor deja transmise.
+ Exemple:
+ FTAM (File Transfer, Access, and Management): Protocol OSI pentru
+gestionarea fișierelor, folosit în medii critice, cum ar fi aplicațiile industriale.
+ Aplicații cloud moderne (ex: Google Drive, Dropbox) folosesc funcții similare
+pentru reluarea transferurilor întrerupte.
+2.Beneficii:
+ Reduce timpul pierdut în cazul întreruperilor.
+ Crește eficiența utilizării lățimii de bandă.
+MODELUL CLIENT – SERVER
+
+Modelul client-ser ver este o structura distribuită care partajează
+procesarea între:
+ furnizorii de servicii, denumiți servere, și
+ elemente ce solicită servicii numite clienți.
+ Clienții și server-ele comunică printr-o rețea având suport hardware,
+dar pot rula pe același suport fizic.
+ Un ser ver poate executa unul sau mai multe servicii pe care le
+partajează clienților.
+ Clientul nu partajează nicio resursă proprie ci doar apelează la cele
+oferite de server.
+ Clienții sunt cei care inițiază comunicația. Legatura între client și
+server poartă denumirea de sesiune care este limitată în timp.
+MODELUL CLIENT – SERVER
+
+ Un server este o aplicație (proces sau “server daemon”) care oferă servicii
+utilizatorilor de Internet.
+ Un client este o altă aplicație (proces) ce solicită un serviciu.
+
+ Utilizatorul pornește partea client a aplicației (ex: browser), care trimite o
+cerere către partea de server folosind protocoalele de transport (ex: TCP
+sau UDP)
+ Server-ul este un software, care primește o cerere, poate solicita o
+autentificare, soluționează cererea și trimite rezultatul drept răspuns
+cererii.
+ Un server are capacitatea să rezolve mai multe cereri simultan. Exemple de servere:
+DNS, Apache, Radius, FTP, MAIL, SSH etc.
+
+ Partea de client este localizată pe calculatorul local iar partea de server
+este localizată pe un calculator la distanță (în general). Există aplicații
+alcătuite atât dintr-o parte client cât și dintr-o parte ser ver, care pot rula
+pe același sistem sau pe sisteme diferite.
+
+ Se consideră că procesele client și ser ver se află la nivelul Aplicație.
+SERVICII DE REȚEA
+- DNS
+ DNS (Domain Name System):
+ Este un sistem ierarhic distribuit de asocieri nume – adresă IP.
+
+ DNS are rolul de a translata din nume de domeniu în adrese IP, și din
+adrese IP în nume de domeniu, acest proces numindu-se „rezolvarea
+numelui de domeniu”.
+ Există două tipuri de rezolvări de nume:
+ rezolvarea directă (forward lookup) - determină adresa IP asociată unui nume;
+ rezolvarea inversă (reverse lookup) - determină numele asociat unei adrese IP.
+ Toate serviciile de Internet se bazează pe servere de DNS, iar în situația în
+care acestea nu funcționează, livrarea informației nu este posibilă.
+ Folosește port 53 TCP și UDP.
+ Este un protocol care folosește modelul client – server.
+SERVICII DE REȚEA
+- DNS
+ Un domeniu este o parte a spațiului de nume DNS, organizat
+ierarhic.
+ Numele de domenii sunt formate din etichete separate prin
+puncte.
+ O etichetă poate avea max. 63 de caractere, iar lungimea totală a
+numelui (incluzând punctul final al root-ului) este max. 255 de
+caractere.
+ Caractere permise: a-z, A-Z, 0-9 și „-”.
+ Structură ierarhică: partea cea mai din dreapta este TLD (ex:
+„.ro”).
+
+Adresa de nume               Adresa IP
+www.utcb.ro                193.231.3.1
+SERVICII DE REȚEA
+- DNS
+ Numele de domenii din lista TLD este administrat de ICANN (Internet
+Corporation for Assigned Names and Numbers).
+ Această organizație deleagă altor organizații autoritatea de a aloca
+numele de domenii dintr-un TLD. Entitățile delegate se numest registry.
+ ROTLD pentru .ro
+ VeriSign pentru .com și .net
+ PIR pentru .org
+ Education Network pentru .edu
+ Domeniu vs. Zonă
+ Un domeniu este orice nod din arborele DNS.
+ O zonă DNS este un domeniu (sau o parte a lui) administrat de un
+server DNS autoritar.
+ Delegarea creează granițe între zone.
+SERVICII DE REȚEA
+- DNS
+ Spațiul de nume DNS este structurat pe domenii și subdomenii:
+ TLD (Top-Level Domains): .ro, .com, .gov, .net, .org, .edu, .arpa
+ Domenii secundare: utcb.ro, google.com
+ Subdomenii: mail.google.com, ccia.utcb.ro
+ Domenii inverse: folosite pentru maparea unei adrese IP la nume (in-
+addr.arpa)
+
+“.”
+
+TLD
+.ro .gov  .com  .net .org
+.arpa
+.edu
+
+in-addr
+utcb
+pub
+google  netacad
+
+cisco
+127
+mail
+ccia
+curs
+0
+hidrotehnica
+0
+1
+SERVICII DE REȚEA
+- DNS
+ Un exemplu poate fi hidrotehnica.utcb.ro, unde
+ .ro este TLD și include
+ utcb.ro este un domeniul delegat de către rotld
+ hidrotehnica.utcb.ro este un dubdomeniu al utcb.ro
+ reprezintă resursele unui server intern.
+ Pentru administrare, domeniile și subdomeniile sunt organizate în zone DNS.
+ Un server DNS administrează una sau mai multe zone DNS.
+ Domeniile TLD sunt definite în Root Zone, administrată de un set de servere
+root numite „.” (rădăcina DNS).
+ Există 13 servere root logice (A–M), replicate în sute de locații prin anycast,
+ceea ce garantează că toate serverele DNS din lume pot accesa aceeași
+informație despre TLD-uri și adrese IP.
+ Fiecare „server root” logic este format din multe instanțe fizice, distribuite
+global.
+ Fiecare root server logic este replicat în zeci sau sute de locații din lume.
+Toate aceste instanțe împart aceeași adresă IP prin protocolul anycast.
+ARHITECTURA SERVERELOR DNS
+
+ Sistemul DNS este organizat ierarhic, prin delegarea domeniilor în zone,
+fiecare zonă fiind administrată independent.
+ Fiecare ser ver DNS autoritar menține o bază de date cu informațiile
+pentru zona sau zonele pe care le administrează.
+ Rezoluția numelor se face prin interogări recursive, pornind de la
+serverele root, continuând către TLD-uri și apoi către serverele autoritare
+pentru domeniul respectiv.
+ În cadrul fiecărui domeniu trebuie să existe cel puțin un server DNS
+autoritar (de obicei sunt două sau mai multe pentru redundanță).
+ Serverul DNS autoritar conține informația oficială (corectă și actualizată)
+despre numele și adresele IP din zona sa.
+ În majoritatea cazurilor, aceste servere sunt administrate de deținătorii
+domeniilor sau de furnizorii de servicii DNS.
+PRIMARY/ SECONDARY ZONES
+
+ Primary/ Secondary zones (Master/Slave zones, redenumite din motive
+de corectitudine politică)
+ O zonă DNS are un server Primary (fost „Master”) care deține copia originală a
+fișierului de zonă
+ O zonă poate avea unul sau mai multe servere Secondary (fost „Slave”)
+ Acestea obțin periodic o copie sincronizată a zonei de la serverul Primary prin zone
+transfer
+ Serverele Primary și Secondary sunt ambele autoritative pentru zona respectivă
+și pot răspunde cu autoritate la interogări DNS
+ Serverele Secondary sunt folosite pentru:
+ creșterea disponibilității zonei (redundanță)
+ distribuirea încărcării (load balancing)
+ reziliență la erori (în caz că Primary devine indisponibil)
+ Nu este obligatoriu să existe servere Secondary, dar acestea sunt recomandate în
+practică pentru siguranță și disponibilitate ridicată
+TIPURI DE SERVERE DNS
+
+ Ser ver For warder
+ Primește interogările DNS de la alte servere din rețeaua locală.
+ Trimite interogările către un server DNS recursiv extern și returnează
+răspunsul.
+ Reduce traficul și simplifică administrarea.
+ Ser ver Caching-only
+ Nu este autoritar pentru nicio zonă DNS.
+ Rezolvă interogări recursive și păstrează rezultatele în cache.
+ Reduce numărul de interogări trimise către serverele root și autoritare.
+TIPURI DE SERVERE DNS
+
+ Root Servers
+ Servere DNS autoritare pentru Root Zone („.”), nivelul cel mai de sus din
+ierarhia DNS.
+ Nu conțin adresele exacte ale domeniilor, ci indică serverele autoritare
+pentru TLD-uri (ex: .com, .ro, .org).
+ Folosite atunci când un server DNS recursiv nu știe unde să caute informația
+pentru un anumit domeniu.
+
+ Cum funcționează (simplificat):
+ Un server DNS recursiv primește o cerere pentru example.com.
+ Dacă nu are informația, întreabă un root server.
+ Root server-ul răspunde cu adresele serverelor autoritare pentru .com.
+ Serverul recursiv continuă rezoluția întrebând serverele .com.
+SERVICII DNS
+
+ BIND (Berkeley Internet Name Domain) este cel mai folosit
+software de server DNS (autoritar și recursiv).
+ Este utilizat de multe organizații și de majoritatea serverelor DNS din
+Linux/Unix.
+ Pentru interogări DNS se folosesc utilitare precum dig, nslookup
+sau host.
+ Există servicii comerciale de DNS autoritar și recursiv, precum
+Cloudflare, care oferă performanță ridicată, securitate și
+administrare facilă a domeniilor.
+TIPURI DE ÎNREGISTRĂRI ÎN BAZA DE DATE
+DE NUME
+ A Record
+ Asociază un nume de domeniu cu o adresă IPv4.
+ Exemplu:
+ utcb.ro. IN A 193.231.3.1
+ Este folosit atunci când numele trebuie să indice direct o adresă IP.
+ Fiecare subdomeniu poate avea propriul A record dacă indică spre alte servere.
+ CNAME Record (Canonical Name)
+ Creează un alias: un nume DNS trimite către alt nume DNS.
+ CNAME nu conține IP-ul, ci indică spre un alt nume care trebuie să aibă un A/AAAA
+record.
+ Un nume care are un CNAME nu poate avea alte înregistrări DNS (A, MX, TXT etc.).
+ Folosit pentru a evita duplicarea A record-urilor atunci când mai multe nume trebuie
+să ducă spre același server.
+
+biblioteca.utcb.ro. IN CNAME www.utcb.ro.
+www.utcb.ro. IN A 193.231.3.1
+biblioteca.utcb.ro va lua automat aceeași adresă IP ca
+www.utcb.ro.
+TIPURI DE ÎNREGISTRĂRI ÎN BAZA DE DATE
+DE NUME
+ MX – Mail Exchanger
+ Indică serverul de mail asociat unui domeniu.
+ Conține o prioritate (număr): cu cât numărul este mai mic, cu atât prioritatea
+este mai mare. Dacă un domeniu are mai multe servere de mail, prioritatea
+controlează ordinea de utilizare.
+utcb.ro. IN MX 0 mail.utcb.ro.
+
+ PTR – Pointer Record (reverse DNS)
+ Folosit pentru rezolvarea adresei IP → nume (opusul unui A record).
+ Un PTR se definește în domeniul special in-addr.arpa (pentru IPv4).
+ Adresa IP este scrisă inversată.
+Exemplu:
+Pentru IP-ul 193.231.3.1, înregistrarea PTR este:
+1.3.231.193.in-addr.arpa. IN PTR www.utcb.ro.
+PTR este folosit în special de serverele de e-mail pentru verificări anti-spam (mail
+servers verifică dacă IP-ul are un reverse valid).
+TIPURI DE ÎNREGISTRĂRI ÎN BAZA DE DATE
+DE NUME
+ NS – Name Server Record
+ Indică serverele autoritare pentru o zonă DNS.
+ NS-urile apar în două locuri:
+ în zona părinte (delegare către zona copil)
+ în zona copil (înregistrări autoritare)
+ NS-urile din zona părinte trebuie să corespundă NS-urilor declarate în zona
+domeniului.
+utcb.ro. IN NS ns1.utcb.ro.
+ TXT – Text Reco rd
+ Permite stocarea de informații în format text pentru diverse servicii.
+ Folosit în special pentru:
+ verificarea unui domeniu
+ politici de e-mail
+ informații generale
+TIPURI DE ÎNREGISTRĂRI ÎN BAZA DE DATE
+DE NUME
+ SOA – Start of Authority
+ Indică începutul unei zone DNS și conține informații esențiale despre
+administrarea acesteia:
+ serverul primar pentru zonă
+ adresa de e-mail a administratorului (scrisă cu punct în loc de @)
+ număr de serie (Serial)
+ timpi pentru actualizarea zonei de către serverele secundare
+ TTL pentru răspunsurile negative (Negative Cache TTL)
+ O zonă DNS are o singură înregistrare SOA.
+TIPURI DE ÎNREGISTRĂRI ÎN BAZA DE DATE
+DE NUME
+$TTL 86400
+utcb.ro. IN SOA ns1.utcb.ro. hostmaster.utcb.ro. (
+2016040501 ; Serial
+10800 ; Refresh
+3600 ; Retry
+604800 ; Expire
+600 ; Negative TTL
+)
+
+ Serial – versiunea zonei; secundarele își actualizează datele dacă numărul crește.
+ Refresh – intervalul la care serverele secundare cer actualizări.
+ Retry – intervalul de reîncercare dacă refresh-ul a eșuat.
+ Expire – timpul după care un server secundar încetează să mai fie autoritar dacă nu poate
+contacta primarul.
+ Negative TTL – cât timp sunt păstrate în cache răspunsurile „nume inexistent”.
+EXEMPLU DE FIȘIER DE ZONĂ (UTCB.RO)
+
+; u t c b . ro
+$ T T L 8 6 4 0 0
+u t c b . ro . I N S O A n s 1 . u t c b . ro . h o s t m a s t e r. u t c b . r o . (
+2 0 1 6 0 4 0 5 0 1 ; S e r i a l n u m b e r
+1 0 8 0 0 ; R e f re s h
+3 6 0 0 ; R e t r y
+6 0 4 8 0 0 ; E x p i r e
+6 0 0 ) ; M i n i m u m T T L
+
+; N a m e s e r v e r d e f i n i t i o n
+I N N S n s 1 . u t c b . r o .
+I N N S n s 2 . u t c b . r o .
+
+; M a i l e xc h a n g e r d e f i n i t i o n
+I N M X 0 m a i l . u t c b . ro .
+I N M X 1 0 m a i l 1 . u t c b . ro .
+
+; A re c o rd s d e f i n i t i o n
+u t c b . ro . I N A 1 9 3 . 2 3 1 . 3 . 1
+w w w. u t c b . ro . I N A 1 9 3 . 2 3 1 . 3 . 1
+n s 1 . u t c b . ro . I N A 1 9 3 . 2 3 1 . 3 . 1
+n s 2 . u t c b . ro . I N A 1 9 3 . 2 3 1 . 3 . 2
+m a i l . u t c b . ro . I N A 1 9 3 . 2 3 1 . 3 . 1 0
+m a i l 1 . u t c b . r o . I N A 1 9 3 . 2 3 1 . 3 . 1 1
+CONFIGURARE SERVERE DNS
+
+ Configurarea unui Server Forwarder
+ Un server forwarder este configurat pentru a redirecționa cererile DNS către
+un alt server DNS (ex. Google DNS, OpenDNS).
+ Exemplu cu BIND (Linux):
+1.Editare fișier de configurare BIND:
+- Fișierul principal este de
+obicei: /etc/named.conf sau /etc/bind/named.conf.options.
+2.Adăugare configurație forwarder:
+options { directory "/var/cache/bind";
+forwarders {
+8.8.8.8; # Google Public DNS
+8.8.4.4; # Google Public DNS };
+forward only; # Trimite cererile doar către serverele specificate
+};
+CONFIGURARE SERVERE DNS
+
+ Configurarea unui Server Forwarder
+ Un server forwarder este configurat pentru a redirecționa cererile DNS către
+un alt server DNS (ex. Google DNS, OpenDNS).
+
+ Exemplu cu Windows Server:
+1.Accesează DNS Manager:
+Run -> dnsmgmt.msc.
+2.Selectează serverul DNS și click dreapta -> Properties.
+3.Mergi la tabul Forwarders:
+- Adaugă adresele IP ale serverelor forwarder (ex: 8.8.8.8).
+CONFIGURARE SERVERE DNS
+ Configurarea unui Server Forwarder
+ Un forwarder este un server DNS configurat să trimită interogările către un alt server DNS
+recursiv (ex: Google DNS, Cloudflare, OpenDNS).
+ Exemplu cu BIND (Linux):
+1. Editare fișier de configurare BIND:
+- /etc/named.conf sau /etc/bind/named.conf.options
+2. Adăugarea configurației for warder
+
+options {
+directory "/var/cache/bind";
+
+forwarders {
+8.8.8.8; // Google DNS
+8.8.4.4; // Google DNS
+// 1.1.1.1; // Cloudflare (opțional)
+};
+
+forward only; // Folosește DOAR forwarder-ele, fără
+rezoluție proprie
+};
+CONFIGURARE SERVERE DNS
+ Configurarea unui Server Root
+ Un root server stochează și administrează înregistrările pentru zona root
+("."), care redirecționează cererile către serverele TLD (ex. .com, .org).
+ Exemplu cu BIND (Linux):
+2. Crearea fișierului de zonă root (db.root.zone):
+$TTL 86400
+@ IN SOA root.example.com. admin.example.com. (
+2024010101 ; Serial 3600 ;
+Refresh 1800 ;
+Retry 604800 ;
+Expire 86400 ) ; Minimum TTL
+
+IN NS a.root-servers.net.
+IN NS b.root-servers.net.
+
+a.root-servers.net. IN A 198.41.0.4
+b.root-servers.net. IN A 199.9.14.201
+TIPURI DE CERERI DE REZOLVARE DE NUME
+(DNS)
+A. Recursive Query
+ Serverul DNS interogat trebuie să returneze un răspuns final (o adresă IP sau un
+mesaj de eroare).
+ Clientul (PC, browser, aplicație) cere de obicei rezoluție recursivă.
+ Serverul DNS contactează alte servere DNS în locul clientului pentru a găsi
+răspunsul complet.
+
+B. Non-Recursive (Iterative) Query
+ Serverul răspunde doar dacă:
+are deja informația în cache, sau
+este autoritare pentru domeniul cerut.
+ Dacă nu are răspunsul final, oferă cea mai bună direcție disponibilă, adică
+trimite către alte servere DNS (de obicei recorduri NS).
+
+Comportament dacă nu se poate rezolva cererea
+ trimite un mesaj de eroare (NXDOMAIN sau SERVFAIL), sau
+ furnizează o listă de servere DNS care pot ajuta mai departe (în cazul cererilor
+non-recursive).
+SERVICII DNS
+
+Utilitare pentru interogarea
+DNS
+ nslookup (Windows, Linux,
+macOS) – utilitar clasic
+pentru verificarea
+rezolvării DNS.
+ dig (Linux, macOS) – cel
+mai complet utilitar pentru
+interogări DNS; afișează
+detalii despre autoritate,
+TTL, secțiuni etc.
+ host (Linux, macOS) –
+utilitar simplu pentru
+obținerea rapidă a
+înregistrărilor DNS.
+FUNCTIONAREA DNS
+
+O ce rere d e rezolvare d e nume e ste t rata tă astf el:
+1.Clie ntul tri mi te o c ere re recursivă căt re serverul DNS conf igurat (de
+ob icei serverul ISP sau local).
+2.Se rverul DNS local v erifică:
+ cache-ul (dacă are răspunsul memorat);
+ zonele autoritare (dacă este server autoritar pentru acel domeniu — rar,
+doar în rețele interne).
+3.Dacă nu a re info rmația î n cache sau în zo nele sa le:
+ dacă este configurat cu forwarder, trimite cererea către serverul
+forwarder;
+ altfel, începe rezoluția iterativă:
+ întreabă serverele root,
+ apoi serverele TLD (.com, .ro, .net),
+ apoi serverele autoritare pentru domeniu.
+4.Fiecare server DNS consult at ret urnează „ce a ma i bun ă info rmaț ie”, p ână
+când se rv erul recursiv ob ț ine răspunsul f inal (ad re să IP sau eroare ).
+5.Se rverul DNS local:
+ trimite răspunsul clientului,
+ salvează informația în cache pentru interogări viitoare (TTL).

@@ -1,0 +1,566 @@
+Cur s 5
+REȚELE DE
+St iva OS I –
+nivelul
+CALCULATOARE
+tr anspor t
+CUPRINS
+
+ Stiva O SI – nivelul 4 Transport
+▪ Segmentare, multiplexare
+▪ Soc ket uri
+▪ Protoc oalele TCP și UD P
+STIVE DE PROTOCOALE
+
+ Două modele care reprezintă toate prelucrările necesare
+comunicației în rețea, de la datele transmise de utilizator, până la
+codificarea acestora în biți și transmiterea pe mediul de
+comunicație
+
+▪ OSI – Open Systems Interconnection
+
+▪ Creat de ISO
+
+▪ TCP / IP – Transmission Control Protocol / Internet Protocol
+
+▪ Creat de DARPA
+STIVE DE PROTOCOALE
+
+ Fieca re str at / nivel tre buie:
+
+▪ sa furnizeze un anumit set de servicii și să realiz ez e interfața cu stratul
+
+adiacent;
+
+▪ să sp ecifice mo dul de transmitere a datelor între strat urile analoage de la
+
+sursă și de la dest inație.
+
+ În timpul transmiterii de date sunt utilizate protocoalele de
+
+comunicație de date.
+
+▪ Protoc olul de comunicații de date este un set de reguli, c onvenții și proc eduri
+
+cu ajutorul cărora se re alize ază comunicarea într -o re ţea.
+STIVA OSI VS STIVA TCP/IP
+
+OSI TCP/IP
+
+7 Aplicație
+
+6 Prezentare       Aplicație 4
+
+5 Sesiune
+
+4 Transport Transport 3
+
+3 Rețea Internet 2
+
+2 Legătură de date
+Acces la rețea 1
+1 Fizic
+STIVA OSI
+
+Rolul nivelului
+Nivelul 
+
+Aplicație Realizează interfața cu utilizatorul și interfața cu aplicațiile
+
+Prezentare Transformă datele în formate înțelese de fiecare aplicație
+
+Sesiune Gestionează conexiunile între aplicații
+Separă conversațiile între aplicațiile de pe o stație
+Transport 
+Segmentează (la sursă) și reasamblează datele (la destinație)
+Rețea Realizează rutarea pachetelor
+Asigură accesul la rețea, detecția și anunțarea erorilor,
+Legătură de date 
+controlul fluxului fizic
+
+Definește specificații electrice, mecanice, procedurale și
+Fizic 
+funcționale pentru transmiterea informațiilor pe mediu
+STIVA TCP/IP
+
+Nivel Rolul nivelului
+
+Aplicație Interacțiunea cu utilizatorul
+Segmentare și multiplexarea comunicațiilor între
+Transport 
+servicii pe aceeași stație
+Rutare - Determinarea rutei optime între două
+Internet 
+puncte din rețea
+Controlul interacțiunii cu HW, punerea informației
+Acces la rețea 
+pe mediu
+STIVA OSI: NIVELUL 7
+APLICAȚIE
+ Furnizează servicii altor aplicații și utilizatorilor
+▪ Nu furnizează servicii altor niveluri ale stivei OSI
+ Exemple: HTTP, FTP, DNS, DHCP, SSH, Telnet, SMTP, etc.
+STIVA OSI: NIVELUL 6
+PREZENTARE
+ Furnizează servicii nivelului 7
+ Rol principal: prezentarea datelor astfel încât să poată fi
+utilizate la nivelul 7
+
+ Protocoale de:
+▪ Formatare și codificare a datelor
+▪ Compresie a datelor
+▪ Protocoale de securizare a datelor
+▪ Transp ort Laye r Security – TL S
+▪ Secure Socket Laye r - SSL
+ Exemple:
+▪ ASCII, JPEG, GIF, PNG, etc.
+STIVA OSI: NIVELUL 5
+SESIUNE
+ Rol principal: gestionează sesiunile dintre două aplicații
+care comunică
+▪ Sesiuni: conexiunile persistente dintre dispozitive – nu țin cont de
+nivelurile 1-4
+
+ Gestionează sincronizarea dialogului și modul de
+comunicare conform cerințelor de la nivelul aplicație
+STIVA OSI: NIVELUL 4
+TRANSPORT
+ Func ții principale (t oate protocoalele de nivel 4):
+▪ Segmentarea datelor de la nivelele superioare
+▪ Multiplexarea conversațiilor pe bază de porturi
+
+ Roluri adiționale ( unele protocoale de nivel 4)
+▪ Conversații orientate pe conexiune (connection oriented )
+▪ Livrarea sigură a datelor
+▪ Controlul fluxului
+▪ Ordonarea corectă a segmentelor
+
+ Prot oc oale principale:
+▪ TCP – Transmission Control Protocol - orientat pe conexiune
+▪ UDP – User Datagram Protocol - neorientat pe conexiune, de tip „ best effort”
+
+ Realizeaz ă adres ar ea pe baz ă de „porturi”
+
+ PD U: segment
+CONCEPTE DE BAZĂ ÎN TRANSMITEREA
+DATELOR
+
+ Încaps ula re
+
+▪ Încadrarea d atelor d e transmis între header-e și trailer-e
+
+ Segmen tar e
+
+▪ Împ ărțirea datelor de tran smis î n segmen te mai mici
+
+ Mul ti plexar e
+
+▪ Comb inarea mai mu ltor canal e de comun ica ți i într-un singur can al fizic
+SEGMENTAREA
+
+ Procesul de divizare a unui pachet de date în unități mai mici
+
+pentru transmiterea eficientă prin rețea
+
+▪ Când datele ajung la destinaţie, sunt reasamblate şi trimise aplicaţiei
+
+corespunzătoare.
+SEGMENTAREA
+
+ Datele provenite de la aplicații sunt împărțite în segmente
+mai mici, la nivelul transport. Astfel:
+▪ Datele sunt conforme cu mediul fizic folosit
+▪ Diferite aplicații pot transmite date în același timp
+Date de la nivelul aplicație
+
+Secvența 1 Secvența 2 ... Secvența n
+
+TCP UDP
+Header TCP Secvența 1 Header UDP Secvența 2
+Header TCP Secvența 2 Header UDP Secvența 1
+. . . .
+. . . .
+Header TCP Secvența n Header UDP Secvența n-1
+MULTIPLEXAREA
+
+ Procedeul prin care mai multe canale de comunicare sunt
+
+combinate într-un singur canal fizic
+
+▪ Demultiplexarea este procesul invers
+MULTIPLEXAREA
+
+ Mult iplexarea este o metodă pri n care mai m ul te f luxuri de dat e
+di fer ite pot fi transmi se peste aceeaşi legătură .
+ Un avant aj im portant al segm entării şi m ul ti pl exării îl reprez intă :
+▪ conservarea lăţimii de bandă;
+▪ în cazul apariţiei unei erori, este retransmis numai segmentul care
+a fost pierdut.
+ Mult iplexarea este un proces de transmi tere si multană a
+sem nalelor m ul ti pl e pe un si ngur canal. Deoarece semnalele sunt
+t ri mise într-o singură transmi si e complexă, receptorul trebuie să
+separe semnalele dif eri te. D ouă m etode principale de
+mult iplexare sunt: multiplexarea cu divizare de tim p (TDM) şi
+mult iplexarea cu divizarea frecvenţei ( FD M).
+ În metoda de mu ltiplexare cu diviza re de t imp (folosită pentru
+sem nale di gi tale), unui dispozitiv i se acordă un i nterval de t imp
+în care el poate fol osi canalul.
+MULTIPLEXAREA
+
+ În metoda de multiplexare cu divizarea frecvenţei
+(folosită pentru semnale analogice), canalul este
+împărţit în subcanale, fiecare cu o frecvenţă diferită
+specifică unui singur semnal.
+ Reţelele pe bază de fibră optică pot folosi multiplexare
+cu diviziunea simultană a lungimii de undă, în care
+semnale diferite sunt trimise în mediul din fibră optică,
+sub forma razelor de lumină cu lungimi de undă diferite.
+ÎNCAPSULAREA DATELOR
+
+ Nivelurile Aplicație, Pr eze ntare și sesiune
+▪ Datele propriu-zise
+
+ Nivelul Tr anspor t
+▪ Se adaugă portul utilizat la nivelul Aplicație
+▪ Se obține un segment de date
+
+ Nivelul R ețea
+▪ Se adaugă adresa logică – adresa IP (în general)
+▪ Se obține un pachet de date
+
+ Nivelul L egătur ă de da te
+▪ Se adaugă adresa fizică – adresa MAC
+▪ Se obține un cadru (frame)
+
+ Nivelul fizic
+▪ Datele sunt transformate în biți si puse pe mediul de comunicație
+ÎNCAPSULAREA DATELOR
+
+Tip PDU Format
+Nivel stiva OSI 
+
+Aplicație 
+Date
+Prezentare
+
+Date Date Date Date Date
+Sesiune 
+
+Segment THeader Date
+Transport 
+
+Pachet NHeader THeader Date Trailer
+Rețea 
+
+Cadru DLHeader NHeader THeader Date Trailer
+Legătură de date 
+
+Biți 00110011010101011101
+Fizic 
+
+PDU – Protocol Data Unit
+ADRESARE
+
+ Ni v e lu l Se s iune :
+▪ Adresează problema identificării sesiunilor multiple ale aceleași aplicații în cadrul
+aceluiași sistem de operare
+
+ Ni v e lu l Tra ns port :
+▪ Adresare pe bază de porturi
+▪ Identifică t raf icul per aplicaț ie la nivelul sis te mului de op era re
+
+ Ni v e lu l Re țe a :
+▪ Adresare pe bază de IP:
+▪ Valabile la nivel global ( id entific abile în WAN )
+▪ Adr esa re logic ă
+
+ Ni v e lu l Le gă tură de da te :
+▪ Adresare pe bază de adresă MAC
+▪ Identificabile în LAN
+▪ Adr esa re plată
+PORTURI (1)
+
+ Port urile reprezintă mecanis mul prin care s e dis ting conv er sațiile
+multiple în care part icipă o stație
+▪ În plus, identifică protocoalele și serviciile cerute în conversații
+▪ Porturile se asociază unei aplicații (serviciu) şi nu unei gazde, un proces
+putând oferi mai multe servicii, deci poate utiliza mai multe porturi.
+
+ Segmentele TCP și U DP conțin în antete numere de por turi surs ă și
+porturi dest inație
+
+ Port ul surs ă
+▪ Se alege aleator de către sursă
+▪ Este folosit
+▪ de destinație pentru a răspunde
+▪ de sursă pentru a identifica mai multe conversații simultane
+
+ Port ul dest inație
+▪ E atașat la crearea segmentului
+▪ Se alege pe baza serviciului / protocolului de nivel aplicație dorit
+▪ Îi spune destinației ce serviciu este cerut
+▪ Ex: pachet cu port destinație 80 → cere servicii web
+PORTURI (2)
+
+ Se rețin pe 16 biți
+16
+▪ → valori cuprinse între 0 și 65535 (2 -1)
+
+ Se împart în 3 categorii:
+▪ Porturi bine cunoscute (Well known ports) / syste m ports
+▪ Fo losite de servicii de bază
+▪ Porturi înregistrate (registered ports)
+▪ Fo losite de producă tori pentru aplicații
+▪ Dinamice și/sau private
+▪ Nu po t fi înregistrate la IANA
+Număr port Categorie
+0 – 1023 Well – known
+
+1024 – 49151 Porturi înregistrate
+
+49152 – 65535 Porturi private și/sau dinamice
+PORTURI BINE-CUNOSCUTE
+
+ Înreg istrate la IANA – Internet A ssig ned Numbers Authority
+ O listă completă este disponibilă la adresa
+▪ https://www.iana.org/assignments/service -names-port-numbers/service-
+names-port-numbers.xhtml
+ Valori între 0 și 1023
+ În G NU /Linux lista porturilor bine-cunoscute g ăsește în fișierul
+▪ /etc/services
+▪ În general e nevoie de privilegii administrative pentru a rula servicii pe ele
+Număr port Protocol Aplicație Număr port Protocol Aplicație
+20 TCP FTP Data 69 UDP TFTP
+21 TCP FTP Control 80 TCP http
+22 TCP ssh 110 TCP POP3
+23 TCP telnet 123 UDP NTP
+25 TCP SMTP 194 TCP IRC
+53 TCP / UDP DNS 443 TCP https
+PORTURI ÎNREGISTRATE
+
+ Înregistrate la IANA – Internet Assigned Numbers Authority
+ O listă completă este disponibilă la adresa
+▪ https://www.iana.org/assignments/service-names-port-
+numbers/service-names-port-numbers.xhtml
+ Ex:
+▪ MQTT: 1883
+▪ PostgreSQL: 5432
+▪ MySQL: 3306
+▪ Minecraft: 25565
+▪ MongoDB: 27017
+PORTURI DINAMICE
+
+ Porturi dinamice/ efemerale/ dinamice
+▪ Folosite dinamic de sistemul de operare
+▪ Utilizate ca port sursă în majoritatea conexiunilor
+ Nu se pot înregistra la IANA
+ Valori între 49.162 – 65.535
+PORTURI DINAMICE
+
+Se pot
+Privilegiat
+Număr port Categorie Utilizare 
+înregistra la
+e
+IANA?
+Protocoale
+0 – 1.023 Well – known DA DA
+fundamentale 
+Porturi    Aplicații
+1.024 – 49.151 NU DA
+înregistrate  comerciale/ servicii 
+Porturi private
+Porturi dinamice
+49.152 – 65.535                   NU NU
+și/sau
+folosite de SO 
+dinamice
+SOCKETS
+
+ Un socket reprezintă o asociere între un port și o adresă IP
+▪ Identifică în mod unic o aplicație care rulează pe o anumită stație
+într-o rețea
+
+ Multiplexarea se bazează pe socket-uri
+
+ O conversație se identifică prin perechea de socketuri:
+▪ IP_sursă : port_sursă, IP_destinație:port_destinație
+
+▪ Ex:
+▪ 89.38.00.5 : 1209 , 89.38.00.20 : 80, unde:
+
+89.38.00.5 1209 89.38.00.20 80
+
+Portul sursa – generat            Portul cerut – pentru
+Adresa IP a sursei Adresa IP destinație 
+aleatoriu servicii web
+EXEMPLU SOCKET-URI
+
+Pachete
+
+MAC destinatie MAC sursa IP sursa IP destinatie Port destinatie Port sursa Date
+
+BC-EE-7B-0E-12-17 00-07-D3-23-4F-11 89.38.155.10 89.38.155.100 80 1209 Date
+
+BC-EE-7B-0E-12-17 00-07-D3-23-4F-11 89.38.155.10 89.38.155.100 80 1306 Date
+
+BC-EE-7B-0E-12-17 00-07-D3-23-4F-11 89.38.155.10 89.38.155.100 21 1007 Date
+
+00-07-D3-23-4F-11 BC-EE-7B-0E-12-17 89.38.155.100 89.38.155.10 1007 21 Date
+
+00-07-D3-23-4F-11 BC-EE-7B-0E-12-17 89.38.155.100 89.38.155.10 1306 80 Date
+COMANDA NETSTAT
+
+ Wi ndows O S
+▪ Afișează conexiunile TCP/IP
+
+▪ netstat/? – afișează opțiunile disponibile
+▪ -s afi șează statistici per protocol
+▪ -p <protocol>, unde <p rotocol> poate fi TCP, TCPv6, UDP, U DPv 6, ICMP, IP….
+▪ -b afișează executabil ul impli cat în crearea conex iunii
+▪ -r a fișea ză tabela d e rutare
+PROTOCOALE DE NIVEL 4
+
+ TCP – Transmission Control Protocol
+
+ UDP – Unified Datagram Protocol
+
+TCP UDP
+Connection – oriented Connectionless
+Reliable Unreliable
+→ overhead mare → overhead mai mic
+TCP
+
+ Ser viciile oferite de orice protocol de nivel 4
+▪ Segmentare și multiplexare
+ În plus, TCP:
+▪ Este un protocol orientat pe conexiune (connection orriented)
+▪ St abilește conexiunea cu destinaț ia înainte de a trimite date
+
+▪ Asigură posibilitatea reasamblării în ordine a datelor la destinație
+▪ Include numărul secvenței de date transmise
+
+▪ Controlează fluxul de date (flow control)
+▪ Testeaz ă conexiunea, segmentează datele în dimensiuni c orespunzătoare
+
+▪ Verifică integritatea datelor transmise, datele corupte sunt
+retransmise
+SEGMENTUL TCP
+
+Bit 0 Bit 15 Bit 16 Bit 31
+
+Portul sursă (16 biți) Portul Destinație (16 biți)
+
+Numărul secvenței (32 de biți)
+
+Numărul Acknowledgement (32 de biți)
+
+Lungime         Biti de
+Rezervat
+Window size (16 biți)
+header         control
+(6 biți)
+(4 biți)         (6 biți)
+
+Checksum (16 biți) Urgent (16 biți)
+
+Opțiuni (0 sau 32 de biți)
+
+Datele de la aplicații
+SEGMENTUL TCP
+
+ Numărul secvenței
+▪ Indică ordinea segmentelor pentru reasamblarea la destinație
+ Numărul Acknowledgement-ului
+▪ Indică datele care au fost primite și numărul următorului octet
+așteptat
+ Header Length – cunoscut și ca „data offset”
+ Rezervat – păstrați pentru implementări viitoare
+ Biți de control – „flags”
+▪ marcaje care indică rolul segmentului TCP
+ Dimensiunea ferestrei - Window
+▪ indică numărul de segmente care pot fi acceptate la un moment dat,
+până când este așteptat un Acknowledgement
+STABILIREA UNEI CONEXIUNI TCP
+
+ Pro cesul de st abilir e a unei co nex iuni în TCP se nume ște și
+„thre e way handshake”
+
+Stația 1 Stația 2
+Trimite SYN
+1 
+SEQ = 100, CTL = SYN
+Receptionează SYN
+Trimite SYN, ACK
+2
+SEQ = 300, ACK=101
+CTL = SYN, ACK
+Primește SYN și ACK
+Trimite ACK
+3
+SEQ = 101, ACK=301
+CTL = ACK
+
+▪ CTL – unul dintre cei 6 biți de control din segmentul TCP
+STABILIREA UNEI CONEXIUNI TCP
+
+ THREE WAY HANDSHAKE
+ Pasul 1:
+▪ Sursa trimite un mesaj de sincronizare cu câmpul de CTL setat la
+valoarea SYN
+▪ SYN = c erere de stabilire c onexiune
+▪ Se alege un număr de secvență inițial
+▪ Va fi incrementat pe măsură c e se deruleaz ă c onversaț ia
+ Pasul 2:
+▪ Destinația își alege și ea un număr inițial de secvență
+▪ Trimite un mesaj de acknowledgment, ACK=101:
+▪ Am primit până la 100, aștept 101
+▪ Setează CTL la SYN și ACK
+ Pasul 3:
+▪ Sursa recepționează SYN și ACK
+▪ Trimite SEQ = 101, ACK =301 și CTL = ACK
+ÎNCHEIEREA UNEI CONEXIUNI TCP
+
+Se mai numește și 4 way handshake – include 4 segmente
+
+Stația 1 Stația 2
+1 Trimite FIN
+Recepționează FIN
+Trimite ACK
+2 
+ACK primit
+Trimite FIN
+3 
+FIN primit
+4 Trimite ACK
+ACK primit
+UDP
+
+ Protocol „best-effor t”
+▪ Connectionless
+▪ Nu stabilește o c onexiune către destinație înainte de a înc epe
+transmiterea datelor
+▪ Nu verifică transmiterea corectă a datelor
+▪ Nu adaugă numere secvențelor
+▪ Uneori datele nu ajung în ordinea transmiterii
+▪ Nu controlează fluxul de date
+ UDP Datagram – overhead – 8 octeți
+UDP
+
+ Semnificația câmpuri lor din antetul UD P este următoarea:
+▪ Source port - indică portul pr ocesului emitent;
+▪ Destination por t - precizează portul pr ocesului destinație;
+▪ Length - evidențiază lungimea în octeți a datagramei;
+▪ Checksum - este un câmp pe 16 biți utilizat pentru detectarea unor
+modificări ale segmentului.
+
+ În concluzie, anali zând antetul U DP-ului se observă că el nu
+asi gură siguranța livrări i, control ul t ransmisiei și recuperarea
+erori lor, astfel î ncât acestea trebui e asigurate de către apli cați e
+
+ Pri ntr e aplicații le standard care utili zeaz ă UDP se pot enumera
+▪ Trivial File Transfer Protocol (TFTP) ;
+▪ DNS (Domain Name System);
+▪ Remote Procedure Call (RPC), utilizat de către NFS (Network File System);
+▪ Simple Network Management Protocol (SNMP);
+▪ Lightweight Directory Access Protocol (LDAP).

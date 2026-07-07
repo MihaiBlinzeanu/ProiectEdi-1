@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "pdf-text-reader": "^5.1.1"
+  }
+}

@@ -1,0 +1,244 @@
+Laborator 11 – Sisteme automate
+Criteriul de stabilitate V.M. Popov. Criteriul de stabilitate Liapunov
+
+1.1. Scopul lucrării
+
+Scopul acestei lucrări este studiul stabilității sistemelor dinamice utilizând criteriile de stabilitate
+Liapunov și Popov, precum și implementarea acestora în mediul MATLAB pentru analiza și reprezentarea
+comportării sistemelor.
+
+1.2. Breviar teoretic
+
+1.2.1. Criteriul Popov
+Se consideră structura unei familii de sisteme automate neliniare (fig. 1), alcătuită din partea liniară
+cu funcția de transfer
+𝐶(𝑠)
+() 
+𝐻𝑠= 
+𝐷(𝑠)
+având toți polii în semiplanul stâng (𝑅𝑒𝑝< 0, stabilă asimptotic), strict proprie și cu coeficientul
+𝑖 
+
+de transfer 𝑘= 1, iar neliniaritatea 𝑢 = 𝑓(𝑦) reprezintă o familie care aparține clasei 𝐶 sau 𝐶 .
+𝑙 𝑘
+(0,) (0,∞) 
+
+Criteriul Popov de stabilitate absolută se formulează astfel: sistemul neliniar închis este absolut
+stabil, dacă există un număr real 𝑞 > 0 astfel, încât să aibă loc relația (condiție suficientă de inegalitate):
+
+în care constanta 𝑘 < ∞, iar
+
+Fig. 1. Schema structurală a sistemului neliniar
+
+Aceste condiții de stabilitate rezultă din operațiile cu valori mici ale neliniarității sau din robustețea
+sistemului analizat. Criteriul Popov admite o remarcabilă interpretare grafică.
+Pornind de la locul de transfer al părții liniare:
+
+relaţia de mai sus devine:
+
+Se introduc notaţiile:
+
+Dacă aplicăm notațiile de mai sus definite în ultima relație, obținem:
+
+Această relație reprezintă ecuația dreptei, exprimată astfel:
+
+ce poartă denumirea de dreapta Popov.
+
+În continuare, se introduce noţiunea de loc de transfer Popov sau hodograful modificat, care
+reprezintă curba definită parametric de relația:
+
+unde
+
+Astfel, se variază ω de la 0 ⋯ ∞, se calculează partea reală 𝑈 ∗ (ω) şi partea imaginară 𝑉 ∗ (ω) și
+în scară se construiește locul de transfer modificat 𝐻 ∗ (𝑗ω) al părţii liniare a sistemului neliniar, care se
+dă în figura 2, iar 𝐻(𝑗ω) este locul de transfer inițial al părții liniare.
+
+Fig. 2. Locurile de transfer inițial𝐻(𝑗ω) şi modificat𝐻 ∗ (𝑗ω)
+Criteriul Popov se formulează astfel: Definiție. La variaţia lui ω de la 0 ⋯ ∞ sistemul neliniar este absolut
+stabil, dacă hodograful modificat 𝐻 ∗ (𝑗ω) este complet situat în semiplanul definit de dreapta Popov, în
+care se găseşte originea.
+Pentru ca sistemul neliniar să fie absolut stabil este necesar şi suficient să existe un astfel de număr
+𝑞 > 0, încât să se poată duce o dreaptă la unghiul arctg𝑞 în raport cu dreapta 𝑞 = 0 (verticală) prin punctul
+cu coordonatele (-1⁄𝑘,𝑗0) care să lase hodograful modificat de aceeaşi parte a dreptei ca şi originea. Se
+constată că panta dreptei este arbitrară. Dacă nu există un astfel de 𝑞 > 0, atunci criteriul Popov nu se
+aplică, deci, nu se poate afirma nimic despre stabilitatea absolută a sistemului neliniar. În problema în care
+se cere sectorul maxim de stabilitate, se duce dreapta Popov astfel, încât intersecţia cu axa absciselor să
+fie cât mai aproape de origine.
+
+1.2.2. Criteriul Liapunov
+
+Una dintre metode numită şi metoda a doua a lui Liapunov este folosită frecvent în teoria
+sistemelor automate, care se bazează pe construcţia unei funcţii scalare numită funcţia Liapunov cu
+anumite proprietăţi. Sistemul autonom neliniar (nu depinde de semnale externe şi direct de timp) se descrie
+de sistemul de ecuaţii diferenţiale prin variabilele de stare:
+
+Starea de echilibru a sistemului se determină de sistemul de ecuaţii:
+
+Conform teoriei stabilității Liapunov, pentru studierea stabilității sistemului neliniar se introduce
+o funcție specială reprezentată în spațiul fazelor 𝑉(𝑥1, 𝑥2, ⋯ , 𝑥𝑛 ) = 𝑉(𝒙), care este numită funcția
+Liapunov cu următoarele proprietăţi:
+1. Funcţia 𝑉(𝒙) şi primele ei derivate parţiale sunt continue în vecinătatea unui domeniu deschis
+în jurul originii.
+2. Funcţia 𝑉(𝒙) este nulă în origine (𝒙 = 0, 𝑉(0) = 0).
+3. Funcţia 𝑉(𝒙) se numeşte pozitiv definită dacă 𝑉(0) = 0 şi 𝑉(𝒙) > 0 în tot domeniul, în afară de
+origine 𝒙 = 0.
+O funcţie 𝑉(𝒙), definită într-o vecinătate a punctului 𝒙 = 0, se numeşte pozitiv definită, dacă pentru
+ℎ > 0 astfel, încât pentru |𝒙| < < ℎ, funcţia 𝑉(𝒙) ia numai valori pozitive şi se anulează numai în punctul 𝒙
+= 0.
+
+Astfel, crieriul Liapunov presupune: Pentru ca sistemul studiat să fie stabil (soluţia banală stabilă),
+este necesar a găsi o funcţie 𝑉(𝒙), definită într-o vecinătate închisă a originii, pozitiv definită, cu derivata
+în virtutea sistemului negativ semidefinită sau identică nulă. Dacă derivata 𝑑𝑉(𝒙)⁄𝑑𝑡 este negativ definită,
+atunci stabilitatea sistemului este asimptotică.
+
+1.3. Chestiuni de studiat
+
+Aplicație rezolvată criteriul Popov:
+
+Considerăm un sistem de reglare automată având schema bloc prezentată în figura 1. Partea liniară
+a sistemului este caracterizată prin funcția de transfer:
+
+iar neliniaritatea 𝜑(𝜎)aparține sectorului:
+
+Cerință: Să se determine pentru ce valori ale lui 𝑘 sistemul este stabil absolut folosind criteriul Popov.
+
+Observație: Este evident că partea liniară a sistemului este stabilă (având polii-2 si -5) şi nu apare
+necesitatea introducerii unor reacţii suplimentare în ideea liniarizării . Pentru ca ulterior să putem compara
+hodograful părţii liniare cu caracteristica Popov modificată, în figura 3 este prezentată caracteristica de tip
+hodograf a părţii liniare.
+
+Pasul 1: stabilitatea sistemului liniar
+Pasul 2: trecerea funcției liniare în frecvență
+
+Aplicăm conversia
+
+Obținem astfel funcția
+
+Pasul 3: calculăm numitorul extins
+
+Știm însă că
+
+→
+
+Pasul 4: separăm partea reală de cea imaginară
+Pentru început înmulțim cu conjugata funcției
+
+După prelucrări matematice, obținem forma
+
+Obținem rezultatul final:
+
+și
+
+Pasul 5: construim reprezentarea Popov
+Dacă înlocuim valori pentru 𝜔 în reprezentarea obținută, putem alcătui hodograful Nyquist. Reprezentarea Popov
+necesită însă un pas suplimentar:
+Astfel, hodograful Popov se poate obține dând valori expresiilor
+
+, unde
+
+Pasul 6: calculăm tabelul cu valori pt ω
+Calculăm câteva puncte importante, necesare în obținerea hodografului Popov:
+Y(ω)=ωIm(H)
+X(ω)=Re(H) 
+𝝎 
+0 0.10 0
+1 0.069 -0.054
+2 0.026 -0.121
+3 0.002 -0.142
+0 0
+∞ 
+
+Pasul 7: aplicăm criteriul Popov
+
+Condiția obținută implică faptul că punctul de coordonate (𝑋(𝜔),𝑌(𝜔)) trebuie să se situeze în dreapta dreptei de
+
+forma
+
+Observație: q reprezintă un parametru arbitrar, parametru ce controlează înclinarea dreptei Popov
+Pasul 8: determinăm valoarea lui K
+max
+
+Vom studia cazul q=0 pentru început.
+
+Condiția inițială devine
+Următorul pas este să găsim valoarea minimă a lui X(ω) (valoarea ce se depărtează cel mai mult de 0).
+După ce calculăm mai multe iterații pentru expresia vom observa că în jurul
+valorilor 𝜔=6 (Re= −0.0106) și 𝜔=7 (Re= −0.00994) , calculul începe să tindă cât mai mult către 0.
+Astfel, vom considera că Xmin ≈ −0.01.
+
+Condiția devine , deci .
+
+Valoarea maximă a lui K este .
+
+Putem concluziona faptul că sistemul definit de funcția liniară este absolut stabil
+
+pentru orice neliniaritate din sectorul: în cazul în care q=0.
+
+Pentru verificarea algoritmului folosind MATLAB:
+Aplicație rezolvată criteriul Liapunov:
+
+Se consideră sistemul de ecuații:
+
+Să se studieze stabilitatea punctului de echilibru x=(0,0) folosind metoda Liapunov.
+
+Pasul 1: Alegem funcția Liapunov
+Pentru sisteme liniare simple alegem:
+2 2
+𝑉(𝑥) = 𝑥+ 𝑥
+1  2
+
+Pasul 2: Verificăm dacă funcția aleasă e pozitiv definită
+Pentru a îndeplini condițiile Liapunov, funcția trebuie să îndeplinească următoarele cerințe:
+• 𝑉(0,0) = 0
+• 𝑉(𝑥) > 0 pentru orice 𝑥 ≠ 0
+2 2 
+Pentru funcția aleasă, avem: V(0,0)=0+ 0= 0
+2 2 
+și 𝑥+ 𝑥> 0
+1  2
+
+pentru orice punct diferit de origine. În concluzie, funcția V este pozitiv definită.
+̇
+Pasul 3: Calculăm derivata 𝑉
+
+Cunoaștem că:
+
+Calculăm derivatele parțiale:
+
+Obținem astfel
+Din problema inițială cunoaștem că:
+
+Și înlocuind, obținem că
+Dacă extindem ecuația, se va obține forma desfășurată
+
+După ce reducem termenii, derivata lui V rămâne
+
+Pasul 4: Verificăm dacă funcția derivată este <0
+
+În cazul nostru,
+
+pentru oricare
+
+Deoarece criteriile sunt îndeplinite, se consideră că sistemul este ASIMPTOTIC STABIL
+în punctul analizat.
+Pentru verificarea algoritmului folosind MATLAB:
+Exerciții propuse:
+Exercițiul 1: Se consideră un sistem de reglare automată având schema bloc prezentată în figura 1. Partea
+liniară a sistemului este caracterizată prin funcțiile de transfer:
+
+a)
+
+b)
+
+c)
+
+iar neliniaritatea 𝜑(𝜎)aparține sectorului:
+Să se determine pentru ce valori ale lui 𝑘 sistemul este stabil absolut folosind criteriul Popov.
+Exercițiul 2: Se consideră următoarele sisteme de ecuații:
+
+a)
+
+b)
+
+c)
+Să se studieze stabilitatea punctului de echilibru x=(0,0) folosind metoda Liapunov.

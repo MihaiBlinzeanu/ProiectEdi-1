@@ -1,0 +1,246 @@
+Laborator 7 – Sisteme automate
+Criterii de stabilitate a sistemelor în domeniul discret
+
+1.1. Scopul lucrării
+
+Lucrarea de laborator are ca scop studiul și înțelegerea criteriilor de stabilitate pentru sistemele
+dinamice în timp discret, prin utilizarea metodelor clasice și moderne de analiză. Se va urmări
+implementarea acestor metode în mediul de calcul matematic MATLAB.
+
+1.2. Breviar teoretic
+Se pornește de la legătura analitică dintre variabila s a transformatei Laplace și variabila z a
+transformatei Z. Această mapare este ilustrată în Figura 1, fiind dată de formula:
+
+Figura 1. Maparea planului s în planul z
+
+În continuare se vor prezenta, din punct de vedere teoretic, principalele criterii de verificare a
+stabilității sistemelor aplicabile în domeniul discret.
+I. Criteriul locației rădăcinilor
+
+Criteriul rădăcinilor se definește astfel: Stabilitatea unui sistem discret este determinată de poziția
+polilor în planul z. Astfel, pentru un sistem descris prin funcția de transfer exprimată sub forma:
+
+polii funcției de transfer sunt reprezentați de rădăcinile polinomului A(z).
+
+Ca un sistem discret să fie stabil BIBO (pentru orice intrare mărginită, există o ieșire mărginită), acesta
+trebuie să îndeplinească condiția:
+
+unde 𝑧sunt rădăcinile polinomului caracteristic.
+𝑖
+
+Figura 2. Stabilitatea conform criteriului locației rădăcinilor
+
+Observație: Astfel, condiția necesară și suficientă ce trebuie îndeplinită este ca toți polii trebuie să fie
+incluși în interiorul cercului unitate.
+
+II. Criteriul de stabilitate Schur-Cohn-Jury
+
+Criteriul Routh-Hurwitz prezintă un algoritm care verifică dacă rădăcinile unui polinom se află în
+semiplanul stâng, respectiv câte rădăcini există în semiplanul drept.
+
+În mod similar, criteriul Schur-Cohn-Jury verifică dacă rădăcinile unui polinom P(z) de ordin n se
+c
+află în interiorul discului unitate, respectiv câte rădăcini există în exteriorul acestuia. Acesta poate fi folosit
+pentru a determina stabilitatea unui sistem numeric, pe baza polinomului său caracteristic, fără a fi nevoie
+de calculul efectiv al polilor săi.
+
+Criteriul Schur-Cohn-Jury se definește astfel: Considerând polinomul caracteristic
+n n−1 n−2 
+P(z) = az+ az + az + · · · + a z + a, z ∈ C
+c   0   1    2        n−1  n
+
+Se vor verifica următoarele condiții principale obligatorii:
+
+✓ ∣ 𝑎∣< 𝑎
+𝑛 0
+
+✓ 𝑃(1) > 0
+𝑐
+
+𝑛 
+✓ (−1)∙ 𝑃(−1) > 0
+𝑐
+
+Dacă sunt îndeplinite toate condițiile specificate mai sus, atunci se vor calcula determinanții din tabelul
+lui Jury. Acesta se completează urmărind următoarele reguli:
+
+• se scriu coeficienţii lui Pîn ordine descrescătoare a puterilor şi apoi în ordine crescătoare (prima
+c 
+linia va conține coeficienții în ordine crescătoare, a doua linie va conține inversa primei linii)
+
+• se calculează recursiv, după aceeași regulă, următoarele linii:
+
+Observație: Completarea tabelului se opreşte când obţinem o pereche de linii cu trei termeni.
+
+Pe baza acestui mod de completare, rezultă următorul tabel:
+Sistemul este considerat stabil dacă toate elementele noi calculate respectă condiția:
+
+Astfel, se poate afirma că dacă se îndeplinesc simultan condițiile a) – m), atunci toate cele n rădăcini
+ale polinomului P(z) se află în interiorul cercului unitate. În caz contrar, există cel puțin o rădăcină în
+c
+afara acestuia. Dacă cel puțin una dintre condițiile a) – m) se îndeplinește cu egalitate, iar celelalte rămân
+inegalități stricte, atunci cel puțin o rădăcină se află pe cercul unitate.
+
+Observație: Pentru a aplica criteriul Jury în cazul sistemelor de ordinul I, se utilizează doar primele două
+condiţii. De preferat ar fi să se calculeze direct polii sistemului şi să se concluzioneze de acolo stabilitatea.
+
+III. Metoda valorilor proprii
+
+Fie un sistem discret definit de următoarea reprezentare în spațiul stărilor:
+
+Stabilitatea depinde de matricea A, ce prezintă dinamica sistemului (cum evoluează starea
+sistemului în timp). Evoluția sistemului, fără a depinde de intrare este următoarea:
+
+𝑘
+Astfel, comportamentul lui 𝐴este determinat de valorile proprii ale lui 𝑨.
+
+Valorile proprii reprezintă soluțiile ecuației: , denumit și polinom
+caracteristic.
+
+Condiția de stabilitate a sistemului ce necesită a fi respectată este ca fiecare rădăcină a polinomului
+
+caracteristic să fie inclus în cercul unitate, îndeplinind relația .
+1.3. Mod de lucru
+
+Această secțiune va prezenta implementarea fiecărui criteriu de stabilitate în mediul MATLAB.
+
+Ex 1. Verificarea stabilității prin criteriul locației rădăcinilor
+Se consideră sistemul discret cu funcția de transfer cu T=1:
+
+Se cere să se verifice stabilitatea folosind criteriul rădăcinilor.
+Pasul 1: Determinăm polii funcției de transfer
+Polii sunt rădăcinile numitorului:
+Aplicăm formula:
+
+Rezultă:
+
+z= 0.8 și z= 0.4
+1 2 
+
+Pasul 2: Verificăm dacă este îndeplinită condiția de stabilitate
+
+ Sistemul este STABIL (deoarece valorile obținute se află în interiorul cercului unitate).
+
+Pasul 3: Implementare în MATLAB
+Pentru început declarăm funcția de transfer în discret.
+Calculam polii funcției de transfer:
+
+Afișăm reprezentarea polilor în cadrul cercului unitate:
+Plotăm mai întâi cercul unitate:
+
+Plotăm polii calculați anterior
+
+Adăugăm etichete și legendă
+În final vom obține următorul grafic:
+
+Ex 2. Verificarea stabilității prin criteriul stabilitate Schur-Cohn-Jury
+Se consideră funcția de transfer în buclă închisă:
+
+Să se verifice stabilitatea sistemului folosind criteriul Jury.
+Pasul 1: Identificarea polinomului caracteristic
+
+de unde putem identifica coeficienții:
+
+Pasul 2: Verificăm dacă sunt îndeplinite condițiile inițiale Jury
+➢ ➔ condiție îndeplinită
+
+➢ ➔ condiție îndeplinită
+
+➢
+
+condiție îndeplinită
+
+Toate condițiile sunt îndeplinite, deci putem dezvolta Tabelul lui Jury
+
+Pasul 3: Alcătuim tabelul lui Jury
+
+Linia 1:
+Linia 2 (inversa primei linii):
+
+Calculul coeficienților noi se va face după următoarea formulă:
+
+Noul polinom obținut va fi:
+Se verifică condiția
+
+condiție îndeplinită ➔ alcătuim următoarele elemente
+
+Verificăm ultima condiție: condiție îndeplinită
+
+➔ Sistemul este STABIL
+
+Pasul 4: Implementare în MATLAB
+
+Definim funcția de transfer, sub formatul num, den:
+
+Determinăm gradul polinomului caracteristic (polinomul den):
+
+Verificăm setul de condiții inițiale:
+
+Dacă toate condițiile returnează valoarea logică 1, se poate trece mai departe la asamblarea tabelului
+Jury.
+
+Exemplu:
+
+Alcătuim primele 2 linii ale tabelului:
+Calculăm apoi noii coeficienți specifici liniilor 3 și 4:
+
+Verificăm condiția rezultată
+
+Alcătuim ultimele elemente:
+Și verificăm dacă ultima condiție îndeplinește criteriul de stabilitate:
+
+Deoarece toate condițiile sunt îndeplinite ➔ Sistem stabil.
+
+Validăm rezultatul obținut prin plotarea polilor și a cercului unitate:
+Ex 3. Verificarea stabilității prin metoda valorilor proprii
+Se consideră sistemul discret în spațiu de stare:
+
+unde:
+
+Să se verifice stabilitatea sistemului folosind metoda valorilor proprii.
+Se consideră că sistemul este stabil dacă toate valorile proprii ale matricei A au valori <1.
+
+Pasul 1: Calculăm valorile proprii ale matricei A
+
+Aplicăm formula:
+
+Pasul 2: Verificăm dacă condiția este respectată
+
+➔ Sistem stabil
+
+Pasul 3: Implementare în MATLAB
+
+Definim matricea A
+Definim matricea unitate I
+
+Definim o variabila lambda
+
+Calculăm apoi expresia matricei proprii și valoarea determinantului său
+
+În final calculăm valorile proprii ale matricei A
+1.4. Chestiuni de studiat
+
+Exercițiu: Să se determine dacă următoarele funcții sunt stabile sau nu, aplicând:
+
+1. Criteriul rădăcinilor:
+
+a)
+
+b)
+
+c)
+2. Criteriul lui Jury:
+
+a)
+
+b)
+
+c)
+
+3. Metoda valorilor proprii, unde se furnizează matricea stărilor A:
+
+a)
+
+b)
+
+c)

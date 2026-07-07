@@ -1,0 +1,72 @@
+Laborator 9 – Sisteme automate
+Recapitulare
+Exercitii
+
+Ex 1. Să se verifice stabilitatea sistemului aplicând criteriul locului rădăcinilor pentru următoarele funcții
+de transfer:
+z+1
+() 
+a) Hz= 
+2
+z−0.5z+0.06
+
+z+3
+() 
+b) Hz= 
+3 2
+z−0.7z+0.2z−0.05
+
+z+2
+() 
+c) Hz= , pentru parametrul a se aleg valori pentru care sistemul devine stabil
+2
+z+az+0.4 
+
+2
+z+0.5z
+() 
+d) Hz= 
+3 2
+z−0.8z+0.4z−0.1
+
+Ex 2. Să se verifice stabilitatea sistemului folosind criteriul Schur–Cohn–Jury.
+z+0.3
+() 
+a) Hz= 
+2
+z−0.8z+0.15
+
+2z
+() 
+b) Hz= 
+2
+z−1.2z+0.5
+
+0.2z+0.1
+() 
+c) Hz= 
+3 2
+z−0.5z+0.3z−0.1
+
+z+0.2
+() 
+d) Hz= 
+3 2
+z−0.4z+0.25z−0.05
+
+Ex 3. Să se verifice stabilitatea sistemului pe baza valorilor proprii ale matricei de stare.
+
+0.6 −0.8
+a) A = [    ]
+0.1 0.02
+
+0.2 0.4 0
+b) A = [     ]
+0.1 0.6 0.3
+0 0.1 0.5
+
+0.7 0.1 0 0
+0.2 0.6 0.1 0
+c) A = [        ]
+0 0.6 0.4 0.1
+0 0 0.3 0.5

@@ -1,0 +1,256 @@
+Rețele de calculatoare - Îndrumar de laborator Configurarea unui ruter
+Simularea unei rețele de mici dimensiuni
+Subnetare
+
+4 Configurarea unui ruter
+Simularea unei rețele de mici dimensiuni
+Subnetare
+
+4.1 Setarea inițială a unui dispozitiv intermediar
+
+4.1.1 Noțiuni teoretice
+În general, la punerea în funcțiune, adică la prima utilizare, un dispozitiv nu are setată o adresă IP.
+Atunci când este pus prima dată în funcțiune, sau după o resetare la setările inițiale, întrucât acesta nu are o
+adresă IP setată, este necesară o conexiune directă la echipament. Nu ne putem conecta printr-un serviciu
+prin Internet Ia el până când nu îi setăm o adresă lP.
+
+Dacă este vorba de un dispozitiv precum un PC, care are monitor, putem face setările direct din
+sistemul de operare, prin utilizarea cu care suntem obișnuiți. În cazul dispozitivelor de rețea intermediare,
+care nu dispun de monitor, este necesară o conexiune inițială directă care se realizează prin portul consolă.
+
+a)               b)
+
+d)
+e)
+Figura 4. Porturi și cabluri consolă a) port consolă cu conector RJ45, b) cablu consolă cu conexiune RJ 45 și DB9, c) cablu
+consolă cu adaptor USB, d) porturi consolă cu conectori USB
+
+Pentru setarea inițială a unui dispozitiv intermediar, se folosește o conexiune directă la dispozitiv prin
+portul consolă. Pentru a permite o conexiune la distanță, prin ssh, este necesar ca dispozitivul să aibă
+
+17
+Rețele de calculatoare - Îndrumar de laborator Configurarea unui ruter
+Simularea unei rețele de mici dimensiuni
+Subnetare
+configurată o adresă IP pe o interfață care este pornită. În mod implicit, pe ruterele Cisco, interfețele sunt
+oprite.
+
+Bineînțeles, conectarea directă la portul consolă poate fi utilă nu doar pentru setarea inițială cât și
+pentru depanare în cazul în care conectarea la distanță devine nefuncțională, sau când pur și simplu este mai
+convenabilă conectarea directă.
+
+4.1.2 Exercițiu
+1. Realizați următoarea topologie:
+
+Detalii:
+
+Am plasat un laptop din secțiunea End Devices și un ruter din secțiunea Network devices ->
+Routers.
+Legătura dintre cele două dispozitive este realizată cu un cablu de tip consolă de la portul RS232
+al laptopului la portul consolă al ruterului.
+
+Observație: Packet Tracer ne oferă acces la interfața CLI a dispozitivelor intermediare fără a fi
+necesară conectarea directă cu un dispozitiv terminal. Însă, în realitate, acest pas este necesar.
+
+2. Deschideți laptopul și intrați în terminal. Verificați/ configurați opțiunile de comunicație serială. Sunt
+în regulă cele implicite, ca în figura de mai jos.
+
+După acceptarea parametrilor de comunicație, se deschide terminalul, interfața de tip CLI a ruterului.
+
+Din acest moment, se pot folosit toate informațiile legate de configurarea unui dispozitiv terminal
+discutate în laboratorul precedent.
+
+18
+Configurarea unui ruter
+Rețele de calculatoare - Îndrumar de laborator 
+Simularea unei rețele de mici dimensiuni
+Subnetare
+Scopul principal al primei configurări este setarea unei adrese IP și deschiderea interfeței configurate,
+astfel încât controlul ruterului să poată fi realizat de la distanță, printr-o conexiune prin Internet.
+
+3. Afișați toate comenzile disponibile în modul User EXEC. (?)
+(Pentru o utilizare mai ușoară a liniei de comandă, scrieți enable, apoi conf t, apoi no ip domain
+lookup. Apoi scrieți end și exit. Am dezactivat căutarea domeniilor, astfel i”ncât atunci când scriem o
+comandă greşită să nu se încerce căutarea unui domeniu cu acel nume. )
+
+4. Treceti în modul Privileged EXEC. (R: enab1e)
+5. Afișați toate comenzile disponibile în acest mod de operare.
+6. Afișați un sumar al tuturor interfețelor ruterului.
+R : (do) show ip intenf-ace bniet
+Folosiți do în fața comenzii dacă sunteți într-un nivel superior modului de Privileged EXEC.
+7. Treceti în modul de configurare interfață cu comanda configune i nt erfac e.
+8. Afișați un sumar al tuturor interfețelor ruterului.
+9. Configurați adresa ip 192.168.10.1/26 pentru prima interfață Ethernet listată.
+a. Intrați în modul de configurare interfață scriind comanda interf-ace urmață de numele
+interfeței, de exemplu i nte rface G0/0/0 sau interface Fa0/0.
+b. Configurați adresa ip cu comanda ip address urmată de valoarea adresei ip și masca în
+formatul cu . : ip address 192.168.10.1
+c. Afișați un sumar al tuturor interfețelor ruterului. Observați faptul că interfața configurată
+este închisă prin faptul că în coloana Status apare valoarea administratively down.
+d. Deschideți interfața configurată cu comanda no sh ut down.
+e. Afișați un sumar al tuturor interfețelor ruterului. Observați valoarea din coloana Status. În
+coloana Protoco1 vedem că interfața nu este funcțională pentru că nu este nicio conexiune
+funcțională pe interfață.
+10. Plasați un nou dispozitiv terminal pe worksheet și conectați-I la ruter prin portul configurat anterior.
+Configurați o adresă IP pentru dispozitivul plasat și verificați conectivitatea folosind comanda ping
+între cele două dispozitive.
+
+4.2 Simularea unei rețele de mici dimensiuni.
+
+1. În aplicația Packet Tracer realizați următoarea topologie:
+
+Configurați adresele lP pentru cele doua calculatoare astfel încât să facă parte din aceeași rețea
+(192.168.0.0/16).
+
+a. Adresa PC-ului va fi a doua adresa utilizabilă din spațiul de adrese al rețelei.
+b. Adresa Laptopului-ului va fi ultima adresa utilizabilă din spațiul de adrese al rețelei.
+c. Default gateway-ul pentru ambele dispozitive terminale va fi prima adresă utilizabilă.
+d. Verificați conexiunea intrând in Command Prompt și folosind comanda ping.
+19
+Configurarea unui ruter
+Rețele de calculatoare - Îndrumar de laborator 
+Simularea unei rețele de mici dimensiuni
+Subnetare
+
+2. Ștergeți conexiunea creată anterior și între cele două calculatoare adăugați un switch. Realizați
+conexiunea PC — Switch — Laptop. Verificați conexiunea intrând în Command Prompt-ul celor două
+calculatoare și folosind comanda ping.
+
+3. Realizați, pe acelaşi worksheet o nouă rețea cu o conexiune PC — Router — Laptop.
+a. Configurați aceleași adrese lP ca la exercițiul 1. Testați conexiunea între cele două
+calculatoare folosind comanda Ping. Ce observați? Trebuie să ținem cont de faptul că un
+router separă domeniile de broadcast și că fiecare interfață a sa se află într-o rețea diferită.
+b. Completați tabelul de mai jos ținând cont de următoarele:
+o Adresa PC-ului va fi a doua adresa utilizabilă din spațiul de adrese al rețelei;
+o Adresa interfeței ruterului conectata Ia PC va fi Default Gateway (prima adresa
+utilizabilă din rețea).
+O Pentru rețeaua Ruter — Laptop folosiți rețeaua 10.10.10.0 /24.
+O Adresa interfeței ruterului conectată la Laptop va fi Default Gateway (prima adresa
+utilizabilă din rețea).
+O Adresa IP a Laptopului va fi ultima adresă utilizabilă din rețea.
+
+Adresa de Adresa de
+DispOZitiV Adresa IP Masca 
+rețea broadcast
+PC
+Interfata Router —
+PC
+Interfata Router —
+Laptop
+Laptop
+
+c. Configurați adresele lP pentru cele două calculatoare și pentru cele doua interfețe ale
+ruterului implicate în conexiune
+d. Verificați conexiunea intrând în Command Prompt și folosind comanda ping.
+e. Explorați pachetele transmise în timpul unui ping.
+f. Transmiteți un mesaj broadcast în rețeaua PC-Switch-Laptop.
+g. Transmiteți un mesaj broadcast în rețeaua PC-Router-Laptop. Ce observați diferit la
+mesajele de broadcast între cele două topologii?
+
+4.3 Subnetare
+
+4.3.1 Exemplu
+Subnetarea se referă la acțiunea de a realiza împărtirea unui spațiu de adrese disponibil în mai multe
+subrețele mai mici, pentru a putea gestiona eficient mai multe grupuri de dispozitive.
+Se prezintă pașii printr-un exemplu.
+
+• Se dorește subnetarea spațiului de adrese 95.0.0.0/23 pentru a aloca adrese următoarelor subrețele:
+
+20
+Configurarea unui ruter
+Rețele de calculatoare - Îndrumar de laborator 
+Simularea unei rețele de mici dimensiuni
+Subnetare
+• LAN 1—209 stații
+• LAN 2 — 19 stații
+
+• LAN 3 — 107 stații
+
+• LAN 4 — 65 de stații
+
+• Pasul 1
+
+• Se estimează numărul de adrese disponibile
+• Pasul 2
+
+• Se calculează masca pentru fiecare subrețea astfel încât să acopere necesarul de adrese IP
+adresele pentru stații + adresa de rețea + adresa de broadcast)
+
+• LAN 1—209 stații => 211 adrese necesare /24
+
+• 211 < 2^8 masca = 32 — 8 = 24
+
+• LAN 2 — 19 stații=> 21 de stații /27
+
+• LAN 3 — 107 stații=> 109 stații /25
+
+• LAN 4 — 65 de stații=> 67 stații /25
+
+• Pasul 3
+
+• Se începe asignarea adreselor de rețea pentru fiecare subrețea în ordinea crescătoare a
+măștilor, astfel
+• LAN 1 /24
+
+• LAN 3 /25
+
+• LAN 2 /27
+
+• LAN 4 /25
+
+Masca Nr adrese Adresa de rețea Adresa de broadcast
+LAN 1 /24 2^8 = 256 95.0.0.0/24 95.0.0.255
+LAN 3 /25 2^7=128 95.0.1.0/25 95.0.1.127
+LAN 2 /27 2^5 = 32 
+95.0.2.0/27 95.0.2.31
+2^7 = 128 
+LAN 4 /25 
+95.0.1.255
+95.0.1.128/25 
+
+4.3.2 Exerciții
+1. Se dă spațiul de adrese 88.100.0.0/16. Se dorește subnetarea acestuia pentru a acomoda
+următoarele subrețele:
+Subrețea contabilitate: 5 stații
+Subrețea departament vânzări: 16 stații
+Subrețea departament producție: 40 stații
+Subrețea tehnic: 4 stații
+21
+Configurarea unui ruter
+Rețele de calculatoare - Îndrumar de laborator 
+Simularea unei rețele de mici dimensiuni
+Subnetare
+Creați rețelele folosind măști de dimensiuni variabile, astfel încât să se economisească cât mai mult
+spațiul de adrese.
+
+Completați tabelul următor:
+
+2. Pentru o companie cu 4 departamente, topologia rețelei arată, în linii mari, ca în figura următoare:
+
+Spațiul de adrese disponibil este: 10.10.10.0/8.
+
+În rețeaua conectată la interfața 1 a R1 vor fi conectate până la 70 de stații.
+În rețeaua conectată la interfața 2 a R1 vor fi conectate până la 10 stații
+În rețeaua conectată la interfața 3 a R1 vor fi conectate până la 15 stații
+În rețeaua conectată la interfața 4 a R1 vor fi conectate până la 4 stații.
+
+a) Subnetați spațiul de adrese disponibil folosind măști de dimensiuni variabile.
+b) Realizați topologia în Packet Tracer și asignați lP-uri astfel:
+- PC-uriIor ultimele adrese din subrețelele din care fac parte,
+- fiecărei interfețe de ruter conectată Ia un switch, prima adresă din subrețeaua din care face
+parte.
+
+22
+Configurarea unui ruter
+Rețele de calculatoare - Îndrumar de laborator 
+Simularea unei rețele de mici dimensiuni
+Subnetare
+Pentru a ține evidența adreselor, completați următoarele tabele:
+
+Masca Adresa de rețea Adresa de broadcast
+
+Interfața Adresa IP/ masca
+
+c) Verificați conectîvitatea între toate subrețelele.
+
+23

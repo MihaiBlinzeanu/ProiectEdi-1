@@ -1,0 +1,127 @@
+Laborator 5 – Sisteme automate
+Utilizarea SIMULINK pentru analiza sistemelor discrete
+
+1.1. Scopul lucrării
+
+Pachetul MATLAB-SIMULINK conţine în librăria obiectelor orientate în simularea
+sistemelor dinamice o serie de blocuri necesare simulării sistemelor discrete. În cadrul acestei
+lucrări vom prezenta câteva blocuri necesare studiului sistemelor cu eşantionare precum şi
+parametrizarea acestora. Utilizând aceste blocuri vom prezenta o serie de exemple de simulare a
+sistemelor discrete.
+Facem remarca că vom considera elementele de bază în programarea SIMULINK
+cunoscute din aplicaţiile privind simularea sistemelor continuale.
+
+1.2. Breviar teoretic
+În cadrul acestui breviar ne vom rezuma la prezentarea principalelor blocuri conţinute în
+biblioteca SIMULINK necesare simulării sistemelor cu eşantionare. Blocurile menţionate pot fi
+accesate din Simulink/Discrete.
+
+Poate cel mai important bloc utilizat pentru simularea sistemelor cu
+eşantionare este extrapolatorul de ordin zero
+( Zero-Order Hold ) cu pictograma prezentată în figura 1.
+
+Figura 1. Fereastra de setare a blocului Zero-Order Hold
+
+Singurul parametru ce trebuie setat este perioada de eşantionare.
+
+Un al doilea bloc în ordinul importanţei este blocul care permite simularea
+funcţiilor de transfer în Z (Discrete Transfer Fcn) având pictograma
+prezentată în figura alăturată.
+Figura 2. Setarea parametilor blocului Discrete Transfer Fcn
+
+În figura 2 este prezentată fereastra de dialog pentru setarea parametrilor blocului
+Discrete Transfer Fcn. După cum putem urmări direct este necesar să se introducă numărătorul
+şi numitorul funcţiei de transfer în Z precum şi perioada de eşantionare (Sample Time).
+
+1.3. Mod de lucru
+
+Vom prezenta în continuare modul de analiză utilizând SIMULINK pe o problemă
+concretă analizată anterior (laboratorul 4 SA) şi soluţionată cu instrucţiuni introduse de la tastatură.
+Este vorba de un sistem de reglare automată a cărui schemă este prezentată în figura 3.
+Analiza impune determinarea răspunsului indicial pentru o perioadă de eşantionare T=1sec.
+
+y(t )
+ref 
+− sT
++ 
+1
+1 − e
+ 
+s (s + 1)
+s
+
+Figura 3. Schema bloc a sistemului analizat
+Pentru început vom face simularea cu ajutorul funcţiilor de transfer în Z. Am stabilit în
+laboratorul anterior funcţia de transfer în circuit deschis:
+Pe baza acestei funcţii de transfer realizăm modelul de simulare prezentat în figura 4.
+
+Figura 4. Schema de simulare
+
+Prin simulare obţinem graficul din figura 5.
+
+Figura 5. Graficul răspunsului indicial
+
+De fapt graficul obţinut reprezintă extrapolarea printr-un extrapolator de ordin zero a
+răspunsului cert obţinut cu ajutorul transformatei Z.
+Evoluţia reală a sistemului dinamic analizat, care să ofere informaţii certe şi între perioade de
+eşantionare, poate fi obţinută pe schema de simulare prezentată în figura 6.
+
+Figura 6. Simularea sistemului cu blocuri Simulink
+
+Evoluţia reală a răspunsului indicial este prezentată în figura 7.
+
+Figura 7. Curba reală al răspunsului indicial
+1.4. Chestiuni de studiat
+
+P1. Se consideră sistemul de reglare automată prezentat în figura 8:
+
+− sT
+y
+2  (s + 1)
+1 − e
+ref
+
+s  (s + 3)
+T
+
+Figura 8. Schema considerată pentru P1
+Să se realizeze schema de simulare SIMULINK pentru sistemul considerat.
+să se vizualizeze răspunsul indicial al sistemului
+Pentru T = 2sec şi T = 5sec
+considerat. Ce observați?
+
+P2. Se consideră sistemul de reglare automată prezentat în figura 9:
+
+− sT
+y
+y
+1 − e
+ref 
+
+s  (s + 1) (s + 3)
+
+Figura 9. Schema considerată pentru P2
+Să se realizeze schema de simulare SIMULINK pentru sistemul considerat.
+Pentru K = 2 şi K = 5 să se vizualizeze răspunsul indicial al sistemului
+considerat. Ce observați?
+
+P3. Se consideră sistemul de reglare automată prezentat în figura 10:
+
+− sT
+y
+K
+1 − e
+ref
+
+s  (s + 1) (s + 3)
+s
++ 
+T = 1sec
+T = 1sec
+
+Figura 10. Schema considerată pentru P3
+Să se realizeze schema de simulare SIMULINK pentru sistemul considerat.
+Pentru K = 2 şi K = 5 să se vizualizeze răspunsul indicial al sistemului
+considerat.
+P4. Să calculeze H echivalent în Matlab și SIMULINK pentru următoarele sisteme,
+ținând cont de algebra schemelor bloc din domeniul discret:
