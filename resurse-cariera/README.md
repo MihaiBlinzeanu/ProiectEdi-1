@@ -11,6 +11,7 @@ Materialele de la ședința 5. Le iei de aici (local), lucrezi pe ele până joi
 ## Pentru joi (sesiunea de freelancing)
 
 4. [ghid-proposals-upwork-junior.md](ghid-proposals-upwork-junior.md) - cum intri pe Upwork ca junior și scrii un proposal care câștigă clientul. Îl discutăm joi, dar poți citi înainte.
+5. [skill-upwork/](skill-upwork/) - skill pentru agentul tău (opencode): generează proposals pe profilul TĂU. Instalare: copiezi folderul în `.agents/skills/upwork-proposals/` (sau unde își ține agentul tău skill-urile), apoi completezi secțiunea "Profilul user-ului" din SKILL.md cu datele tale. După aia îi dai un job posting și îi ceri "scrie un proposal".
 
 ## Cum le folosești
 
