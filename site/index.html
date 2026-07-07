@@ -353,12 +353,12 @@ body {
       <div class="mark">R</div>
       <div>
         <span class="name"><span class="accent-text">RAG</span>Assist</span>
-        <span class="sub">· answers grounded in your courses ·</span>
+        <span class="sub">· răspunsuri ancorate în cursuri ·</span>
       </div>
     </div>
 
     <div>
-      <h4>Your subjects</h4>
+      <h4>Materiile tale</h4>
       <nav class="corpus">
         <a class="active" href="#" data-subject="Automatizarea Clădirilor">
           <span class="dot" style="background:var(--accent)"></span>
@@ -380,13 +380,13 @@ body {
     </div>
 
     <div class="actions">
-      <button id="planBtn"><span class="ico">📋</span> Study plan</button>
-      <button id="formulaBtn"><span class="ico">📝</span> Formulas & exercises</button>
+      <button id="planBtn"><span class="ico">📋</span> Plan de învățare</button>
+      <button id="formulaBtn"><span class="ico">📝</span> Formule și exerciții</button>
     </div>
 
     <div class="foot">
-      <div><span class="grounded">Grounded in sources</span></div>
-      <div style="margin-top:4px">No hallucinations. Only answers from your courses.</div>
+      <div><span class="grounded">Ancorat în surse</span></div>
+      <div style="margin-top:4px">Fără halucinații. Doar răspunsuri din cursurile tale.</div>
     </div>
   </aside>
 
@@ -394,7 +394,7 @@ body {
     <div class="topbar">
       <div class="ctx">
         <b id="currentSubject">Automatizarea Clădirilor</b>
-        <span class="pill"><span id="subjectCount">—</span> concepts</span>
+        <span class="pill"><span id="subjectCount">—</span> concepte</span>
       </div>
       <div class="actions">
         <button class="btn btn-outline" id="testBtn">🔌 Test</button>
@@ -405,8 +405,8 @@ body {
     <div class="thread" id="thread">
       <div class="welcome" id="welcome">
         <div class="icon">🧠</div>
-        <h1>Ask your courses anything</h1>
-        <p>Your knowledge base — search and get grounded answers from your PDFs.</p>
+        <h1>Întreabă-ți cursurile orice</h1>
+        <p>Baza ta de cunoștințe — caută și primești răspunsuri ancorate în PDF-uri.</p>
         <div class="suggestions">
           <button data-ask="Ce este standardul KNX?">💡 Ce este standardul KNX?</button>
           <button data-ask="Compara KNX cu un sistem traditional">⚡ Compara KNX cu sisteme traditionale</button>
@@ -418,7 +418,7 @@ body {
 
     <div class="composer">
       <div class="box">
-        <input placeholder="Login to ask a question…" id="input">
+        <input placeholder="Autentifică-te pentru a întreba…" id="input">
         <button class="send" id="sendBtn" disabled>↑</button>
       </div>
       <div class="hint">Every answer is grounded in your course notes. No source → <code>not in sources</code>, no hallucination.</div>
@@ -493,7 +493,7 @@ function addTurn(question, answerHtml, sources) {
   turn.className = 'turn';
   turn.innerHTML = `
     <div class="q">
-      <div class="who">You</div>
+      <div class="who">Tu</div>
       <div class="text">${escapeHtml(question)}</div>
     </div>
     <div class="a">
@@ -511,12 +511,12 @@ function addRefusal(question, message) {
   turn.className = 'turn refusal';
   turn.innerHTML = `
     <div class="q">
-      <div class="who">You</div>
+      <div class="who">Tu</div>
       <div class="text">${escapeHtml(question)}</div>
     </div>
     <div class="a">
       <div class="box">
-        <span class="badge">Not in sources</span>
+        <span class="badge">Nu în surse</span>
         <span>${escapeHtml(message)}</span>
       </div>
     </div>
@@ -548,13 +548,13 @@ function buildSourceCards(sources) {
   if (!sources || sources.length === 0) return '';
   return `
     <div class="sources">
-      <div class="lbl">Sources</div>
+      <div class="lbl">Surse</div>
       <div class="srcgrid">
         ${sources.map((src, i) => `
           <a class="src" href="#">
             <span class="num">${i + 1}</span>
             <div class="title">${escapeHtml(src.title)}</div>
-            <div class="meta"><span class="course">${escapeHtml(src.materii?.[0] || 'Unknown')}</span> · <span>${escapeHtml(src.source || '')}</span></div>
+            <div class="meta"><span class="course">${escapeHtml(src.materii?.[0] || 'Necunoscut')}</span> · <span>${escapeHtml(src.source || '')}</span></div>
           </a>
         `).join('')}
       </div>
@@ -568,22 +568,22 @@ async function checkAuth() {
     const { data: { session } } = await window.supabase.auth.getSession();
     currentUser = session?.user ?? null;
     if (currentUser) {
-      authBtn.innerHTML = '🚪 Logout';
+      authBtn.innerHTML = '🚪 Deconectare';
       authBtn.className = 'btn btn-outline';
-      input.placeholder = `Signed in as ${currentUser.email}...`;
+      input.placeholder = `Autentificat ca ${currentUser.email}...`;
       input.disabled = false;
       sendBtn.disabled = false;
     } else {
-      authBtn.innerHTML = '🔑 Login';
+      authBtn.innerHTML = '🔑 Autentificare';
       authBtn.className = 'btn btn-primary';
-      input.placeholder = 'Login to ask a question…';
+      input.placeholder = 'Autentifică-te pentru a întreba…';
       input.disabled = true;
       sendBtn.disabled = true;
     }
   } catch (_) {
-    authBtn.innerHTML = '🔑 Login';
+    authBtn.innerHTML = '🔑 Autentificare';
     authBtn.className = 'btn btn-primary';
-    input.placeholder = 'Login to ask a question…';
+    input.placeholder = 'Autentifică-te pentru a întreba…';
     input.disabled = true;
     sendBtn.disabled = true;
   }
@@ -624,7 +624,7 @@ async function searchConcepts(query) {
 
 function generateAnswer(question, results) {
   if (!results || results.length === 0) {
-    return { html: '<p>No relevant information found in the knowledge base for this question.</p>', sources: [], refusal: true };
+    return { html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>', sources: [], refusal: true };
   }
   return {
     html: `<p>${results.map((r, i) => `${escapeHtml(r.description)}<span class="cite">${i + 1}</span>`).join(' ')}</p>`,
@@ -635,7 +635,7 @@ function generateAnswer(question, results) {
 
 // ========== STUDY PLAN ==========
 async function generateStudyPlan() {
-  addSystemMessage(`Generating study plan for ${activeSubject}…`);
+  addSystemMessage(`Se generează planul de învățare pentru ${activeSubject}…`);
   try {
     let q = window.supabase.from('concepts').select('*');
     if (activeSubject) q = q.contains('materii', [activeSubject]);
@@ -651,8 +651,8 @@ async function generateStudyPlan() {
     }
 
     let html = '<div class="study-plan">';
-    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📋 Study Plan — ${escapeHtml(activeSubject)}</p>`;
-    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} concepts grouped by course. Complete in order.</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📋 Plan de învățare — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} concepte grupate pe cursuri. Parcurge-le în ordine.</p>`;
 
     for (const source of sourceOrder) {
       const items = groups[source];
@@ -668,24 +668,24 @@ async function generateStudyPlan() {
 
     const turn = document.createElement('div');
     turn.className = 'turn';
-    turn.innerHTML = `<div class="q"><div class="who">You</div><div class="text">Show study plan for ${escapeHtml(activeSubject)}</div></div>${html}`;
+    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată planul de învățare pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
     hideWelcome();
     thread.appendChild(turn);
   } catch (err) {
-    addSystemMessage('Error generating plan: ' + err.message);
+    addSystemMessage('Eroare la generarea planului: ' + err.message);
   }
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
 
 async function generateFormulasPlan() {
-  addSystemMessage(`Loading formulas & exercises for ${activeSubject}…`);
+  addSystemMessage(`Se încarcă formulele și exercițiile pentru ${activeSubject}…`);
   try {
     let q = window.supabase.from('concepts').select('*').in('type', ['formula', 'algorithm', 'example']);
     if (activeSubject) q = q.contains('materii', [activeSubject]);
     const { data, error } = await q;
     if (error) throw error;
     if (data.length === 0) {
-      addSystemMessage('No formulas, algorithms or examples for this subject.');
+      addSystemMessage('Nicio formulă, algoritm sau exemplu pentru această materie.');
       return;
     }
 
@@ -698,8 +698,8 @@ async function generateFormulasPlan() {
     }
 
     let html = '<div class="study-plan">';
-    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📝 Formulas & Exercises — ${escapeHtml(activeSubject)}</p>`;
-    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} items found.</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📝 Formule și exerciții — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} elemente găsite.</p>`;
 
     for (const source of sourceOrder) {
       const items = groups[source];
@@ -715,11 +715,11 @@ async function generateFormulasPlan() {
 
     const turn = document.createElement('div');
     turn.className = 'turn';
-    turn.innerHTML = `<div class="q"><div class="who">You</div><div class="text">Show formulas and exercises for ${escapeHtml(activeSubject)}</div></div>${html}`;
+    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată formulele și exercițiile pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
     hideWelcome();
     thread.appendChild(turn);
   } catch (err) {
-    addSystemMessage('Error: ' + err.message);
+    addSystemMessage('Eroare: ' + err.message);
   }
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
@@ -745,9 +745,9 @@ testBtn.addEventListener('click', async () => {
   try {
     const { data, error } = await window.supabase.from('concepts').select('id').limit(1);
     if (error) throw error;
-    addSystemMessage(`✅ Connection OK! ${data.length} concept(s) in DB.`);
+    addSystemMessage(`✅ Conexiune reușită! ${data.length} concept(e) în baza de date.`);
   } catch (err) {
-    addSystemMessage(`❌ Error: ${err.message}`);
+    addSystemMessage(`❌ Eroare: ${err.message}`);
   }
   testBtn.innerHTML = '🔌 Test';
   testBtn.disabled = false;
@@ -763,7 +763,7 @@ authBtn.addEventListener('click', async () => {
       await window.supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: window.location.origin } });
     }
   } catch (err) {
-    addSystemMessage('Auth error: ' + err.message);
+    addSystemMessage('Eroare autentificare: ' + err.message);
   }
   authBtn.disabled = false;
 });
@@ -779,9 +779,9 @@ sendBtn.addEventListener('click', async () => {
   try {
     const results = await searchConcepts(q);
     const { html, sources, refusal } = generateAnswer(q, results);
-    refusal ? addRefusal(q, 'No relevant information found in the knowledge base for this question.') : addTurn(q, html, sources);
+    refusal ? addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.') : addTurn(q, html, sources);
   } catch (err) {
-    addRefusal(q, 'Search error: ' + err.message);
+    addRefusal(q, 'Eroare căutare: ' + err.message);
   }
   input.disabled = false;
   sendBtn.disabled = false;
@@ -804,10 +804,10 @@ document.querySelectorAll('[data-ask]').forEach(btn => {
 // ========== AUTH STATE ==========
 window.supabase.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN') {
-    addSystemMessage(`👋 Welcome, ${session.user.email}`);
+    addSystemMessage(`👋 Bine ai venit, ${session.user.email}`);
     checkAuth();
   } else if (event === 'SIGNED_OUT') {
-    addSystemMessage('👋 Signed out.');
+    addSystemMessage('👋 Deconectat.');
     checkAuth();
   }
 });
