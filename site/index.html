@@ -3,25 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SecondBrain</title>
+<title>RAGAssist</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
-  --paper: oklch(0.977 0.006 95);
-  --paper-2: oklch(0.955 0.008 90);
-  --card: oklch(0.994 0.003 95);
-  --ink: oklch(0.27 0.018 250);
-  --ink-soft: oklch(0.44 0.02 250);
-  --ink-faint: oklch(0.60 0.015 250);
-  --pine: oklch(0.46 0.072 185);
-  --pine-hover: oklch(0.40 0.075 185);
-  --pine-soft: oklch(0.46 0.072 185 / 0.08);
-  --ochre: oklch(0.66 0.105 72);
-  --ochre-soft: oklch(0.66 0.105 72 / 0.12);
-  --ochre-text: oklch(0.50 0.10 66);
-  --border: oklch(0.90 0.01 250);
-  --border-soft: oklch(0.93 0.008 250);
-  --danger: oklch(0.55 0.15 28);
+  --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-hover: rgba(255,255,255,0.12);
+  --text: #e8e8f0;
+  --text-soft: #a8a8c0;
+  --text-faint: #6868a0;
+  --accent: #7c6ff0;
+  --accent-hover: #9b8ff5;
+  --accent-soft: rgba(124,111,240,0.15);
+  --warm: #f0a86c;
+  --warm-soft: rgba(240,168,108,0.15);
+  --success: #48c774;
+  --danger: #f05a5a;
+  --card: rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.08);
   --font-read: 'Newsreader', Georgia, serif;
   --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -30,235 +31,397 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(16px); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124,111,240,0.2); }
+  50% { box-shadow: 0 0 40px rgba(124,111,240,0.4); }
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 body {
   font-family: var(--font-ui);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg-gradient);
+  color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-image: radial-gradient(oklch(0.5 0.02 250 / 0.025) 1px, transparent 1px);
-  background-size: 22px 22px;
+  min-height: 100vh;
 }
 
-.app { display: grid; grid-template-columns: 264px 1fr; min-height: 100vh; }
+.app { display: grid; grid-template-columns: 270px 1fr; min-height: 100vh; }
 
 /* ---------- Sidebar ---------- */
 .side {
-  border-right: 1px solid var(--border);
-  background: var(--paper-2);
-  padding: 26px 20px;
-  display: flex; flex-direction: column; gap: 26px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  padding: 26px 18px;
+  display: flex; flex-direction: column; gap: 24px;
 }
-.brand { display: flex; align-items: center; gap: 11px; }
-.brand .mark {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: var(--pine); position: relative; flex: none;
-  box-shadow: 0 2px 8px oklch(0.46 0.072 185 / 0.3);
-}
-.brand .mark::before,
-.brand .mark::after {
-  content: ''; position: absolute; border-radius: 50%;
-}
-.brand .mark::before { inset: 8px; border: 2px solid var(--paper); border-right-color: transparent; transform: rotate(-20deg); }
-.brand .mark::after { width: 6px; height: 6px; background: var(--ochre); top: 13px; left: 14px; }
-.brand .name { font-family: var(--font-read); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
-.brand .name b { color: var(--pine); font-weight: 600; }
-.brand .sub { display:block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 1px; }
 
-.side h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-faint); font-weight: 600; margin-bottom: 12px; }
-.corpus { display: flex; flex-direction: column; gap: 3px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--warm));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: white;
+  box-shadow: 0 4px 15px rgba(124,111,240,0.3);
+}
+.brand .name { font-family: var(--font-read); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.brand .name .accent-text { background: linear-gradient(135deg, var(--accent), var(--warm)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.brand .sub { display:block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); margin-top: 2px; }
+
+.side h4 {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-faint); font-weight: 600; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.side h4::after { content:''; flex:1; height:1px; background: var(--glass-border); }
+
+.corpus { display: flex; flex-direction: column; gap: 2px; }
 .corpus a {
   display: flex; align-items: center; gap: 10px;
-  padding: 9px 11px; border-radius: 9px; text-decoration: none;
-  color: var(--ink-soft); font-size: 14px; font-weight: 500;
-  transition: all 0.2s ease;
+  padding: 10px 12px; border-radius: 10px; text-decoration: none;
+  color: var(--text-soft); font-size: 14px; font-weight: 500;
+  transition: all 0.25s ease; border: 1px solid transparent;
 }
-.corpus a.active { background: var(--pine-soft); color: var(--pine); }
-.corpus a:hover:not(.active) { background: oklch(0.5 0.02 250 / 0.05); transform: translateX(3px); }
-.corpus .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pine); opacity: 0.7; flex-shrink: 0; }
-.corpus .n { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.corpus a.active {
+  background: var(--accent-soft); color: var(--accent);
+  border-color: rgba(124,111,240,0.2);
+}
+.corpus a:hover:not(.active) {
+  background: var(--glass); border-color: var(--glass-border);
+  transform: translateX(4px);
+}
+.corpus .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.corpus .n { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); background: var(--glass); padding: 1px 7px; border-radius: 6px; }
 
-.side .actions { display: flex; flex-direction: column; gap: 8px; }
+.side .actions { display: flex; flex-direction: column; gap: 6px; }
 .side .actions button {
-  width: 100%; padding: 10px 14px; border: 1px solid var(--border);
-  border-radius: 10px; background: var(--card); color: var(--ink-soft);
+  width: 100%; padding: 10px 14px;
+  border: 1px solid var(--glass-border); border-radius: 10px;
+  background: var(--glass); color: var(--text-soft);
   font-family: var(--font-ui); font-size: 13px; font-weight: 500;
   cursor: pointer; display: flex; align-items: center; gap: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease; backdrop-filter: blur(5px);
 }
-.side .actions button:hover { border-color: var(--pine); color: var(--pine); background: var(--pine-soft); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(0.3 0.02 250 / 0.06); }
-.side .actions button:active { transform: translateY(0); }
-.side .actions button .ico { font-size: 16px; }
+.side .actions button:hover {
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-soft); transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124,111,240,0.15);
+}
+.side .actions button .ico { font-size: 15px; }
 
-.side .foot { margin-top: auto; font-size: 12px; color: var(--ink-faint); line-height: 1.5; }
-.side .foot .grounded { display:inline-flex; align-items:center; gap:6px; color: var(--pine); font-weight: 600; }
-.side .foot .grounded::before { content:''; width:7px; height:7px; border-radius:50%; background: var(--pine); }
+.side .foot { margin-top: auto; font-size: 11px; color: var(--text-faint); line-height: 1.6; }
+.side .foot .grounded {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--success); font-weight: 500;
+}
+.side .foot .grounded::before {
+  content:''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--success); animation: pulse-dot 2s infinite;
+}
 
 /* ---------- Main ---------- */
-.main { display: flex; flex-direction: column; height: 100vh; }
+.main { display: flex; flex-direction: column; height: 100vh; position: relative; }
+
 .topbar {
-  padding: 12px 40px; border-bottom: 1px solid var(--border-soft);
+  padding: 14px 36px;
+  border-bottom: 1px solid var(--glass-border);
   display: flex; align-items: center; justify-content: space-between;
-  background: oklch(0.977 0.006 95 / 0.8); backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.2); backdrop-filter: blur(12px);
 }
-.topbar .ctx { font-size: 13px; color: var(--ink-faint); }
-.topbar .ctx b { color: var(--ink-soft); font-weight: 600; }
+.topbar .ctx {
+  font-size: 13px; color: var(--text-faint);
+  display: flex; align-items: center; gap: 8px;
+}
+.topbar .ctx .pill {
+  background: var(--accent-soft); color: var(--accent);
+  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+}
+.topbar .ctx b { color: var(--text); font-weight: 600; }
 .topbar .actions { display: flex; gap: 8px; align-items: center; }
 
 .topbar .btn {
-  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
-  padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border);
-  background: var(--card); color: var(--ink-soft); cursor: pointer;
-  transition: all 0.2s ease;
+  font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+  padding: 9px 18px; border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass); color: var(--text-soft); cursor: pointer;
+  transition: all 0.25s ease; backdrop-filter: blur(5px);
 }
-.topbar .btn:hover { border-color: var(--pine); color: var(--pine); background: var(--pine-soft); }
-.topbar .btn-primary { background: var(--pine); color: white; border-color: var(--pine); }
-.topbar .btn-primary:hover { background: var(--pine-hover); }
-.topbar .btn-outline { background: transparent; }
-.topbar .btn .ico { margin-right: 6px; }
+.topbar .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.topbar .btn-primary {
+  background: linear-gradient(135deg, var(--accent), #9b8ff5);
+  color: white; border: none;
+}
+.topbar .btn-primary:hover { box-shadow: 0 4px 20px rgba(124,111,240,0.4); transform: translateY(-1px); }
+.topbar .btn .ico { margin-right: 5px; }
 
-.thread { flex: 1; overflow-y: auto; padding: 40px 40px 20px; }
-.turn { max-width: 760px; margin: 0 auto 36px; animation: fadeSlideUp 0.35s ease; }
+/* Thread */
+.thread {
+  flex: 1; overflow-y: auto; padding: 36px 36px 20px;
+  scroll-behavior: smooth;
+}
+.thread::-webkit-scrollbar { width: 6px; }
+.thread::-webkit-scrollbar-track { background: transparent; }
+.thread::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 3px; }
+
+/* Welcome state */
+.welcome {
+  max-width: 680px; margin: 60px auto 0; text-align: center;
+  animation: fadeUp 0.6s ease;
+}
+.welcome .icon {
+  font-size: 56px; margin-bottom: 20px;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--warm));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.welcome h1 {
+  font-family: var(--font-read); font-size: 38px; font-weight: 600;
+  background: linear-gradient(135deg, var(--text), var(--text-soft));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+.welcome p { color: var(--text-soft); font-size: 17px; line-height: 1.6; max-width: 480px; margin: 0 auto; }
+.welcome .suggestions {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 28px;
+}
+.welcome .suggestions button {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  color: var(--text-soft); padding: 10px 18px; border-radius: 20px;
+  font-family: var(--font-ui); font-size: 13px; cursor: pointer;
+  transition: all 0.25s ease;
+}
+.welcome .suggestions button:hover {
+  background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Turns */
+.turn { max-width: 760px; margin: 0 auto 32px; animation: fadeUp 0.4s ease; }
 
 .q { display: flex; gap: 14px; align-items: baseline; }
-.q .who { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); padding-top: 5px; flex: none; width: 52px; }
-.q .text { font-family: var(--font-read); font-size: 25px; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); line-height: 1.3; }
+.q .who {
+  font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text-faint); padding-top: 5px;
+  flex: none; width: 52px;
+}
+.q .text {
+  font-family: var(--font-read); font-size: 24px; font-weight: 500;
+  letter-spacing: -0.015em; color: var(--text); line-height: 1.3;
+}
 
-.a { margin-top: 22px; padding-left: 66px; }
-.a p { font-family: var(--font-read); font-size: 18.5px; line-height: 1.62; color: var(--ink); margin-bottom: 15px; }
+.a { margin-top: 20px; padding-left: 66px; }
+.a p {
+  font-family: var(--font-read); font-size: 18px; line-height: 1.65;
+  color: var(--text-soft); margin-bottom: 14px;
+}
 .a p .cite {
-  font-family: var(--font-ui); font-size: 11px; font-weight: 600; vertical-align: super;
-  color: var(--ochre-text); background: var(--ochre-soft);
-  padding: 1px 6px; border-radius: 6px; margin: 0 1px; cursor: pointer; line-height: 1;
+  font-family: var(--font-ui); font-size: 10px; font-weight: 700;
+  vertical-align: super; color: var(--warm); background: var(--warm-soft);
+  padding: 1px 6px; border-radius: 5px; margin: 0 1px; cursor: pointer;
+  line-height: 1;
 }
-a strong { font-weight: 600; }
 
-.sources { margin-top: 24px; }
-.sources .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-faint); font-weight: 600; margin-bottom: 12px; display:flex; align-items:center; gap: 8px; }
-.sources .lbl::after { content:''; flex:1; height:1px; background: var(--border-soft); }
-.srcgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sources { margin-top: 22px; }
+.sources .lbl {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-faint); font-weight: 600; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sources .lbl::after { content:''; flex:1; height:1px; background: var(--glass-border); }
+
+.srcgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .src {
-  background: var(--card); border: 1px solid var(--border);
-  border-left: 3px solid var(--ochre); border-radius: 12px;
-  padding: 14px 16px; text-decoration: none; display: block;
-  transition: all 0.2s ease;
+  background: var(--card); border: 1px solid var(--card-border);
+  border-left: 3px solid var(--warm); border-radius: 12px;
+  padding: 12px 14px; text-decoration: none; display: block;
+  transition: all 0.3s ease; backdrop-filter: blur(5px);
 }
-.src:hover { transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0.3 0.02 250 / 0.1); border-color: var(--ochre); }
-.src .num { font-family: var(--font-ui); font-size: 10px; font-weight: 700; color: var(--ochre-text); background: var(--ochre-soft); width: 19px; height: 19px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 9px; }
-.src .title { font-family: var(--font-read); font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 7px; }
-.src .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); display: flex; align-items: center; gap: 7px; }
-.src .meta .course { color: var(--pine); font-weight: 500; }
+.src:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  border-color: var(--warm); background: rgba(255,255,255,0.08);
+}
+.src .num {
+  font-family: var(--font-ui); font-size: 9px; font-weight: 700;
+  color: var(--warm); background: var(--warm-soft);
+  width: 18px; height: 18px; border-radius: 5px;
+  display: inline-flex; align-items: center; justify-content: center; margin-bottom: 8px;
+}
+.src .title { font-family: var(--font-read); font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; margin-bottom: 6px; }
+.src .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); display: flex; align-items: center; gap: 6px; }
+.src .meta .course { color: var(--accent); font-weight: 500; }
 
-.refusal { max-width: 760px; margin: 0 auto 36px; padding-left: 66px; animation: fadeSlideUp 0.35s ease; }
-.refusal .q .text { color: var(--ink-soft); }
-.refusal .box { margin-top: 20px; background: oklch(0.55 0.15 28 / 0.05); border: 1px solid oklch(0.55 0.15 28 / 0.22); border-radius: 12px; padding: 16px 18px; font-family: var(--font-read); font-size: 17px; color: var(--ink); display:flex; gap: 13px; align-items:flex-start; }
-.refusal .box .badge { font-family: var(--font-ui); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); border: 1px solid oklch(0.55 0.15 28 / 0.35); padding: 3px 8px; border-radius: 6px; flex:none; margin-top: 2px; }
+.refusal { max-width: 760px; margin: 0 auto 32px; padding-left: 66px; animation: fadeUp 0.4s ease; }
+.refusal .box {
+  margin-top: 18px;
+  background: rgba(240,90,90,0.06);
+  border: 1px solid rgba(240,90,90,0.2);
+  border-radius: 12px; padding: 14px 16px;
+  font-family: var(--font-read); font-size: 16px; color: var(--text-soft);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.refusal .box .badge {
+  font-family: var(--font-ui); font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--danger);
+  border: 1px solid rgba(240,90,90,0.3); padding: 2px 7px; border-radius: 5px;
+  flex: none; margin-top: 2px;
+}
 
 /* Composer */
-.composer { padding: 16px 40px 26px; border-top: 1px solid var(--border-soft); }
+.composer { padding: 16px 36px 26px; border-top: 1px solid var(--glass-border); }
 .composer .box {
-  max-width: 760px; margin: 0 auto; background: var(--card);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 6px 6px 6px 18px; display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 2px 10px oklch(0.3 0.02 250 / 0.04);
-  transition: all 0.2s ease;
+  max-width: 760px; margin: 0 auto;
+  background: var(--glass); backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border); border-radius: 16px;
+  padding: 6px 6px 6px 18px;
+  display: flex; align-items: center; gap: 12px;
+  transition: all 0.3s ease; animation: glow 4s ease-in-out infinite;
 }
-.composer .box:focus-within { border-color: var(--pine); box-shadow: 0 0 0 3px var(--pine-soft); }
-.composer input { flex: 1; border: none; outline: none; background: none; font-family: var(--font-ui); font-size: 15px; color: var(--ink); }
-.composer input::placeholder { color: var(--ink-faint); }
-.composer .send { background: var(--pine); color: var(--paper); border: none; border-radius: 10px; width: 40px; height: 40px; font-size: 17px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.2s ease; flex-shrink: 0; }
-.composer .send:hover { background: var(--pine-hover); transform: scale(1.05); }
-.composer .send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-.composer .hint { max-width: 760px; margin: 10px auto 0; font-size: 12px; color: var(--ink-faint); text-align: center; }
-.composer .hint code { font-family: var(--font-mono); background: var(--paper-2); padding: 1px 6px; border-radius: 5px; }
+.composer .box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.composer input {
+  flex: 1; border: none; outline: none; background: none;
+  font-family: var(--font-ui); font-size: 15px; color: var(--text);
+}
+.composer input::placeholder { color: var(--text-faint); }
+.composer .send {
+  background: linear-gradient(135deg, var(--accent), #9b8ff5);
+  color: white; border: none; border-radius: 10px;
+  width: 40px; height: 40px; font-size: 17px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s ease; flex-shrink: 0;
+}
+.composer .send:hover { transform: scale(1.08); box-shadow: 0 4px 15px rgba(124,111,240,0.4); }
+.composer .send:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.composer .hint { max-width: 760px; margin: 10px auto 0; font-size: 11px; color: var(--text-faint); text-align: center; }
+.composer .hint code { font-family: var(--font-mono); background: var(--glass); padding: 1px 5px; border-radius: 4px; }
 
 /* Study plan */
-.study-plan { margin-top: 22px; padding-left: 66px; }
-.study-plan .section { margin-bottom: 20px; }
+.study-plan { margin-top: 20px; padding-left: 66px; }
+.study-plan .section { margin-bottom: 18px; }
 .study-plan .section h3 {
-  font-family: var(--font-ui); font-size: 13px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--pine); margin-bottom: 10px; padding-bottom: 6px;
-  border-bottom: 2px solid var(--pine-soft);
+  font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent); margin-bottom: 8px; padding-bottom: 4px;
+  border-bottom: 2px solid var(--accent-soft);
 }
 .study-plan .item {
-  font-family: var(--font-read); font-size: 16px; line-height: 1.5;
-  color: var(--ink); padding: 10px 14px; margin-bottom: 6px;
-  background: var(--card); border: 1px solid var(--border-soft);
-  border-radius: 10px; border-left: 3px solid var(--ochre);
+  font-family: var(--font-read); font-size: 15px; line-height: 1.5;
+  color: var(--text-soft); padding: 8px 12px; margin-bottom: 5px;
+  background: var(--card); border: 1px solid var(--card-border);
+  border-radius: 10px; border-left: 3px solid var(--warm);
   transition: all 0.2s ease;
 }
-.study-plan .item:hover { border-left-color: var(--pine); transform: translateX(4px); }
-.study-plan .item .src-label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); display: block; margin-top: 4px; }
+.study-plan .item:hover { border-left-color: var(--accent); transform: translateX(4px); }
+.study-plan .item .src-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); display: block; margin-top: 3px; }
+
+/* Loading dots */
+.typing-indicator {
+  display: inline-flex; gap: 4px; padding: 8px 12px;
+}
+.typing-indicator span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--text-faint); animation: pulse-dot 1.4s infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="side">
     <div class="brand">
-      <div class="mark"></div>
+      <div class="mark">R</div>
       <div>
-        <span class="name">Second<b>Brain</b></span>
-        <span class="sub">grounded · local</span>
+        <span class="name"><span class="accent-text">RAG</span>Assist</span>
+        <span class="sub">· answers grounded in your courses ·</span>
       </div>
     </div>
 
     <div>
-      <h4>Corpus ingerat</h4>
+      <h4>Your subjects</h4>
       <nav class="corpus">
-        <a class="active" href="#" data-subject="Automatizarea Clădirilor"><span class="dot"></span> Automatizarea Clădirilor <span class="n">28</span></a>
-        <a href="#" data-subject="Retelistică"><span class="dot" style="background:var(--ochre)"></span> Retelistică <span class="n">26</span></a>
-        <a href="#" data-subject="Tehnologii Web"><span class="dot" style="background:var(--ink-faint)"></span> Tehnologii Web <span class="n">23</span></a>
-        <a href="#" data-subject="Sisteme Automate"><span class="dot" style="background:var(--danger)"></span> Sisteme Automate <span class="n">24</span></a>
+        <a class="active" href="#" data-subject="Automatizarea Clădirilor">
+          <span class="dot" style="background:var(--accent)"></span>
+          Automatizarea Clădirilor <span class="n" data-subject="Automatizarea Clădirilor">—</span>
+        </a>
+        <a href="#" data-subject="Retelistică">
+          <span class="dot" style="background:var(--warm)"></span>
+          Retelistică <span class="n" data-subject="Retelistică">—</span>
+        </a>
+        <a href="#" data-subject="Tehnologii Web">
+          <span class="dot" style="background:var(--text-faint)"></span>
+          Tehnologii Web <span class="n" data-subject="Tehnologii Web">—</span>
+        </a>
+        <a href="#" data-subject="Sisteme Automate">
+          <span class="dot" style="background:var(--danger)"></span>
+          Sisteme Automate <span class="n" data-subject="Sisteme Automate">—</span>
+        </a>
       </nav>
     </div>
 
     <div class="actions">
-      <button id="planBtn"><span class="ico">📋</span> Plan de învățare</button>
-      <button id="formulaBtn"><span class="ico">📝</span> Formule și exerciții</button>
+      <button id="planBtn"><span class="ico">📋</span> Study plan</button>
+      <button id="formulaBtn"><span class="ico">📝</span> Formulas & exercises</button>
     </div>
 
     <div class="foot">
-      <div><span class="grounded">Ancorat în surse</span></div>
+      <div><span class="grounded">Grounded in sources</span></div>
+      <div style="margin-top:4px">No hallucinations. Only answers from your courses.</div>
     </div>
   </aside>
 
   <main class="main">
     <div class="topbar">
-      <div class="ctx">Interoghezi: <b id="currentSubject">Automatizarea Clădirilor</b> · <span id="subjectCount">0</span> concepte</div>
+      <div class="ctx">
+        <b id="currentSubject">Automatizarea Clădirilor</b>
+        <span class="pill"><span id="subjectCount">—</span> concepts</span>
+      </div>
       <div class="actions">
         <button class="btn btn-outline" id="testBtn">🔌 Test</button>
         <button class="btn btn-primary" id="authBtn">🔑 Login</button>
       </div>
     </div>
 
-    <div class="thread"></div>
+    <div class="thread" id="thread">
+      <div class="welcome" id="welcome">
+        <div class="icon">🧠</div>
+        <h1>Ask your courses anything</h1>
+        <p>Your knowledge base — search and get grounded answers from your PDFs.</p>
+        <div class="suggestions">
+          <button data-ask="Ce este standardul KNX?">💡 Ce este standardul KNX?</button>
+          <button data-ask="Compara KNX cu un sistem traditional">⚡ Compara KNX cu sisteme traditionale</button>
+          <button data-ask="Cum functioneaza o retea de senzori wireless">📡 Retele de senzori wireless</button>
+          <button data-ask="Ce este un sistem BMS">🏢 Ce este un sistem BMS?</button>
+        </div>
+      </div>
+    </div>
 
     <div class="composer">
       <div class="box">
-        <input placeholder="Loghează-te pentru a întreba…">
-        <button class="send" disabled>↑</button>
+        <input placeholder="Login to ask a question…" id="input">
+        <button class="send" id="sendBtn" disabled>↑</button>
       </div>
-      <div class="hint">Fiecare răspuns e ancorat în note. Fără sursă → <code>nu în surse</code>, nu halucinație.</div>
+      <div class="hint">Every answer is grounded in your course notes. No source → <code>not in sources</code>, no hallucination.</div>
     </div>
   </main>
 </div>
@@ -271,18 +434,22 @@ const SUPABASE_ANON_KEY = 'sb_publishable_2DQeuvl11MIqDU3d3Jweag_XMpIzhnW';
 window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ========== DOM ==========
-const thread = document.querySelector('.thread');
-const input = document.querySelector('.composer input');
-const sendBtn = document.querySelector('.send');
+const thread = document.getElementById('thread');
+const welcome = document.getElementById('welcome');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('sendBtn');
 const authBtn = document.getElementById('authBtn');
 const testBtn = document.getElementById('testBtn');
 const planBtn = document.getElementById('planBtn');
 const formulaBtn = document.getElementById('formulaBtn');
+const currentSubjectEl = document.getElementById('currentSubject');
+const subjectCountEl = document.getElementById('subjectCount');
 
 // ========== STATE ==========
 let currentUser = null;
-let welcomeShown = false;
+let welcomeShown = true;
 let activeSubject = 'Automatizarea Clădirilor';
+let conceptCounts = {};
 
 // ========== UTILITY ==========
 function escapeHtml(text) {
@@ -291,12 +458,42 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+async function loadCounts() {
+  try {
+    const { data, error } = await window.supabase.from('concepts').select('materii');
+    if (error) throw error;
+    conceptCounts = {};
+    for (const row of data) {
+      for (const m of row.materii || []) {
+        conceptCounts[m] = (conceptCounts[m] || 0) + 1;
+      }
+    }
+    updateSubjectCount();
+    document.querySelectorAll('.corpus a .n').forEach(el => {
+      const subject = el.dataset.subject;
+      el.textContent = conceptCounts[subject] || 0;
+    });
+  } catch (e) {
+    console.error('Failed to load concept counts:', e);
+  }
+}
+
+function updateSubjectCount() {
+  subjectCountEl.textContent = conceptCounts[activeSubject] || 0;
+}
+
+function hideWelcome() {
+  if (welcome) welcome.style.display = 'none';
+  welcomeShown = false;
+}
+
 function addTurn(question, answerHtml, sources) {
+  hideWelcome();
   const turn = document.createElement('div');
   turn.className = 'turn';
   turn.innerHTML = `
     <div class="q">
-      <div class="who">Tu</div>
+      <div class="who">You</div>
       <div class="text">${escapeHtml(question)}</div>
     </div>
     <div class="a">
@@ -309,16 +506,17 @@ function addTurn(question, answerHtml, sources) {
 }
 
 function addRefusal(question, message) {
+  hideWelcome();
   const turn = document.createElement('div');
   turn.className = 'turn refusal';
   turn.innerHTML = `
     <div class="q">
-      <div class="who">Tu</div>
+      <div class="who">You</div>
       <div class="text">${escapeHtml(question)}</div>
     </div>
     <div class="a">
       <div class="box">
-        <span class="badge">Nu în surse</span>
+        <span class="badge">Not in sources</span>
         <span>${escapeHtml(message)}</span>
       </div>
     </div>
@@ -331,14 +529,18 @@ function addSystemMessage(text) {
   const msg = document.createElement('div');
   msg.style.textAlign = 'center';
   msg.style.margin = '20px 0';
-  msg.style.padding = '12px';
-  msg.style.background = 'var(--pine-soft)';
+  msg.style.padding = '12px 18px';
+  msg.style.background = 'var(--accent-soft)';
   msg.style.borderRadius = 'var(--radius)';
-  msg.style.color = 'var(--pine)';
+  msg.style.color = 'var(--accent)';
   msg.style.fontSize = '14px';
-  msg.style.animation = 'fadeSlideUp 0.3s ease';
+  msg.style.animation = 'fadeUp 0.3s ease';
+  msg.style.display = 'inline-block';
+  const wrap = document.createElement('div');
+  wrap.style.textAlign = 'center';
   msg.textContent = text;
-  thread.appendChild(msg);
+  wrap.appendChild(msg);
+  thread.appendChild(wrap);
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
 
@@ -346,13 +548,13 @@ function buildSourceCards(sources) {
   if (!sources || sources.length === 0) return '';
   return `
     <div class="sources">
-      <div class="lbl">Surse</div>
+      <div class="lbl">Sources</div>
       <div class="srcgrid">
         ${sources.map((src, i) => `
-          <a class="src" href="#" data-id="${src.id}">
+          <a class="src" href="#">
             <span class="num">${i + 1}</span>
             <div class="title">${escapeHtml(src.title)}</div>
-            <div class="meta"><span class="course">${escapeHtml(src.materii?.[0] || 'Necunoscut')}</span> · <span>${escapeHtml(src.source || '')}</span></div>
+            <div class="meta"><span class="course">${escapeHtml(src.materii?.[0] || 'Unknown')}</span> · <span>${escapeHtml(src.source || '')}</span></div>
           </a>
         `).join('')}
       </div>
@@ -368,20 +570,20 @@ async function checkAuth() {
     if (currentUser) {
       authBtn.innerHTML = '🚪 Logout';
       authBtn.className = 'btn btn-outline';
-      input.placeholder = `Autentificat ca ${currentUser.email}...`;
+      input.placeholder = `Signed in as ${currentUser.email}...`;
       input.disabled = false;
       sendBtn.disabled = false;
     } else {
       authBtn.innerHTML = '🔑 Login';
       authBtn.className = 'btn btn-primary';
-      input.placeholder = 'Loghează-te pentru a întreba…';
+      input.placeholder = 'Login to ask a question…';
       input.disabled = true;
       sendBtn.disabled = true;
     }
   } catch (_) {
     authBtn.innerHTML = '🔑 Login';
-    authBtn.className = 'btn btn-sm btn-primary';
-    input.placeholder = 'Loghează-te pentru a întreba…';
+    authBtn.className = 'btn btn-primary';
+    input.placeholder = 'Login to ask a question…';
     input.disabled = true;
     sendBtn.disabled = true;
   }
@@ -396,7 +598,9 @@ function extractKeywords(query) {
     'alta','alti','alte','are','au','era','fost','vor','vom','atunci','acolo','aici','asa',
     'doar','prea','cam','aproape','chiar','tot','toate','putin','mult','multe','multi','unele',
     'cativa','cateva','ceva','nimic','cei','cel','cele','trebuie','poate','pot','putem','puteti',
-    'face','fac','fie','fi','fii','fiti','sunteti','suntem','erau','fusesera','fusesem'];
+    'face','fac','fie','fi','fii','fiti','sunteti','suntem','erau','fusesera','fusesem',
+    'the','is','are','was','were','been','have','has','had','do','does','did','will','would',
+    'could','should','may','might','shall','can','need','dare','ought','used'];
   return [...new Set(query.toLowerCase()
     .replace(/[?.,!;:""„”«»()\-/\\']/g, ' ')
     .split(/\s+/)
@@ -420,7 +624,7 @@ async function searchConcepts(query) {
 
 function generateAnswer(question, results) {
   if (!results || results.length === 0) {
-    return { html: '<p>Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.</p>', sources: [], refusal: true };
+    return { html: '<p>No relevant information found in the knowledge base for this question.</p>', sources: [], refusal: true };
   }
   return {
     html: `<p>${results.map((r, i) => `${escapeHtml(r.description)}<span class="cite">${i + 1}</span>`).join(' ')}</p>`,
@@ -431,7 +635,7 @@ function generateAnswer(question, results) {
 
 // ========== STUDY PLAN ==========
 async function generateStudyPlan() {
-  addSystemMessage(`Se generează planul de învățare pentru ${activeSubject}…`);
+  addSystemMessage(`Generating study plan for ${activeSubject}…`);
   try {
     let q = window.supabase.from('concepts').select('*');
     if (activeSubject) q = q.contains('materii', [activeSubject]);
@@ -447,15 +651,15 @@ async function generateStudyPlan() {
     }
 
     let html = '<div class="study-plan">';
-    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:6px">📋 Plan de învățare — ${escapeHtml(activeSubject)}</p>`;
-    html += `<p style="font-family:var(--font-read);font-size:15px;color:var(--ink-soft);margin-bottom:22px">${data.length} concepte grupate pe cursuri/surse. Parcurge în ordinea listată.</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📋 Study Plan — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} concepts grouped by course. Complete in order.</p>`;
 
     for (const source of sourceOrder) {
       const items = groups[source];
       const shortSource = source.replace(/\.pdf$/,'').replace(/^C\d+[- ]*/,'').replace(/^RC_/,'');
       html += `<div class="section"><h3>📄 ${escapeHtml(shortSource || 'General')} — ${items.length}</h3>`;
       for (const item of items) {
-        const badge = item.type !== 'definition' ? `<span style="font-family:var(--font-mono);font-size:10px;color:var(--ochre-text);background:var(--ochre-soft);padding:1px 6px;border-radius:4px;margin-right:6px">${item.type}</span>` : '';
+        const badge = item.type !== 'definition' ? `<span style="font-family:var(--font-mono);font-size:9px;color:var(--warm);background:var(--warm-soft);padding:1px 5px;border-radius:4px;margin-right:5px">${item.type}</span>` : '';
         html += `<div class="item">${badge}${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.title)}</span></div>`;
       }
       html += '</div>';
@@ -464,24 +668,24 @@ async function generateStudyPlan() {
 
     const turn = document.createElement('div');
     turn.className = 'turn';
-    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată-mi planul de învățare pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
+    turn.innerHTML = `<div class="q"><div class="who">You</div><div class="text">Show study plan for ${escapeHtml(activeSubject)}</div></div>${html}`;
+    hideWelcome();
     thread.appendChild(turn);
   } catch (err) {
-    addSystemMessage('Eroare la generarea planului: ' + err.message);
+    addSystemMessage('Error generating plan: ' + err.message);
   }
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
 
-// ========== FORMULAS PLAN ==========
 async function generateFormulasPlan() {
-  addSystemMessage(`Se generează planul de formule/exerciții pentru ${activeSubject}…`);
+  addSystemMessage(`Loading formulas & exercises for ${activeSubject}…`);
   try {
     let q = window.supabase.from('concepts').select('*').in('type', ['formula', 'algorithm', 'example']);
     if (activeSubject) q = q.contains('materii', [activeSubject]);
     const { data, error } = await q;
     if (error) throw error;
     if (data.length === 0) {
-      addSystemMessage('Nicio formulă, algoritm sau exemplu găsit pentru această materie.');
+      addSystemMessage('No formulas, algorithms or examples for this subject.');
       return;
     }
 
@@ -494,15 +698,15 @@ async function generateFormulasPlan() {
     }
 
     let html = '<div class="study-plan">';
-    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--pine);margin-bottom:6px">📝 Formule și exerciții — ${escapeHtml(activeSubject)}</p>`;
-    html += `<p style="font-family:var(--font-read);font-size:15px;color:var(--ink-soft);margin-bottom:22px">${data.length} formule/algoritmi/exemple. Rezolvă-le în ordinea capitolelor.</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:20px;font-weight:600;color:var(--accent);margin-bottom:4px">📝 Formulas & Exercises — ${escapeHtml(activeSubject)}</p>`;
+    html += `<p style="font-family:var(--font-read);font-size:14px;color:var(--text-soft);margin-bottom:20px">${data.length} items found.</p>`;
 
     for (const source of sourceOrder) {
       const items = groups[source];
       const shortSource = source.replace(/\.pdf$/,'').replace(/^C\d+[- ]*/,'').replace(/^RC_/,'');
       html += `<div class="section"><h3>📄 ${escapeHtml(shortSource || 'General')} — ${items.length}</h3>`;
       for (const item of items) {
-        const badge = `<span style="font-family:var(--font-mono);font-size:10px;color:var(--ochre-text);background:var(--ochre-soft);padding:1px 6px;border-radius:4px;margin-right:6px">${item.type}</span>`;
+        const badge = `<span style="font-family:var(--font-mono);font-size:9px;color:var(--warm);background:var(--warm-soft);padding:1px 5px;border-radius:4px;margin-right:5px">${item.type}</span>`;
         html += `<div class="item">${badge}${escapeHtml(item.description || item.title)}<span class="src-label">${escapeHtml(item.title)}</span></div>`;
       }
       html += '</div>';
@@ -511,10 +715,11 @@ async function generateFormulasPlan() {
 
     const turn = document.createElement('div');
     turn.className = 'turn';
-    turn.innerHTML = `<div class="q"><div class="who">Tu</div><div class="text">Arată-mi formulele și exercițiile pentru ${escapeHtml(activeSubject)}</div></div>${html}`;
+    turn.innerHTML = `<div class="q"><div class="who">You</div><div class="text">Show formulas and exercises for ${escapeHtml(activeSubject)}</div></div>${html}`;
+    hideWelcome();
     thread.appendChild(turn);
   } catch (err) {
-    addSystemMessage('Eroare la generarea planului: ' + err.message);
+    addSystemMessage('Error: ' + err.message);
   }
   setTimeout(() => thread.scrollTop = thread.scrollHeight, 50);
 }
@@ -526,7 +731,8 @@ document.querySelectorAll('.corpus a').forEach(link => {
     document.querySelectorAll('.corpus a').forEach(a => a.classList.remove('active'));
     link.classList.add('active');
     activeSubject = link.dataset.subject;
-    document.getElementById('currentSubject').textContent = activeSubject;
+    currentSubjectEl.textContent = activeSubject;
+    updateSubjectCount();
   });
 });
 
@@ -539,9 +745,9 @@ testBtn.addEventListener('click', async () => {
   try {
     const { data, error } = await window.supabase.from('concepts').select('id').limit(1);
     if (error) throw error;
-    addSystemMessage(`✅ Conexiune reușită! ${data.length} concept(e) în db.`);
+    addSystemMessage(`✅ Connection OK! ${data.length} concept(s) in DB.`);
   } catch (err) {
-    addSystemMessage(`❌ Eroare: ${err.message}`);
+    addSystemMessage(`❌ Error: ${err.message}`);
   }
   testBtn.innerHTML = '🔌 Test';
   testBtn.disabled = false;
@@ -557,7 +763,7 @@ authBtn.addEventListener('click', async () => {
       await window.supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: window.location.origin } });
     }
   } catch (err) {
-    addSystemMessage('Eroare autentificare: ' + err.message);
+    addSystemMessage('Auth error: ' + err.message);
   }
   authBtn.disabled = false;
 });
@@ -569,12 +775,13 @@ sendBtn.addEventListener('click', async () => {
   input.disabled = true;
   sendBtn.disabled = true;
   sendBtn.textContent = '⏳';
+  hideWelcome();
   try {
     const results = await searchConcepts(q);
     const { html, sources, refusal } = generateAnswer(q, results);
-    refusal ? addRefusal(q, 'Nu am găsit informații relevante în baza de cunoștințe pentru această întrebare.') : addTurn(q, html, sources);
+    refusal ? addRefusal(q, 'No relevant information found in the knowledge base for this question.') : addTurn(q, html, sources);
   } catch (err) {
-    addRefusal(q, 'Eroare la căutare: ' + err.message);
+    addRefusal(q, 'Search error: ' + err.message);
   }
   input.disabled = false;
   sendBtn.disabled = false;
@@ -586,19 +793,28 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
 });
 
+// Suggestion buttons
+document.querySelectorAll('[data-ask]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    input.value = btn.dataset.ask;
+    sendBtn.click();
+  });
+});
+
+// ========== AUTH STATE ==========
 window.supabase.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' && !welcomeShown) {
-    welcomeShown = true;
-    addSystemMessage(`Bine ai venit, ${session.user.email}`);
+  if (event === 'SIGNED_IN') {
+    addSystemMessage(`👋 Welcome, ${session.user.email}`);
     checkAuth();
   } else if (event === 'SIGNED_OUT') {
-    welcomeShown = false;
-    addSystemMessage('Deconectat.');
+    addSystemMessage('👋 Signed out.');
     checkAuth();
   }
 });
 
+// ========== INIT ==========
 checkAuth();
+loadCounts();
 </script>
 </body>
 </html>
