@@ -1,4 +1,7 @@
 {
+  "name": "aiassist",
+  "version": "1.0.0",
+  "description": "AIASSIST — RAG local pentru interogarea cursurilor",
   "dependencies": {
     "pdf-text-reader": "^5.1.1"
   }

@@ -6,7 +6,7 @@ confidence: established
 materii: []
 ---
 
-# SecondBrain — Automatică și Informatică Aplicată
+# AIASSIST — Automatică și Informatică Aplicată
 
 Bun venit în vault-ul de curs. Aici vei găsi concepte, definiții, teoreme și algoritmi din materiile de Anul III, extrase din PDF-uri și prezentări.
 

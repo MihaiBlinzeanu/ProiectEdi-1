@@ -1,5 +1,5 @@
 ---
-title: "SecondBrain — Agent OS local (ARS Contexta + Obsidian), Product Brief actualizat 30.06"
+title: "AIASSIST — Agent OS local (ARS Contexta + Obsidian), Product Brief actualizat 30.06"
 echipa: "B2 — Dorcea Eduard (lead) + Gheorghe Alin + 1 (de confirmat)"
 repo: "DorceaEduard/ProiectEdi"
 status: "Reorientat 30.06: din SaaS RAG web → agent OS second brain LOCAL. Scope tăiat pentru 10.07."
@@ -7,7 +7,7 @@ created: 2026-06-26
 updated: 2026-06-30
 ---
 
-# SecondBrain — Brief actualizat
+# AIASSIST — Brief actualizat
 
 > ⚠️ **CALENDAR NOU (decis 30.06 cu Mihaela):** practica se închide pentru TOATE grupele pe **10 iulie**. Mai aveți **3 ședințe**, dar DOAR **2 de build**:
 > - **azi 30.06** (build) · **vin 03.07** 15-17 (build) — cele 2 ședințe de cod

@@ -1,5 +1,5 @@
 ---
-descriere: Obiective curente — SecondBrain practica S4 2026
+descriere: Obiective curente — AIASSIST practica S4 2026
 type: hartă-materie
 materii: []
 ---

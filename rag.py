@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SecondBrain RAG — CLI unificat pentru interogarea cursurilor."""
+"""AIASSIST RAG — CLI unificat pentru interogarea cursurilor."""
 
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
@@ -13,7 +13,7 @@ SCRIPTS = os.path.join(os.path.dirname(__file__), "scripts")
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SecondBrain RAG — Întreabă cursurile tale"
+        description="AIASSIST RAG — Întreabă cursurile tale"
     )
     sub = parser.add_subparsers(dest="command")
 

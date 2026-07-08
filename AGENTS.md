@@ -1,6 +1,6 @@
-# AGENTS.md — SecondBrain (Ars Contexta)
+# AGENTS.md — AIASSIST
 
-**Proiect practica S4 2026** — SecondBrain local pentru Automatică și Informatică Aplicată Anul III.
+**Proiect practica S4 2026** — AIASSIST local pentru Automatică și Informatică Aplicată Anul III.
 Sistem de cunoștințe care ingerează PDF-uri de curs și răspunde la întrebări cu citare sursă.
 
 ## Philosophy
