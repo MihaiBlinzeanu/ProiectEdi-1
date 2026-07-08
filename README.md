@@ -8,8 +8,8 @@ Sistem RAG (Retrieval-Augmented Generation) local care ingerează PDF-uri de cur
 
 ## Capturi de ecran
 
-![AIASSIST Interfață](Screenshot%20(474).png)
-![Răspuns cu citări](Screenshot%20(475).png)
+![AIASSIST Interfață](Screenshot%20(476).png)
+![Răspuns cu citări](Screenshot%20(477).png)
 
 ## Ce face
 
