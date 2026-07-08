@@ -1,4 +1,4 @@
-# RAGAssist - Design System
+# AIASSIST - Design System
 
 > Fața vizuală peste motorul vostru (`qmd` + agent). Scopul: un front în care pui o întrebare, iar răspunsul vine **ancorat în notele voastre, cu sursa la vedere**. Ăsta e diferențiatorul față de ChatGPT - designul îl scoate în față.
 >

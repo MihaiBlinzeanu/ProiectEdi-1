@@ -1,4 +1,4 @@
-# SecondBrain Project
+# AIASSIST Project
 
 This is a documentation and knowledge base project built with a custom UI design system.
 
